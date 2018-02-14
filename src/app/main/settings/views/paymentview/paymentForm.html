@@ -1,0 +1,168 @@
+<div style="overflow: hidden;">
+		<div class="subHeader" layout layout-align="start center" >
+			<div  class="title">
+				International Payment Gateways
+			</div>
+		</div>
+        <!-- <div layout="column" layout-align="center center" ng-if="!vm.Settings12thdoor.payments">
+            <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+            <div>Loading Payment Gateways...</div>
+        </div> -->
+         <md-list class="md-list" style="padding:0px 0px 0px 0px">
+            <md-list-item class="ng-repeat" ng-repeat="onlinePay in vm.Settings12thdoor.payments" ng-hide="onlinePay.name == 'webxpay'">
+               <div class="SearchCard">
+                    <div style="padding: 6px;">
+                        <img ng-src="/assets/payment/{{onlinePay.name}}_payment_logo.png" class="md-card-image" alt="Washed Out" width="100" height="100" style="width:100px; height:100px;">
+                    </div>
+               </div>
+               <div class="subContent" flex layout="row" layout-align="center end">
+                <div flex></div>
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-hide="vm.paypalRegisterbtnDisabled" ng-if="onlinePay.name == 'paypal' "> 
+                    <!-- ng-hide="vm.paypalRegisterbtnDisabled" -->
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.registerOlinePayment(onlinePay)" >setup</md-button>
+                </div>
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.paypalRegisterbtnDisabled" ng-if="onlinePay.name == 'paypal' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.editOnlinePayment(onlinePay,vm.gatewayss)">edit</md-button>
+                </div>
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.paypalRegisterbtnDisabled" ng-if="onlinePay.name == 'paypal' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.rejectOnlinePayment(onlinePay)">Reset</md-button>
+                </div>
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-hide="vm.stripeRegisterbtnDisabled" ng-if="onlinePay.name == 'stripe' ">
+                    <div class="stripe-connect-button" ng-click="vm.registerOlinePayment(onlinePay)" style="width:190px; height:33px; background-image:url('/assets/payment/stripeconnectbutton.png'); cursor:pointer; margin-right:8px;"></div> 
+                </div>
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-hide="vm.checkoutRegisterbtnDisabled" ng-if="onlinePay.name == '2checkout' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.registerOlinePayment(onlinePay)">setup</md-button>
+                </div>
+                 <!-- <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-hide="vm.webxpayRegisterbtnDisabled" ng-if="onlinePay.name == 'webxpay' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.registerOlinePayment(onlinePay)">setup</md-button>
+                </div>   -->
+
+                <!-- <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.paypalRegisterbtnDisabled" ng-if="onlinePay.name == 'paypal' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.editOnlinePayment(onlinePay)">edit</md-button>
+                </div> -->
+                <!-- <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.stripeRegisterbtnDisabled" ng-if="onlinePay.name == 'stripe' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.editOnlinePayment(onlinePay,vm.gatewayss)">edit</md-button>
+                </div> -->
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.checkoutRegisterbtnDisabled" ng-if="onlinePay.name == '2checkout' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.editOnlinePayment(onlinePay,vm.gatewayss)">edit</md-button>
+                </div>
+                 <!-- <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.webxpayRegisterbtnDisabled" ng-if="onlinePay.name == 'webxpay' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.editOnlinePayment(onlinePay,vm.gatewayss)">edit</md-button>
+                </div> -->
+
+                <!-- <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.paypalRegisterbtnDisabled" ng-if="onlinePay.name == 'paypal' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.rejectOnlinePayment(onlinePay)">Cancel</md-button>
+                </div> -->
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.stripeRegisterbtnDisabled" ng-if="onlinePay.name == 'stripe' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.rejectOnlinePayment(onlinePay)">Reset</md-button>
+                </div>
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.checkoutRegisterbtnDisabled" ng-if="onlinePay.name == '2checkout' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.rejectOnlinePayment(onlinePay)">Reset</md-button>
+                </div>
+                 <!-- <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.webxpayRegisterbtnDisabled" ng-if="onlinePay.name == 'webxpay' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.rejectOnlinePayment(onlinePay)">Reset</md-button>
+                </div> -->
+                 
+                <!-- <div class="activeInactiveBtn" layout="row" layout-align="start center">  
+                    ng-show="onlinePay.activate == true"
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;"  ng-disabled="onlinePay.activate" ng-click="vm.activepayment(onlinePay)">Activation</md-button>
+                </div> -->
+     
+                <!-- <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="onlinePay.activate == false">
+                    <md-button class="md-primary" style="border:2px solid;" ng-click="vm.activepayment(onlinePay)">{{onlinePay.label}}</md-button>
+                </div> -->
+                <!-- <div layout="row" layout-align="end center" style="margin-bottom: 6px;">
+                    <md-menu md-position-mode="target-right target" layout="row" layout-align="end center">
+                        <md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+                            <md-icon md-font-icon="icon-dots-vertical" ></md-icon>
+                        </md-button>
+                        <md-menu-content width="2">
+                            <md-menu-item ng-if="onlinePay.name == 'paypal' ">
+                                <md-button ng-click="vm.registerOlinePayment(onlinePay)" ng-disabled="vm.paypalRegisterbtnDisabled">
+                                    <p>Register</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="onlinePay.name == 'stripe' ">
+                                <md-button ng-click="vm.registerOlinePayment(onlinePay)" ng-disabled="vm.stripeRegisterbtnDisabled" >
+                                    <p>Register</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="onlinePay.name == '2checkout' ">
+                                <md-button ng-click="vm.registerOlinePayment(onlinePay)" ng-disabled="vm.checkoutRegisterbtnDisabled" >
+                                    <p>Register</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="onlinePay.name == 'webxpay' ">
+                                <md-button ng-click="vm.registerOlinePayment(onlinePay)" ng-disabled="vm.webxpayRegisterbtnDisabled" >
+                                    <p>Register</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="onlinePay.name == 'paypal' ">
+                                <md-button ng-click="vm.rejectOnlinePayment(onlinePay, $index)" ng-disabled="vm.paypalRejectbtnDisabled">
+                                    <p>Cancel</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                              <md-menu-item ng-if="onlinePay.name == 'stripe' ">
+                                <md-button ng-click="vm.rejectOnlinePayment(onlinePay, $index)" ng-disabled="vm.stripeRejectbtnDisabled">
+                                    <p>Cancel</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                              <md-menu-item ng-if="onlinePay.name == '2checkout' ">
+                                <md-button ng-click="vm.rejectOnlinePayment(onlinePay, $index)" ng-disabled="vm.checkoutRejectbtnDisabled">
+                                    <p>Cancel</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="onlinePay.name == 'webxpay' ">
+                                <md-button ng-click="vm.rejectOnlinePayment(onlinePay, $index)" ng-disabled="vm.webxpayRejectbtnDisabled">
+                                    <p>Cancel</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div> -->
+                </div>
+                <md-divider ></md-divider>
+            </md-list-item>
+           
+        </md-list>
+
+        <div class="subHeader" layout layout-align="start center" >
+            <div  class="title">
+                Country Specific Payment Gateways
+            </div>
+		</div> 
+        <md-list class="md-list" style="padding:0px 0px 0px 0px">
+            <md-list-item class="ng-repeat" ng-repeat="onlinePay in vm.Settings12thdoor.payments" ng-show="onlinePay.name == 'webxpay'">
+               <div class="SearchCard">
+                    <div style="padding: 6px;">
+                        <img ng-src="/assets/payment/{{onlinePay.name}}_payment_logo.png" class="md-card-image" alt="Washed Out" width="100" height="100" style="width:100px; height:100px;">
+                    </div>
+               </div>
+                <div layout="row" layout-align="start center" flex="10" style="color: gray; padding-left: 10px;">Sri Lanka</div>
+               <div class="subContent" flex layout="row" layout-align="center end">
+                <div flex></div>
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-hide="vm.webxpayRegisterbtnDisabled" ng-if="onlinePay.name == 'webxpay' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.registerOlinePayment(onlinePay)">setup</md-button>
+                </div> 
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.webxpayRegisterbtnDisabled" ng-if="onlinePay.name == 'webxpay' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.editOnlinePayment(onlinePay,vm.gatewayss)">edit</md-button>
+                </div>
+                <div class="activeInactiveBtn" layout="row" layout-align="start center" ng-show="vm.webxpayRegisterbtnDisabled" ng-if="onlinePay.name == 'webxpay' "> 
+                    <md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.rejectOnlinePayment(onlinePay)">Reset</md-button>
+                </div>
+               </div>
+              <md-divider ></md-divider>
+            </md-list-item>
+        </md-list>
+
+
+
+</div>

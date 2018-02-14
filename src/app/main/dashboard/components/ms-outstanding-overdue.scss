@@ -1,0 +1,119 @@
+ms-outstanding-overdue{
+
+        width:100%;
+        height:212px;
+
+        .scaleSectionContainer{
+            width:inherit;
+            height:100%;
+
+            .scaleSection{
+                width:100%;
+
+                .sectionCoverage{
+                    max-width:100% !important; 
+                    height:38px;
+                    cursor:pointer;  
+                }
+
+                .sectionLabel{
+                    height:28px;
+                    line-height:28px; 
+                    padding-left:0px;
+                    padding-right:8px;
+                    span{
+                        font-weight:400; 
+                    }  
+                }
+
+                &.scaleBalancer{
+                    width:50%; 
+                }
+
+                webkit-transition: width 1s cubic-bezier(.55,0,.1,1);
+                -moz-transition: width 1s cubic-bezier(.55,0,.1,1);
+                -o-transition: width 1s cubic-bezier(.55,0,.1,1);
+                transition: width 1s cubic-bezier(.55,0,.1,1);
+            } 
+
+            .scaleSection:nth-child(1){
+                // min-width:37%;
+
+                .sectionCoverage{
+                    margin-bottom:2px;
+                    border:2px solid #6a9ac9;
+                    background:rgba(106,154,201,0.4);
+                }
+
+                .sectionLabel{
+                    span:nth-child(1){
+                        color:#999999;
+                    }
+
+                    span:nth-child(2){
+                        color:#2d2d2d;
+                        font-weight:700; 
+                    }
+                }
+            }
+
+            .scaleSection:nth-child(2){
+                // width:63%;
+
+                .sectionCoverage{
+                    margin-top:2px; 
+                    border:2px solid #335E8B;
+                    background:rgba(51,94,139,0.4);
+                }
+
+                .sectionLabel{
+                    span:nth-child(1){
+                        color:#999999;
+                    }
+
+                    span:nth-child(2){
+                        color:#2d2d2d;
+                        font-weight:700; 
+                    }
+                }
+            }  
+        }
+        
+        .empty-state{
+            width:100%;
+            font-size:1.4vw;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.4); 
+        }                                   
+
+}
+
+body{
+    .customOvdBDtooltip{
+        color: white !important;
+
+        ._md-content, md-tooltip ._md-content{
+            background-color: rgba(0,0,0,0.8) !important;
+            height:auto !important;
+            min-width:100px; 
+            padding-top:10px;
+
+            .breakdownSection{
+                display:grid;
+                margin-bottom:10px; 
+
+                span:nth-child(1){
+                    float:left;
+                    font-size:15px; 
+                } 
+
+                span:nth-child(2){
+                    float:left;
+                    clear:left;
+                    font-size:10px;
+                    line-height:10px;  
+                }
+            }            
+        }
+    }
+}

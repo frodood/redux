@@ -1,0 +1,118 @@
+<md-dialog class="customDialogBox frmModal"  aria-label="Mango (Fruit)">
+	<md-toolbar ng-if="vm.onlinePaymentGateway.name=='paypal'">
+		<div class="md-toolbar-tools">
+			<h2>PayPal Details</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-toolbar ng-if="vm.onlinePaymentGateway.name=='stripe'">
+		<div class="md-toolbar-tools">
+			<h2>PayPal Details</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-toolbar ng-if="vm.onlinePaymentGateway.name=='2checkout'">
+		<div class="md-toolbar-tools">
+			<h2>2Checkout Details</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent pad_32">
+		<form name="editForm" novalidate>
+			<md-content flex ng-if="vm.onlinePaymentGateway.name=='paypal'">
+				<div>
+					<div layout="column" layout-margin>
+						<md-input-container flex>
+							<label>API_UserName</label>
+							<input type="text" name="API_UserName" ng-model="vm.onlinePaymentGateway.API_UserName" required>
+							<div ng-messages="editForm.API_UserName.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+						<md-input-container flex>
+							<label>API_Password</label>
+							<input name="API_Password" ng-model="vm.onlinePaymentGateway.API_Password" type="password" required>
+							<div ng-messages="editForm.API_Password.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+						<md-input-container flex>
+							<label>API_Signature</label>
+							<input name="API_Signature" ng-model="vm.onlinePaymentGateway.API_Signature" type="text" required>
+							<div ng-messages="editForm.API_Signature.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+					</div>
+				</div>
+			</md-content>
+			<md-content flex ng-if="vm.onlinePaymentGateway.name=='stripe'">
+				<div>
+					<div layout="column" layout-margin>
+						<md-input-container flex>
+							<label>Secret_key</label>
+							<input name="secret_key" ng-model="vm.onlinePaymentGateway.secret_key" type="text" required>
+							<div ng-messages="editForm.secret_key.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+						<md-input-container flex>
+							<label>Publishable_key</label>
+							<input name="publishable_key" ng-model="vm.onlinePaymentGateway.publishable_key" type="text" required>
+							<div ng-messages="editForm.publishable_key.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+					</div>
+				</div>
+			</md-content>
+			<md-content flex ng-if="vm.onlinePaymentGateway.name=='2checkout'">
+				<div>
+					<div layout="column" layout-margin >
+						<md-input-container flex>
+							<label>Private Key</label>
+							<input name="privateKey" ng-model="vm.onlinePaymentGateway.privateKey" type="text" required>
+							<div ng-messages="editForm.privateKey.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+						<md-input-container flex>
+							<label>Publishable Key</label>
+							<input name="publishableKey" ng-model="vm.onlinePaymentGateway.publishableKey" type="text" required>
+							<div ng-messages="editForm.publishableKey.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+						<md-input-container flex>
+							<label>Seller Id</label>
+							<input name="sellerId" ng-model="vm.onlinePaymentGateway.sellerId" type="text" required>
+							<div ng-messages="editForm.sellerId.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+					</div>
+
+				</div>
+			</md-content>
+		</form>
+
+	</div>
+	<div  class="dialogFooter pad_16" layout="row">
+		<span flex></span>
+		<md-button class="md-primary md-hue-3" ng-click="vm.cancel()" style="margin-right:20px;" >
+			Cancel
+		</md-button>
+		<md-button class="md-primary" class="md-raised md-primary" ng-click="vm.submit(vm.onlinePaymentGateway)">
+			Save
+		</md-button>
+	</div>
+</md-dialog>

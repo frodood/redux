@@ -1,0 +1,30 @@
+ms-product-lookup{
+    margin: 0px 7px;
+	display:block;
+
+	.productLookupContainer{
+
+		md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+            margin-top: 0px;
+            font-size:18px;
+            > label {
+                -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                transform: translate3d(1px,28px,0) scale(1) !important;
+                color: #BDBDBD;
+            }
+            &.md-input-has-value > label {
+                display: none !important;
+            }
+        }
+	}
+}
+
+.fxProg{
+
+    .productLookupContainer{
+
+        md-autocomplete.no-float > md-autocomplete-wrap > md-progress-linear{
+            bottom:21px;
+        }
+    }
+}

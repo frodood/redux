@@ -1,0 +1,49 @@
+<div id="estimatesCompose" class="page-layout carded boxed right-sidenav" layout="row">
+
+    <!-- CENTER -->
+    <div class="center" layout="column" layout-align="center center" flex>
+
+        <!-- CONTENT-CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- PRIMARY TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-icon-button close-thread" aria-label="Back" ng-click="vm.toggleChildStates('app.estimates.est')">
+                        <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+                    </md-button>
+
+                    <div class="divider-vertical"></div>
+
+                    <h2>Copy Estimate</h2>
+                </div>
+                <div layout="row" layout-align="start center">
+
+                </div>
+            </div>
+            <!-- /PRIMARY TOOLBAR -->
+
+            <ms-spinner-component name="est-copy-spinner" size="32"  relative-position="false"></ms-spinner-component>
+
+            <!-- CONTENT -->
+            <md-content flex ms-scroll>
+
+                <!-- DEMO CONTENT -->  
+                <div ng-include="'app/main/estimates/views/compose/copyCompose.html'"></div>
+                <!-- / DEMO CONTENT -->
+
+            </md-content>
+            <!-- /CONTENT -->
+            
+            <div class="footersection">
+                <md-button class="md-primary" ng-click="vm.submit()" style="border:2px solid">Save</md-button>
+                <md-button class="md-primary md-hue-3" ng-click="vm.cancel()" style="border:2px solid">cancel</md-button>
+            </div>
+            
+        </div>
+        <!-- /CONTENT-CARD-->
+
+    </div>
+    <!-- /CENTER -->
+
+</div>

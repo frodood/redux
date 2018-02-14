@@ -1,0 +1,25 @@
+<div id="dialog" aria-label="uploader" layout="column" layout-align="center start"  >
+  <md-toolbar class="tool-bar">
+    <div class="md-toolbar-tools" >
+         <h2>UPLOAD FILES</h2>
+         <span flex></span>
+         <md-button class="md-icon-button" ng-click="vm.closeDialog()">
+            <md-icon md-font-icon="icon-close"></md-icon>
+         </md-button>
+      </div>
+  </md-toolbar>
+
+  <div class="content">
+    <div>
+       <lf-ng-md-file-input lf-files="vm.files" drag preview></lf-ng-md-file-input>
+    </div>
+  </div>
+
+  <div class="footer" layout="row" layout-align="end end" class="demo-dialog-button">
+    <div flex> </div>
+    <md-button md-autofocus flex="10" ng-click="vm.uploadItem()" class="md-primary">
+      Upload
+    </md-button> 
+  </div>
+</div>
+ 

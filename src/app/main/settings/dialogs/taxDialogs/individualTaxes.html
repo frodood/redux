@@ -1,0 +1,50 @@
+<md-dialog class="customDialogBox frmModal cf-modal-height-fix" aria-label="Mango (Fruit)">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Add Individual Taxes</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent" layout="column" flex>
+	
+			<md-content ms-scroll flex>
+				<form name="editForm" novalidate class="pad_32">
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container md-no-float flex>
+						<input name="taxName" ng-model="vm.taxName" type="text" placeholder="Tax Name" required>
+						<div ng-messages="editForm.taxName.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+						<span style="font-size:12px;color:red;" ng-show="vm.sameTaxName">{{vm.erromessage}}</span>
+					</md-input-container>
+
+					<md-input-container md-no-float style="margin-left: 20px !important;" flex>
+						<input ng-model="vm.rate" placeholder="Rate %"  name="rate" rasm-numonly required>
+						<div ng-messages="editForm.rate.$error" role="alert">
+							<div ng-message-exp="['required']">
+								Invalid rate
+							</div>
+						</div>
+					</md-input-container>
+
+					<div flex="20" layout="row" layout-align="center center" style="font-size:13px;">
+						<md-checkbox class="md-primary" ng-model="vm.compound" aria-label="Checkbox 1" ng-init="vm.compound=false">Compound</md-checkbox>
+					</div>
+				</div>
+				</form>
+			</md-content>
+
+		
+	</div>
+	<div class="dialogFooter">
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid" >
+			Add
+		</md-button>
+        <md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+			Cancel
+		</md-button>
+	</div>
+</md-dialog>

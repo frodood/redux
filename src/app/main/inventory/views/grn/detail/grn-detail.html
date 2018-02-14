@@ -1,0 +1,187 @@
+<div class="compact" ng-init="vm.loadGRNdetail()">
+
+<div class="grn-container" >
+    <div class="detail-wrapper">
+        <div class="detail-header" layout="row">
+            <div class="ids" layout="column" flex>
+                <div layout="row" class="seller" layout-align="start center" flex>
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="{{vm.companylogo}}" width="156" height="156">
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- <div class="detail">
+                        <div class="title">{{vm.profData.companyName}}</div>
+                        <div class="address">{{vm.profData.street}} {{vm.profData.city}} {{vm.profData.state}}</div>
+                        <div class="address">{{vm.profData.country}},{{vm.profData.zip}}</div>
+                        <div  class="phone" style="width: 200px"><span ng-if="vm.profData.phoneNo">t.
+                            {{vm.profData.phoneNo}} </span><span ng-if="vm.profData.fax">f.
+                            {{vm.profData.fax}}</span>
+                        </div>
+                        <div class="email">{{vm.profData.companyEmail}}</div>
+                        <div class="website">{{vm.profData.website}}</div>
+                    </div> -->
+
+                    <div class="detail">
+                        <div class="address"><ms-address-component address-data="vm.ObjCompanyAddress" ent-type="'company'" align="left" showentity-title="true"></ms-address-component></div>
+                    </div>
+                </div>
+
+                <div layout="row" class="client" layout-align="start center" flex>
+                    <div class="logo" layout="row" layout-align="center center">
+                        <div>{{vm.grn.customerNames[0] | uppercase}}</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- <div class="detail">
+                        <div class="title">{{vm.grn.customerNames}}</div>
+                        
+                        <div ng-if="vm.grn.billAddress" class="address">{{vm.grn.billAddress.street}}</div>
+
+                        <div ng-if="vm.grn.billAddress" class="address">{{vm.grn.billAddress.city}} {{vm.grn.billAddress.state}}</div>
+
+                        <div ng-if="vm.grn.billAddress" class="address">{{vm.grn.billAddress.zip}} {{vm.grn.billAddress.country}}</div>   
+
+                        <div ng-if="vm.grn.contactNo" class="phone"><span>Phone</span>:
+                            {{vm.grn.contactNo}}
+                        </div>
+                        <div ng-if="vm.grn.email" class="email">
+                            {{vm.grn.email}}
+                        </div>
+                    </div> -->
+
+                    <div class="detail">
+                        <div class="address"><ms-address-component address-data="vm.ObjCusAddress" ent-type="'client'" align="left" showentity-title="true"></ms-address-component></div>
+                    </div>
+                    
+                </div>
+            </div>
+
+           <!--  <table class="summary">
+                <tr class="tableHead">
+                    <td class="tableHeadLabel cellSpacer">RECEIVED</td>
+                    <td class="tableHeadLabel2 cellSpacer">NOTE</td>
+                </tr>
+                <tr class="tableSpacer"></tr>
+                <tr>
+                    <td class="label cellSpacer">GRN NO</td>
+                    <td class="value cellSpacer">{{vm.grn.GRNno}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">DATE</td>
+                    <td class="value cellSpacer">{{vm.grn.date | toDateObject | date:'mediumDate'}}</td>
+                </tr>
+                
+            </table> -->
+            <div class="summary" layout="column" flex>
+                <div class="code" layout="row" layout-align="end start">
+                    <div layout="column" flex>
+                        <div class="label">RECEIVED</div>
+                    </div>
+                    <div layout="column">
+                         <div class="label">NOTE</div>
+                    </div>
+                </div>
+                <!--<div class="space" layout flex>
+                </div>-->
+                <div layout="row" layout-align="end end" flex>
+
+                    <div layout="column" flex>
+                       <div class="label cellSpacer">GRN NO</div>
+                       <div class="label cellSpacer">DATE</div>
+                    </div>
+
+                    <div layout="column">
+                       <div class="value cellSpacer">{{vm.grn.GRNno}}</div>
+                       <div class="value cellSpacer">{{vm.grn.date | toDateObject | date:'mediumDate'}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-middle">
+            <div class="middleSegments">
+                <div class="middleContent">
+                    <span>{{vm.grn.comment}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-content">
+            <table class="simple inventory-table" style="padding: 0px 14px;">
+                <thead>
+                    <th class="tableHeader" width="5%" style="padding-left: 8px;"><div>#</div></th>
+                    <th class="tableHeader" width="65%"><div>DESCRIPTION</div></th>
+                    <th class="tableHeader" width="15%" style="text-align: center;"><div>QUANTITY</div></th>
+                    <th class="tableHeader" width="15%" style="padding-right: 8px; text-align: right;"><div>UOM</div></th>
+                </thead>
+                <tbody >
+                    <tr ng-repeat="items in vm.grn.itemDetails">
+                        <td class="tableContent">{{$index + 1}}</td>
+                        <td class="tableContent">
+                            <div class="title"> {{items.productName}}</div>
+                            <div class="detail"> {{items.detail}}</div>
+                        </td>
+                        <td class="tableContent" style="text-align: center;">
+                            {{items.quantity | qtyRndUp}}
+                        </td>
+                        <td class="tableContent" style="text-align: right;">
+                            {{items.productUnit}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+
+        <div class="detail-footer">            
+            <div ng-if="vm.grn.note != '-'" class="footerSegments">
+                <span class="segmentHeader">Notes</span>
+                <div class="segmentContent">
+                    <span ng-bind-html="vm.grn.note"></span>
+                </div>
+            </div>
+            <div ng-if="(vm.grn.customFields && vm.grn.customFields.length != 0)" class="footerSegments">
+                <!-- <span class="segmentHeader">Additional Information</span>
+                <div class="segmentContent" layout="row" ng-repeat="detail in vm.grn.customFields">
+                    <span ng-if="detail.value" class="contactSegment" flex="20">{{detail.labelShown}}</span>
+                    <span flex="20"> {{detail.value}}</span>
+                </div> -->
+                <span class="segmentHeader">Additional Information</span>
+                <div class="segmentContent" layout="column">
+                    <div ng-repeat="detail in vm.grn.customFields">
+                        <span ng-show="detail.value" class="contactSegment" flex>{{detail.labelShown}} : {{detail.value}}</span>
+                    </div>
+                </div>
+                <!-- <div class="segmentContent" layout="row">
+                    <div layout="column" flex>
+                        <span class="contactSegment">CONTACT NUMBER : {{vm.grn.contactNo}}</span>
+                    </div>
+                    <div layout="column" flex>
+                        <span class="contactSegment">EMAIL ADDRESS :  {{vm.grn.email}}</span>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="footerSegments">
+                <div class="segmentContent" layout="row">
+                    <div layout="column" flex>
+                        <span class="contactSegment">CONTACT NUMBER : {{vm.grn.contactNo}}</span>
+                    </div>
+                    <div layout="column" flex>
+                        <span class="contactSegment">EMAIL ADDRESS :  {{vm.grn.email}}</span>
+                    </div>
+                </div>
+            </div> -->
+            <div class="footerSegments">
+            <!--     <span class="segmentHeader">Shipping Information</span>
+                <div class="segmentContent">{{vm.inv.billingAddress.street}},{{vm.inv.billingAddress.city}},{{vm.inv.billingAddress.city}},{{vm.inv.billingAddress.country}}</div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+</div>
+</div>

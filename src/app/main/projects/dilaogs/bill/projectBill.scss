@@ -1,0 +1,29 @@
+.projectBill {
+
+    background: white; 
+    width: 640px;
+
+
+    .frmModal{
+        width: 640px;
+    }
+
+    md-toolbar {
+        min-height: 48px;
+        .md-toolbar-tools {
+            height: 48px;
+            max-height: 48px;
+        }
+    }
+    .dialogContent {
+         padding: 32px;  
+
+        .md-default-theme .md-datepicker-input-container.md-datepicker-invalid, .md-datepicker-input-container.md-datepicker-invalid {
+            width: 79%; 
+        }
+        .md-default-theme .md-datepicker-input-container, .md-datepicker-input-container {
+            width: 79%; 
+        }
+    } 
+
+}

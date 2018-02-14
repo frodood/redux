@@ -1,0 +1,52 @@
+<style type="text/css">
+.date{
+	margin-left: -9.5px;
+}
+
+.md-datepicker-input{
+    min-width: 507px !important;
+    max-width: 50% !important;
+}
+    
+</style>
+<md-dialog id="statusChangeDialogBox">
+	<md-toolbar>
+	    <div class="md-toolbar-tools">
+	     <h2>Change Status</h2>
+	     <span flex></span>
+	     <md-button href class="md-icon-button" ng-click="vm.cancel()">
+	      <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+	    </md-button>
+	  </div>
+	</md-toolbar>
+	<div class="dialogContent pad_32" style="overflow: auto;">
+ 		<form>
+			<div layout layout-sm="column" layout-margin>
+				<md-input-container flex>
+					<label>Status</label>
+					<md-select  ng-model="vm.statusChange.status" ng-change="vm.calanderfun(vm.statusChange)">
+						<md-optgroup label="Status">
+						<md-option value="Paid">Paid</md-option>
+						<md-option value="Unpaid">Unpaid</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
+
+			<div layout layout-sm="column" layout-margin ng-show="vm.statusChange.status=='Unpaid'">
+		
+				<md-datepicker ms-fix-datepicker ng-model="vm.statusChange.dueDate" class="date"></md-datepicker>
+			</div>
+		
+
+			<div layout layout-sm="column" layout-margin ng-show="vm.statusChange.status=='Paid'">
+				
+				<md-datepicker ng-model="default" class="date" disabled></md-datepicker>
+			</div>
+		</form>
+	</div>
+
+	<div class="dialogFooter">
+		<md-button  ng-click="vm.submit(vm.statusChange)" class="md-primary" style="border:2px solid;">SAVE</md-button>
+	</div>
+
+	</md-dialog>

@@ -1,0 +1,44 @@
+<table class="simple" ng-hide="vm.customerContextLatestDocuments | isEmptyObj">
+    <thead>
+        <tr>
+            <th>
+                Category
+            </th>
+            <th>
+                Billable Status
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th>
+                Net Amount
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="row in vm.customerContextLatestDocuments">
+            <td>
+                <span>{{row.category}}</span>
+            </td>
+            <td>
+                <span>{{row.billable}}</span>
+            </td>
+            <td>
+                <span>{{row.createDate | toDateObject | date:'mediumDate'}}</span>
+            </td>
+            <td>
+                <span>{{row.totalValue}}</span>
+            </td>
+            <td>
+                <span>{{row.status}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div layout="row" layout-align="center center" class="recdentDocEmptyStatus" ng-show="vm.customerContextLatestDocuments | isEmptyObj">
+    <p>Records not available!</p>
+</div>

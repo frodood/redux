@@ -1,0 +1,195 @@
+    <!-- Product -->
+    <div class="card" flex id="pdfView">
+        <div ng-show="vm.detailProgress" class="detailProgress" layout="column" layout-align="center center" >
+            <md-progress-circular class="md-primary" md-mode="indeterminate" md-diameter="32"></md-progress-circular>
+            <div></div>
+        </div>
+        <div class="pro-header" layout="row"  layout-align="space-between center">
+            <div  layout="column" class="product-name">{{vm.fullProduct.productName}}</div> 
+            <div  layout="row">
+                 <div layout="column" layout-align="center center" style="font-size: 15px" > 
+                    <span> Status </span>                                       
+                </div> 
+                <div style="width: 10px;"></div>
+                <div layout="column" >
+                    <md-switch class="md-primary" ng-model="vm.proStatus" aria-label="proStatus" ng-change="vm.changeStatus()"> 
+                    </md-switch> 
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- CONTENT -->
+        <md-content class="content" flex>                
+            <div layout="row" flex layout-sm="column" class="mainContent">
+                <div layout="column" flex  class="columnOne">
+                    <!-- <uploader flex label="Upload an image" upload-type="image" file-type="single" img-height="400" 
+                    ng-if="vm.fullProduct.uploadImages.length == 0">
+                    </uploader> -->
+                   
+                    <img ng-if="vm.fullProduct.uploadImages.length > 0" id="pro-image"  class="img-content" 
+                        ng-src="{{vm.imageCode}}"  
+                        >
+                    <div class="img-content-empty"  ng-if="vm.fullProduct.uploadImages.length === 0" layout layout-align="center center"> 
+                        <span style="color: rgba(138, 128, 128, 0.88);font-size: 20px;"> Product image not available</span>
+                    </div>
+                </div>
+                <div flex="5"></div>
+                <div layout="column" flex class="columnTwo">
+                    <div flex layout="row" ng-if="vm.fullProduct.description != ''">                        
+                        {{vm.fullProduct.description}}
+                    </div>
+
+                    <div layout="row" flex="10" flex-sm="10" ng-if="vm.fullProduct.description != ''"></div>
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+
+                    <div flex layout="row" class="header-section">    
+                        <div flex flex-sm layout="column" layout-align="start end" class="header-title">
+                            PRODUCT CODE
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.productCode}}
+                        </div> 
+                        <div flex-sm="35"></div>       
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            DEFAULT UOM
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">        
+                            {{vm.fullProduct.productUnit}}
+                        </div> 
+                        <div flex-sm="35"></div>             
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            PRICE (WITHOUT TAX)
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.productPrice | unitPriceRndUp}}
+                        </div>   
+                        <div flex-sm="35"></div>           
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            TAX
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.productTax.taxName}}
+                        </div>   
+                        <div flex-sm="35"></div>           
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            COST
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.costPrice | valRndUp}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            BRAND
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.brand}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            CATEGORY
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.productCategory}}
+                        </div>  
+                        <div flex-sm="35"></div>            
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                       
+                            TRACK INVENTORY
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.inventory}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">
+                            STOCK
+                        </div>  
+                        <div flex="10" flex-sm="5"></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.quantity | qtyRndUp}}
+                        </div>  
+                        <div flex-sm="35"></div>            
+                    </div>
+                    <div flex="10"  flex-sm="10"></div>                    
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start center" class="brochure-btn" layout-align-sm="start start">
+                            <!-- <md-button class="md-primary btn" ng-if="vm.fullProduct.uploadBrochure.length == 0" >
+                                <md-icon md-font-icon="icon-file-image"></md-icon>
+                                Upload Brochure
+                            </md-button> -->
+                            <md-button class="md-primary btn" ng-disabled="vm.disableBrochure" ng-click="vm.viewBrochure()" style="height:48px;">
+                                <md-icon md-font-icon="icon-file-image"></md-icon>
+                                <span style="padding: 12px">View Brochure</span>
+                                
+                            </md-button>
+                        </div>  
+                        <div flex-sm="35"></div>               
+                    </div>
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+                </div>
+            </div>
+            <div layout="row" class="tag-content" ng-if="vm.fullProduct.tags.length > 0" >
+                <div layout="column" class="main">                    
+                    <div layout="row" class="tag-header">
+                        TAGS
+                    </div>
+                    <div layout="row" class="tag-items">
+                        <span ng-repeat="item in vm.fullProduct.tags" >
+                            {{item}} &nbsp; <!-- spaces-->
+                        </span>                      
+                    </div>
+                </div>
+            </div>
+
+            <div layout="row" class="tag-content" ng-if="vm.fullProduct.customFields.length > 0" >
+                <div layout="column" class="main">                    
+                    <div layout="row" class="tag-header">
+                        ADDITIONAL INFORMATION
+                    </div>
+                    <div layout="row" class="tag-items" ng-repeat="item in vm.fullProduct.customFields" >
+                        <div flex layout="column">
+                            <span >
+                                {{item.labelShown}} - {{item.value}}
+                            </span>   
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+ 
+        </md-content>
+        <!-- / CONTENT -->
+
+        <div class="footer">
+            <div class="note" layout="column" layout-align="start start"> 
+            </div>
+            <div layout="row" layout-align="start start">
+                
+            </div>
+        </div>
+    </div>
+    <!-- / Product -->

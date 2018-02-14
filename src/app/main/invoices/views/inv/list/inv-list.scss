@@ -1,0 +1,224 @@
+#invoices {
+
+    .center {
+
+        .content-card {
+
+            .content-wrapper {
+                background: #FAFAFA;
+
+                .item-list {
+                    position: relative;
+                    padding: 0;
+
+                    .empty-items {
+                        background: #FAFAFA;
+                        width: 100%;
+                        text-align: center;
+                        padding: 32px;
+                        font-size: 20px;
+                    }
+
+                    .loading-items {
+                        background: #FAFAFA;
+                        width: 100%;
+                        text-align: center;
+                        padding: 32px;
+                        font-size: 20px;
+                    }
+
+                    .inv-item {
+                        background: #FAFAFA;
+                        position: relative;
+                        padding:0px !important;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                        cursor: pointer;
+
+                        &.untouched {
+                            background: #FFFFFF;
+
+                            .info {
+                            }
+                        }
+
+                        &.selected {
+                            background: #dce7f2;
+
+                            .info {
+                            }
+                        }
+
+                        &.current-item {
+                            background: #E3F2FD;
+
+                            .info {
+                            }
+                        }
+
+                        .primarycontainer{
+                            padding: 16px 24px;
+
+                            .clientActionViewer{
+                                    margin: 3px;
+                                    padding: 0;
+                                    font-size: 20px;
+                                }
+
+                            .info {
+                                overflow: hidden;
+                                width: 0;
+                                margin: 0 16px;
+
+                                .primaryInfo {
+                                    font-size: 15px;
+                                    font-weight: 500;
+                                    padding-bottom: 8px;
+
+                                    .avatar {
+                                        min-width: 32px;
+                                        width: 32px;
+                                        height: 32px;
+                                        line-height: 32px;
+                                    }
+
+                                    .has-attachment {
+                                        margin-left: 8px;
+                                        transform: rotate(90deg);
+                                    }
+                                }
+
+                                .secondaryInfo {
+                                    span{
+                                        opacity:0.8;
+                                        font-size:14px;
+                                        font-weight:500;
+                                    }
+                                }
+
+                                .expandedDetails {
+                                    position: relative;
+                                    color: rgba(0, 0, 0, 0.54);
+
+                                    .labels {
+                                        position: absolute;
+                                        background: #FAFAFA;
+                                        top: 0;
+                                        right: 0;
+                                        padding-left: 6px;
+
+                                        .label {
+                                            display: inline-block;
+                                            font-size: 11px;
+                                            padding: 0 5px;
+                                            margin-right: 6px;
+
+                                            &:first-child {
+                                                margin-left: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .status {
+                                font-weight:500;
+
+                                span:nth-child(1){
+                                    font-size:16px; 
+                                }
+
+                                .invStatus{
+                                    font-size: 12px;
+                                    border-radius: 2px;
+                                    margin: 8px 0 0 0;
+                                    padding: 3px 8px;
+                                    color:#fafafa;
+                                    background-color: rgba(0, 0, 0, 0.08);
+
+                                    .status-circle{
+                                        width: 8px;
+                                        height: 8px;
+                                        margin-right: 8px;
+                                        border-radius: 50%;
+                                        background-color:#fafafa;
+                                    }
+                                    &.Pending{
+                                        background-color:#95a5a6;
+                                        border:1px solid #7f8c8d;
+                                    }
+
+                                    &.Paid{
+                                        background-color:#8BC34A;
+                                        border:1px solid #689F38;
+                                    }
+
+                                    &.Unpaid{
+                                        background-color:#F44336;
+                                         border:1px solid #D32F2F;
+                                    }
+
+                                    &.PartiallyPaid{
+                                        background-color:#f1c40f;
+                                         border:1px solid #f39c12;
+                                    }
+
+                                    &.Cancelled{
+                                        background-color:#9E9E9E;
+                                         border:1px solid #757575;
+                                    }
+
+                                    &.Overdue{
+                                        background-color:#9C27B0;
+                                         border:1px solid #7B1FA2;
+                                    }
+
+                                    &.overdue{
+                                        background-color:#9C27B0;
+                                         border:1px solid #7B1FA2;
+                                    }
+
+                                    &.Draft{
+                                        background-color:#607D8B;
+                                         border:1px solid #455A64;
+                                    }
+
+                                }
+                            }
+
+                            .actions {
+
+                                .md-icon-button {
+                                    margin: 0;
+                                    padding: 0;
+                                    width: 32px;
+                                    height: 32px;
+                                }
+                            }
+                        }
+
+                        .partialpaymentsindicator{
+                            margin-bottom:16px;
+                            width:90%;
+                            height:10px;
+                            border-radius:0px 3px 3px 0px;
+                            background:rgba(0,0,0,0.2);
+
+                            &.Paid{
+                                background-color:#8BC34A;
+                            }
+
+                            &.Partial{
+                                background-color:#FF9800;
+                            }
+
+                            &.Unpaid{
+                                background-color:#F44336;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}

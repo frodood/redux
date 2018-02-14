@@ -1,0 +1,35 @@
+ .ms-uploadercontent { 
+    #drop-files {
+		width: 100%;
+		min-height: 242px; 
+		border: 2px dashed rgba(0,0,0,0.2);
+		text-align: center; 
+		float: left; 
+		margin: 0 20px 20px 0;
+	}
+
+	#dropped-files {
+		float: left;
+		position: relative;
+	}
+
+	.upload-table
+	{
+		/*font-size:14px;
+		padding-left:4px;
+		padding-bottom:2px;*/
+		
+		color: rgb(130,130,130);
+		text-align: left;
+		font-size:14px;
+
+		
+	}
+	.md-button.md-default-theme.md-raised:not([disabled]) md-icon, .md-button.md-raised:not([disabled]) md-icon {
+	    color: rgb(142, 142, 142);
+	}
+	.showImg{ 
+		width : 100%;
+		
+	}
+}

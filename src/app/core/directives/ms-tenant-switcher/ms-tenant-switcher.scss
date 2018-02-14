@@ -1,0 +1,62 @@
+/*----------------------------------------------------------------*/
+/*  ms-tenant-switcher
+/*----------------------------------------------------------------*/
+
+.tennantItemContainer {
+    width:320px;
+    overflow:hidden;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(240, 240, 240, 1);
+    cursor: pointer;
+
+    .tennantItemContainerIcon {
+	    width: 48px;
+	    height: 48px;
+
+	    .tenantCygil{
+	    	width:32px;
+	    	height:32px;
+	    	margin:4px;
+	    	background:#335E8B;
+	    	text-align:center;
+	    	line-height:32px;
+	    	font-size:20px;
+	    	font-weight:500;
+	    	color:#fff;
+	    	border-radius:50%;    
+	    }
+	}
+
+	.tennantItemContainerText {
+	    width: calc(100% - 96px); 
+		overflow: hidden;
+		padding-bottom:6px;
+
+	    span:nth-child(1){
+		    font-size: 16px;
+		    font-weight: 400;
+		    width:100%;
+		    color: rgba(75, 75, 75, 1);
+		    overflow:hidden; 
+		    text-overflow: ellipsis; 
+		}
+
+		span:nth-child(2){
+		    font-size: 11px;
+		    font-weight: 300;
+		    width:100%; 
+		    color: rgba(75, 75, 75, 1);
+		    overflow:hidden;
+		    text-overflow: ellipsis; 
+		}
+	}
+
+	.tenantDefaultIndicatorContainer{
+		width:48px;
+		height:48px;
+
+		button{
+			margin:2px 2px !important;
+		}  
+	}
+}

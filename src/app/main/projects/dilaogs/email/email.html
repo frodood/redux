@@ -1,0 +1,60 @@
+<md-dialog id="dialogEmail" class="frmModal" aria-label="uploader" layout="column" layout-align="center start"  >
+    <md-toolbar class="tool-bar" >
+        <div class="md-toolbar-tools">
+            <h2>SEND PROJECT</h2>
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+        </div>
+    </md-toolbar>
+    <form name="cusForm" ng-submit="vm.sendMail()" style="width: 100%;"> 
+        <div class="content" ms-scroll>
+            <div layout layout-sm="column" layout-margin class="inputHeight">
+                <md-input-container flex md-no-float> 
+                    <input type="text" name="send" ng-model="vm.Sender" placeholder="To" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" />
+                    <div ng-messages="cusForm.send.$error">
+                        <div ng-message="pattern">Please enter a valid email address!</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column" layout-margin class="inputHeight">
+                <md-input-container flex md-no-float> 
+                    <input type="text" name="bccMail" ng-model="vm.bcc" placeholder="Bcc" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"/>
+                    <div ng-messages="cusForm.bccMail.$error">
+                        <div ng-message="pattern">Please enter a valid email address!</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column" layout-margin class="inputHeight">
+                <md-input-container flex md-no-float> 
+                    <input type="text" ng-model="vm.subject" placeholder="Subject" />
+                </md-input-container>
+            </div>
+            <div layout class="pre-tag" layout-sm="column" layout-margin layout-align="start center" >
+               
+            <div  ng-bind-html="vm.emailBody" style="white-space: pre;"></div>  
+            </div>
+            <div layout layout-sm="column" layout-margin class="inputHeight">
+                <div  flex="35" class="attact-pdf">        
+                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="vm.pdfCheck" class="md-primary">
+                        Attach Payment PDF
+                    </md-checkbox>
+                </div>
+                <div flex="5" class="pdf-icon">   
+                    <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+                </div>   
+                <div flex="25" layout layout-align="center center" class="pdf-name">
+                   {{vm.test.projectID}}.pdf
+                </div>
+            </div> 
+        </div>
+    
+        <div class="footer"  > 
+            <md-button flex="10" class="md-primary" style="border: 2px solid;" type="submit" ng-disabled="cusForm.$invalid"  >
+              send
+            </md-button> 
+        </div>
+
+    </form>
+</md-dialog>

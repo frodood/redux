@@ -1,0 +1,143 @@
+<div class="compact" layout="row" ng-init="vm.loadGINdetail()">
+    <div class="invoice-container" ms-scroll>
+
+        <!-- INVOICE -->
+        <div class="card">
+            <div class="header">
+                <div class="invoice-date">{{vm.date | toDateObject}}</div>
+
+                <div layout="row" layout-align="space-between stretch">
+                    <div class="client">
+                        <div class="invoice-number" layout="row" layout-align="start center">
+                            <span class="title">ISSUED NOTE</span>
+                            <span class="number">{{vm.InventoryType}} : {{vm.InventoryTypeValue}}</span>
+                        </div>
+                         <div class="invoice-number" layout="row" layout-align="start center" ng-if="!vm.customerNamesBind">
+                            <span class="title">{{vm.customerNamesBindAuto}}</span>
+                        </div>
+
+
+                       <!--  <div class="due-date" layout="row" layout-align="start center">
+                            <span class="title">DATE</span>
+                            <span class="date">11th Sep, 16</span>
+                        </div> -->
+
+                        <!-- <div class="info">
+                            <div class="title">Alice Freeman</div>
+                            <div class="address">No.32, Deanstone Place, Colombo - 3, SriLanka</div>
+                            <div class="phone">+94 77 5910099</div>
+                            <div class="email">alicefreeman@gmail.com</div>
+                            <div class="website">AliceFreeman.com</div>
+                        </div> -->
+                    </div>
+
+                    <div class="issuer" layout="row" layout-align="start center" style="background:#335E8B; color:#fff; ">
+                        <!-- <div class="logo" layout="row" layout-align="center center">
+                            <span>A</span>
+                        </div> -->
+
+                        <div class="info" style="font-size:14px;" ng-if="vm.customerNamesBind">
+                            <div style="font-weight:700;">Bill to</div>
+                            <div class="title">{{vm.customerNames}}</div>
+                            <div class="address">{{vm.AddressOne}},{{vm.AddressTwo}}</div>
+                            <div class="address">{{vm.AddressThree}},{{vm.AddressFour}}</div>
+                            <!-- <div class="phone">+94 77 5910099</div> -->
+                            <div class="email">{{vm.email}}</div>
+                          <!--   <div class="website">AliceFreeman.com</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <table class="simple invoice-table">
+                    <thead>
+                        <th>Item Description</th>
+                        <th class="text-right">Qty</th>
+                        <th class="text-right">Unit</th>
+                       <!--  <th class="text-right">Ammount</th> -->
+                        <!-- <th class="text-right">TOTAL</th> -->
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.lineItems">
+                            <td>
+                                <div class="title">
+                                    {{item.productName}}
+                                </div>
+                            </td>
+                            <!-- <td>
+                                1
+                            </td> -->
+                            <td class="text-right">
+                               {{item.quantity}}
+                            </td>
+                            <td class="text-right">
+                                {{item.productUnit}}
+                            </td>
+                        </tr>
+                        <!-- Double the invoice data for demo purposes -->
+                        <!-- <tr>
+                            <td>
+                                <div class="title">
+                                    Apple iPhone 7
+                                </div>
+                            </td>
+                            <td>
+                                3
+                            </td>
+                            <td class="text-right">
+                                {{1200 | currency}}
+                            </td>
+                            <td class="text-right">
+                                {{3600 | currency}}
+                            </td>
+                        </tr> -->
+                  
+                    </tbody>
+                </table>
+
+               <!--  <table class="simple invoice-table-footer">
+                    <tbody>
+                        <tr class="subtotal">
+                            <td>SUBTOTAL</td>
+                            <td>{{7986 | currency}}</td>
+                        </tr>
+                        <tr class="tax">
+                            <td></td>
+                            <td>{{798 | currency}}</td>
+                        </tr>
+                        <tr class="discount">
+                            <td>DISCOUNT</td>
+                            <td>-{{0 | currency}}</td>
+                        </tr>
+                        <tr class="total">
+                            <td>TOTAL</td>
+                            <td>{{8869 | currency}}</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+            </div>
+
+            <div class="footer">
+                <div class="note" layout="column" layout-align="start start">
+                   <!--  <b>Payment Info</b>
+                    Please pay within 15 days. Thank you for your business. -->
+                </div>
+                <div layout="row" layout-align="start start">
+                    <div class="small-note" layout="column" layout-align="start start">
+                       <!--  <b>Comments</b>
+                        In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue dolor.In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue dolor.
+                        In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue dolor.
+                        In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue dolor. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / INVOICE -->
+
+        <!-- Use the following element to add breaks to your pages -->
+        <!-- This will make sure that the section after this element will be printed on a new page -->
+        <!-- <div class="page-break"></div> -->
+
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div ng-init="vm.loadDetailView()"></div>
+
+<ms-spinner-component name="est-details-spinner" size="32" relative-position="false" on-loaded="vm.estDetailSpinnerLoaded(spinnerApi)" opaque="true"></ms-spinner-component>
+
+<div class="estTemplate-1" 
+     ng-include="'app/main/estimates/views/est/detail/est-detail-temp1.html'"
+     ng-if="vm.templateID == '4' ">   
+</div>
+
+<div class="estTemplate-1" 
+     ng-include="'app/main/estimates/views/est/detail/est-detail-temp2.html'"
+     ng-if="vm.templateID == '5' ">   
+</div>

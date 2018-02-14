@@ -1,0 +1,162 @@
+<div class="onBoardingLoadingView" ng-hide="vm.onBoardingScreenValue" layout="column" layout-align="center center">
+    <md-progress-circular class="md-hue-2" md-diameter="32px"></md-progress-circular>
+</div>
+<ms-form-wizard flex ng-show="vm.onBoardingScreenValue">
+    <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
+        <md-tab>
+            <md-tab-label>
+                <span class="ms-form-wizard-step-label">
+                    <span class="ms-form-wizard-step-number md-primary-bg">1</span>
+                    <span class="ms-form-wizard-step-text">Business Details</span>
+                </span>
+            </md-tab-label>
+
+            <md-tab-body>
+                <form name="businessDetailForm" class="md-inline-form" ms-form-wizard-form>
+                    <div layout="column" layout-gt-xs="row" flex>
+                        <md-input-container md-no-float class="md-block" flex="100" flex-gt-xs="50">
+                            <input type="text" name="streetaddress" ng-model="vm.businessBoarding.street" placeholder="Street Address" required>
+                            <div ng-messages="businessDetailForm.streetaddress.$error" role="alert">
+                                <div ng-message="required">
+                                    <span>Street address is required.</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <div layout="column" layout-gt-sm="row" flex>
+                        <md-input-container md-no-float class="md-block" flex="100" flex-gt-xs="33">
+                            <input type="text" name="city" ng-model="vm.businessBoarding.city" placeholder="City" required>
+                            <div ng-messages="businessDetailForm.city.$error" role="alert">
+                                <div ng-message="required">
+                                    <span>City is required.</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container md-no-float class="md-block" flex="100" flex-gt-xs="33">
+                            <input type="text" name="state" ng-model="vm.businessBoarding.state" placeholder="State">
+                        </md-input-container>
+
+                        <md-input-container md-no-float class="md-block" flex="100" flex-gt-xs="33">
+                            <input type="text" name="zip" ng-model="vm.businessBoarding.zip" placeholder="Zip">
+                        </md-input-container>
+                    </div>
+
+                    <div layout="column" layout-gt-sm="row" flex>
+                        <!-- <md-input-container md-no-float class="md-block" flex="100" flex-gt-xs="33">
+                            <input type="text" name="country" ng-model="vm.businessBoarding.country" placeholder="Country" ng-disabled="true">
+                        </md-input-container> -->
+
+                        <md-input-container md-no-float class="md-block" flex="100" flex-gt-xs="33">
+                            <input type="text" name="phoneNo" ng-model="vm.businessBoarding.phoneNo" placeholder="Phone Number" ng-pattern="/^[0-9 (,)+-]+$/" required>
+                            <div ng-messages="businessDetailForm.phoneNo.$error" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span>Phone number is required.</span>
+                                </div>
+                                <div ng-message-exp="['pattern']">
+                                    <span>Your Phone number should only include numeric values.</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container md-no-float class="md-block" flex="100" flex-gt-xs="33">
+                            <input ng-disabled="false" placeholder="Email" ng-model="vm.businessBoarding.companyEmail" name="email" ng-pattern="/^.+@.+\..+$/" required>
+                            <div ng-messages="businessDetailForm.email.$error" role="alert">
+                                <div ng-message-exp="['required','pattern']">
+                                    Your email must look like an e-mail address.
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container md-no-float class="md-block" flex="100" flex-gt-xs="33">
+                            <input type="text" name="website" ng-model="vm.businessBoarding.website" placeholder="Website" ng-pattern="/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/">
+                            <div ng-messages="businessDetailForm.website.$error" role="alert">
+                                <div ng-message-exp="['pattern']">
+                                    Enter valid website address.
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </form>
+                <div class="onBoardingNotes" layout="row" layout-align="center center">
+                    Edit this information via settings at anytime.
+                </div>
+            </md-tab-body>
+        </md-tab>
+
+        <md-tab ng-disabled="businessDetailForm.$invalid">
+            <md-tab-label>
+                <span class="ms-form-wizard-step-label">
+                    <span class="ms-form-wizard-step-number md-primary-bg">2</span>
+                    <span class="ms-form-wizard-step-text">Upload Logo</span>
+                </span>
+            </md-tab-label>
+
+            <md-tab-body>
+                <form name="logoUploadForm" ms-form-wizard-form>
+                    <lf-ng-md-file-input style="padding: 25px;" name="bizLogo" lf-files="vm.bizLogo" lf-filesize="1MB" lf-drag-and-drop-label="Drag and drop your logo here." drag preview lf-maxcount="1" lf-mimetype="image/*"></lf-ng-md-file-input>
+                    <div ng-messages="logoUploadForm.bizLogo.$error" style="color:red;">
+                        <div ng-message="maxcount">Too many files.</div>
+                        <div ng-message="filesize">File size too large.</div>
+                        <div ng-message="mimetype">Mimetype error.</div>
+                    </div>
+                </form>
+                <div class="onBoardingNotes" layout="row" layout-align="center center">
+                    Recommended logo size is 300 X 300 px. 
+                </div>
+            </md-tab-body>
+        </md-tab>
+
+        <md-tab ng-disabled="businessDetailForm.$invalid">
+            <md-tab-label>
+                <span class="ms-form-wizard-step-label">
+                    <span class="ms-form-wizard-step-number md-primary-bg">3</span>
+                    <span class="ms-form-wizard-step-text">Preview</span>
+                </span>
+            </md-tab-label>
+            <md-tab-body>
+                <form name="previewDetailForm" ms-form-wizard-form>
+                    <div class="detailPreviewContainer" layout="column" layout-align="center center">
+                        <div layout="row" class="seller" layout-align="start center" flex>
+                            <div class="brandlogo" layout="row" layout-align="center center">
+                                <img err-src="assets/defaultLogo/12thDoorCygil_blue.png" src="{{vm.bizLogoRelativeUrl}}" width="156" height="156">
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="detail">
+                                <div class="address"><ms-address-component address-data="vm.businessInfoPreview" ent-type="'company'" align="left" showentity-title="true"></ms-address-component></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="onBoardingNotes" layout="row" layout-align="center center">
+                    This is how your business details will appear on all documents.
+                </div>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
+
+    <div class="navigation" flex layout="row" layout-align="center center">
+        <md-button class="md-primary md-hue-3" ng-click="msWizard.previousStep()"
+                    ng-disabled="msWizard.isFirstStep()" style="border:2px solid;">
+            Previous
+        </md-button>
+        <div class="steps">
+            <span ng-repeat="form in msWizard.forms"
+                    ng-class="{'selected md-primary-bg':msWizard.selectedIndex === $index}"></span>
+        </div>
+        <md-button class="md-primary" ng-click="msWizard.nextStep()"
+                    ng-hide="msWizard.isLastStep()"
+                    ng-disabled="businessDetailForm.$invalid" style="border:2px solid;">
+            Next
+        </md-button>
+        <md-button class="md-primary" ng-click="vm.submitOnboardingData(); msWizard.resetForm();"
+                    ng-show="msWizard.isLastStep()"
+                    ng-disabled="businessDetailForm.$invalid" style="border:2px solid;">
+            Submit
+        </md-button>
+    </div>
+
+</ms-form-wizard>

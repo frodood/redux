@@ -1,0 +1,342 @@
+<style type="text/css">
+
+.md-input-has-value label{
+	display: none !important;
+}
+
+</style>
+<form class="form" id="form" name="editForm">
+			<!-- Start Profile Content -->
+			<md-list class="md-list" style="padding:0px 0px 0px 0px; overflow: hidden;">
+			<!-- 	<div class="subHeader" layout layout-align="start center">
+					<div class="title"> 
+						Account Owner Detail
+					</div>
+				</div>
+				<md-list-item>
+					<div layout-gt-sm="column" flex>
+						<p>Account Owner</p>
+						<p style="margin-top: -15px; color: rgba(0,0,0,0.54); font-size:13px;">To update your name or email address. please edit your personal profile</p>
+					</div>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input ng-model="vm.Settings12thdoor.profile.accountOwner" ng-disabled="true" placeholder="Account Owner">
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item>
+					<div layout-gt-sm="column" flex>
+						<p>Your Email</p>
+						<p style="margin-top: -15px; color: rgba(0,0,0,0.54); font-size:13px;">To update your name or email address. please edit your personal profile</p>
+					</div>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input name="adminEmail" ng-model="vm.Settings12thdoor.profile.adminEmail" ng-disabled="true" placeholder="Your Email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" required>
+						<div ng-messages="editForm.adminEmail.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+								Your email must be between 10 and 100 characters long and look like an e-mail address.
+							</div>
+						</div>
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item class="secondary-button-padding">
+					<div layout-gt-sm="column" flex>
+						<p>Account Url</p>
+					</div>
+					<div flex="40">
+						<md-input-container md-no-float class="md-block" flex-gt-sm>
+							<input type="text" ng-model="vm.Settings12thdoor.profile.accountUrl" ng-disabled="true" placeholder="Account Url" >
+						</md-input-container>
+					</div>
+				</md-list-item>
+
+				-->
+
+				<!--<div class="subHeader" layout layout-align="start center">
+					<div class="title" >
+						Company Information
+					</div>
+				</div> -->
+ 
+				<md-list-item>
+					<p>Business Name</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" name="companyName" ng-model="vm.Settings12thdoor.profile.companyName" placeholder="Business Name">
+					</md-input-container>
+				</md-list-item> 
+
+				<md-list-item>
+					<p>Street</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" name="street" ng-model="vm.Settings12thdoor.profile.street" placeholder="Street">
+						<!-- <div ng-messages="editForm.street.$error">
+							<div ng-message="required">This is required.</div>
+						</div> -->
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item>
+					<p>City</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input name="city" ng-model="vm.Settings12thdoor.profile.city" placeholder="City">
+					<!-- 	<div ng-messages="editForm.city.$error">
+							<div ng-message="required">This is required.</div>
+						</div> -->
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item>
+					<p>State</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input name="state" ng-model="vm.Settings12thdoor.profile.state" placeholder="State">
+						<!-- <div ng-messages="editForm.state.$error">
+							<div ng-message="required">This is required.</div>
+						</div> -->
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item>
+					<p>Zip</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input name="zip" ng-model="vm.Settings12thdoor.profile.zip" placeholder="Zip">
+						<!-- <div ng-messages="editForm.zip.$error">
+							<div ng-message="required">This is required.</div>
+						</div> -->
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item>
+					<p>Country</p>
+					<md-input-container md-no-float class="md-block" flex="40" >
+						<md-select ng-model="vm.Settings12thdoor.profile.country" placeholder="Country" ng-disabled="true">
+							<md-option>{{vm.Settings12thdoor.profile.country}}</md-option>
+						</md-select>
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item>
+					<p>Phone Number</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" ng-model="vm.Settings12thdoor.profile.phoneNo" placeholder="Phone Number" name="phoneNo" ng-pattern="/^[0-9 (,)+-]+$/">
+						<div ng-messages="editForm.phoneNo.$error" role="alert">
+				        <div ng-message-exp="['pattern']">
+				            Your Phone number should only include numeric values.
+				        </div>
+				        </div>
+					</md-input-container>
+					
+				</md-list-item>
+
+				<md-list-item>
+					<p>Fax</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" name="fax" ng-model="vm.Settings12thdoor.profile.fax" placeholder="Fax" ng-pattern="/^[0-9 ()+-]+$/">
+						<div ng-messages="editForm.fax.$error" role="alert">
+				        <div ng-message-exp="['pattern']">
+				            Your fax should only include numeric values.
+				        </div>
+				        </div>
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item>
+					<p>Business Email</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" name="companyEmail" ng-model="vm.Settings12thdoor.profile.companyEmail" placeholder="Business Email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+						<!-- placeholder="Will display on invoices, estimates etc.." -->
+						<div ng-messages="editForm.companyEmail.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+								Your email must be between 10 and 100 characters long and look like an e-mail address.
+							</div>
+						</div>
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item>
+					<p>Website</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" name="website" ng-model="vm.Settings12thdoor.profile.website" placeholder="www.your-domain.com" ng-pattern="/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/">
+						<div ng-messages="editForm.website.$error" role="alert">
+							<div ng-message-exp="['required','pattern']">
+								Enter valid website address.
+							</div>
+						</div>
+					</md-input-container>
+				</md-list-item>
+
+
+				<md-list-item>
+					<p>Financial Year</p>
+					<md-datepicker ms-fix-datepicker style="margin-right: 3px;" class="md-datepicker-button" ng-model="vm.Settings12thdoor.profile.transactionStart" id="start" md-placeholder="Date Range"></md-datepicker>
+
+					<div flex="5" layout="row" layout-align="center center" style="color: #A2A1A1;">To</div>
+
+					<md-datepicker ms-fix-datepicker style="margin-right: -12px;" class="md-datepicker-button"  ng-model="vm.Settings12thdoor.profile.transactionEnd" id="end" md-placeholder="Date Range"></md-datepicker>
+				</md-list-item>
+				<md-divider></md-divider>
+
+				<div layout-gt-sm="row" style="padding:0px 0px 0px;">
+					<div flex style="padding: 4px 14px 0px;"><p>Business Logo</p></div>
+					<div flex layout="row" layout-align="end center">
+						<div><img ng-src="{{vm.uploadFile}}" style="width:100px;height:100px; margin: 13% 10% 10% 52%; padding: 5px; background: #f9f9f9; border: 1px dashed #ddd;"/>
+						</div>
+					</div>
+					<div flex="35" layout="row" layout-align="end center">
+						<md-button class="md-primary" app-uploader="vm.imageConfig" result="vm.uploadImage(res)">
+							<md-icon md-font-icon="icon-cloud-upload"></md-icon>
+							<span style="margin-left:8px;">Upload Logo</span>
+						</md-button>
+					</div>
+				</div>
+
+				<md-divider></md-divider>
+				<div class="subHeader" layout layout-align="space-between center" style="border-bottom: 1px solid #ededed;">
+					<div class="title" >
+						Custom Fields
+					</div>
+					<md-button class="md-secondary md-primary" ng-click="vm.addcusfieldsProfile($event)">
+						<md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+						Add
+					</md-button>
+				</div>
+				<div layout-gt-sm="column" as-sortable="sortableOptions" ng-model="asdc" flex="100">
+						<div ng-repeat="item in vm.Settings12thdoor.profile.cusFiel" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+							<!-- <md-card class="add-mdcard" as-sortable-item-handle flex style="padding:6px !important; margin:0px !important; box-shadow:none !important;">
+								<md-card-content style="margin: -13px;" >  -->
+									<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 15px 0px 16px;">
+										<div flex>
+											<span style="color:#808080;">{{item.labelShown}}
+												<md-tooltip md-direction="right">Custom Field name</md-tooltip>
+											</span>
+										</div>
+										<div flex>
+											<span style="color:#808080;">{{item.inputType}}
+											</span>
+										</div>
+										<div flex>
+											<md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100">
+												<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+													<md-icon md-font-icon="icon-dots-vertical" ></md-icon>
+												</md-button>
+												<md-menu-content width="4">
+													<md-menu-item>
+														<md-button ng-click="vm.editCusfieldsProfile(item , $event)">
+															<p>Edit</p>
+															<md-icon md-menu-align-target ></md-icon>
+														</md-button>
+													</md-menu-item>
+													<md-menu-item>
+														<md-button ng-click="vm.deleteProfileCusfieldsrow(item, $index)">
+															<p>Delete</p>
+															<md-icon md-menu-align-target ></md-icon>
+														</md-button>
+													</md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+								<!-- </md-card-content>
+							</md-card> -->
+						</div>
+			
+
+				</div>
+
+				<!-- <md-list-item>
+					<md-button class="md-secondary md-primary" style="left:12px; right:0px;" ng-click="vm.addcusfieldsProfile($event)">
+						<md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+						custom fields
+					</md-button>
+					<p></p>
+				</md-list-item> -->
+
+				<div class="subHeader" layout layout-align="space-between center" >
+					<div  class="title" >
+						Regional Settings
+					</div>
+					<md-button class="md-primary" ng-click="vm.showMoreInfo = !vm.showMoreInfo;">
+                        <md-icon md-font-icon="icon-chevron-down" ng-hide="vm.showMoreInfo"></md-icon>
+                        <span ng-hide="vm.showMoreInfo">More</span>
+                        <md-icon md-font-icon="icon-chevron-up" ng-show="vm.showMoreInfo"></md-icon>
+                        <span ng-show="vm.showMoreInfo">less</span>
+                    </md-button>
+				</div>
+
+				<md-list-item ng-if="vm.showMoreInfo">
+					<p>Base Currency</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<md-select ng-model="vm.Settings12thdoor.profile.baseCurrency" placeholder="Base Currency" ng-disabled="true">
+							<md-option>{{vm.Settings12thdoor.profile.baseCurrency}}</md-option>
+						</md-select>
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item ng-if="vm.showMoreInfo">
+					<p>Time Zone</p>
+					<!-- <md-input-container md-no-float class="md-block" flex="40">
+						<md-select ng-model="vm.Settings12thdoor.profile.zoneName" placeholder="Time Zone">
+							<md-option ng-repeat="z in vm.Settings12thdoor.profile.zoneList">{{z}}</md-option>
+						</md-select>
+					</md-input-container> -->
+					<!-- <ms-Timezone-Lookup placeholder="'Customer'" required="false" editoptions="false" lookupclass="'Customer'" isautofocus="true"></ms-Timezone-Lookup> -->
+					<div flex="40">
+						<md-autocomplete class="no-float" style="text-transform: capitalize;" flex md-no-cache="noCache" md-selected-item="vm.selectedItem" md-search-text="searchText" md-items="item in vm.querySearch(searchText)" md-item-text="item.zone_name" md-floating-label="Time Zone">
+                                <md-item-template>
+                                    <span class="item-title">
+								      <md-icon md-svg-icon="{{item.image}}"></md-icon>
+								      <span style="margin-left: 15px; text-transform: capitalize;"> {{item.zone_name}} </span>
+                                    </span>
+                                </md-item-template>
+
+                    </md-autocomplete>
+					</div>
+					
+
+				</md-list-item>
+
+				<!-- <md-list-item ng-if="vm.showMoreInfo">
+					<p>Date Format</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<md-select ng-model="vm.Settings12thdoor.profile.dateFormat" placeholder="Date Format">
+							<md-option value="MMM DD,YYYY">MMM DD,YYYY</md-option>
+						</md-select>
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item ng-if="vm.showMoreInfo">
+					<p>Currency Format</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<md-select ng-model="vm.Settings12thdoor.profile.currencyFormat" placeholder="Currency Format">
+							<md-option value="Currency code">Currency code</md-option>
+						</md-select>
+					</md-input-container>
+				</md-list-item> -->
+
+				<md-list-item ng-if="vm.showMoreInfo">
+					<p>Decimal Places</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<md-select ng-model="vm.Settings12thdoor.profile.decimalPlaces" placeholder="Decimal Places">
+							<md-option value="2">2 (1.00)</md-option>
+							<md-option value="3">3 (1.000)</md-option>
+							<md-option value="4">4 (1.0000)</md-option>
+							<md-option value="5">5 (1.00000)</md-option>
+							<md-option value="6">6 (1.000000)</md-option>
+						</md-select>
+					</md-input-container>
+				</md-list-item>
+
+				<!-- <md-list-item ng-if="vm.showMoreInfo">
+					<p>Paper Size</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<md-select name="paperSize" ng-model="vm.Settings12thdoor.profile.paperSize" placeholder="Paper Size">
+							<md-option value="A4(8.27 x 11.69)">A4(8.27" x 11.69")</md-option>
+							<md-option value="Letter(8.5 x 11)">Letter(8.5" x 11")</md-option>
+						</md-select>
+						<div ng-messages="editForm.paperSize.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+					</md-input-container>
+				</md-list-item> -->
+
+</md-list>
+<!-- End Profile Content -->
+</form>

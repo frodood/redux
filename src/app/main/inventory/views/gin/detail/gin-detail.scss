@@ -1,0 +1,435 @@
+#inventory {
+    .center {
+        .content-card {
+            .content-wrapper {
+                .thread-detail {
+                    position: relative;
+                    .compact {
+
+                        .gin-container {
+                            width: 100%;
+                            .detail-wrapper {
+                                width: 100%;
+                                min-width: 100%;
+                                max-width: 100%;
+                                overflow: hidden;
+                                background: #FFFFFF;
+
+                                .detail-header {
+                                    height: auto;
+                                    min-height: 300px;
+                                     padding-bottom:16px;
+                                    .ids {
+                                        line-height: 22px;
+                                        color: rgba(0, 0, 0, 0.54);
+                                        .detail {
+                                            width: 320px;
+                                            margin-top: 5px;
+                                            margin-bottom: 7px;
+                                        }
+                                        .seller {
+                                            margin-bottom: 48px;
+                                            padding-left:16px;
+                                            .logo {
+                                                width: 156px;
+                                                height: 156px;
+                                                font-size: 115px;
+                                            }
+                                        }
+                                        .client {
+                                            padding-left:16px;
+                                            .logo {
+                                                width: 156px;
+                                                height: 156px;
+                                                font-size: 115px;
+                                            }
+                                        }
+                                        .divider {
+                                            width: 1px;
+                                            margin: 0 16px;
+                                            background-color: rgba(0, 0, 0, 0.12);
+                                            height: 144px;
+                                        }
+                                    }
+                                    .summary {
+                                        font-size: 15px;
+                                        .tableSpacer {
+                                            height: 245px;
+                                        }
+                                        .space{
+                                            min-height:100px;
+                                        }
+                                        .tableHead {
+                                            font-size: 35px;
+                                            font-weight: 300;
+                                            color: rgba(0, 0, 0, 0.54);
+                                            .tableHeadLabel {
+                                                text-align: right;
+                                                padding-right: 16px;
+                                                &.cellSpacer {
+                                                    padding-top: 0px;
+                                                    padding-bottom: 8px;
+                                                }
+                                            }
+                                            .tableHeadLabel2 {
+                                                &.cellSpacer {
+                                                    padding-top: 0px;
+                                                    padding-bottom: 8px;
+                                                }
+                                            }
+                                        }
+                                        .label {
+                                            color: rgba(0, 0, 0, 0.54);
+                                            text-align: right;
+                                            padding-right: 16px;
+
+                                            &.cellSpacer{
+                                                padding-top:8px;
+                                                padding-bottom:8px;
+                                            }
+                                        }
+
+                                        .value {
+                                            color: rgba(0, 0, 0, 1);
+                                            min-width: 102px;
+
+                                            &.cellSpacer{
+                                                padding-top:8px;
+                                                padding-bottom:8px;
+                                            }
+                                        }
+
+                                        .code {
+                                            font-size: 35px;
+                                            font-weight: 300;
+                                            height:45px;
+
+                                            td {
+                                                padding-bottom: 32px;
+                                            }
+                                        }
+                                    }
+                                }
+                                .detail-content {
+                                    .inventory-table {
+                                        font-size: 15px;                                            
+                                        .tableHeader {
+                                            color: rgba(1, 1, 1, 1);
+                                            font-weight: bold;
+                                            border-bottom: none;
+                                        }                                        
+                                        .tableContent{
+                                            border-bottom: 1px solid rgba(0, 0, 0, 0.12); 
+                                            padding: 8px;
+                                            .title {
+                                                font-size: 15px;
+                                            }
+                                            detail {
+                                                margin-top: 0px;
+                                                font-size: 12px;
+                                                color: rgba(0, 0, 0, 0.54);
+                                                max-width: 360px;
+                                            }
+                                        }
+                                    }
+                                    .inventory-table-footer {
+                                        margin: 32px 0 32px 0;
+                                        padding-left: 14px;
+                                        padding-right: 14px;
+                                        tr {
+                                            td {
+                                                text-align: right;
+                                                font-size: 15px;
+                                                font-weight: 500;
+                                                color: rgba(0, 0, 0, 0.54);
+                                                border-bottom:none;
+                                                padding: 8px 8px;
+                                                &:first-child {
+                                                    text-align: left;
+                                                }
+                                            }
+                                            &.balancedue {
+                                                td {
+                                                    padding: 8px 8px;
+                                                    font-size: 24px;
+                                                    font-weight: 500;
+                                                    color: rgba(0, 0, 0, 1);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .smallHeader {
+                                        display: block;
+                                        width: 100%;
+                                        padding-left: 18px;
+                                        height: 48px;
+                                        line-height: 48px;
+                                        font-weight: 500;
+                                        font-size: 16px;
+                                        color: rgba(0, 0, 0, 0.5);
+                                        text-transform: uppercase;
+                                    }
+                                }
+                                .detail-middle {
+                                    .middleSegments {
+                                        width: 100%;
+                                        .middleContent {
+                                            display: table-cell;                
+                                            vertical-align: middle;
+                                            height: 48px;
+                                            padding: 0px 18px;
+                                            font-weight: 500;
+                                            font-size: 15px;
+                                            color: rgba(0, 0, 0, 0.87);
+
+                                        }
+                                    }
+                                    .note {
+                                        font-size: 15px;
+                                        font-weight: 500;
+                                        margin-bottom: 24px;
+                                    }
+                                    // IE10 fix
+                                    .logo,
+                                    .small-note {
+                                        -ms-flex: 0 1 auto;
+                                    }
+                                    .brandlogo {
+                                        width: 32px;
+                                        min-width: 32px;
+                                        height: 32px;
+                                        margin-right: 24px;
+                                    }
+                                    .small-note {
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        color: rgba(0, 0, 0, 0.54);
+                                        line-height: 18px;
+                                    }
+                                }
+                                .detail-footer {
+                                    .footerSegments {
+                                        width: 100%;
+                                        padding-top:24px;
+                                        padding-bottom:12px;
+                                        .segmentHeader {
+                                            display: block;
+                                            width: 100%;
+                                            padding-left: 18px;
+                                            height: 24px;
+                                            line-height: 24px;
+                                            font-weight: 500;
+                                            font-size: 16px;
+                                            color: rgba(0, 0, 0, 0.5);
+                                            text-transform: uppercase;
+                                            margin-top: 16px;
+                                            margin-bottom: 16px;
+                                        }
+                                        .segmentContent {
+                                            padding: 4px 18px;
+                                            font-weight: 500;
+                                            font-size: 14px;
+                                            
+                                        }
+                                    }
+                                    .note {
+                                        font-size: 15px;
+                                        font-weight: 500;
+                                        margin-bottom: 24px;
+                                    }
+                                    // IE10 fix
+                                    .logo,
+                                    .small-note {
+                                        -ms-flex: 0 1 auto;
+                                    }
+                                    .brandlogo {
+                                        width: 32px;
+                                        min-width: 32px;
+                                        height: 32px;
+                                        margin-right: 24px;
+                                    }
+                                    .small-note {
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        color: rgba(0, 0, 0, 0.54);
+                                        line-height: 18px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* PRINT STYLES */
+
+@media print {
+    /* inventory Specific Styles */
+    
+    #inventory {
+        &.modern {
+            .inventory-container {
+                padding: 0;
+                .card {
+                    width: 100%;
+                    min-width: 0;
+                    background: none;
+                    padding: 0;
+                    box-shadow: none;
+                    .header {
+                        .ids {
+                            .detail {
+                                width: 120pt;
+                            }
+                            .seller {
+                                margin-bottom: 8pt;
+                                .logo {
+                                    width: 60pt;
+                                    height: 60pt;
+                                    font-size: 40pt;
+                                }
+                            }
+                            .client {
+                                .label {
+                                    width: 60pt;
+                                    font-size: 16pt;
+                                }
+                            }
+                            .divider {
+                                margin: 0 12pt;
+                                height: 100pt;
+                            }
+                        }
+                        .summary {
+                            font-size: 10pt;
+                            .code {
+                                font-size: 18pt;
+                                td {
+                                    padding-bottom: 10pt;
+                                }
+                            }
+                        }
+                    }
+                    .content {
+                        .inventory-table {
+                            margin-top: 16pt;
+                            thead {
+                                tr {
+                                    th {
+                                        font-size: 10pt;
+                                        max-width: 60pt;
+                                        &:first-child {
+                                            padding-left: 0;
+                                        }
+                                        &:last-child {
+                                            padding-right: 0;
+                                        }
+                                    }
+                                }
+                            }
+                            tbody {
+                                tr {
+                                    td {
+                                        &:first-child {
+                                            padding-left: 0;
+                                        }
+                                        &:last-child {
+                                            padding-right: 0;
+                                        }
+                                    }
+                                }
+                            }
+                            .title {
+                                font-size: 10pt;
+                            }
+                            .detail {
+                                margin-top: 4pt;
+                                font-size: 9pt;
+                                max-width: none;
+                            }
+                        }
+                        .inventory-table-footer {
+                            margin: 16pt 0;
+                            tr {
+                                td {
+                                    font-size: 13pt;
+                                    padding: 4pt 4pt;
+                                    &:first-child {
+                                        text-align: left;
+                                        padding-left: 0;
+                                    }
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+                                &.discount {
+                                    td {
+                                        padding-bottom: 16pt;
+                                    }
+                                }
+                                &.total {
+                                    td {
+                                        padding: 16pt 4pt 0 4pt;
+                                        font-size: 16pt;
+                                        &:first-child {
+                                            padding-left: 0;
+                                        }
+                                        &:last-child {
+                                            padding-right: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .payment-table {
+                            margin-top: 16pt;
+                            thead {
+                                tr {
+                                    th {
+                                        font-size: 14px;
+                                        max-width: 60pt;
+                                        font-weight: 500;
+                                        &:first-child {
+                                            padding-left: 0;
+                                        }
+                                        &:last-child {
+                                            padding-right: 0;
+                                        }
+                                    }
+                                }
+                            }
+                            tbody {
+                                tr {
+                                    td {
+                                        &:first-child {
+                                            padding-left: 0;
+                                        }
+                                        &:last-child {
+                                            padding-right: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .footer {
+                        .note {
+                            font-size: 10pt;
+                            margin-bottom: 8pt;
+                        }
+                        .logo {
+                            font-size: 14pt;
+                            margin-right: 8pt;
+                        }
+                        .small-note {
+                            font-size: 8pt;
+                            line-height: normal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

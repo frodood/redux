@@ -1,0 +1,82 @@
+<form class="form" id="form" name="editForm">
+			<!-- <md-divider></md-divider> -->
+			<md-list class="md-list" style="padding:0px 0px 0px 0px;overflow: hidden;">
+				<!-- <div layout layout-align="start center" class="subHeader">
+					<div class="title" >
+						Credit Note Preference
+					</div>
+				</div> -->
+				<md-list-item class="secondary-button-padding" >
+					<p>Credit Note Prefix</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" ng-model="vm.Settings12thdoor.preference.creditNotePref.creditNotePrefix"  placeholder="Credit Note Prefix" ng-disabled="true">
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item class="secondary-button-padding">
+					<p>Credit Note Sequence</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" ng-model="vm.creditNoteSequence" placeholder="Credit Note Sequence" ng-disabled="true">
+						<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.creditNoteSequence">
+							<md-progress-circular class="md-primary" md-mode="indeterminate" md-diameter="24"></md-progress-circular>
+						</div>
+						<md-icon style="color:#9e9e9e;" ng-click="vm.editCreditNoteSequence(vm.Settings12thdoor.preference.creditNotePref.creditNotePrefix,vm.creditNoteSequence,ev)" md-font-icon="icon-pencil"> <md-tooltip
+							md-direction="left">
+							Change Credit Note Sequence
+						</md-tooltip>
+					</md-icon>
+				</md-input-container>
+			</md-list-item>
+
+			<md-divider></md-divider>
+				<div layout layout-align="space-between center" class="subHeader" style="border-bottom: 1px solid #ededed;">
+				<div style="padding: 0px 14px 0px;"><p>Custom Fields</p></div>
+				<md-button class="md-secondary md-primary" ng-click="vm.addcusfieldsCreditNote($event)">
+					<md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+					add
+				</md-button>
+				</div>
+
+				<div as-sortable="sortableOptions" ng-model="asdc" flex="100" >
+					<div ng-repeat="item in vm.Settings12thdoor.preference.creditNotePref.cusFiel" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+						<!-- <md-card class="add-mdcard" as-sortable-item-handle flex>
+							<md-card-content style="margin: -13px;"> -->
+								<div layout="row"  layout-align="center center" style="min-height: 40px; padding: 0px 15px 0px 16px;"> 
+									<div flex>
+										<span style="color:#808080;">{{item.labelShown}}
+											<md-tooltip md-direction="right">Custom Fields name</md-tooltip>
+										</span>
+									</div>
+									<div flex>
+										<span style="color:#808080;">{{item.type}}
+											<md-tooltip md-direction="right">Fields Type</md-tooltip>
+										</span>
+									</div>
+									<div flex>
+										<md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100">
+											<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+												<md-icon  md-font-icon="icon-dots-vertical" ></md-icon>
+											</md-button>
+											<md-menu-content width="4">
+												<md-menu-item>
+													<md-button ng-click="vm.editCreditNotecusFieldsrow(item , $event)">
+														<p>Edit</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+												<md-menu-item>
+													<md-button ng-click="vm.deleteCreditNotecusfieldsrow(item, $index)">
+														<p>Delete</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+											</md-menu-content>
+										</md-menu>
+									</div>
+								</div>
+							<!-- </md-card-content>
+						</md-card> -->
+					</div>
+				</div>
+	</md-list>
+</form>

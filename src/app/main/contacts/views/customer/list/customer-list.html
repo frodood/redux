@@ -1,0 +1,155 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<!-- <div class="empty-items" ng-if="vm.customerSummaryData.length === 0">There are no customers</div>
+
+<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.customerSummaryData">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading Customers...</div>
+</div> -->
+
+<ms-spinner-component name="cus-list-spinner" size="32" relative-position="false" ng-if="!vm.customerSummaryData" on-loaded="vm.cusListSpinnerLoaded(spinnerApi)" spinner-Text="Loading customers"></ms-spinner-component>
+
+<ms-empty-state-component ng-if="vm.customerSummaryData.length === 0" offset-height="176" state-context="'list'" 
+state-header="'Its empty here…'" state-message="'Add a new customer to get started!'"  component-size="'large'" >
+</ms-empty-state-component>
+
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start -->
+<div class="item {{item.status}}" md-ink-ripple
+     ng-if="!vm.loadingItems"
+     ng-repeat="item in vm.customerSummaryData | filter: global.search"
+     ng-click="vm.openItem(item)"
+     ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}">
+<!-- {{vm.inventoryGRN}} -->
+    <div layout="row" layout-align="start center">
+      <!--   <md-checkbox class="no-label"
+                     ng-checked="vm.isSelected(item)"
+                     ng-click="vm.toggleSelectThread(item, $event)"
+                     aria-label="{{vm.isSelected(item) ? 'Deselect' : 'Select'}}">
+        </md-checkbox>
+ -->
+       <!--  <div class="divider-vertical"></div> -->
+
+        <div class="cygil">
+            <div class="avatar" ms-random-class="vm.contactColors" style="margin-left:8px;">
+                {{item.profileName[0] | uppercase}}
+            </div>
+        </div>
+
+        <div class="info" flex layout="column">
+           <div class="primaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">{{item.profileName}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">{{item.email}}</span>
+               
+            </div>
+
+            <div class="secondaryInfo" layout="row" layout-align="start center">
+              
+                <span class="text-truncate">Created Date : {{item.createDate | toDateObject}}</span>
+              
+            </div>
+
+        </div>
+        <div class="status" layout="column" layout-align="center end" ng-if="item.status">
+           
+            <div class="contactStatus {{item.status}}" layout="row" layout-align="start center">
+                <div class="status-circle"></div>
+                <div class="status-label">{{item.status}}</div>
+            </div>
+        </div>
+        <div class="status" layout="column" layout-align="center end" ng-if="!item.status">
+           
+            <div class="contactStatus {{item.status}}" layout="row" layout-align="start center">
+                <div class="status-circle"></div>
+                <div class="status-label">{{item.status}}</div>
+            </div>
+        </div>
+
+       
+
+                    <!-- <md-menu md-position-mode="target-right target">
+               <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                  <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+               </md-button>
+              
+            </md-menu> -->
+             <md-menu md-position-mode='target-right target' aria-label="Sort">
+                               <md-button class="md-icon-button" aria-label="Sort" ng-click='$mdOpenMenu($event)' type='button'>
+                                  <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                                  
+                               </md-button>
+                               <md-menu-content width='4'>
+                                  
+                                     <md-menu-item ms-perm-elem perm-context="'Contacts'" perm-action="'edit'">
+                                     <md-button ng-click="vm.showAdvancedEditDialog($event, item.profileID,item.favouriteStarNo, item.favouriteStar)">
+                                       <div layout='row'>
+                                              <p flex>Edit</p>
+                                        </div>
+                                        </md-button>
+                                     </md-menu-item>
+                                     <md-divider ng-show='item.divider'></md-divider>
+                                     <md-menu-item ms-perm-elem perm-context="'360View'" perm-action="'view'">
+                                     <md-button ng-click="vm.View360(item)">
+                                       <div layout='row'>
+                                              <p flex>360 App</p>
+                                        </div>
+                                        </md-button>
+                                     </md-menu-item>
+                                     <md-divider ng-show='item.divider'></md-divider>
+                                     <md-menu-item ng-if="item.status=='Active'">
+                                     <md-menu>
+                                     <md-button style="width:93%;height: 40px;"  ng-click="$mdOpenMenu()">
+                                       <!-- <div layout='row'>
+                                              <p>New</p>
+                                        </div> -->
+                                        New
+                                        </md-button>
+                                         <md-menu-content width="4">
+                       <md-menu-item ms-perm-elem perm-context="'Invoices'" perm-action="'view'"><md-button ng-click="vm.invoice(item)">Invoice</md-button></md-menu-item>
+                       <md-menu-item ms-perm-elem perm-context="'Invoices'" perm-action="'view'"><md-button ng-click="vm.recurringPRofile(item)">Recurring Profile</md-button></md-menu-item>
+                       <md-menu-item ms-perm-elem perm-context="'Estimates'" perm-action="'view'"><md-button ng-click="vm.estimate(item)">Estimate</md-button></md-menu-item>
+                       <md-menu-item ms-perm-elem perm-context="'CreditNotes'" perm-action="'view'"><md-button ng-click="vm.creditNote(item)">Credit Note </md-button></md-menu-item>
+                       <md-menu-item ms-perm-elem perm-context="'Payments'" perm-action="'view'"><md-button ng-click="vm.payment(item)">Payment</md-button></md-menu-item>
+                       <md-menu-item ms-perm-elem perm-context="'Inventory'" perm-action="'view'"><md-button ng-click="vm.inventoryIssued(item)">Issued Note</md-button></md-menu-item>
+                     </md-menu-content>
+                                        </md-menu>
+                                     </md-menu-item>
+                                     <md-divider ng-show='item.divider'></md-divider>
+                                     <md-menu-item ng-if="item.status=='Active'" ms-perm-elem perm-context="'Contacts'" perm-action="'edit'">
+                                     <md-button ng-click="vm.changeStatus(item)">
+                                       <div layout='row'>
+                                              <p flex>Make Inactive</p>
+                                        </div>
+                                        </md-button>
+                                     </md-menu-item>
+                                     <md-menu-item ng-if="item.status=='Inactive'" ms-perm-elem perm-context="'Contacts'" perm-action="'edit'">
+                                     <md-button ng-click="vm.changeStatus(item)">
+                                       <div layout='row'>
+                                              <p flex>Make Active</p>
+                                        </div>
+                                        </md-button>
+                                     </md-menu-item>
+                                     <md-divider ng-show='item.divider'></md-divider>
+                                     <md-menu-item ms-perm-elem perm-context="'Contacts'" perm-action="'delete'">
+                                     <md-button ng-click="vm.ContactDelete(item)">
+                                       <div layout='row'>
+                                              <p flex>Delete</p>
+                                        </div>
+                                        </md-button>
+                                     </md-menu-item>
+                                     </md-menu-content>
+                            </md-menu>
+
+        <div layout="column" layout-align="space-between end">
+            <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('starred', item, $event)"
+                       aria-label="Toggle starred">
+                <md-icon ng-if="item.favouriteStarNo==0" md-font-icon="icon-star"
+                         class="amber-fg"></md-icon>
+                <md-icon ng-if="item.favouriteStarNo==1" md-font-icon="icon-star-outline"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>

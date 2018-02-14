@@ -1,0 +1,41 @@
+<table class="simple">
+    <thead>
+        <tr>
+            <th>
+                GIN No
+            </th>
+            <th>
+                GIN Type
+            </th>
+            <th>
+                Issued Date
+            </th>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Notes
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="row in vm.customerContextLatestDocuments">
+            <td>
+                <span>{{row.GINno}}</span>
+            </td>
+            <td>
+                <span>{{row.GINType}}</span>
+            </td>
+            <td>
+                <span>{{row.createdDate | toDateObject | date:'mediumDate'}}</span>
+            </td>
+            <td>
+                <span>{{row.customerNames}}</span>
+            </td>
+            <td>
+                <span>{{row.internalNote}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,82 @@
+<div class="templateContent" style="overflow-x: hidden;">
+		<div class="subHeader" layout layout-align="start center">
+			<div class="title" >
+				Invoice Templates
+			</div>
+		</div>
+     <!--     <div layout="column" layout-align="center center" ng-if="!vm.Settings12thdoor.templates">
+            <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+            <div>Loading Email Templates...</div>
+        </div> -->
+
+		<div class="templateWrap" layout="row" layout-wrap layout-align="center center">
+			<div class="templateWrapSub" layout layout-sm="row" layout-margin layout-wrap >
+				<md-card  class="template" ng-repeat="template in vm.Settings12thdoor.templates | filter: {type: 'Invoice'}" flex ng-show="template.templateID=='1'">
+					<div class="SearchCard">
+						<div id="{{template.templateID}}" ng-class="{'tintImage': template.activated == false}"></div>
+						<div >
+							<img ng-src="/assets/template/invoice_template.png" class="md-card-image" alt="Washed Out">
+						</div>
+					</div>
+					<md-divider></md-divider>
+					<div class="md-actions" layout="column">
+						<div flex layout="row" layout-align="center center">
+							{{template.templateName}}
+						</div>
+						<div flex layout="row" layout-align="center center" ng-show="!template.activated">
+							<md-button class="md-primary" style="border:2px solid;" ng-click="vm.activatetemplate(template,$index)">{{template.status}}</md-button>
+						</div>
+					</div>
+				</md-card>
+				<md-card  class="template" style="width:200px;">
+					
+						<div layout="column" layout-align="center center" flex style="height:320px;padding:5px;font-size:15px !important;">
+							<div>More templates</div>
+							<div> coming soon!</div>
+						
+						</div>
+				
+				</md-card>
+
+			</div>
+		</div>
+
+		<div class="subHeader" layout layout-align="start center">
+			<div class="title" >
+				Estimate Templates
+			</div>
+		</div>
+
+		<div class="templateWrap" layout="row" layout-wrap layout-align="center center">
+			<div class="templateWrapSub" layout layout-sm="row" layout-margin layout-wrap >
+				<md-card  class="template" ng-repeat="template in vm.Settings12thdoor.templates | filter: {type: 'Estimate'}" flex ng-show="template.templateID=='4'">
+					<div class="SearchCard">
+						<div id="{{template.templateID}}" ng-class="{'tintImage': template.activated == false}"></div>
+						<div >
+							<img ng-src="/assets/template/estimate_template.png" class="md-card-image" alt="Washed Out">
+						</div>
+					</div>
+					<md-divider></md-divider>
+					<div class="md-actions" layout="column">
+						<div flex layout="row" layout-align="center center">
+							{{template.templateName}}
+						</div>
+						<div flex layout="row" layout-align="center center" ng-show="!template.activated">
+							<md-button class="md-primary" style="border:2px solid;" ng-click="vm.activatetemplate(template)">{{template.status}}</md-button>
+						</div>
+
+					</div>
+				</md-card>
+
+				<md-card  class="template" style="width:200px;">
+
+					<div layout="column" layout-align="center center" flex style="height:320px;padding:5px;font-size:15px !important;">
+						<div>More templates</div>
+						<div>coming soon!</div>
+					</div>
+
+				</md-card>
+			</div>
+		</div>
+
+</div>

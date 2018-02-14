@@ -1,0 +1,49 @@
+<div id="Reports" class="page-layout carded boxed right-sidenav" layout="row">
+
+    <!-- CENTER -->
+    <div class="center" layout="column" layout-align="center center" flex>
+
+        <div class="content-card" layout="column">
+         
+            <!-- / PRIMARY TOOLBAR -->
+
+            <!-- SECONDARY TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center"> 
+
+                    <!-- SINGLE THREAD SPECIFIC ACTIONS -->
+                    <md-button class="md-icon-button close-thread" aria-label="Back"
+                               ng-click="vm.closeThread()" >
+                        <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+                    </md-button>
+                    <!-- / SINGLE THREAD SPECIFIC ACTIONS -->
+
+                    <!-- ACTION BUTTONS --> 
+
+                    <div class="divider-vertical"></div>
+
+                    <h2>{{vm.reportName}}</h2>
+                    
+                </div>  
+            </div>
+            <md-divider></md-divider>
+            <!-- / SECONDARY TOOLBAR -->
+
+            <!-- CONTENT WRAPPER -->
+            <div class="content-wrapper" layout="column" flex>
+
+                
+
+                <!-- ITEM DETAIL -->
+                 <div class="content thread-detail" flex> 
+                    <div style="position:absolute; z-index:1; top:50%; margin-top:-191px; left:50%; margin-left:-171px;">
+                        <img src="/assets/reports/imgpsh_fullsize.png" style="width:300px;">                    
+                        <h1 style="padding-top: 16px; color:rgba(0, 0, 0, 0.4);">Your report is getting prepared...</h1>
+                    </div>
+                    <iframe id="{{vm.ramdomID}}" ng-src="{{vm.reportSrc}}" style="z-index: 9; position: absolute; height: 100%; width: 100%; border:none;"></iframe>
+                </div>               
+            </div>
+            <!-- / CONTENT WRAPPER-->
+        </div> 
+    </div> 
+</div>

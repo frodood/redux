@@ -1,0 +1,190 @@
+<div class="estimate-container">
+    <div class="detail-wrapper">
+        <div class="detail-header" layout="row">
+            <div class="ids" layout="column" flex>
+                <div layout="row" class="seller" layout-align="start center" flex>
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="{{vm.companylogo}}" width="156" height="156">
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="detail">
+                        <div class="address">
+                            <ms-address-component address-data="vm.ObjCompanyAddress" ent-type="'company'" align="left" showentity-title="true"></ms-address-component>
+                        </div>
+                    </div> 
+                </div>
+                <div layout="row" class="client" layout-align="start center" flex>
+                    <div class="logo" layout="row" layout-align="center center">
+                        <div>{{vm.est.profileName[0] | uppercase}}</div>
+                    </div>
+                    <div class="divider"></div>
+
+                    <div class="detail">
+                        <div class="address">
+                            <ms-address-component address-data="vm.ObjCusAddress" ent-type="'client'" align="left" showentity-title="true"></ms-address-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary" layout="column" flex>
+                <div class="code" layout="row" layout-align="end start">
+                    <div layout="column" flex>
+                        <div class="label">ESTIMATE</div>
+                    </div>
+                    <div layout="column">
+                         <div class="value">{{vm.est.estimateNo}}</div>
+                    </div>
+                </div>
+                <!-- <div class="space" layout flex>
+                </div> -->
+                <div class="space" layout flex ng-if="vm.profData.cusFiel.length == 0">
+                </div>
+
+                <div class="spacecustomFieldOne" layout flex ng-if="vm.profData.cusFiel.length == 1">
+                </div>
+
+                <div class="spacecustomFieldAll" layout flex ng-if="vm.profData.cusFiel.length == 2 || vm.profData.cusFiel.length == 3">
+                </div>
+
+                <div layout="column" layout-align="end end" flex class="customField" ng-if="vm.profData.cusFiel.length != 0" >
+                   
+                        <div layout="row" flex ng-repeat="cus in vm.profData.cusFiel" class="customerFieldHeight">
+                            <div class="label cellSpacer">{{cus.labelShown}}</div>
+                            <div class="value cellSpacer">{{cus.inputType}}</div>
+                            <!-- <div class="label cellSpacer">{{}}</div> -->
+                        </div>
+                </div>
+
+                <div layout="row" layout-align="end end" flex>
+
+                    <div layout="column" flex>
+                       <div class="label cellSpacer">DATE</div>
+                       <div class="label cellSpacer">VALIDITY</div>
+                       <div class="label cellSpacer">TERMS</div>
+                       <div class="label cellSpacer" ng-if="vm.est.customerRef != ''">CUSTOMER REF</div>
+                       <div class="label cellSpacer">CURRENCY</div>
+                    </div>
+
+                    <div layout="column">
+                       <div class="value cellSpacer">{{vm.est.date|toDateObject}}</div>
+                       <div class="value cellSpacer">{{vm.est.validity|toDateObject}}</div>
+                       <div class="value cellSpacer">{{vm.est.paymentTerm}}</div>
+                        <div class="value cellSpacer" ng-if="vm.est.customerRef != ''">{{vm.est.customerRef}}</div>
+                        <div class="value cellSpacer">{{vm.est.changedCurrency}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <span class="invoiceComment" style="margin-left: 0;">{{vm.est.comments}}</span>
+
+        <div class="detail-content">
+            <table class="invoice-table" style="width:100%">
+                <thead class="tableHeader">
+                    <th>#</th>
+                    <th class="text-left">DESCRIPTION</th>
+                    <th class="text-center">QUANTITY</th>
+                    <th class="text-center">UOM</th>
+                    <th class="text-center">UNIT PRICE</th>
+                    <th class="text-center">DISCOUNT</th>
+                    <th class="text-right">AMOUNT</th>
+                </thead>
+
+                <tbody class="tableBody">
+                    <tr ng-repeat="items in vm.est.estimateProducts">
+                        <td style="width:3%;">{{$index + 1}}</td>
+                        <td class="text-left" style="width:35%">
+                            <div class="title"> {{items.productName}}</div>
+                            <div class="detail"> {{items.olp}}</div>
+                        </td>
+                        <td class="text-center" style="width:5%">
+                            {{items.quantity | qtyRndUp}}
+                        </td>
+                        <td class="text-center" style="width:5%">
+                            {{items.productUnit}}
+                        </td>
+                        <td class="text-center" style="width:15%">
+                            {{items.price / vm.est.exchangeRate | unitPriceRndUp}}
+                        </td>
+                        <td class="text-center" style="width:8%">
+                            {{items.discount}}%
+                        </td>
+                        <td class="text-right" style="width:15%">
+                            {{items.amount / vm.est.exchangeRate | valRndUp}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="simple invoice-table-footer">
+                <tbody>
+                    <tr class="subtotal">
+                        <td>SUBTOTAL</td>
+                        <td></td>
+                        <td>{{vm.est.changedCurrency}} {{vm.est.subTotal / vm.est.exchangeRate | valRndUp}}</td>
+                    </tr>
+
+                    <tr class="tax" ng-repeat="item in vm.est.taxAmounts">
+                        <td>{{item.taxName | uppercase }}</td>
+                        <td></td>
+                        <td>{{vm.est.changedCurrency}} {{item.salesTax / vm.est.exchangeRate| valRndUp}}</td>
+                    </tr>
+                    <tr class="shipping">
+                        <td>SHIPPING</td>
+                        <td></td>
+                        <td>{{vm.est.changedCurrency}} {{vm.est.shipping / vm.est.exchangeRate | valRndUp}}</td>
+                    </tr>
+                    <tr class="balancedue">
+                        <td>TOTAL</td>
+                        <td></td>
+                        <td>
+                            {{vm.est.changedCurrency}} {{vm.est.netAmount / vm.est.exchangeRate | valRndUp}}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="detail-footer">
+            <div class="footerSegments" ng-show="vm.offinePayment">
+                <span class="segmentHeader">PAYMENT INFORMATION</span>
+                <div class="segmentContent">
+                    <span ng-bind-html="vm.offinePayment"></span>
+                </div>
+            </div>
+            <div class="footerSegments" ng-if="vm.est.notes !=''">
+                <span class="segmentHeader">Notes</span>
+                <div class="segmentContent">
+                    <span ng-bind-html="vm.est.notes"></span>
+                </div>
+            </div>
+            <div class="footerSegments" ng-if="vm.est.customFields.length">
+                <span class="segmentHeader">Additional Information</span>
+                <div class="segmentContent" layout="column">
+                    <div ng-repeat="cus in vm.est.customFields">
+                        <span ng-show="cus.value" class="contactSegment" flex>{{cus.labelShown}} : {{cus.value}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footerSegments" ng-if="vm.est.isCurrencyChanged == true">
+                <span class="segmentHeader" >Currency Exchange Rate</span>
+                <div class="segmentContent">
+                    <span>{{vm.est.changedCurrency+" "+vm.est.exchangeRate }}</span>
+                </div>
+            </div>
+            <div class="footerSegments" ng-if="vm.showShippingInDetailsView">
+                <span class="segmentHeader">Shipping Information</span>
+                <div class="segmentContent">
+                    <span ng-show="vm.est.shippingAddress.s_street">{{vm.est.shippingAddress.s_street}},</span>
+                    <span ng-show="vm.est.shippingAddress.s_city">{{vm.est.shippingAddress.s_city}},</span>
+                    <span ng-show="vm.est.shippingAddress.s_state">{{vm.est.shippingAddress.s_state}},</span>
+                    <span ng-show="vm.est.shippingAddress.s_zip">{{vm.est.shippingAddress.s_zip}},</span>
+                    <span ng-show="vm.est.shippingAddress.s_country">{{vm.est.shippingAddress.s_country}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-break"></div>
+</div>

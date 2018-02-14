@@ -1,0 +1,54 @@
+div[ms-numeric-stepper] {
+    .msNumericStepperContainer{
+        height: 33px;
+        width:106px;
+        border-radius:3px;
+
+        &.ng-invalid-out-of-bounds input {
+            color: #FF3B34;
+            border: 3px solid #FF3B34;
+        }
+
+        &[disabled] input {
+            color: #aaa;
+            border: 0;
+        }
+
+        button {
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            appearance: none;
+            margin: 0;
+            border: 0;
+            width: 33px;
+            height: 100%;
+            background:none;
+            color: blue;
+            outline: none;
+
+            &[disabled] {
+              opacity: 0.3;
+            }
+
+            &:active {
+              box-shadow: none;
+              background: #f6f6f6;
+            }
+        }
+
+        input {
+            vertical-align: top;
+            padding: 0;
+            background: #fff;
+            font-size:24px; 
+            color:rgba(0, 0, 0, 0.541176);
+            text-align: center;
+            display: inline-block;
+            width:40px;
+            height: 33px;
+            line-height: 33px;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }  
+    }
+}

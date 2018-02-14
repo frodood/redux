@@ -1,0 +1,205 @@
+	<div class="compose" layout="column">
+				<div class="mainsection" layout="column" layout-align="start start"  >
+					<div class="subMain" >
+						<div class="info" layout="column">
+							<div class="maininfosection" layout="row" layout-align="start start">
+								<div class="customerinfo" flex>
+									<div class="uploader" layout="row" layout-align="center center"  ng-if="vm.fullProduct.uploadImages.length > 0">	
+										<div layout="row" class="show-div" app-uploader="vm.imageConfig" result="vm.setMedia(res)" style="width: 100%;">
+											<img class="image-conf" ng-src="{{vm.uploadFile}}">
+										</div> 
+									</div>
+									<div class="uploader" layout="row" layout-align="center center" ng-if="vm.fullProduct.uploadImages.length === 0">	
+										<div layout="column" class="up-div" layout-align="center center" app-uploader="vm.imageConfig" result="vm.setMedia(res)" ng-if="vm.imageArray.length == 0">
+											<div layout="row">
+												<label class="up-label" >Upload an Image</label>
+											</div> 
+										</div>
+										<div layout="row" class="show-div" ng-click="vm.openBrochure('image')"  ng-if="vm.imageArray.length > 0">
+											<img class="image-conf" ng-src="{{vm.uploadFile}}">
+										</div> 
+									</div>
+								</div>
+
+								<div class="productinfo" flex> 
+
+				                    <div layout="column" layout-gt-sm="row" class ="inputHeight" >
+			                            <md-input-container flex md-no-float> 
+						                  <input  placeholder="Product name" name="productName" required type="text" ng-model="vm.fullProduct.productName" ng-minlength="3" /> 
+
+					                        <div ng-messages="productForm.productName.$error"
+					                         ng-if="productForm.productName.$touched"> 
+										        <p ng-message="required">Product name is required.</p>
+										        <p ng-message="minlength">enter atleast 3 characters...</p>
+										    </div>
+				                        </md-input-container>
+				                    </div>
+				                    <div layout="column" layout-gt-xs="row" class="inputHeight"> 
+							               <md-input-container flex md-no-float> 
+							                  <input placeholder="Product Description" name="description" ng-maxlength="100" type="text" ng-model="vm.fullProduct.description"/>   
+							                  <div ng-messages="productForm.description.$error"
+					                         ng-if="productForm.description.$touched">  
+										        <p ng-message="maxlength">Maximum length is 100 characters...</p>
+										    </div>
+							               </md-input-container>
+				                    </div>
+
+				                    <div layout="column" layout-gt-xs="row" class="inputHeight">
+				                        <md-input-container flex="50" md-no-float> 
+						                  <input type="text" placeholder="Product Code" ng-model="vm.fullProduct.productCode" ng-blur="vm.checkProductCode()"  capitalize limit-to="20" no-special-char /> 
+						               	</md-input-container>
+							            <div style="width:5%;"></div> 
+
+				                        <md-input-container flex="50" md-no-float> 
+					                        <md-select ng-model="vm.fullProduct.productUnit" placeholder="Unit">
+					                           <md-optgroup label="Unit">
+					                           <md-option ng-repeat="cat in vm.proUnits" value="{{cat}}">{{cat}}</md-option>
+					                        </md-select>
+					                    </md-input-container>
+				                    </div> 
+
+
+				                    <div layout="column" layout-gt-xs="row" class="error-height">		
+						               	<div flex  ng-show="vm.submitProgress">{{vm.proCodeErr}}</div>	 
+				                    </div>
+				                    <div layout="column" layout-gt-xs="row" class="inputHeight">
+				                        <md-input-container flex="50" md-no-float> 
+							                <input type="text" ng-model="vm.fullProduct.productPrice" ng-keyup="vm.finalAmount(vm.fullProduct)" placeholder="Price (without tax)" ms-Unitprice-Adjuster/> 
+							            </md-input-container md-no-float>   
+							            <div style="width:5%;"></div> 
+				                        <md-input-container flex="50"> 
+										  	<md-select placeholder="Tax" ng-model="vm.fullProduct.productTax" ng-change="vm.finalAmount(vm.fullProduct)" ng-model-options="{trackBy: $value.taxID}">
+						              			<md-optgroup label="Select Tax">
+											    <md-option ng-value="cat" ng-repeat="cat in vm.taxesArr">{{cat.taxName}} {{cat.rate}}%</md-option>
+										  	</md-select>
+										</md-input-container>
+								 
+				                    </div>			               
+								</div>
+							</div> 
+						</div>
+						<!-- <div class="optional" layout="row" layout-align="start start">
+							  <div class="details">Optional Details </div>
+						</div>  -->
+						<div class="optional">
+							<div class="detail" layout="row" layout-align="space-between center" style="padding: 0px 32px;font-size: 18px;">
+								Optional Details
+								<md-button class="md-primary" ng-click="vm.showMoreInfo = !vm.showMoreInfo;">
+								<md-icon md-font-icon="icon-chevron-down" ng-hide="vm.showMoreInfo"></md-icon>
+								<span ng-hide="vm.showMoreInfo">More</span>
+								<md-icon md-font-icon="icon-chevron-up" ng-show="vm.showMoreInfo"></md-icon>
+								<span ng-show="vm.showMoreInfo">less</span>
+								</md-button>
+							</div>
+						</div>
+						<div layout="column" class="proDetails" ng-show="vm.showMoreInfo">							
+							<div  layout="row">
+								<div class="detailColOne" flex>
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex md-no-float> 
+						                  <md-select ng-model="vm.fullProduct.brand" style=" width:90%;" placeholder="Product Brand"> 
+						                    <md-optgroup label="Brand">
+						                    <md-option ng-repeat="cat in vm.proBrandArray" value="{{cat}}">{{cat}}</md-option>
+						                  </md-select>
+						               </md-input-container>
+							        </div> 
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex md-no-float> 
+						                  <md-select  ng-model="vm.fullProduct.inventory" flex 
+						                     ng-change="vm.changeInventory()" style=" width:90%;" placeholder="Inventory Tracking">
+						                     <md-optgroup label="Inventory">
+						                     <md-option value="No" selected> Do Not Track Inventory</md-option>
+						                     <md-option value="Yes">Track Inventory</md-option>
+						                  </md-select>
+						               </md-input-container>
+							        </div> 
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex md-no-float> 
+						                  <input  type="text" placeholder="Cost Price" ng-model="vm.fullProduct.costPrice" style=" width:90%;" ms-Value-Adjuster/> 
+						               </md-input-container>
+						               
+							        </div> 	
+			                    </div>	
+								<div class="detailColTwo" flex>
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex md-no-float> 
+						                     <md-select ng-model="vm.fullProduct.productCategory" placeholder="Product Category">
+						                       <md-optgroup label="Product Category">
+						                       <md-option ng-repeat="cat in vm.categoryArray" value="{{cat}}">{{cat}}</md-option>
+						                    </md-select>
+						               </md-input-container>
+							        </div> 
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex md-no-float> 
+						                  <input ng-required="!vm.stockDisabled" placeholder="Stock Level" type="text" ng-model="vm.fullProduct.quantity"
+						                  	ng-disabled="vm.stockDisabled"/> 
+						               </md-input-container>
+							        </div> 
+									<div layout="column" layout-gt-xs="row" class="brochureBtn">						               
+										<md-button class="md-primary" style="border:2px solid;margin-left: 0;"
+										app-uploader="vm.brochureConfig" result="vm.setMedia(res)">
+											<md-icon md-font-icon="icon-cloud-upload"></md-icon>
+											<span style="padding: 10px">Upload Brochure</span>
+										</md-button>  
+										<!-- <div class="attachement-pill" layout="row" ng-show="vm.showBrochure" style="margin-top: 4%;">
+						                    <div class="att-pill-icon">
+						                        <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+						                    </div>
+						                    <div class="att-pill-cont" layout="row">
+						                        <span ng-bind="vm.fileName"></span> 
+			                        			<span>.{{vm.fileExtension}}</span>
+						                    </div>
+						                </div> -->
+						                
+
+										<div class="upload-file" flex layout layout-align="start start" md-theme-watch ng-if="vm.fileName">
+											<div flex layout layout-align="center center" class="icon-parent">
+												<div flex="15" layout> 
+													<md-icon flex md-font-icon="icon-file-pdf" 
+													style="color:rgb(45, 98, 150); margin-top:-8px; margin-left:-10px;"></md-icon>
+												</div>
+
+												<div flex layout class="file-text">
+													<span style="color: #2d6296;">{{vm.fileName}}</span>  
+												</div>
+											</div> 
+											<div flex="25" layout layout-align="center center" class="file-ext">
+												<span style="color: white;">.{{vm.fileExtension}}</span> 
+											</div> 
+									    </div>
+
+							        </div> 
+			                    </div>
+							</div>
+		                    <div layout="row" class="chipsdemoBasicUsage" >
+			                  	<md-content class="md-padding" layout="column" flex >			                      
+				                    <md-chips ng-model="vm.fullProduct.tags" readonly="readonly" style="margin-left: -15px;margin-right: -15px;" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Tags">		                        
+				                        <md-chip-template>
+				                           <strong>{{$chip}}</strong>
+				                        </md-chip-template>
+				                    </md-chips>
+			                  	</md-content>
+			               	</div>
+						</div> 
+						<div class="optional" layout="row" layout-align="start start" ng-show="vm.showMoreInfo" ng-if="vm.fullProduct.customFields.length > 0">
+							  <div class="details">Additional Information </div>
+						</div> 
+						<div  layout="row" ng-show="vm.showMoreInfo" ng-repeat="customField in vm.fullProduct.customFields" style="padding: 32px;height: 64px;">
+
+		                    <md-input-container md-no-float flex ng-show="customField.type == 'selectBox'">
+		                       <md-select placeholder="{{customField.labelShown}}" ng-model="customField.value" flex>
+		                            <md-option ng-repeat="opt in customField.fields" value="{{opt}}">{{opt}}</md-option>
+		                        </md-select>
+		                    </md-input-container>
+
+		                    <md-input-container  md-no-float flex ng-if="customField.type == 'textBox'">
+		                       <input placeholder="{{customField.labelShown}}" ng-model="customField.value" type="{{customField.inputType}}">
+		                    </md-input-container>
+
+	                	</div>
+					</div>
+					<!-- <div class="notes">notes section</div>
+					<div class="optional">optional section</div> -->
+				</div>
+				
+			</div>

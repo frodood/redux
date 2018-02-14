@@ -1,0 +1,86 @@
+<md-dialog id="dialogApply" aria-label="uploader" class="frmModal" layout="column" layout-align="center start"  >
+    <ms-spinner-component name="cre-applied-spinner" size="32" relative-position="false" ng-if="!vm.fullArr" on-loaded="vm.creAppliedSpinnerLoaded(spinnerApi)" spinner-Text=""></ms-spinner-component>
+
+    <md-toolbar class="tool-bar" >
+        <div class="md-toolbar-tools">
+            <h2>APPLY CREDIT</h2>  
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+                <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+             </md-button>
+        </div>
+    </md-toolbar>
+    <form name="cusForm" ng-submit="vm.submit()" style="width: 100%;">
+        <div class="content"style="max-height: 340px;"  ms-scroll flex>
+                <div class="lineitems" layout="column" >  
+                    <div class="list-items-header" layout="row" layout-align="start center">
+                        <div class="list-item-header-control handle"></div>
+                        <div class="list-item-header-title left" flex>Date</div>
+                        <div class="list-item-header-title center" flex>Invoice No</div>
+                        <div class="list-item-header-title center" flex>Due Date</div>
+                        <div class="list-item-header-title center" flex>Amount</div>
+                        <div class="list-item-header-title center" flex>Balance</div>
+                        <div class="list-item-header-title right" flex>Paid Amount</div>
+                        <div class="list-item-header-control handle"></div>
+                    </div>
+
+                    <div class="line-items-container"  >
+                        <!-- LIST ITEM -->
+                        <div class="line-item" layout="row" layout-align="start center" ng-repeat="invo in vm.fullArr">
+                            <div layout="row" layout-align="start center" flex>
+                                <div class="handle">
+                                    <md-checkbox md-no-ink ng-disabled="invo.checkDisable" aria-label="Checkbox No Ink" ng-model="invo.checked" class="md-primary" ng-change="vm.checkItem($index,invo)"></md-checkbox>
+                                </div>
+
+                                <div class="info" layout="row" layout-align="start center">
+                                    <div class="item-value left" flex>
+                                        {{invo.sdate | datetime }}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{invo.invono}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{invo.duedate|datetime}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{payment.baseCurrency}} {{invo.famount| valRndUp}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{payment.baseCurrency}} {{invo.instalment| valRndUp}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        <md-input-container flex md-no-float>
+                                            <input placeholder="Paid Amount" ng-disabled="invo.inputDisable" ng-model="invo.amount" ng-change="vm.getPaidAmount(invo, '{{invo.amount}}')" ng-blur="vm.amountLostFocus($index)" ms-Value-Adjuster>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div class="handle"> </div>
+                            </div>
+                        </div>
+                        <!-- LIST ITEM -->
+                    </div>
+
+                    
+                    <div class="empty-line-items-container" ng-if="vm.fullArr.length == 0" layout="row" layout-align="center center">
+                        <span>{{vm.InvoicesDataStatus}}</span>
+                    </div>
+
+                </div>
+        </div> 
+        <div class="footer" layout="row" layout-align="center center" class="demo-dialog-button">
+            <div flex="35" layout layout-align="start center" style="height: 100%;"><span class="balance"> Balance: {{vm.nAmount | valRndUp}}</span></div>
+            <div flex="35" layout layout-align="start center" style="height: 100%;padding-left: 25px;"><span class="balance"> Total Applied: {{vm.aAmount | valRndUp}}</span></div>
+            <div flex="20" layout layout-align="end end" >
+                <md-button class="md-primary" style="border: 2px solid;" type="submit" 
+                ng-disabled="vm.disableSubmit || !(vm.nAmount | positive)">
+                  Submit
+                </md-button> 
+            </div> 
+        </div>
+    </form>
+</md-dialog>

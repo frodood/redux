@@ -1,0 +1,147 @@
+#contacts {
+    .center {
+        .content-card {
+        	.panel-body{
+        		overflow:auto;
+        	}
+        	.toolbarCompose{
+        		padding:10px;
+        	}
+
+            .optional{
+                width:100%; 
+                height:50px;
+                background:#F6F6F6;
+
+                .detail{
+                    background:#f6f6f6;
+                    font-size:18px;
+                    height:48px;
+                    line-height:48px;
+                    padding:0px 32px; 
+                }
+
+                .totalVal{
+                    background:#2D6296;
+                    height:100%;
+                    width:40%; 
+                    .span{
+                        font-weight:300;
+                        font-size:28px;
+                        color:rgb(255,255,255);
+                    }
+                }
+            }
+
+            .contact-Details{
+                padding:32px;
+                width:100%;
+
+                .detailColOne{
+                    width:90%;
+                    
+                    .inputHeight{
+                        height:64px;
+
+                    
+                    }
+                }
+
+                .detailColTwo{
+                    .inputHeight{
+                        height:64px;
+
+                        md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                                        
+                                        font-size:15px;
+                                        > label {
+                                            -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                                            transform: translate3d(1px,28px,0) scale(1) !important;
+                                            color: #BDBDBD;
+                                        }
+                                        &.md-input-has-value > label {
+                                            display: none !important;
+                                        }
+                                    }                       
+
+                    }
+                    .brochureBtn{                                                    
+                        width:100%; 
+                        
+                    }
+                } 
+            } 
+            .compose {
+                .mainsection {
+                    .info {
+                        padding: 32px;
+                        width: 100%;
+                        .maininfosection {
+                            width: 100%;
+                            .customerinfo {
+                                .cutomeraddress {
+                                    width: 90%;
+                                    padding: 24px;
+                                    background: #F6F6F6;
+                                    .addressheader {
+                                        width: 100%;
+                                        height: 48px;
+                                        span {
+                                            font-size: 16px;
+                                        }
+                                    }
+                                    .addressinfo {
+                                        width: 100%;
+                                        span {
+                                            font-size: 16px;
+                                            color: rgba(0,0,0,0.4);
+                                        }
+                                    }
+                                }
+                            }
+                            .expenseinfo {
+                                .md-datepicker-input-container {
+                                    width: 80%;
+                                }
+                            }
+                        }
+                    }
+                    .summary {
+                        width: 100%;
+                        height: 128px;
+                        background: #F6F6F6;
+                        .totalVal {
+                            background: #2D6296;
+                            height: 100%;
+                            width: 40%;
+                            i {
+                                font-weight: 500;
+                                font-size: 16px;
+                                color: rgba(255,255,255,0.5);
+                            }
+                            span {
+                                font-weight: 300;
+                                font-size: 28px;
+                                color: rgb(255,255,255);
+                            }
+                        }
+                    }
+                }
+                
+            }.footersection{
+                        width:100%;
+                        padding:12px 24px;
+                        border-top:1px solid rgba(0, 0, 0, 0.12);
+
+                            button{
+                                float:right;
+                                margin:0px;
+                            }
+
+                            button:nth-child(2){
+                                margin-right:12px;
+                            }
+                }
+        }
+    }
+}

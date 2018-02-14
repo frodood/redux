@@ -1,0 +1,244 @@
+#expense {
+
+    .center {
+
+        .content-card {
+            min-height: 100%;
+
+            .content-wrapper {
+
+                .thread-detail{
+                    position:relative;
+                    
+                    .compact {
+                        padding: 0;
+                        overflow: auto;
+
+                        .product-container {
+                            width:100%;
+                            height:auto;
+
+                            .card {
+                                width: 100%;
+                                min-width: 100%;
+                                max-width: 100%;
+                                overflow: hidden;
+                                background: #FFFFFF;
+
+                                .detailProgress{
+                                    width: 100%;
+                                    height:100%;
+                                    position: absolute;
+                                    z-index: 9;
+                                    background-color: white;
+                                    opacity: .9;
+                                }
+
+                                .pro-header {
+                                    
+                                    padding: 24px; 
+                                    height: 32px;                                
+
+                                    .product-name {
+                                        font-size: 24px;
+                                        color: rgba(0, 0, 0, 0.54); 
+                                    }
+
+                                    .client {
+
+                                        .payment-number {
+                                            font-size: 18px;
+                                            padding-bottom: 16px;
+
+                                            .title {
+                                                color: rgba(0, 0, 0, 0.54);
+                                            }
+
+                                            .date {
+                                                padding-left: 6px;
+                                            }
+                                        }
+
+                                        .due-date {
+                                            font-size: 18px;
+                                            padding-bottom: 16px;
+
+                                            .title {
+                                                color: rgba(0, 0, 0, 0.54);
+                                            }
+
+                                            .date {
+                                                padding-left: 6px;
+                                            }
+                                        }
+
+                                        .payment-method {
+                                            font-size: 18px;
+                                            padding-bottom: 16px;
+
+                                            .title {
+                                                color: rgba(0, 0, 0, 0.54);
+                                            }
+
+                                            .date {
+                                                padding-left: 6px;
+                                            }
+                                        }
+
+                                        .amount-receive {
+                                            font-size: 18px;
+
+                                            .title {
+                                                color: rgba(0, 0, 0, 0.54);
+                                            }
+
+                                            .date {
+                                                padding-left: 6px;
+                                            }
+                                        }
+
+
+                                        .comment {
+                                            font-size: 18px;
+                                            .title {
+                                                color: rgba(0, 0, 0, 0.54);
+                                            }
+                                            .date {
+                                                padding-left: 6px;
+                                            }
+                                        }
+
+                                        .info {
+                                            color: rgba(0, 0, 0, 0.54);
+                                            line-height: 22px;
+                                        }
+                                    }
+
+                                    .issuer {
+                                        margin-right: -88px;
+                                        padding-right: 100px;
+                                        max-height: 150px;
+
+                                        .logo {
+                                            width: 96px;
+                                            height: 96px;
+                                            font-size: 72px;
+                                            border-right: 1px solid rgba(255, 255, 255, 0.7);
+                                        }
+
+                                        .info {
+                                            padding: 16px;
+                                        }
+                                    }
+                                }
+
+                                .content {
+
+                                    .mainContent{
+
+                                        .columnOne{
+
+                                            margin-bottom: 5px;
+                                            .img-content{
+                                                height: 400px;
+                                                width: 100%;
+                                                border-style: solid;
+                                                border-color: #d8d8d8;
+                                                border-width: 2px;
+                                            }
+                                            .img-content-empty{
+                                                height: 400px;
+                                                width: 100%;
+                                                border-style: dashed;
+                                                border-color: #d8d8d8;
+                                                border-width: 2px;
+                                            }
+                                        }
+                                        .columnTwo{
+                                            font-size:15px;
+                                            
+                                            .header-section{
+
+                                                .header-title{
+                                                    color: #928b8b;
+                                                    font-weight: 500;
+                                                    text-transform: uppercase;
+
+                                                }
+
+                                                .brochure-btn{
+                                                   
+                                                    .btn{
+                                                        font-size: 15px;
+                                                        border:2px solid;
+                                                        margin-left: 0;
+                                                        text-transform: capitalize;
+                                                        width: 180px;
+                                                        height: 100%;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .tag-content{
+                                     padding-top: 15px;
+
+                                        .main{
+                                            .tag-header{
+                                                color: #928b8b;
+                                                font-weight: 500;
+                                                font-size: 15px;
+                                            }
+                                            .tag-items{
+                                                font-weight: 500;
+                                                font-size: 15px;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .footer {
+
+                                    .note {
+                                        font-size: 15px;
+                                        font-weight: 500;
+                                        margin-bottom: 24px;
+                                        
+                                        .align-excess{
+                                            text-align : right;
+                                        }
+                                    }
+
+                                    // IE10 fix
+                                    .logo, .small-note {
+                                        -ms-flex: 0 1 auto;
+                                    }
+
+                                    .logo {
+                                        width: 32px;
+                                        min-width: 32px;
+                                        height: 32px;
+                                        font-size: 17px;
+                                        font-weight: 500;
+                                        margin-right: 24px;
+                                        border-radius: 2px;
+                                        overflow: hidden;
+                                    }
+
+                                    .small-note {
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        color: rgba(0, 0, 0, 0.54);
+                                        line-height: 18px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        }
+    }
+}

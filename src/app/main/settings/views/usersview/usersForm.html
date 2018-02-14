@@ -1,0 +1,254 @@
+<form class="form">
+	<md-list class="md-list" style="padding:0px 0px 0px 0px; overflow: hidden;" class="md-default-theme">
+			<div class="subHeader" layout="row" layout-align="space-between center" style="border-bottom: 1px solid #ededed;">
+				<div class="title">
+					Users
+				</div>
+				<md-button class="md-secondary md-primary" ng-click="vm.inviteUsers($event)">
+                <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                Add
+                </md-button>
+			</div>
+         <!-- <div layout="column" layout-align="center center" ng-if="!vm.Settings12thdoor.users.user">
+                <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+                <div>Loading Users...</div>
+            </div> -->
+				<div layout-gt-sm="column" as-sortable="sortableOptions" ng-model="asdc" flex="100">
+					<div ng-repeat="item in vm.Settings12thdoor.users.user" as-sortable-item flex style="border-bottom: 1px solid #ededed;"> 
+						<!-- <md-card class="add-mdcard" as-sortable-item-handle flex style="margin:0px !important; box-shadow:none !important;">
+							<md-card-content> -->
+								<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 10px 0px 16px;">
+									<div flex>
+										<span style="color:#808080;">{{item.inviteUserEmail}}
+											<md-tooltip md-direction="right">User Email</md-tooltip>
+										</span>
+									</div>
+									<div flex>
+										<span style="color:#808080;">{{item.firstName}} {{item.lastName}}
+											<md-tooltip md-direction="right">User Name</md-tooltip>
+										</span>
+									</div>
+									<div flex="20">
+										<span style="color:#808080;">{{item.role[0].roleName}}
+											<md-tooltip md-direction="right">Role Name</md-tooltip>
+										</span>
+									</div>
+                                    <div flex="10">
+										<span style="color:#808080;">{{item.status}}
+											<md-tooltip md-direction="right">status</md-tooltip>
+										</span>
+									</div>
+									<div flex="10" layout="row" layout-align="end end">
+										<!-- <md-menu ng-hide="item.role[0].roleName=='Super admin'" md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100" style="margin:-11px 0px -32px;">
+											<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+												<md-icon md-font-icon="icon-dots-vertical"></md-icon>
+											</md-button>
+											<md-menu-content width="4">
+												<md-menu-item>
+													<md-button ng-click="vm.inviteUsersEdit(item , $event)">
+														<p>Edit</p>
+														<md-icon md-menu-align-target></md-icon>
+													</md-button>
+												</md-menu-item>
+												<md-menu-item>
+													<md-button ng-click="vm.deleteUserRow(item , $index)">
+														<p>Delete</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+											</md-menu-content>
+										</md-menu> -->
+										<md-button style="margin:0 0;" class="md-icon-button" ng-hide="item.role[0].roleName=='Super admin'" ng-click="vm.inviteUsersEdit(item , $event)">
+											<md-icon md-font-icon="icon-table-edit"></md-icon>
+										</md-button>
+										<md-button style="margin:0 0;" class="md-icon-button" ng-hide="item.role[0].roleName=='Super admin'" ng-click="vm.deleteUserRow(item , $index)">
+											<md-icon md-font-icon="icon-delete"></md-icon>
+										</md-button>
+									</div>
+								</div>
+							<!-- </md-card-content>
+						</md-card> -->
+					</div> 
+                    
+                    <div ng-repeat="item in vm.pendingInvi" as-sortable-item flex style="border-bottom: 1px solid #ededed;"> 
+						<!-- <md-card class="add-mdcard" as-sortable-item-handle flex style="padding:6px !important; margin:0px !important; box-shadow:none !important;">
+							<md-card-content style="margin: -13px;"> -->
+								<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 10px 0px 16px;">
+									<div flex>
+										<span style="color:#808080;">{{item.email}}
+											<md-tooltip md-direction="right">User Email</md-tooltip>
+										</span>
+									</div>
+									<div flex>
+									</div>
+									
+                                    <div flex="20" layout="row" layout-align="end start">
+										<span style="color:#808080;">Pending Invitation
+											<md-tooltip md-direction="right">status</md-tooltip>
+										</span>
+									</div>
+									<div flex="20"  layout="row" layout-align="end center">
+										<!-- <md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100" style="margin:-11px 0px -32px;">
+											<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+												<md-icon md-font-icon="icon-dots-vertical"></md-icon>
+											</md-button>
+											<md-menu-content width="4">
+												<md-menu-item>
+													<md-button ng-click="vm.reSendEmail(item.email)">
+														<p>Resend Invite</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+												<md-menu-item>
+													<md-button ng-click="vm.cancelPendingUserRow(item.email, $index)">
+														<p>Cancel</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+											</md-menu-content>
+										</md-menu> -->
+		
+										<a style="margin-right: 12px;cursor: pointer;" class="md-primary" ng-click="vm.reSendEmail(item.email)">Resend Invite</a>
+										<md-button style="margin:0 0;" class="md-icon-button" ng-click="vm.cancelPendingUserRow(item.email, $index)">
+											<md-icon md-font-icon="icon-close-circle"></md-icon>
+											<md-tooltip md-direction="bottom">Cancel</md-tooltip>
+										</md-button>	
+									</div>
+								</div>
+							<!-- </md-card-content>
+						</md-card> -->
+					</div> 
+                    
+					<div ng-repeat="item in vm.getPendingUser" as-sortable-item flex style="border-bottom: 1px solid #ededed;"> 
+						<!-- <md-card class="add-mdcard" style="background-color:#f9f9cd;" as-sortable-item-handle flex style="padding:6px !important; margin:0px !important; box-shadow:none !important;">
+							<md-card-content style="margin: -13px;"> -->
+								<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 10px 0px 16px;">
+									<div flex>
+										<span style="color:#808080;">{{item.Email}}
+											<md-tooltip md-direction="right">User Email</md-tooltip>
+										</span>
+									</div>
+									<div flex>
+										<span style="color:#808080;">{{item.Name}}
+											<md-tooltip md-direction="right">User Name</md-tooltip>
+										</span>
+									</div>
+									<div flex="30" layout="row" layout-align="end start">
+										<span style="color:#808080;">Request
+											<md-tooltip md-direction="right">Staus</md-tooltip>
+										</span>
+									</div>
+									<div flex="20">
+										<div layout="row" layout-align="center end" class="layout-align-end-end layout-row " style="padding-right: 10px; cursor: pointer;">
+											<a class="md-primary" ng-click="vm.acceptUser(item, $event)">Accept</a>
+										</div>
+										
+										<!-- <md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100" style="margin:-11px 0px -32px;">
+											<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+												<md-icon md-font-icon="icon-dots-vertical" ></md-icon>
+											</md-button>
+											<md-menu-content width="4">
+												<md-menu-item>
+													<md-button ng-click="vm.acceptUser(item , $event)">
+														<p>Accept</p>
+														<md-icon md-menu-align-target></md-icon>
+													</md-button>
+												</md-menu-item>
+											</md-menu-content>
+										</md-menu> -->
+									</div>
+								</div>
+							<!-- </md-card-content>
+						</md-card> -->
+					</div> 
+				</div>
+		
+			<div class="subHeader" layout layout-align="space-between center" style="border-bottom: 1px solid #ededed;">
+				<div class="title" >
+					Roles
+				</div>
+				<md-button class="md-secondary md-primary" ng-click="vm.roles($event)">
+                <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                Add
+                </md-button>
+			</div>
+       <!--      <div layout="column" layout-align="center center" ng-if="!vm.Settings12thdoor.users.roles">
+                <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+                <div>Loading Roles...</div>
+            </div> -->
+			<div layout-gt-sm="column" as-sortable="sortableOptions" ng-model="asdc" flex="100">
+					<div ng-repeat="item in vm.Settings12thdoor.users.roles | filter: {type: 'default'}" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+						<!-- <md-card class="add-mdcard" as-sortable-item-handle flex style="padding:6px !important; margin:0px !important; box-shadow:none !important;">
+							<md-card-content style="margin: -13px;"> -->
+								<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 10px 0px 16px;">
+									<div flex>
+										<span style="color:#808080;">{{item.roleName}}
+											<md-tooltip md-direction="right">Role Name</md-tooltip>
+										</span>
+									</div>
+									<div flex="10" layout="row" layout-align="end end">
+										<!-- <md-menu  ng-hide="item.roleName=='Super admin'" md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100" style="margin:-11px 0px -32px;">
+											<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+												<md-icon md-font-icon="icon-dots-vertical"></md-icon>
+											</md-button>
+											<md-menu-content width="4" >
+												<md-menu-item>
+													<md-button ng-click="vm.rolesEdit(item , $event)">
+														<p>Edit</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+											</md-menu-content>
+										</md-menu> -->
+										<md-button style="margin:0 0;" class="md-icon-button" ng-hide="item.roleName=='Super admin'" ng-click="vm.rolesEdit(item , $event)">
+                                        	<md-icon md-font-icon="icon-table-edit"></md-icon>
+										</md-button>
+									</div>
+								</div>
+							<!-- </md-card-content>
+						</md-card> -->
+					</div>  <!-- EXIT Default role -->
+
+					<div ng-repeat="item in vm.Settings12thdoor.users.roles | filter: {type: 'manual'}" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+						<!-- <md-card class="add-mdcard" as-sortable-item-handle flex style="padding:6px !important; margin:0px !important; box-shadow:none !important;">
+							<md-card-content style="margin: -13px;"> -->
+								<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 10px 0px 16px;">
+									<div flex> 
+										<span style="color:#808080;">{{item.roleName}}
+											<md-tooltip md-direction="right">Custom Fields name</md-tooltip>
+										</span>
+									</div>
+									<div flex="10" layout="row" layout-align="end end">
+										<!-- <md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100" style="margin:-11px 0px -32px;">
+											<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+												<md-icon md-font-icon="icon-dots-vertical"></md-icon>
+											</md-button>
+											<md-menu-content width="4">
+												<md-menu-item>
+													<md-button ng-click="vm.rolesEdit(item , $event)">
+														<p>Edit</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+												<md-menu-item>
+													<md-button ng-click="vm.deleteRole(item, $index)">
+														<p>Delete</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+											</md-menu-content>
+										</md-menu> -->
+										<md-button style="margin:0 0;" class="md-icon-button" ng-click="vm.rolesEdit(item , $event)">
+                                        	<md-icon md-font-icon="icon-table-edit"></md-icon>
+										</md-button>
+										<md-button style="margin:0 0;" class="md-icon-button" ng-click="vm.deleteRole(item, $index)">
+											<md-icon md-font-icon="icon-delete"></md-icon>
+										</md-button>
+									</div>
+								</div>
+							<!-- </md-card-content>
+						</md-card> -->
+					</div>
+			</div>
+		</md-list>
+</form>

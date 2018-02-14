@@ -1,0 +1,40 @@
+.customDialogBox{
+font-size: 15px;
+    md-toolbar{
+        min-height:48px;
+
+        .md-toolbar-tools{
+        font-size: 18px;
+        height:48px;
+        max-height:48px;
+        }
+
+    }
+
+    .dialogContent{
+        &.pad_32{
+        padding:32px;
+        overflow-y: auto;
+        }
+    }
+
+    .dialogFooter{
+
+        width:100%;
+        padding:12px 24px;
+        border-top:1px solid rgba(0, 0, 0, 0.12);
+
+        button{
+                float:right;
+                margin:0px;
+                border: 2px solid;
+        }
+
+        button:nth-child(2){
+                margin-right:12px;
+
+        }
+    }
+
+
+}

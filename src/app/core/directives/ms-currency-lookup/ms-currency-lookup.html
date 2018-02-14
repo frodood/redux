@@ -1,0 +1,11 @@
+<div class="currencyLookupContainer" layout="row" flex>
+	<md-autocomplete class="no-float" flex ng-required="{{vm.required}}" md-search-text="vm.currencySearchText" md-selected-item="vm.selectedCurrency" md-min-length="0" md-items="item in vm.currencyList | filter:vm.currencySearchText" md-item-text="item.currency_code" md-floating-label="{{vm.placeholder}}" md-autofocus="false" md-selected-item-change="vm.selectedCurrencyChange(vm.selectedCurrency)" md-no-cache="false">
+		<md-item-template ms-scroll>
+			<span md-highlight-text="vm.currencySearchText" md-highlight-flags="^i">{{item.currency_code}} - </span>
+			<span>{{item.currency_name}}</span>
+		</md-item-template>
+		<div ng-messages="vm.currencySearchText.$error">
+			<div ng-message="required">This is required.</div>
+		</div>
+    </md-autocomplete>
+</div>

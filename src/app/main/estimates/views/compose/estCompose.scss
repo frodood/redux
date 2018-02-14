@@ -1,0 +1,507 @@
+#estimatesCompose {
+
+    .center {
+
+        .content-card {
+            overflow-x:hidden; 
+
+            .mainsection{
+
+                .composeform{
+                    font-size:15px; 
+                    width:100%;
+
+                    .formSection{
+                        width:100%;
+                        // background:red;
+
+                        .row_encap{
+                            width:100%;
+
+                            .chip-class{
+                            .md-chips.md-default-theme md-chip, md-chips md-chip {
+                                background: rgb(51, 94, 139);
+                                color: rgb(213, 213, 213);
+                                }
+                                .md-chips.md-default-theme md-chip md-icon, md-chips md-chip md-icon {
+                                color: rgb(255, 255, 255);
+                                }
+                            }
+
+                            .customerinfo{
+                                // background:green;
+
+                                .cusInfo_header{
+
+                                    md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                                        margin-top: 0px;
+                                        font-size:18px;
+                                        > label {
+                                            -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                                            transform: translate3d(1px,28px,0) scale(1) !important;
+                                            color: #BDBDBD;
+                                        }
+                                        &.md-input-has-value > label {
+                                            display: none !important;
+                                        }
+                                    }
+                                }
+
+                                .cusAddress{
+                                    background:#F6F6F6;
+                                    width:100%;
+
+                                    .cusAddress_header{
+                                        width:100%;
+                                        border-bottom:1px solid rgba(0,0,0,0.1);
+
+                                        span{
+                                            padding-left:6px; 
+                                            line-height:40px;
+                                            width:calc(100% - 52px);
+                                            font-weight:500;
+                                            font-size:16px;
+                                            color:#717171;   
+                                        }
+                                    }
+
+                                    .cusAddress_content{
+                                        width:100%;
+                                        min-height:141px; 
+                                        color:rgba(0,0,0,0.4);
+                                    }
+
+                                }
+
+                            }
+
+                            .invoiceinfo{
+
+                                .invInfo_header{
+                                    width:100%;
+                                    height:74px;
+                                    font-size:18px; 
+                                }
+
+                                .invInfo_details{
+                                    width:100%; 
+                                
+                                    .invInfoDates{
+                                        width:100%;
+                                        padding-right:8px;
+                                        margin-bottom:18px; 
+
+                                        .dateHolder{
+                                            span{
+                                                margin-left:52px;
+                                                font-weight:500;
+                                                // color:rgb(45,98,150);
+                                                color:#3c3c3c;  
+                                            }
+                                        }
+                                    }
+
+                                    .invInfoPayment{
+                                        width:100%;
+
+                                        md-input-container{
+                                            padding:0px;
+                                            margin:0px; 
+                                            margin-left:52px;
+
+                                            md-select-value{
+                                                padding:0px !important;
+
+                                                ._md-select-icon{
+                                                    color:rgba(0,0,0,0.38);
+                                                    margin:0px !important;
+                                                } 
+                                            }
+
+                                        }
+
+                                        md-input-container:nth-child(2){
+                                            margin-left:46px; 
+                                        }
+                                    }
+
+                                    .invInfoComment{
+                                        width:100%;
+
+                                        md-input-container{
+                                            padding:0px;
+                                            margin:0px;
+                                            margin-left:52px;  
+                                        }
+                                    }
+                                }
+
+                                .documentid{
+                                    height:64px;
+                                    font-size:16px;
+                                    font-weight:500;
+                                }
+
+                                .md-datepicker-input-container{
+                                    width:80%;
+                                }
+                            }
+
+                            .payMethod{
+                                width:100%;
+
+                                div:nth-child(1){
+                                    padding-right:16px; 
+                                }
+
+                                div:nth-child(2){
+                                    padding-left:16px; 
+                                }
+
+                                md-input-container{
+                                    width:100%;
+                                }
+
+                            }
+
+                            .additionalDetails{
+                                width:100%;
+
+                                md-input-container{
+                                    margin-top:0px;
+                                    margin-bottom:0px;   
+                                }
+
+                                md-input-container:nth-child(1){
+                                    padding-right:16px;
+                                } 
+
+                                md-input-container:nth-child(2){
+                                    padding-left:16px;
+                                } 
+                            }
+
+                            &.pad_32{
+                                padding:32px;
+                            }
+
+                            &.pad_16{
+                                padding:16px;
+                            }
+
+                            &.sectionHeader{
+                                background:#f6f6f6;
+                                font-size:18px;
+                                height:48px;
+                                line-height:48px;
+                                padding:0px 32px;  
+                            }
+
+                            &.sectionFooter{
+                                border-top:1px solid rgba(0,0,0,0.08);
+                            }
+                        }
+
+                        .lineitems{
+                            width:100%;
+
+                            .list-items-header{
+                                width:100%;
+                                height:48px;
+                                font-weight:500;
+                                color:#2D6296;
+                                border-top:1px solid rgba(0, 0, 0, 0.08);
+                                border-bottom:1px solid rgba(0, 0, 0, 0.08);
+
+                                .list-item-header-control{
+                                    width:48px; 
+                                    height:100%;
+                                }
+
+                                .info{
+                                    width:calc(100% - 144px);
+
+                                    .list-item-header-title{
+
+                                        &.left{
+                                            text-align:left;
+                                        }
+
+                                        &.center{
+                                            text-align:center;
+                                        }
+
+                                        &.right{
+                                            text-align:right;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .line-items-container {
+
+                                .line-items{
+
+                                    &.sortable {
+
+                                        .line-item {
+                                            padding: 16px 16px 16px 48px;
+
+                                            .handle {
+                                                display: block;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .line-items {
+                                    overflow-x: hidden;
+
+                                }
+                            }
+
+                            .line-item {
+                                position: relative;
+                                background:#F6F6F6;
+                                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                                text-transform: none;
+                                cursor: pointer;
+
+                                &.line-item-placeholder {
+                                    background: rgba(0, 0, 0, 0.12);
+                                    * {
+                                        opacity: 0;
+                                    }
+                                }
+
+                                .handle {
+                                    height: 100%;
+                                    width: 48px;
+                                    cursor: move;
+                                    text-align: center;
+                                }
+
+                                &.selected {
+                                    background: #FFF8E1;
+                                }
+
+                                .info {
+                                    width:100%;
+                                    padding:8px 0px;
+
+                                    .item-value{
+
+                                        &.two-line{
+
+                                            span:nth-child(1){
+                                                font-weight:500;
+                                                font-size:16px;
+                                            }
+
+                                            span:nth-child(2){
+                                                font-size:12px; 
+                                            }
+                                        }
+
+                                        &.left{
+                                            text-align:left;
+                                        }
+
+                                        &.center{
+                                            text-align:center;
+                                        }
+
+                                        &.right{
+                                            text-align:right;
+                                        }
+                                    }
+                                }
+
+                                .buttons {
+                                    height: 100%;
+                                    width: 96px;
+                                    top: 0;
+                                    left: 0;
+                                    cursor: move;
+                                    text-align: center;
+                                }
+                            }
+
+                            .line-item-ghost {
+                                opacity: 1 !important;
+                                background: #FFFFFF;
+                                box-shadow: 0 7px 9px -4px rgba(0,0,0,0.2),0 14px 21px 2px rgba(0,0,0,0.14),0 5px 26px 4px rgba(0,0,0,0.12);
+                                border: none;
+
+                                .md-ripple-container {
+                                    display: none;
+                                }
+                            }
+
+                        }
+
+                        .add_lineitemBtn{
+                            margin-left:38px !important;
+
+                            md-icon{
+                                margin-right:3px;
+                            } 
+                        }
+
+                        .row_special{
+                            span{
+                                font-size:20px; 
+                            }
+                        }
+
+                        .totals_indicator{
+                            margin-right:18px;
+
+                            span{
+                                font-size:16px;
+                                margin-bottom:8px;
+                            }
+
+                            span:last-child{
+                                margin-top:4px; 
+                                margin-bottom:0px; 
+                            }
+                        }
+
+                        .totals_value{
+                            span{
+                                font-size:16px;
+                                margin-bottom:8px;
+                            }
+
+                            md-input-container{
+
+                                &.shipping_val{
+                                    margin:0px !important;
+                                    padding:0px !important;
+                                    font-size:16px; 
+
+                                    input{
+                                        text-align:right;
+                                        padding:0px !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .summary{
+                        width:100%; 
+                        height:128px;
+                        background:#F6F6F6;
+
+                        .totalVal{
+                            background:#2D6296;
+                            height:100%;
+                            width:40%;
+
+                            i{
+                                font-weight:500;
+                                font-size:16px;
+                                color:rgba(255,255,255,0.5);
+                            }
+                            span{
+                                font-weight:300;
+                                font-size:28px;
+                                color:rgb(255,255,255);
+                            }
+                        }
+                    }
+
+                    .maininfosection{
+                        width:100%;
+
+                        .customerinfo{
+                            .cutomeraddress{
+                                width:90%;
+                                padding:24px;
+                                background:#F6F6F6;
+
+                                .addressheader{
+                                    width:100%;
+                                    height:48px;
+
+                                    span{
+                                        font-size:16px;
+                                    }
+                                }
+
+                                .addressinfo{
+                                    width:100%;
+                                    span{
+                                        font-size:16px;
+                                        color:rgba(0,0,0,0.4);
+                                    }
+                                }
+                            }
+                        }
+
+                        .invoiceinfo{
+                            .documentid{
+                                height:64px;
+                                font-size:16px;
+                                font-weight:500;
+                            }
+
+                            .md-datepicker-input-container{
+                                width:80%;
+                            }
+                        }
+                    }
+                }
+
+                .summary{
+                    width:100%; 
+                    height:128px;
+                    background:#F6F6F6;
+
+                    .totalVal{
+                        background:#2D6296;
+                        height:100%;
+                        width:40%;
+
+                        i{
+                            font-weight:500;
+                            font-size:16px;
+                            color:rgba(255,255,255,0.5);
+                        }
+                        span{
+                            font-weight:300;
+                            font-size:28px;
+                            color:rgb(255,255,255);
+
+                            .currTriggerElem{
+                                cursor:pointer;
+                            }
+
+                            .currTriggerElem:hover{
+                                border-bottom:3px solid rgba(255,255,255,0.8);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .footersection{
+                width:100%;
+                padding:12px 24px;
+                border-top:1px solid rgba(0, 0, 0, 0.12);
+
+                button{
+                    float:right;
+                    margin:0px;
+                }
+
+                button:nth-child(2){
+                    margin-right:12px;
+                }
+            }
+        }
+    }
+}

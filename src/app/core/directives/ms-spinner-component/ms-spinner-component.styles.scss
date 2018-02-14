@@ -1,0 +1,52 @@
+.spinnerContainer{
+    position:absolute;
+	z-index:99; 
+	width:100%;
+	height:100%;
+	background:rgba(255,255,255,0.5);
+
+	&.opaqueBg{
+		background:rgba(255,255,255,1); 
+	}
+
+	&.flushed{
+		background:none;
+
+		.spinnerInnerWell{
+			padding:16px;
+			background:none;
+			border:none;
+			margin:24px;
+			border-radius:4px;
+		}
+	}
+
+	&.relative{
+		position:relative;
+		z-index:99;
+	}
+
+	&.absolute{
+		position:absolute;
+		top:0;
+		left:0; 
+		z-index:999;
+	}
+
+	.spinnerInnerWell{
+		padding:16px;
+		background:white;
+		border:1px solid rgb(200,200,200);
+		margin:24px;
+		border-radius:4px;
+
+		span{
+			color:rgba(0,0,0,0.87);
+			margin-top:16px; 
+			width:220px;
+			text-align:center;  
+			font-size:15px;
+			font-weight:500; 
+		} 
+	}
+}

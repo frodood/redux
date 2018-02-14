@@ -1,0 +1,187 @@
+<md-dialog class="customDialogBox frmModal modal-height-fix" style="height: 520px !important;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Edit Role</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent" layout="column" flex>
+
+				<div layout layout-sm="column" layout-margin style="padding:16px 32px 32px;">
+					<md-input-container md-no-float flex style="margin-top: 17px;">
+						<input ng-model="vm.rolesEdit.roleName" placeholder="Role Name">
+						<span style="font-size:12px;color:#e11b0c;" ng-show="vm.sameRole">{{vm.erromessage}}</span>
+					</md-input-container>
+				</div>
+				<md-divider></md-divider>
+				
+			<div style="padding:16px 32px 0px;">	
+				<div layout layout-margin>
+					<div flex="20"><span>Modules</span></div>
+					<div flex layout="row" layout-align="center center"><span>View</span></div>
+					<div flex layout="row" layout-align="center center"><span>Add</span></div>
+					<div flex layout="row" layout-align="center center"><span>Edit</span></div>
+					<div flex layout="row" layout-align="center center"><span>Cancel</span></div>
+					<div flex layout="row" layout-align="center center"><span>Delete</span></div>
+				</div>
+			</div>
+
+			<md-content flex ms-scroll>
+				<div style="padding:16px 32px 0px;">
+					<div  layout layout-margin ng-repeat="app in vm.rolesEdit.appPermission" ng-hide="app.label=='Business Manager' || app.label=='File Manager' || app.label=='360 View' || app.appName=='Dashboard' || app.appName=='Reports' || app.appName=='Settings'" >
+						<div flex="20" layout="row" layout-align="start start"><label>{{app.label}}</label></div>
+						<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="app.view" class="md-primary" ng-change="vm.toggle(app)"></md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+						<div flex layout="column" layout-align="center center">
+							<div flex ng-hide="app.appName=='Settings'">
+							<md-checkbox  ng-model="app.add" class="md-primary" ng-disabled="!app.view">
+							</md-checkbox>
+							</div>
+							<div flex ng-show="app.appName=='Settings'">
+							<md-checkbox  ng-model="test" class="md-primary" ng-disabled="true" >
+							</div>
+							 </md-checkbox><md-tooltip md-direction="top">add</md-tooltip> 
+						</div>
+						<div flex layout="column" layout-align="center center">
+							<div flex ng-hide="app.appName=='Invoices' || app.appName=='CreditNotes' || app.appName=='Payments' || app.appName=='Inventory' || app.appName=='Settings'">
+							<md-checkbox ng-model="app.edit" class="md-primary" ng-disabled="!app.view"> 
+							</md-checkbox>
+							</div>
+							<div flex ng-show="app.appName=='Invoices' || app.appName=='CreditNotes' || app.appName=='Payments' || app.appName=='Inventory' || app.appName=='Settings'">
+							<md-checkbox ng-model="test" class="md-primary" ng-disabled="true"> 
+							</md-checkbox>
+							</div>
+							<md-tooltip md-direction="top">edit</md-tooltip>
+						</div>
+						<div flex layout="column" layout-align="center center">
+							<div flex ng-hide="app.appName=='Products' || app.appName=='Projects' || app.appName=='Contacts' || app.appName=='Settings'">
+							<md-checkbox ng-model="app.cancel" class="md-primary" ng-disabled="!app.view">
+							</md-checkbox>
+							</div>
+							<div flex ng-show="app.appName=='Products' || app.appName=='Projects' || app.appName=='Contacts' || app.appName=='Settings'">
+							<md-checkbox ng-model="test" class="md-primary" ng-disabled="true">
+							</md-checkbox>
+							</div>
+							<md-tooltip md-direction="top">cancel</md-tooltip>
+						</div>
+						<div flex layout="column" layout-align="center center">
+							<div flex ng-hide="app.appName=='Invoices' || app.appName=='Payments' || app.appName=='Inventory' || app.appName=='Settings'">
+							<md-checkbox ng-model="app.delete" class="md-primary" ng-disabled="!app.view">
+							</md-checkbox>
+							</div>
+							<div flex ng-show="app.appName=='Invoices' || app.appName=='Payments' || app.appName=='Inventory' || app.appName=='Settings'">
+							<md-checkbox ng-model="test" class="md-primary" ng-disabled="true">
+							</md-checkbox>
+							</div>
+							<md-tooltip md-direction="top">delete</md-tooltip>
+						</div>
+					</div>
+				</div>
+					<md-divider></md-divider>
+				<div style="padding:16px 32px 0px;">
+					<div layout layout-margin>
+						<div flex="30" layout="row" layout-align="start start"><label>Other Functions</label></div>
+						<div flex layout="row" layout-align="center center"><label>Allow</label></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+					</div>
+
+					<div layout layout-margin>
+						<div flex="30" layout="row" layout-align="start start"><label>{{vm.rolesEdit.appPermission[11].label}}</label></div>
+						<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.rolesEdit.appPermission[11].view" class="md-primary" ng-disabled="vm.dashboardDisabled">
+						</md-checkbox></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+					</div>
+
+					<div layout layout-margin>
+						<div flex="30" layout="row" layout-align="start start"><label>{{vm.rolesEdit.appPermission[13].label}}</label></div>
+						<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.rolesEdit.appPermission[13].view" class="md-primary" ng-disabled="vm.dashboardDisabled">
+						</md-checkbox></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+					</div>
+
+					<div layout layout-margin>
+						<div flex="30" layout="row" layout-align="start start"><label>{{vm.rolesEdit.appPermission[9].label}}</label></div>
+						<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.rolesEdit.appPermission[9].view" class="md-primary">
+						</md-checkbox></div>
+						
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+					</div>
+
+
+					<div layout layout-margin>
+						<div flex="30" layout="row" layout-align="start start"><label>{{vm.rolesEdit.appPermission[10].label}}
+						</label></div>
+						<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.rolesEdit.appPermission[10].view" class="md-primary">
+						</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+					</div>
+
+					<!-- <div layout layout-margin>
+						<div flex="30" layout="row" layout-align="start start"><label>{{vm.rolesEdit.appPermission[11].label}}</label></div>
+						<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.rolesEdit.appPermission[11].view" class="md-primary" ng-disabled="vm.settingDisabled">
+						</md-checkbox></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+					</div> -->
+
+					<div layout layout-margin>
+						<div flex="30" layout="row" layout-align="start start"><label>{{vm.rolesEdit.appPermission[12].label}}</label></div>
+						<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.rolesEdit.appPermission[12].view" class="md-primary">
+						</md-checkbox></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+					</div>
+
+					<div layout layout-margin>
+						<div flex="30" layout="row" layout-align="start start"><label>{{vm.rolesEdit.appPermission[14].label}}</label></div>
+						<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.rolesEdit.appPermission[14].view" class="md-primary">
+						</md-checkbox></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+						<div flex></div>
+					</div>
+
+				</div>
+
+</md-content>
+
+</div>
+<div class="dialogFooter">
+    <md-button class="md-primary" ng-click="vm.submit(vm.rolesEdit)" ng-disabled="" >
+        Edit
+    </md-button>
+    <md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+        Cancel
+    </md-button>
+</div>
+</md-dialog>

@@ -1,0 +1,227 @@
+<style type="text/css">
+    
+</style>
+
+<div class="compose" layout="column">
+    <div class="mainsection" layout="column">
+        <div class="composeform" layout="column">
+
+            <div class="formSection">
+                <div class="row_encap pad_32" layout="row">
+                    <div class="customerinfo" flex>
+                        <div class="cusInfo_header"  layout="row" layout-align="start start" style="width: 94%;">
+                         <!--    <md-autocomplete class="no-float" ng-keypress="vm.filterArray(vm.searchText)" flex ng-required="true" md-search-text="vm.searchText"  md-selected-item="vm.selectedItem1" md-items="item in vm.custArr" md-item-text="item.display" md-floating-label="Customer" md-autofocus="true" md-selected-item-change="vm.selectedItemChange(item.display, item.profileID)">
+                                <md-item-template>
+                                    <span class="item-title">
+                                            <span>{{item.display}}</span>
+                                    </span>
+                                    <span class="item-metadata">
+                                            <span class="item-metastat">
+                                                <strong>{{item.email}}
+                                                </strong>
+                                            </span>
+                                    <md-divider></md-divider>
+                                    </span>
+                                </md-item-template>
+                                <div ng-messages="vm.searchText.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-autocomplete> -->
+
+                        <ms-profile-lookup placeholder="'Customer'" required="true" editoptions="false" lookupclass="'Customer'"></ms-profile-lookup>       
+            
+                        </div> 
+                        <div class="commonPayInfo" layout="column">
+
+                            <md-datepicker ms-fix-datepicker  ng-model="vm.payment.date" md-placeholder="Date" flex style="margin-left:-15px"></md-datepicker>
+
+                            <md-input-container md-no-float>
+                                <md-select placeholder="Payment Method" ng-disabled="vm.disableMethods" name="paymentMethod" ng-model="vm.payment.paymentMethod" flex ng-change="vm.paymentMethodChange(vm.payment.paymentMethod)">
+                                    <!--<md-optgroup label="Payment Method">-->
+                                    <md-option ng-repeat="item in vm.PayArr track by $index" value="{{item}}">{{item}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container md-no-float>
+                                <textarea placeholder="Comments" ng-model="vm.payment.paymentComment" md-maxlength="150" max-rows="3"></textarea>
+                            </md-input-container>
+
+                        </div>
+                    </div>
+                    <div class="paymentinfo" flex>
+                        <div class="payInfo_header" layout="row" layout-align="end start">
+                            <span>Payment No : {{vm.payment.paymentRef}}</span>
+                        </div>
+                        <div class="commonPayInfo" layout="column">
+
+                            <md-input-container md-no-float class="marginEx">
+                                <input placeholder="Amount Received" ng-model="vm.payment.recievedAmount" ng-required="vm.receiveRequired" ng-change="vm.netAmount()" ng-blur="vm.OnRecivedAmountLostFocus()" ng-disabled="vm.disableRecAmnt" ms-Value-Adjuster>
+                            </md-input-container>
+
+                            <md-input-container md-no-float class="marginEx">
+                                <input placeholder="Bank Charges" rasm-numonly ng-model="vm.payment.bankCharges">
+                            </md-input-container>
+
+                            <md-input-container md-no-float style="margin-top:0px !important">
+                                <md-button class="md-primary" style="border:2px solid;margin-left: 0px;margin-top:0px !important" app-uploader="vm.brochureConfig" result="vm.setMedia(res)">
+                                    <md-icon md-font-icon="icon-cloud-upload"></md-icon>
+                                    <span style="padding: 6px">Upload File</span>
+                                </md-button>
+                            </md-input-container>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formSection">
+               <!--  <div class="paymentSummary" layout="row">
+
+                    <div class="summaryblocks unappliedAdvances" layout="column" layout-align="center start" flex>
+                        <span>Unapplied Advances</span>
+                        <span>{{vm.payment.baseCurrency}} {{vm.payment.uAmount | valRndUp}}</span>
+                    </div>
+
+                    <div class="summaryblocks availableAdvances" layout="column" layout-align="center start" flex>
+                        <div layout="column" layout-align="center center">
+                            <span flex layout="row">Total</span>
+                            <span flex layout="row">{{vm.payment.baseCurrency}} {{vm.nAmount | valRndUp}}</span>
+                        </div>
+                    </div>
+                    <div class="summaryblocks appliedAdvances" layout="column" layout-align="center start" flex>
+                        <span>Total Applied</span>
+                        <span>{{vm.payment.baseCurrency}} {{vm.payment.aAmount | valRndUp}}</span>
+                    </div>
+                </div> -->
+
+                <div class="summary" layout="row" layout-align="end start">
+                    <div class="totalVal unappliedAdvances" layout="column" layout-align="center center">
+                        <div layout="column" layout-align="center start">
+                            <span>Unapplied Advances</span> 
+                            <span>{{vm.payment.baseCurrency}} {{vm.payment.uAmount | valRndUp}}</span>
+                        </div>
+                    </div>
+                    <div class="totalVal availableAdvances" layout="column" layout-align="center center">
+                        <div layout="column" layout-align="center start">
+                            <span>Total Available </span> 
+                            <span> {{vm.payment.baseCurrency}} {{vm.nAmount | valRndUp}}</span>
+                        </div>
+                    </div>
+                    <div class="totalVal appliedAdvances" layout="column" layout-align="center center">
+                        <div layout="column" layout-align="center start">
+                            <span>Total Applied</span> 
+                            <span>{{vm.payment.baseCurrency}} {{vm.payment.aAmount | valRndUp}}</span>
+                        </div>
+                    </div>
+                </div> 
+
+            </div>
+
+            <div class="formSection">
+                <div class="row_encap sectionHeader" layout="row">
+                    Invoice Details
+                </div>
+            </div>
+
+            <div class="formSection">
+                <div class="lineitems" layout="column">
+                    <!-- LIST ITEM HEADER -->
+                    <div class="list-items-header" layout="row" layout-align="start center">
+                        <div class="list-item-header-control handle"></div>
+                        <div class="list-item-header-title left" flex>Date</div>
+                        <div class="list-item-header-title center" flex>Invoice No</div>
+                        <div class="list-item-header-title center" flex>Due Date</div>
+                        <div class="list-item-header-title center" flex>Amount</div>
+                        <div class="list-item-header-title center" flex>Balance</div>
+                        <div class="list-item-header-title right" flex>Paid Amount</div>
+                        <div class="list-item-header-control handle"></div>
+                    </div>
+
+                    <div class="line-items-container">
+                        <!-- LIST ITEM -->
+                        <div class="line-item" layout="row" layout-align="start center" ng-repeat="invo in vm.fullArr">
+                            <div layout="row" layout-align="start center" flex>
+                                <div class="handle">
+                                    <md-checkbox md-no-ink ng-disabled="invo.checkDisable" aria-label="Checkbox No Ink" ng-model="invo.checked" class="md-primary" ng-change="vm.checkItem($index,invo)"></md-checkbox>
+                                </div>
+
+                                <div class="info" layout="row" layout-align="start center">
+                                    <div class="item-value left" flex>
+                                        {{invo.sdate | datetime }}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{invo.invono}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{invo.duedate |toDateObject}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{payment.baseCurrency}} {{invo.famount | valRndUp}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{payment.baseCurrency}} {{invo.instalment| valRndUp}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        <md-input-container flex md-no-float>
+                                            <input placeholder="Paid Amount" ng-disabled="invo.inputDisable" ng-model="invo.amount" ng-change="vm.getPaidAmount(invo, '{{invo.amount}}',$index)" ng-blur="vm.amountLostFocus($index)" ms-Value-Adjuster>
+                                        </md-input-container>
+                                    </div>
+
+                                </div>
+
+                                <div class="handle">
+                                    <md-button type="button" aria-label="Open demo menu" class="md-icon-button" ng-click="vm.history(invo)">
+                                        <md-icon md-font-icon="icon-dots-vertical" style="color:gray;"></md-icon>
+                                    </md-button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <!-- LIST ITEM -->
+                    </div>
+
+                    <div class="empty-line-items-container" ng-if="!vm.fullArr.length" layout="row" layout-align="center center">
+                        <span>{{vm.InvoicesDataStatus}}</span>
+                    </div>
+
+
+                   
+
+                    <!-- LIST ITEM HOLDER -->
+                </div>
+            </div>
+             <!-- <div class="formSection" layout="row"  ng-if="vm.payment.customField.length > 0">
+                  <div class="row_encap sectionHeader">Additional Information </div>
+            </div>  -->
+            <div class="formSection" ng-if="vm.payment.customField.length > 0">
+                <div class="row_encap sectionHeader" layout="row" layout-align="space-between center">
+                    Additional Information
+                    <md-button class="md-primary" ng-click="vm.showMoreInfo = !vm.showMoreInfo;">
+                        <md-icon md-font-icon="icon-chevron-down" ng-hide="vm.showMoreInfo"></md-icon>
+                        <span ng-hide="vm.showMoreInfo">More</span>
+                        <md-icon md-font-icon="icon-chevron-up" ng-show="vm.showMoreInfo"></md-icon>
+                        <span ng-show="vm.showMoreInfo">less</span>
+                    </md-button>
+                </div>
+            </div>    
+            <div  layout="row" ng-show="vm.showMoreInfo" ng-repeat="customField in vm.payment.customField" style="padding: 32px;height: 64px;">
+
+                <md-input-container md-no-float flex ng-show="customField.type == 'selectBox'">
+                   <md-select placeholder="{{customField.labelShown}}" ng-model="customField.value" flex>
+                        <md-option ng-repeat="opt in customField.fields" value="{{opt}}">{{opt}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container  md-no-float flex ng-if="customField.type == 'textBox'">
+                   <input placeholder="{{customField.labelShown}}" ng-model="customField.value" type="{{customField.inputType}}">
+                </md-input-container>
+
+            </div>
+        </div>
+    </div>
+</div>

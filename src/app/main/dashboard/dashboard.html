@@ -1,0 +1,114 @@
+<div id="dashboard" class="page-layout simple fullwidth" layout="column" layout-align="center center">
+
+    <!-- CENTER -->
+    <div class="center" layout="column" layout-align="center center" flex ms-scroll flex>
+
+        <div class="content-card" layout="column">
+
+            <md-content>
+                <!-- CONTENT WRAPPER -->
+                <div class="content-wrapper" layout="column" flex>
+                    <div class="dashboard-component-holder" layout="row">
+                        <div id="dashboard-bargraph-widget-component" class="side-margin-right dashboard-component-styling" layout="column" flex>
+                            <div class="widget-component-header" layout="row" layout-align="space-between center">
+                                Sales, Receipts & Expenses
+                                <md-select class="simplified" ng-model="vm.dashBoardPeriodContext" ng-change="vm.dashboardPeriodContextChange()">
+                                    <md-option value=1>Current Year</md-option>
+                                    <md-option value=0>Previous Year</md-option>
+                                </md-select>
+                            </div>
+                            <div ng-if="vm.barChart.data.length > 0" class="widget-component-content pad_16">
+                                <canvas id="bar" class="chart chart-bar" chart-data="vm.barChart.data" chart-labels="vm.barChart.labels" chart-series="vm.barChart.series" chart-colors="vm.dashBoardChartColors"></canvas>
+                            </div>
+                            <div ng-if="!vm.barChart.data.length > 0" class="widget-component-content empty-state pad_16" layout="column" layout-align="center center">
+                                <img ng-src="/assets/icons/componenticons/bar-graph-1.svg" width="10%" height="10%">
+                                <span class="esheader">No Transactions</span>
+                            </div>
+                        </div>
+
+                        <div id="dashboard-biteinfo-collection" class="side-margin-left" layout="column">
+
+                            <div class="dashboard-component-styling dashboard-biteinfo-widget-component side-margin-bottom" layout="row">
+                                <div class="valueSection" flex layout="column" layout-align="center start">
+                                    <span>Total Sales</span>
+                                    <span ng-if="!vm.businessContextBiteInfo.totalSales">0.00</span>
+                                    <span ng-if="vm.businessContextBiteInfo.totalSales">{{vm.businessContextBiteInfo.totalSales | currency:""}}</span>
+                                </div>
+                                <div class="iconSection" layout="column" layout-align="center center">
+                                    <img ng-src="/assets/icons/componenticons/totalsales.svg" width="50%" height="50%">
+                                </div>
+                            </div>
+
+                            <div class="dashboard-component-styling dashboard-biteinfo-widget-component side-margin-bottom" layout="row">
+                                <div class="valueSection" layout="column" layout-align="center start">
+                                    <span>Total Receipts</span>
+                                    <span ng-if="!vm.businessContextBiteInfo.totalReceipts">0.00</span>
+                                    <span ng-if="vm.businessContextBiteInfo.totalReceipts">{{vm.businessContextBiteInfo.totalReceipts | currency:""}}</span>
+                                </div>
+                                <div class="iconSection" layout="column" layout-align="center center">
+                                    <img ng-src="/assets/icons/componenticons/totalreceipts.svg" width="50%" height="50%">
+                                </div>
+                            </div>
+
+                            <div class="dashboard-component-styling dashboard-biteinfo-widget-component side-margin-bottom" layout="row">
+                                <div class="valueSection" flex layout="column" layout-align="center start">
+                                    <span>Total Expenses</span>
+                                    <span ng-if="!vm.businessContextBiteInfo.totalExpenses">0.00</span>
+                                    <span ng-if="vm.businessContextBiteInfo.totalExpenses">{{vm.businessContextBiteInfo.totalExpenses | currency:""}}</span>
+                                </div>
+                                <div class="iconSection" layout="column" layout-align="center center">
+                                    <img ng-src="/assets/icons/componenticons/averagesales.svg" width="50%" height="50%">
+                                </div>
+                            </div>
+
+                            <div class="dashboard-component-styling dashboard-biteinfo-widget-component side-margin-bottom" layout="row">
+                                <div class="valueSection" flex layout="column" layout-align="center start">
+                                    <span>Total Outstanding</span>
+                                    <span ng-if="!vm.businessContextBiteInfo.totalOutstanding">0.00</span>
+                                    <span ng-if="vm.businessContextBiteInfo.totalOutstanding">{{vm.businessContextBiteInfo.totalOutstanding | currency:""}}</span>
+                                </div>
+                                <div class="iconSection" layout="column" layout-align="center center">
+                                    <img ng-src="/assets/icons/componenticons/totaloutstanding.svg" width="50%" height="50%">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="dashboard-component-holder" layout="row">
+                        <div id="dashboard-total-outstanding-widget-component" class="dashboard-component-styling side-margin-right" layout="column" flex>
+                            <div class="widget-component-header" layout="row" layout-align="start center">
+                                Accounts Receivable Ageing
+                            </div>
+                            <div class="widget-component-content pad_32" layout="column">
+                                <ms-outstanding-overdue layout="row" outoverduedata="{{vm.totalOutstandingBreakdown}}" overduebreakdowndata="{{vm.totalOverdueBreakDownData}}"></ms-outstanding-overdue>
+                            </div>
+                        </div>
+                        <div id="dashboard-help-block-widget-component" class="dashboard-component-styling side-margin-left" layout="column" layout-align="center center">
+                            <div class="widget-component-content pad_16" layout="column" layout-align="center center">
+                                <span class="mainText">Join the community!</span>
+                                <img ng-src="/assets/images/branding/joincommunity.png" width="30%" flex>
+                                <div class="socialContact" layout="row" layout-align="space-between center">
+                                    <md-button href aria-label="facebook" class="md-primary md-icon-button" ng-click="vm.openSocialContact('facebook')">
+                                        <md-icon md-menu-origin md-font-icon="icon-facebook"></md-icon>
+                                    </md-button>
+                                    <md-button href aria-label="instagram" class="md-primary md-icon-button" ng-click="vm.openSocialContact('instagram')">
+                                        <md-icon md-menu-origin md-font-icon="icon-instagram"></md-icon>
+                                    </md-button>
+                                    <md-button href aria-label="youtube" class="md-primary md-icon-button" ng-click="vm.openSocialContact('youtube')">
+                                        <md-icon md-menu-origin md-font-icon="icon-youtube-play"></md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- CONTENT WRAPPER -->
+            </md-content>
+
+        </div>
+    </div>
+    <div ng-show="false" class="coverPongery" style="position:absolute; width:100%; height:100%; background:#F5F5F5; z-index:88;" >
+
+    </div>
+    <!-- CENTER -->
+</div>

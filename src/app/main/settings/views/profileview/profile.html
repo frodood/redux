@@ -1,0 +1,25 @@
+<div class="toolbar" layout="row" layout-align="start center">
+	<md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('settingsidenav')" hide-gt-md aria-label="Toggle left sidenav">
+		<md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+	</md-button>
+	<h1>Business Settings</h1>
+</div>
+
+
+<div id="setting" class="contentsection" layout="column" flex>
+	
+	<ms-spinner-component name="setting-profileTab-spinner" size="32"  relative-position="false"></ms-spinner-component>
+
+	<ms-spinner-component name="setting-loadProfileDetails-spinner" size="32" relative-position="false" on-loaded="vm.settingLoadProfileDetailsSpinnerLoaded(spinnerApi)"></ms-spinner-component>
+
+		<md-content class="md-content" ms-scroll flex><!-- ms-scroll -->
+
+			<div ng-include="'app/main/settings/views/profileview/profileForm.html'" ></div>
+
+		</md-content>
+
+<div class="footersection" layout="row" layout-align="end center">
+	<md-button class="md-primary" style="border:2px solid" ng-click="vm.saveProfile()">save</md-button>
+</div>
+
+</div>

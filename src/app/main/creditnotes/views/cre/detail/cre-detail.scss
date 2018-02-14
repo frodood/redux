@@ -1,0 +1,568 @@
+#creditnotes {
+
+    .center {
+
+        .content-card {
+
+            .content-wrapper {
+
+                .thread-detail{
+                    position:relative; 
+
+                    .invTemplate-1 {
+                        padding: 0;
+
+                        .invoice-container {
+
+                            .detail-wrapper {
+                                width: 100%;
+                                min-width: 100%;
+                                max-width: 100%;
+                                overflow: hidden;
+                                background: #FFFFFF;
+
+                                .detail-header {
+                                    height:auto;
+                                    min-height:300px;
+                                    padding-bottom:16px;
+
+                                    .ids {
+                                        line-height: 22px;
+                                        color: rgba(0, 0, 0, 0.54);
+
+                                        .detail {
+                                            width: 320px;
+                                            margin-top: 5px;
+                                            margin-bottom: 7px;
+                                        }
+
+                                        .seller {
+                                            margin-bottom: 48px;
+                                            padding-left:16px;
+
+                                            .logo {
+                                                width: 156px;
+                                                height: 156px;
+                                                font-size: 115px;
+                                            }
+                                        }
+
+                                        .client {
+                                            padding-left:16px;
+
+                                            .logo {
+                                                width: 156px;
+                                                height: 156px;
+                                                font-size: 115px;
+                                            }
+                                        }
+
+                                        .divider {
+                                            width: 1px;
+                                            margin: 0 16px;
+                                            background-color: rgba(0, 0, 0, 0.12);
+                                            height: 144px;
+                                        }
+                                    }
+
+                                    .summary {
+                                        font-size: 15px;
+
+                                        .space{
+                                        min-height:100px;
+                                        }
+
+                                        .spacecustomFieldAll{
+                                        min-height:26px;
+                                        }
+
+                                        .spacecustomFieldOne{
+                                        min-height:70px;
+                                        }
+
+                                        .customField{
+                                        padding-bottom: 8px;
+
+                                        .customerFieldHeight{
+                                            max-height: 38px;
+                                        }
+                                        
+                                        }
+
+                                        .tableSpacer{
+                                            height:120px;
+                                        }
+
+                                        .label {
+                                            color: rgba(0, 0, 0, 0.54);
+                                            text-align: right;
+                                            padding-right: 16px;
+
+                                            &.cellSpacer{
+                                                padding-top:8px;
+                                                padding-bottom:8px;
+                                            }
+                                        }
+
+                                        .value {
+                                            color: rgba(0, 0, 0, 1);
+                                            min-width: 137px;
+
+                                            &.cellSpacer{
+                                                padding-top:8px;
+                                                padding-bottom:8px;
+                                            }
+                                        }
+
+                                        .code {
+                                            font-size: 35px;
+                                            font-weight: 300;
+                                            height:45px;
+
+                                            td {
+                                                padding-bottom: 32px;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .invoiceComment{
+                                    display:block; 
+                                    width:100%;
+                                    padding-left:18px;
+                                    padding-right:18px;
+                                    margin-bottom:8px;  
+                                    height:auto;
+                                    line-height:20px;
+                                    font-weight:500;
+                                    font-size:15px;
+                                    color:rgba(0,0,0,0.87);
+                                }
+
+                                .detail-content {
+                                    .invoice-table {
+                                        width:100% !important;
+                                        margin-top: 0px;
+                                        font-size: 15px;
+                                        padding:0px 14px;
+                                        border-collapse: separate;
+
+                                        thead{
+                                            tr{
+                                                th{
+                                                    padding:8px !important;
+                                                    padding-bottom:24px !important;
+                                                }
+                                            }
+                                        }
+
+                                        tbody{
+
+                                            tr{
+
+                                                td{
+                                                    padding:8px !important;
+                                                    border-bottom:1px solid rgba(0, 0, 0, 0.12);
+                                                }
+
+                                            }
+                                        }
+
+
+                                        .title {
+                                            font-weight:500;
+                                        }
+
+                                        .detail {
+                                            margin-top: 0px;
+                                            font-size: 12px;
+                                            color: rgba(0, 0, 0, 0.54);
+                                        }
+
+                                        .text-left{
+                                            text-align:left; 
+                                        }
+
+                                        .text-center{
+                                            text-align:center; 
+                                        }
+
+                                        .text-right{
+                                            text-align:right; 
+                                        }
+                                    }
+
+                                    .invoice-table-footer {
+                                        margin: 32px 0 32px 0;
+                                        padding-left:14px;
+                                        padding-right:14px;
+
+                                        tr {
+
+                                            td {
+                                                text-align: right;
+                                                font-size: 15px;
+                                                font-weight: 500;
+                                                color: rgba(0, 0, 0, 0.54);
+                                                border-bottom: none;
+                                                padding: 8px 8px;
+
+                                                &:first-child {
+                                                    text-align: left;
+                                                }
+                                            }
+
+                                            &.paid{
+                                                td{
+                                                    padding-bottom:32px;
+                                                }
+                                            }
+
+                                            &.balancedue {
+
+                                                td {
+                                                    padding: 16px 8px;
+                                                    border-top: 1px solid rgb(220,220,220);
+                                                    border-bottom: 1px solid rgb(220,220,220);
+                                                    font-size: 20px;
+                                                    font-weight: 500;
+                                                    color: rgba(0, 0, 0, 1);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .smallHeader{
+                                        display:block; 
+                                        width:100%;
+                                        padding-left:18px;
+                                        height:48px;
+                                        line-height:48px;
+                                        font-weight:500;
+                                        font-size:16px;
+                                        color:rgba(0,0,0,0.5);
+                                        text-transform:uppercase;     
+                                    }
+
+                                    .payment-table{
+                                        width:100% !important; 
+                                        font-size:15px;
+                                        padding:0px 14px;
+                                        margin-bottom:32px; 
+                                        border-collapse: separate;
+
+                                        thead{
+                                            font-weight:500; 
+                                            border-bottom:none !important;
+                                            white-space:nowrap;
+                                            min-width:0px !important;
+
+                                            tr{
+                                                th{
+                                                    padding:8px !important;
+                                                    padding-bottom:16px !important;
+                                                }
+                                            }
+
+                                        }
+
+                                        tbody{
+
+                                            tr{
+
+                                                td{
+                                                    padding:8px !important;
+                                                    border-bottom:1px solid rgba(0, 0, 0, 0.12);
+                                                }
+
+                                            }
+                                        } 
+                                    }
+                                }
+
+                                .detail-footer {
+
+                                    .footerSegments{
+                                        width:100%;
+
+                                        .segmentHeader{
+                                            display:block; 
+                                            width:100%;
+                                            padding-left:18px;
+                                            height:48px;
+                                            line-height:48px;
+                                            font-weight:500;
+                                            font-size:15px;
+                                            color:rgba(0,0,0,0.5);
+                                            text-transform:uppercase; 
+                                        }
+
+                                        .segmentContent{
+                                            padding:0px 18px;
+                                            font-weight:500;
+                                            font-size:14px;
+
+                                            .contactSegment:nth-child(2){
+                                                margin-left:30px;
+                                            }
+                                        }   
+                                    }
+
+                                    .note {
+                                        font-size: 15px;
+                                        font-weight: 500;
+                                        margin-bottom: 24px;
+                                    }
+
+                                    // IE10 fix
+                                    .logo, .small-note {
+                                        -ms-flex: 0 1 auto;
+                                    }
+
+                                    .brandlogo {
+                                        width: 32px;
+                                        min-width: 32px;
+                                        height: 32px;
+                                        margin-right: 24px;
+                                    }
+
+                                    .small-note {
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        color: rgba(0, 0, 0, 0.54);
+                                        line-height: 18px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+
+/* PRINT STYLES */
+@media print {
+
+    /* Invoice Specific Styles */
+    #invoices {
+
+        width:100%;
+
+        .invoice-container {
+            padding: 0;
+        
+            .card {
+                width: 100%;
+                min-width: 0;
+                background: none;
+                padding: 0;
+                box-shadow: none;
+
+                .header {
+
+                    .ids {
+
+                        .detail {
+                            width: 120pt;
+                        }
+
+                        .seller {
+                            margin-bottom: 8pt;
+
+                            .logo {
+                                width: 60pt;
+                                height: 60pt;
+                                font-size: 40pt;
+                            }
+                        }
+
+                        .client {
+
+                            .label {
+                                width: 60pt;
+                                font-size: 16pt;
+                            }
+                        }
+
+                        .divider {
+                            margin: 0 12pt;
+                            height: 100pt;
+                        }
+                    }
+
+                    .summary {
+                        font-size: 10pt;
+
+                        .code {
+                            font-size: 18pt;
+
+                            td {
+                                padding-bottom: 10pt;
+                            }
+                        }
+                    }
+                }
+
+                .content {
+
+                    .invoice-table {
+                        margin-top: 16pt;
+
+                        thead {
+
+                            tr {
+
+                                th {
+                                    font-size: 10pt;
+                                    max-width: 60pt;
+
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+                            }
+                        }
+
+                        tbody {
+
+                            tr {
+
+                                td {
+
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+                            }
+                        }
+
+                        .title {
+                            font-size: 10pt;
+                        }
+
+                        .detail {
+                            margin-top: 4pt;
+                            font-size: 9pt;
+                            max-width: none;
+                        }
+                    }
+
+                    .invoice-table-footer {
+                        margin: 16pt 0;
+
+                        tr {
+
+                            td {
+                                font-size: 13pt;
+                                padding: 4pt 4pt;
+
+                                &:first-child {
+                                    text-align: left;
+                                    padding-left: 0;
+                                }
+
+                                &:last-child {
+                                    padding-right: 0;
+                                }
+                            }
+
+                            &.discount {
+
+                                td {
+                                    padding-bottom: 16pt;
+                                }
+                            }
+
+                            &.total {
+
+                                td {
+                                    padding: 16pt 4pt 0 4pt;
+                                    font-size: 16pt;
+
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .payment-table{
+                        margin-top: 16pt;
+
+                        thead {
+
+                            tr {
+
+                                th {
+                                    font-size: 14px;
+                                    max-width: 60pt;
+                                    font-weight:500; 
+
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+                            }
+                        }
+
+                        tbody {
+
+                            tr {
+
+                                td {
+
+                                    &:first-child {
+                                        padding-left: 0;
+                                    }
+
+                                    &:last-child {
+                                        padding-right: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .footer {
+
+                    .note {
+                        font-size: 10pt;
+                        margin-bottom: 8pt;
+                    }
+
+                    .logo {
+                        font-size: 14pt;
+                        margin-right: 8pt;
+                    }
+
+                    .small-note {
+                        font-size: 8pt;
+                        line-height: normal;
+                    }
+                }
+            }
+        }
+    }
+}

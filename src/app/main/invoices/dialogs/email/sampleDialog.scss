@@ -1,0 +1,34 @@
+.customDialogBox{
+
+	md-toolbar{
+		min-height:48px;
+
+		.md-toolbar-tools{
+			height:48px;
+			max-height:48px;
+		}
+
+	}
+
+	.dialogContent{
+
+		&.pad_32{
+			padding:32px;
+		}
+	}
+
+	.dialogFooter{
+
+		border-top:1px solid rgba(0,0,0,0.08);
+
+		&.pad_16{
+			padding:16px;
+
+			.md-primary{
+				border: 2px solid;
+			}
+		}
+
+	}
+
+}

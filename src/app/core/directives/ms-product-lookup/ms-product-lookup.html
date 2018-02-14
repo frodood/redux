@@ -1,0 +1,22 @@
+<div class="productLookupContainer" layout="row">
+	<md-autocomplete class="no-float" flex ng-required="{{vm.required}}" md-search-text="vm.productSearchText" md-selected-item="vm.selectedProduct" md-min-length="0" md-items="item in vm.searchProduct('search', vm.productSearchText)" md-item-text="item.display" md-floating-label="{{vm.placeholder}}" md-autofocus="true" md-selected-item-change="vm.selectedItemChange(vm.selectedProduct)" md-no-cache="false">
+		<md-item-template>
+			<span class="item-title">
+				<span md-highlight-text="vm.productSearchText" md-highlight-flags="^i">{{item.display}} ,</span>
+			</span>
+			<span class="item-metadata">
+				<span class="item-metastat">
+					<i style="font-size: 12px;">code - {{item.value.productCode}}</i>
+				</span>
+				<md-divider></md-divider>
+			</span>
+		</md-item-template>
+		<!-- <md-not-found>
+			Product matching "{{vm.productSearchText}}" were found.
+          	<a ng-click="vm.createNewProduct(vm.productSearchText)">Create a new one!</a>
+		</md-not-found> -->
+		<div ng-messages="vm.productSearchText.$error">
+			<div ng-message="required">This is required.</div>
+		</div>
+	</md-autocomplete>
+</div>

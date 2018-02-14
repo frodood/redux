@@ -1,0 +1,47 @@
+<table class="simple">
+    <thead>
+        <tr>
+            <th>
+                GRN No
+            </th>
+            <th>
+                GRN Type
+            </th>
+            <th>
+                Recived Date
+            </th>
+            <th>
+                Net Amount
+            </th>
+            <th>
+                Balance
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="row in vm.customerContextLatestDocuments">
+            <td>
+                <span>{{row.invoiceNo}}</span>
+            </td>
+            <td>
+                <span>{{row.startDate | toDateObject | date:'mediumDate'}}</span>
+            </td>
+            <td>
+                <span>{{row.dueDate | toDateObject | date:'mediumDate'}}</span>
+            </td>
+            <td>
+                <span>{{row.netAmount}}</span>
+            </td>
+            <td>
+                <span>{{row.balance}}</span>
+            </td>
+            <td>
+                <span>{{row.status}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

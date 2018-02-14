@@ -1,0 +1,43 @@
+<style type="text/css">
+  @media only screen and (max-width: 1024px) {
+    /* For mobile phones: */
+    .flexDisplay {
+        display: inline-grid !important;
+    }
+  } 
+  @media only screen and (min-width: 1024px) {
+    /* For destop : */
+    .flexDisplay {
+        display: inline-block !important;
+    }
+  }
+
+  .inActiveReport{
+    cursor:not-allowed !important;
+    opacity:0.7;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+
+</style>
+
+<div layout="row" layout-align="end end" layout-sm="column" ms-scroll>
+  <div layout class="flexDisplay" layout-margin layout-align="center center" style="width:100%;" >
+    <div  layout="column"  ng-repeat="report in vm.reportArr | orderBy: '-active'" style="width: 300px; display: inline-block;height: 300px;">  
+        <div ng-class="{'inActiveReport':!report.active}" style="cursor:pointer;height: 100%;" layout layout-sm="row" layout-margin layout-wrap >
+           <md-card flex layout="column" ng-click="vm.goToDetail(report,$event)">
+              <div layout="row" layout-align="center center" style="height:48px;">
+                 <span style="font-size: 16px;font-weight: 500;color:#335e8b;">  {{report.title}} </span>
+              </div>
+              <md-divider></md-divider>
+              <div layout="column" layout-align="center center" style="padding: 32px;" flex>
+                  <img src="/assets/reports/imgpsh_fullsize.png" style="position: relative;bottom: 20px;width: 80%;">               
+              </div>
+           </md-card>
+        </div>
+     </div> 
+    
+  </div>
+</div>
+
+<!--   -->

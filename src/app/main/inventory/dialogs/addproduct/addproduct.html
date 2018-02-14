@@ -1,0 +1,107 @@
+<md-dialog class="customDialogBox frmModal" arial-label="add product">
+   <form ng-submit="vm.preventDefault()" name="addProd" style="">
+      <md-toolbar  class="modal-header ">
+         <div class="md-toolbar-tools ">
+            <h2>New Line Item</h2>
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+               <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+         </div>
+      </md-toolbar>
+
+      <md-dialog-content style="width:100%; height:250px; padding:24px 36px;" >
+
+      <div>
+   <ms-product-lookup placeholder="'Product'" required="false" editoptions="false" lookupclass="" style="margin: 0px"></ms-product-lookup>
+</div>
+
+
+         <!-- <div class="formWrapper ">
+            <md-autocomplete style="width:100%;" flex 
+               md-search-text="vm.searchedProd"
+               ng-keydown="enter(vm.searchedProd)"
+               md-selected-item="vm.selectedProd" 
+               md-items="item in vm.querySearch(vm.searchedProd)" 
+               md-item-text="item.dis" 
+               md-floating-label="Product or Service"
+               md-autofocus="true"
+               md-selected-item-change="vm.selectedItemChange(vm.selectedProd)">
+               <md-item-template >
+                  <span  md-highlight-text="searchedProd">{{item.dis}}</span>
+               </md-item-template>
+               <div ng-messages="addProd.autocompleteField.$error" ng-if="addProd.autocompleteField.$touched">
+                  <div ng-message="required">This is required.</div>
+               </div>
+            </md-autocomplete >
+         </div> -->
+         <div class="formWrapper" style="min-width:100%;">
+            <div class="maininfosection" layout="row " layout-align="start start" >
+               <div class="expenseinfo" flex>
+                  <div layout="column" layout-gt-xs="row" style=" height: 56px;">
+                     <md-input-container md-no-float style="margin-top:0px; margin-right: 16px;"  flex="50">
+                        <label>Quantity</label>
+                        <input  ng-model="vm.promoItems.quantity" min="1" required="true" ng-change="vm.setqty(vm.promoItems.quantity)"  name="quantity" ms-Quantity-Adjuster/>
+                     </md-input-container>
+                     <md-input-container md-no-float style="margin-top: 0px; margin-left: 16px;" flex="50">
+                        <label>Unit</label>
+                        <md-select  ng-model="vm.promoItems[0].productUnit" ng-change="vm.setUOM(vm.promoItems.productUnit)" flex ng-required="true"  name="unit" md-no-asterisk="" name="terms">
+                           <md-optgroup label="Terms type">
+                              <md-option  ng-repeat="tax in vm.UnitOfMeasure " value="{{tax.unitsOfMeasurement}}" >{{tax.unitsOfMeasurement}}</md-option>
+                           </md-optgroup>
+                        </md-select>
+                        <!-- <div ng-messages="addProd.unit.$error">
+                           <div ng-message="required">This is required.</div>
+                        </div> -->
+                     </md-input-container>
+                     <!-- <md-input-container  style=" margin-top:0px; " flex>
+                        <label>Price</label>
+                        <input type="text " ng-model="pim.price " ng-required="true " name="price " ng-change="vm.setprice(pim.price) "/>
+                             <div ng-messages="addProd.price.$error ">
+                            <div ng-message="required ">This is required.</div>
+                          </div>
+                        </md-input-container> -->
+                  </div>
+                  <div  layout="column" layout-gt-xs="row" style=" height: 56px;">
+                     <md-input-container md-no-float flex>
+                        <label>Optional Line Comment</label>
+                        <input type="text" ng-model="vm.promoItems.comment"/>
+                        <!-- <md-icon md-svg-src="img/disc.svg "  md-ink-ripple style="margin-left:-30px;margin-top:5px; " ></md-icon> -->
+                     </md-input-container>
+                     <!-- <md-input-container style="margin-top: 18px; " flex="50 ">
+                        <label>Tax</label>
+                        <md-select  ng-model="pim.tax.taxName " ng-disabled="enableTax " ng-change="vm.setTax(pim.tax.taxName) " flex >
+                              <md-optgroup label="Taxes ">
+                             <md-option ng-repeat="tax in vm.taxes " value="{{tax.taxName}} ">
+                         {{tax.taxName}} ({{tax.rate}}%)
+                        </md-option>
+                        </md-optgroup>
+                        </md-select>
+                         
+                        </md-input-container>
+                        
+                        <md-input-container style=" margin-top:17px; " flex>
+                        <label>Amount</label>
+                        <span style="display:none ">{{calAMount()}}</span >
+                        <input ng-model="vm.Amount " ng-disabled="true ">
+                        </md-input-container> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </md-dialog-content>
+      <div class="md-actions" layout="row" style="padding:12px 24px; border-top:1px solid rgba(0, 0, 0, 0.12); min-height:65px; max-height:65px;">
+         <div ng-show="vm.showProduct" >
+            <span style="color:red" flex>Please fill out required fields</span>
+         </div>
+         <div ng-show="vm.getqty">
+            <span style="color:red;">Required Quantity is not available in the Stock</span>
+         </div>
+         <div ng-show="vm.productNotExists">
+            <span style="color:red;">Please select an existing product with track inventory option enabled</span>
+         </div>
+         <span flex></span>
+         <md-button ng-click="vm.addproductToarray(vm.selectedProd.valuep.productName)" style="border:2px solid" class="md-primary">SAVE</md-button>
+      </div>
+   </form>
+</md-dialog>

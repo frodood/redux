@@ -1,0 +1,20 @@
+<md-dialog>
+    <div class="alacartComponent">
+        <md-content>
+            <div class="variantDetails reduceVariant">
+                <div class="centerBody" layout="row" layout-align="start start">
+                    <div class="dateContainer" flex layout="column" layout-align="center center">
+                        <span>Number of additional users to be removed: </span>
+                        <div ms-numeric-stepper min="rmvMinSlots" max="rmvMaxSlots" ng-model="rmvAlacartSlotCount"></div>
+                    </div>
+                </div>
+                <div class="tabNotificationFooter" layout="row" layout-align="center center">
+                    <span>Note your billing will be updated immediatley, and any remaining ammount will be credited to your account.</span>
+                </div>
+            </div>
+            <div class="tabFooter" layout="column" layout-align="center center">
+                <md-button class="md-primary" style="border:2px solid;" ng-disabled="!rmvAlacartSlotCount > 0" ng-click="removeAlacartOption($event)">Remove Users</md-button>
+            </div>
+        </md-content>
+    </div>
+</md-dialog>

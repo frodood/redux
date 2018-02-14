@@ -1,0 +1,84 @@
+<md-dialog class="dialogEmailcre frmModal emailModal" aria-label="uploader" layout="column" layout-align="center start"  >
+
+<ms-spinner-component name="cre-email-spinner" size="32" relative-position="false" spinner-text="" on-loaded="vm.creEmailSpinnerLoaded(spinnerApi)"></ms-spinner-component>
+
+<ms-spinner-component name="cre-emailSend-spinner" size="32" relative-position="false"></ms-spinner-component>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>SEND CREDITNOTE</h2>
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+        </div>
+    </md-toolbar>
+
+    <div class="dialogContent" layout="column" flex>
+        <md-content ms-scroll flex>
+           <!--  <div class="loading-items" layout layout-align="center center" ng-if="vm.isLoading">
+                <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+                <div>Loading...</div>
+            </div>
+ -->
+            <div class="content" ng-if="!vm.isLoading">
+                <form name="cusForm" style="width: 100%;"> 
+                <div layout layout-sm="column" layout-margin class="inputHeight">
+                    <md-chips flex ng-model="vm.Sender"   class="md-primary" readonly="false" placeholder="To" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+To">
+
+                    </md-chips>
+                  <!--   <md-input-container flex md-no-float> 
+                        <input type="text" name="to" ng-model="vm.Sender" placeholder="To" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"/>
+                        <div ng-messages="cusForm.to.$error">
+                            <div ng-message="pattern">Please enter a valid email address!</div>
+                        </div>
+                    </md-input-container> -->
+                </div>
+                <div layout layout-sm="column" layout-margin class="inputHeight">
+                    <md-chips flex ng-model="vm.bcc"   class="md-primary" readonly="false" placeholder="BCC" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+BCC">
+
+                    </md-chips>
+                    <!-- <md-input-container flex md-no-float> 
+                        <input type="text" name="bccMail" ng-model="vm.bcc" placeholder="Bcc" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"/>
+                         <div ng-messages="cusForm.bccMail.$error">
+                            <div ng-message="pattern">Please enter a valid email address!</div>
+                        </div>
+                    </md-input-container> -->
+                </div>
+                <div layout layout-sm="column" layout-margin class="inputHeight">
+                    <md-input-container flex md-no-float> 
+                        <input type="text" ng-model="vm.subject" placeholder="Subject" />
+                    </md-input-container>
+                </div>
+                <div layout class="pre-tag" layout-sm="column" layout-margin layout-align="start start" >
+                   
+                <div  ng-bind-html="vm.emailBody" style="white-space: pre;"></div>  
+                </div>
+                <div layout layout-sm="column" layout-margin class="inputHeight">
+                    <div  flex="35" class="attact-pdf">        
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="vm.pdfCheck" class="md-primary">
+                            Attach Credit Note
+                        </md-checkbox>
+                    </div> 
+                    <div class="attachement-pill" layout="row" ng-show="vm.pdfCheck">
+                        <div class="att-pill-icon">
+                            <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+                        </div>
+                        <div class="att-pill-cont" layout="row">
+                            <span ng-bind="vm.test.creditNoteNo"></span> 
+                            <span>.pdf</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </md-content>
+    </div>
+        
+     <div class="footer">
+            <div flex> </div> 
+            <md-button ng-disabled="cusForm.$invalid || !vm.Sender.length > 0 || vm.disableBtn" flex="10" class="md-primary" style="border: 2px solid;" type="submit" ng-click="vm.sendmail()" >
+              send
+            </md-button> 
+    </div>
+</md-dialog>

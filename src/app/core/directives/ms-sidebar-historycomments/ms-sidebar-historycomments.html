@@ -1,0 +1,18 @@
+<md-sidenav class="docActivity sidenav md-sidenav-right" md-is-locked-open="$mdMedia('(min-width: 1366px)')" md-component-id="historyCommentSidebar" ms-scroll ms-sidenav-helper>
+
+    <md-content class="content" ms-scroll-height-fix-component scrolloffset-height="112" ms-scroll flex>
+
+        <div ng-include="'app/core/directives/ms-sidebar-historycomments/views/activityComponent.html'"></div>
+
+    </md-content>
+
+    <div class="commentSection" layout="row" layout-align="center center">
+        <form layout="row">
+            <input type="text" placeholder="Write something here !" ng-keypress="vm.enterSubmitComment($event)" ng-model="vm.liveComment">
+            <md-button class="md-icon-button" ng-click="vm.submitComment()">
+            	<md-icon md-font-icon="icon-telegram"></md-icon>
+          	</md-button>
+        </form>
+    </div>
+
+</md-sidenav>

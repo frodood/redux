@@ -1,0 +1,25 @@
+<div class="strtPanelContainer" layout="column" layout-align="center center">
+    <div class="strtCompContainer">
+        <div class="strtCompSliderTray" ng-class="vm.sliderPosition">
+            <div class="sliderPanel slideA" layout="column" layout-align="center center">
+                <img src="assets/images/branding/splashConfigureCompany.jpg" width="250" height="250"/>
+                <h1>Welcome to 12th Door!</h1>
+                <p>Let's get you started.</p>
+                <md-button ng-click="vm.switchToConfigureWizard()" class="md-primary" style="width:200px; border:2px solid;" tabindex="-1"><span>CONTINUE</span></md-button>
+            </div>
+            <div class="sliderPanel slideB" layout="column" layout-align="center center">
+                <ms-on-boarding></ms-on-boarding>
+            </div>
+            <div class="sliderPanel slideC" layout="column" layout-align="center center">
+                <img src="assets/images/branding/splashCreateInvoice.jpg" width="250" height="250"/>
+                <h1>Awesome... all done!</h1>
+                <p>Ready for your first invoice?</p>
+                <md-button class="md-fab md-mini md-primary" aria-label="Play Video"        ng-click="vm.playInvoiceCreationVid()" tabindex="-1">
+                    <md-icon class="s24" md-font-icon="icon-play"></md-icon>
+                </md-button>
+                <md-button ng-click="vm.locateToInvoiceCompose()" class="md-primary" style="width:200px; border:2px solid;" tabindex="-1"><span>Create Invoice</span></md-button>
+                <span class="exploreLink" ng-click="vm.locateToDashboard()">Not yet... Let me explore.</span>
+            </div>
+        </div>
+    </div>
+</div>

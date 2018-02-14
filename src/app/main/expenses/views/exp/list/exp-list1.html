@@ -1,0 +1,64 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<div class="empty-items" ng-if="vm.items.length === 0">There are no invoices in '{{vm.currentFilter.filter}}'!</div>
+<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.items && vm.loadingItems">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading Expenses...</div>
+</div>
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start -->
+<div class="item {{item.status}}" md-ink-ripple
+ng-if="!vm.loadingItems"
+ng-repeat="item in vm.expenseSummary | filter: global.search"
+ng-click="vm.openItem(item)"
+ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}">
+<div layout="row" layout-align="start center">
+    <md-checkbox class="no-label"
+    ng-checked="vm.isSelected(item)"
+    ng-click="vm.toggleSelectThread(item, $event)"
+    aria-label="{{vm.isSelected(item) ? 'Deselect' : 'Select'}}">
+</md-checkbox>
+
+<div class="divider-vertical"></div>
+<div class="cygil">
+    <div class="avatar" ms-random-class="vm.contactColors" style="margin-left:8px;">
+        {{item.from.name[0]}}
+    </div>
+</div>
+
+<div class="info" flex layout="column">
+    <div class="primaryInfo" layout="row" layout-align="start center">
+        <span class="text-truncate">{{item.date | date}}</span>
+        <div class="divider-vertical"></div>
+        <span class="text-truncate">{{item.category}}</span>
+    </div>
+
+    <div class="secondaryInfo" layout="row" layout-align="start center">
+        <span class="text-truncate">Expense No : {{item.expenseID}}</span>
+        <div class="divider-vertical"></div>
+        <!-- <span class="text-truncate"></span>
+        <div class="divider-vertical"></div> -->
+        <span class="text-truncate">TOTAL : USD {{item.totalValue}}</span>
+    </div>
+
+</div>
+
+<div class="status" layout="column" layout-align="center end">
+    <span class="text-truncate" style="font-weight:500; color:blue;">{{item.billable}}</span>
+    <span class="text-truncate" ng-if="item.status == 'Cancelled'" style="font-weight:500; color:black;">{{item.status}}</span>
+    <span class="text-truncate" ng-if="item.status == 'Paid'" style="font-weight:500; color:green;">{{item.status}}</span>
+    <span class="text-truncate" ng-if="item.status == 'Unpaid'" style="font-weight:500; color:red;">{{item.status}}</span>
+</div>
+
+<div layout="column" layout-align="space-between end">
+    <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('starred', item, $event)"
+    aria-label="Toggle starred">
+    <md-icon ng-if="item.favouriteStar" md-font-icon="icon-star"
+    class="amber-fg"></md-icon>
+    <md-icon ng-if="!item.favouriteStar" md-font-icon="icon-star-outline"></md-icon>
+</md-button>
+</div>
+</div>
+</div>

@@ -1,0 +1,74 @@
+#timesheetComposeEdit {
+
+    .center {
+        min-height:100%;
+        
+
+        .content-card {
+            overflow-x:hidden; 
+
+            .mainsection{ 
+
+                .subMain{
+
+                    width:100%;
+
+                    .info{
+                        padding:32px;
+                        width:100%; 
+
+                        .maininfosection{
+                            width:100%;
+                            .projectinfo{
+                                margin-top:-29px;
+                                
+                                .inputHeight{
+                                    height:64px;
+                                }
+                                .error-height{
+                                    margin-top: -10px;
+                                    margin-left: 2px;
+                                    color: rgb(225,27,12);
+                                    font-size: 12px;
+                                    height: 10px;
+                                }
+                                .documentid{
+                                    height:64px;
+                                    font-size:16px;
+                                    font-weight:500;
+                                }
+
+                                .md-datepicker-input-container{
+                                    padding-top: 24px; 
+                                    width: 90%;
+                                }
+                                .md-datepicker-triangle-button.md-button.md-icon-button { 
+                                    top: 25px;
+                                }
+                                ms-profile-lookup .profileLookupContainer md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                                    margin-top: 18px;
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .footersection{
+                width:100%;
+                padding:12px 24px;
+                border-top:1px solid rgba(0, 0, 0, 0.12);
+
+                button{
+                    float:right;
+                    margin:0px;
+                }
+
+                button:nth-child(2){
+                    margin-right:12px;
+                }
+            }
+        }
+    }
+}

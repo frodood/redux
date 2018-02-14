@@ -1,0 +1,219 @@
+#layout-vertical-navigation-fullwidth-toolbar-2 {
+
+    #toolbar {
+
+        .logo {
+            width: 142px;
+            padding-right:16px;
+            padding-left:12px;
+            cursor:pointer;
+
+            .logo-image {
+                display: block;
+                background: material-color('light-blue', '600');
+                width: 32px;
+                min-width: 32px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                color: #FFFFFF;
+                font-size: 16px;
+                font-weight: 500;
+                border-radius: 2px;
+            }
+
+            .logo-text {
+                color: rgba(0, 0, 0, 0.87);
+                margin-left: 16px;
+                font-size: 16px;
+            }
+        }
+
+        .upgradeSection{
+            button{
+                background:#f1c40f;
+                color:#ffffff;
+                font-size:14px !important;
+                line-height:28px;
+                min-height:28px;
+
+                md-icon{
+                    font-size:20px !important;
+                    line-height:22px !important;  
+                }   
+            }
+        }
+
+        .navigation-fold-toggle {
+            width: $toolbarHeight;
+            min-width: $toolbarHeight;
+            height: $toolbarHeight;
+            margin: 0;
+            border-right: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 0;
+
+            md-icon {
+                transition: transform 0.3s ease-in-out 0.1s;
+                transform: rotate(0deg);
+            }
+        }
+
+    }
+}
+
+body{
+
+    #user_menu_context{
+
+        .avatar-wrapper > img{
+            margin-top:3px;
+        }
+
+        &#user_menu_context._md-open > button, md-menu-bar md-menu._md-open > button, md-menu-bar.md-default-theme md-menu > button:focus, md-menu-bar md-menu > button:focus{
+            background:rgba(0,0,0,0.1);
+        }
+    }
+
+    #userContextWidget{
+        height:394px; 
+        min-height:394px;
+        max-height:394px;  
+        background:rgba(255,255,255,1); 
+        padding:0 !important;
+        overflow:hidden;
+
+        .profile_context_view{
+            width:100%; 
+            height:100%;
+
+            .profile_details_container{
+                width:100%; 
+                min-height:346px; 
+                background:#335E8B;
+
+                .profile_summary_section{
+                    width:100%;
+                    height:282px; 
+
+                    .profile_img_container{
+                        width:100%;
+                        height:200px;
+
+                        img{
+                            margin-top:42px; 
+                        }  
+                    }
+
+                    .profile_name_container{
+                        width:100%;
+                        height:82px;
+                        color:#fff;
+
+                        span:nth-child(1){
+                            font-size:24px;
+                            font-weight:300;  
+                        } 
+                    } 
+                }
+
+                .tennant_summary_section{
+                    width:320px;
+                    height:64px;
+                    background:#ffffff;
+                    border-bottom:1px solid rgba(0,0,0,0.084);
+
+                    span:nth-child(1){
+                        font-size:16px;
+                        font-weight:500;
+                        color:rgba(0,0,0,0.54); 
+                    }
+
+                    button{
+                        md-icon{
+                            margin-right:6px;
+                        }
+
+                        span{
+                            max-width:100% !important;
+                            overflow:hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }  
+                } 
+            }
+
+            .user_controls_container{
+                width:100%; 
+                min-height:48px; 
+                background:rgba(255,255,255,1);
+
+                button{
+                    margin:0px !important;
+
+                    md-icon{
+                        margin-right:6px;
+                    }
+                }
+            }
+        }
+        
+        .tenant_context_view{
+            width:100%; 
+            height:100%;
+
+            .tennant_tool_container{
+                width:100%;
+                height:48px;
+
+                button{
+                    margin:0px !important;
+                }
+
+                md-input-container{
+                    font-size:15px; 
+                } 
+            }
+
+            .tenant_list_container{
+                width:100%;
+                height:calc(100% - 48px);  
+            }
+        }
+
+    }
+
+
+}
+
+// RESPONSIVE
+@media only screen and (min-width: $layout-breakpoint-sm) {
+
+    .ms-navigation-folded {
+
+        #layout-vertical-navigation-fullwidth-toolbar-2 {
+
+            #toolbar {
+
+                .navigation-fold-toggle {
+
+                    md-icon {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $layout-breakpoint-sm) {
+
+    #layout-vertical-navigation-fullwidth-toolbar-2 {
+
+        #toolbar {
+
+            .logo {
+                width: auto
+            }
+        }
+    }
+}

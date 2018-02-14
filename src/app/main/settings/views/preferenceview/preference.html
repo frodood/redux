@@ -1,0 +1,28 @@
+<div class="toolbar" layout="row" layout-align="center center">
+	<div layout="row" layout-align="start center">
+		<md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('settingsidenav')" hide-gt-md aria-label="Toggle left sidenav">
+			<md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+		</md-button>
+	</div>
+	
+<!--
+	<div layout="row" layout-align="center center" flex>
+		<div ng-repeat="pref in vm.preference" flex>
+			<div layout="row" layout-align="center center" flex style="min-width:40px;" ng-click="vm.preferenceChange(pref.appUrl)">
+				<md-tooltip md-direction="bottom">
+					{{pref.appName}}
+				</md-tooltip>
+				<image src="/assets/producticons/{{pref.appImage}}.png" style="height:30px;min-width:27px;max-width:30px;"></image>
+			</div>
+
+		</div>
+	</div>
+-->
+</div>
+
+<!-- <div ng-include="vm.appUrl"></div>
+-->
+<div ui-view="preferenceView" ></div>
+
+
+

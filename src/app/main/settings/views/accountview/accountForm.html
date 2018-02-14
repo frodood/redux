@@ -1,0 +1,104 @@
+<style type="text/css">
+	md-datepicker-input{
+    min-width: 410px !important;
+    max-width: 50% !important;
+   }
+
+</style>
+<div style="overflow-x: hidden;">
+		<div layout layout-align="start center" class="subHeader">
+			<div class="title" >
+				Import Data
+			</div>
+		</div>
+		<div layout layout-sm="column" layout-margin>
+			<md-input-container md-no-float class="md-block" flex="100">
+				<!-- <label>Select Application</label> -->
+				<md-select ng-model="vm.selectedApplicationForImport" placeholder="Select Application">
+					<md-option ng-repeat="ImportApp in vm.ApplicationsForImport" value="{{ImportApp}}">{{ImportApp}}</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+		<div layout layout-sm="column" layout-margin style="margin-top: -24px;">
+			<div flex="22" layout="row" layout-align="start center">
+				<md-button ng-click="vm.dowloadTemplate()" class="md-primary" style="font-size:12px;" >
+					Download the Sample CSV file.
+				</md-button>
+				<span style="color: #A2A1A1; font-size: 13px;">Ensure your data is in the same format to begin import process.</span>
+			</div>
+		</div>
+		<div layout layout-sm="column" layout-margin>
+			<div flex>
+				<!--<md-button class="md-primary" ng-click="user($event)" >
+					Upload File
+				</md-button>-->
+				
+				<label class="fileContainer" md-ink-ripple>
+				    Upload
+				    <input  id="accountSettingsCSVPicker" type="file" ng-model="vm.filedata" accept=".csv" base-sixty-four-input>
+				</label>
+
+				<div ng-if="vm.filedata.fileReady" class="pdf-name">
+					 
+                    	<md-icon md-font-icon="icon-file-excel" style="color:rgb(45, 98, 150)"></md-icon>
+	                 	
+				{{vm.filedata.filename}}</div>
+				<md-progress-linear ng-if="vm.uploading == true" md-mode="indeterminate"></md-progress-linear>
+
+				<!--<label class="fileContainer">
+				    Upload
+				    <input type="file" ng-model="vm.filedata" accept=".csv"  base-sixty-four-input>
+				</label> import($event)-->
+			</div>
+		</div>
+		<div class="footersection" layout="row" layout-align="end center">
+			<md-button  class="md-primary" style="border:2px solid;" ng-click="vm.importData()">
+				Import Data
+			</md-button>
+		</div>
+		<div layout layout-align="start center" class="subHeader">
+			<div class="title">
+				Export Data
+			</div>
+		</div>
+		<div layout layout-sm="column" layout-margin>
+			<md-input-container md-no-float class="md-block" flex="100">
+				<!-- <label>Select Application</label> -->
+				<md-select ng-model="vm.selectedApplicationForExport" placeholder="Select Application">
+					<md-option ng-repeat="ExpApp in vm.ApplicationsForExport" value="{{ExpApp}}">{{ExpApp}}</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+		<div layout layout-sm="column" layout-margin >
+			<md-datepicker  style="margin-left: -6px;" ms-fix-datepicker class="md-datepicker-button" ng-model="vm.fromDate" md-placeholder="From Date"></md-datepicker>
+
+			<div flex="5" layout="row" layout-align="center center" style="color: #A2A1A1;">To</div>
+
+			<md-datepicker  ms-fix-datepicker class="md-datepicker-button" ng-model="vm.toDate" md-placeholder="To Date"></md-datepicker>
+		</div>
+		<div class="footersection" layout="row" layout-align="end center">
+			<md-button  class="md-primary" style="border:2px solid;" ng-click="vm.exportData()">
+				Export Data
+			</md-button>
+			<md-progress-linear ng-if="vm.downloading == true" md-mode="indeterminate"></md-progress-linear>
+		</div>
+		
+		<div layout layout-align="start center" class="subHeader">
+			<div class="title" style="color:red;">
+				Cancel Account
+			</div>
+		</div>
+		<!-- <div layout layout-sm="column" layout-margin>
+			<div flex style="margin-top:14px;"><label style="color:red;">Warning</label></div>
+		</div> -->
+		<div layout layout-sm="column" layout-margin>	
+			<div flex>
+				<span style="font-size: 15px;">All your data will be permanently deleted. This action cannot be undone.</span>
+			</div>
+		</div>
+		<div class="footersection" layout="row" layout-align="end center" >
+			<md-button  class="md-primary" style="border:2px solid; color:red;" ng-click="vm.cancelTenantAccount($event)">
+				Cancel Account
+			</md-button>
+		</div>
+</div>

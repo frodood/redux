@@ -1,0 +1,22 @@
+<md-dialog class="customDialogBox frmModal" aria-label="cusTool">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>SAMPLE CHANGE CURRENCY</h2>
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+                <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="dialogContent pad_32" style="overflow: auto;">
+        <form name="currencychangetest">
+            <ms-currency-lookup placeholder="'Select Currency'" required="false"></ms-currency-lookup>
+        </form>
+    </div>
+    <div class="dialogFooter">
+        <span flex></span>
+        <md-button ng-click="vm.ChangeCurrency(vm.currency)" style="border:2px solid" 
+        class="md-primary">save</md-button>
+    </div>
+</md-dialog>

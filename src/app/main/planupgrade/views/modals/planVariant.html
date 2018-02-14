@@ -1,0 +1,56 @@
+<md-dialog>
+	<div class="planVariantContainer">
+		<md-content>
+            <md-tabs md-dynamic-height md-stretch-tabs="always" md-border-bottom md-selected="selectedVariantIndex">
+                <md-tab id="monthlyBilling">
+                    <md-tab-label>Monthly Billing</md-tab-label>
+                    <md-tab-body>
+                    	<div class="variantDetails">
+                    		<div class="tabHeader" layout="row" layout-align="center center">
+	                            <span>Business Plan Charging <b>$12.00/mo</b></span>
+	                        </div>
+	                        <div class="centerBody" layout="row" layout-align="start start">
+	                            <div class="payableContainer" flex layout="column" layout-align="center center">
+	                                <span>Total Payable : </span>
+	                                <span>$12.00</span>
+	                            </div>
+	                            <div class="dateContainer" flex layout="column" layout-align="center center">
+	                                <span>Next billing date : </span>
+	                                <span>{{nxtMonthBillDate | date:'mediumDate'}}</span>
+	                                <md-tooltip md-direction="bottom">
+	                                    We will automatically bill your credit card on this date to keep your 12thDoor subscription active.
+	                                </md-tooltip>
+	                            </div>
+	                        </div>
+                    	</div>
+                    </md-tab-body>
+                </md-tab>
+                <md-tab id="yearlyBilling">
+                    <md-tab-label>Yearly Billing <span class="planOfferLbl">SAVE</span></md-tab-label>
+                    <md-tab-body>
+                    	<div class="variantDetails">
+	                        <div class="tabHeader" layout="row" layout-align="center center"><span>Business Plan Charging <b>$10.00/mo</b></span>
+	                        </div>
+	                        <div class="centerBody" layout="row" layout-align="start start">
+	                            <div class="payableContainer" flex layout="column" layout-align="center center">
+	                                <span>Total Payable : </span>
+	                                <span>$120.00</span>
+	                            </div>
+	                            <div class="dateContainer" flex layout="column" layout-align="center center">
+	                                <span>Next billing date : </span>
+	                                <span>{{nxtYearBillDate | date:'mediumDate'}}</span>
+	                                <md-tooltip md-direction="bottom">
+	                                    We will automatically bill your credit card on this date to keep your 12thDoor subscription active.
+	                                </md-tooltip>
+	                            </div>
+	                        </div>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+            </md-tabs>
+            <div class="tabFooter" layout="column" layout-align="center center">
+                <md-button class="md-primary" style="border:2px solid;" ng-click="upgradePlanFinal()" >Upgrade</md-button>
+            </div>
+        </md-content>
+	</div>
+</md-dialog>

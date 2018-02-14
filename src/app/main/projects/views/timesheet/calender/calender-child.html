@@ -1,0 +1,52 @@
+<div class="calender">
+<div layout layout-sm="column" layout-margin>
+      <md-input-container flex layout="row" layout-align="start end">
+         <label>Project</label>
+         <md-select  ng-model="vm.selectProject" flex  ng-change="vm.projectSelect(vm.selectProject)">
+            <md-optgroup label="Project">
+            <md-option value="{{item}}" ng-repeat="item in vm.projectArr">{{item.proName}}</md-option>
+         </md-select>
+      </md-input-container>
+      <div style="width: 2%;"></div>
+      <md-input-container flex layout="row" layout-align="start end" >
+         <label>Task</label>
+         <md-select  ng-model="vm.task" flex >
+            <md-optgroup label="Task">
+            <md-option ng-repeat = "item in vm.addtasks" value="{{item}}">{{item.taskName}}</md-option>
+         </md-select>
+      </md-input-container>
+   </div>
+   {{eventSources}}                
+   <!-- <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div> -->
+   <calendar-md flex layout layout-margin layout-fill
+      calendar-direction="direction"
+      on-prev-month="prevMonth"
+      on-next-month="nextMonth"
+      on-day-click="vm.dayClick"
+      title-format="'MMMM y'"
+      ng-model='vm.selectedDate'
+      week-starts-on="firstDayOfWeek"
+      data-start-month
+      data-start-year
+      tooltips="tooltips"
+      day-format="dayFormat"
+      day-label-format="'EEE'"
+      day-label-tooltip-format="'EEEE'"
+      day-tooltip-format="'fullDate'"
+      day-content="setDayContent"
+      disable-future-selection="false"
+      style="padding: 8px !important;">
+   </calendar-md>
+
+    <div layout layout-sm="column" class="optional" >
+            <div layout="row" layout-sm="row" flex>
+               <div flex>
+                  <label><b>Total Hours</b></label>
+               </div>
+               <div flex layout layout-align="center center" style="font-size: 22px;">
+                  <span ><b>{{vm.fullHour}}</b></span>
+               </div>
+            </div>
+         </div>
+
+</div>         

@@ -1,0 +1,235 @@
+#expCompose {
+
+    .center {
+
+        .content-card {
+            overflow-x:hidden; 
+
+            .mainsection{ 
+
+                .subMain{
+
+                    width:100%;
+
+                    .info{
+                        padding:32px;
+                        width:100%; 
+
+                        .maininfosection{
+                            width:100%;
+
+                            .customerinfo{
+                                .uploader{
+                                    width: 90%;
+                                    min-height: 355px;
+                                    max-height: 355px;border: 2px;
+                                    border-style: dashed dashed dashed;
+                                    border-color: silver;
+
+                                    .up-div{
+                                        .up-label{
+                                            color: rgba(138, 128, 128, 0.88);
+                                            cursor: pointer;
+                                        }
+                                        .up-label:hover{
+                                            text-decoration: underline;
+
+                                        }
+                                    }
+
+                                    .show-div{
+                                        .image-conf{
+                                            width: 100%;
+                                            min-height: 240px;
+                                            max-height: 240px;
+                                        }
+                                    }
+                                } 
+                            }
+
+                            .productinfo{
+                                .inputHeight{
+                                    height:64px;
+
+                                        md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                                        
+                                        font-size:15px;
+                                        > label {
+                                            -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                                            transform: translate3d(1px,28px,0) scale(1) !important;
+                                            color: #BDBDBD;
+                                        }
+                                        &.md-input-has-value > label {
+                                            display: none !important;
+                                        }
+                                    } 
+                                }
+                                .error-height{
+                                    margin-top: -10px;
+                                    margin-left: 2px;
+                                    color: rgb(225,27,12);
+                                    font-size: 12px;
+                                    height: 10px;
+                                }
+                                .documentid{
+                                    height:64px;
+                                    font-size:16px;
+                                    font-weight:500;
+                                }
+
+                               
+
+                                .summary{
+                                   
+                                    width : 100%;
+
+                                        .tax{
+                                            background:#F6F6F6;
+                                            height:64px;
+                                            width:50%;
+
+                                           i{
+                                                font-weight:500;
+                                                font-size:15px;
+                                                color:rgba(30,30,50,0.5);
+                                            }
+                                            span{
+                                                font-weight:500;
+                                                font-size:20px;
+                                                color:rgba(30,30,50,0.5);
+                                            }
+
+                                        }
+                                         .total{
+                                            background:#2D6296;
+                                            height:64px;
+                                            width:50%;
+
+                                           i{
+                                                font-weight:500;
+                                                font-size:15px;
+                                                color:rgba(255,255,255,0.5);
+                                            }
+                                            span{
+                                                font-weight:300;
+                                                font-size:20px;
+                                                color:rgb(255,255,255);
+                                            }
+                                        }
+
+
+
+                                }
+                            }
+                        }
+                    }
+
+                    .optional{
+                        width:100%; 
+                        height:50px;
+                        background:#F6F6F6;
+
+                        .details{
+                           background:#f6f6f6;
+                            font-size:18px;
+                            height:48px;
+                            line-height:48px;
+                            padding:0px 32px !important;
+                        }
+
+                        .totalVal{
+                            background:#2D6296;
+                            height:100%;
+                            width:40%; 
+                            .span{
+                                font-weight:300;
+                                font-size:28px;
+                                color:rgb(255,255,255);
+                            }
+                        }
+                    }
+                    .proDetails{
+                        padding:16px 32px;
+                        width:100%;
+
+                        .detailColOne{
+                            width:90%;
+                            
+                            .inputHeight{
+                                height:64px;
+
+                                .md-input-container > md-select{
+                                    width:90%;
+                                }
+
+                                 md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                                        
+                                        font-size:15px;
+                                        > label {
+                                            -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                                            transform: translate3d(1px,28px,0) scale(1) !important;
+                                            color: #BDBDBD;
+                                        }
+                                        &.md-input-has-value > label {
+                                            display: none !important;
+                                        }
+                                }
+                            }
+                        }
+
+                        .detailColTwo{
+                            .inputHeight{
+                                height:64px;
+                            }
+                            .brochureBtn{                                                    
+                                width:100%; 
+
+                                .pdf-icon{
+                                    width: 10%;
+                                    height: 40px;
+                                    margin-top: 6px;
+                                    padding: 8px;    
+                                    border-radius: 2px;
+                                    background-color: rgba(128, 128, 128, 0.16);
+                                }
+                                .pdf-name{    
+                                    width: 53%;
+                                    height: 40px;
+                                    margin-top: 6px;
+                                    border: 1px dashed;
+                                    border-color: rgba(0, 0, 0, 0.27);
+                                    color: #2d6296;margin-left: -8px;
+                                    border-left: none;
+                                    border-radius: 2px;
+                                }
+                                                        
+                            }
+                        }
+                        .md-chips.md-default-theme md-chip, md-chips md-chip {
+                            background: rgb(51, 94, 139);
+                            color: rgb(213, 213, 213);
+                        }
+                        .md-chips.md-default-theme md-chip md-icon, md-chips md-chip md-icon {
+                            color: rgb(255, 255, 255);
+                        }
+                    } 
+                }
+            }
+
+            .footersection{
+                width:100%;
+                padding:12px 24px;
+                border-top:1px solid rgba(0, 0, 0, 0.12);
+
+                button{
+                    float:right;
+                    margin:0px;
+                }
+
+                button:nth-child(2){
+                    margin-right:12px;
+                }
+            }
+        }
+    }
+}

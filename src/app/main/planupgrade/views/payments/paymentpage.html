@@ -1,0 +1,138 @@
+<div id="paymentview" layout="column" layout-align="center center">
+    <div class="cardform-container" flex layout="row" layout-align="start start" layout-wrap>
+        <div class="form-container md-whiteframe-1dp" layout="column">
+            <div class="package-info" layout="row" layout-align="center center">
+                <div class="title">Business Monthly Plan</div>
+            </div>
+            <div class="form-section">
+                <form method="post" action="/api/subscriptions/new">
+                    <div>
+                        <label for="number">Card Number</label>
+                        <div data-recurly="number" id="number"></div>
+                    </div>
+            
+                    <div class="date">
+                        <label for="month">Month</label>
+                        <div data-recurly="month" id="month"></div>
+                    </div>
+            
+                    <div class="date">
+                        <label for="year">Year</label>
+                        <div data-recurly="year" id="year"></div>
+                    </div>
+            
+                    <div>
+                        <label for="first_name">First Name</label>
+                        <input type="text" data-recurly="first_name" id="first_name" name="first-name">
+                    </div>
+            
+                    <div>
+                        <label for="last_name">Last Name</label>
+                        <input type="text" data-recurly="last_name" id="last_name" name="last-name">
+                    </div>
+            
+                    <div>
+                        <label for="address1">Address</label>
+                        <input type="text" data-recurly="address1" id="address1" name="address1">
+                    </div>
+            
+                    <div>
+                        <label for="city">City</label>
+                        <input type="text" data-recurly="city" id="city" name="city">
+                    </div>
+            
+                    <div>
+                        <label for="country">Country</label>
+                        <input type="text" data-recurly="country" id="country" name="country">
+                    </div>
+            
+                    <div>
+                        <label for="state">State</label>
+                        <input type="text" data-recurly="state" id="state" name="state">
+                    </div>
+            
+                    <div>
+                        <label for="postalcode">Postal Code</label>
+                        <input type="text" data-recurly="postal_code" id="postal_code" name="postal_code">
+                    </div>
+            
+                    <button id="subscribe">Subscribe</button>
+            
+                    <input type="hidden" data-recurly="token" name="recurly-token">
+                </form>
+            </div>
+            <md-button ng-show="vm.isPlanFree" class="cta-button md-primary" style="border:2px solid;" ng-click="vm.selectPlanVariant($event)">Purchase Plan</md-button>
+        </div>
+    </div>
+
+
+    <!-- <div class="price-tables" flex layout="row" layout-align="start start" layout-wrap>
+        <div class="price-table style-3 md-whiteframe-1dp" layout="column">
+
+            <div class="package-type" layout="row" layout-align="center center">
+                <div class="title">Business Monthly Plan</div>
+            </div>
+            
+            <div class="price" layout="row" layout-align="center start">
+                <div class="currency">$</div>
+                <div layout="row" layout-align="center end">
+                    <div class="value">12</div>
+                    <div class="period">/mo</div>
+                </div>
+            </div>
+
+            <div class="form-section" layout="column" layout-align="start center">
+                <form recurly-form="handleRecurly" name="myForm">
+                        
+                    <div class="span3">
+                        <label for="">Card number</label>
+                        <input type="text" 
+                            name="number" 
+                            class="input-block-level" 
+                            ng-model="payment.number" 
+                            payments-validate="card" payments-format="card" 
+                            payments-type-model="type" ng-class="myForm.number.$card.type"/>
+                    </div>
+                    
+                    <div class="span1">
+                        <label for="">Expiry</label>
+                        <input type="text" name="expiry" class="input-block-level" ng-model="payment.expiry" payments-validate="expiry" payments-format="expiry" />
+                    </div>
+                    
+                    <div class="span3">
+                        <label for="">Name on card </label>
+                        <input type="text" name="name" ng-model='payment.name' class="input-block-level">
+                    </div>
+                    
+                    <div class="span1">
+                        <label for="">CVC</label>
+                        <input type="text" name="cvc" class="input-block-level" ng-model="payment.cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type"/>
+                    </div>
+    
+                    <div class="span3">
+                        <label for="zip">Zipcode</label>
+                        <input type="text"
+                                name="addressZip"
+                                class="input-block-level"
+                                ng-model='payment.addressZip'
+                                >
+                    </div>
+    
+                    <input type="hidden" ng-model='payment.signature' name='signature'>
+                    <input type="hidden" ng-model='payment.account_code' name='account_code'>
+                    <input type="hidden" ng-model='payment.plan_code' name="plan_code" ng-value="basic">
+                    <input type="hidden" ng-model='payment.quantity' name="quantity" ng-value="1">
+    
+                    <div class="span4">
+                        <button type="submit" class="btn btn-primary btn-large">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <md-button ng-show="vm.isPlanFree" class="cta-button md-primary" style="border:2px solid;" ng-click="vm.selectPlanVariant($event)">Purchase Plan</md-button>
+            <md-button ng-hide="vm.isPlanFree" class="cta-button md-primary" style="border:2px solid;" ng-disabled="true" ng-click="vm.selectPlanVariant($event)">Current Plan</md-button>
+
+            <div class="note"></div>
+        </div>
+    </div> -->
+</div>

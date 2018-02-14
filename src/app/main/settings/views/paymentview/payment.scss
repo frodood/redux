@@ -1,0 +1,55 @@
+#setting {
+
+.paymentContent{
+    font-size: 15px;
+    .subHeader{
+            background-color:#f6f6f6; 
+            height:45px;
+            width:100%;
+            .title{
+                margin-left:15px; 
+                font-size: 18px;
+            }
+    }
+
+.md-list{
+    .ng-repeat{
+        .subContent{
+            .activeInactiveBtn{
+                .inactiveBtn{
+                background: #9E9E9E;
+                }
+                .activeBtn{
+                background: green;
+                
+                }
+            }
+        }
+        
+    }
+
+.paymentWrapSub{
+.onlinePay{
+.SearchCard{
+position: relative;
+
+.tintImage{
+content: "";
+display: block;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background: black;
+opacity: 0.1;
+}
+}
+}
+}
+
+}
+
+}
+
+}

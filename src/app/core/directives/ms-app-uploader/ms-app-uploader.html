@@ -1,0 +1,57 @@
+<div id="dialog-uploader" aria-label="uploader" class="customFileUploader" layout="column" layout-align="center start"  >
+  <md-toolbar class="tool-bar">
+      <div class="md-toolbar-tools" >
+       <h2>UPLOAD FILES</h2>
+       <span flex></span>
+       <md-button class="md-icon-button" ng-click="vm.closeDialog()">
+        <md-icon md-font-icon="icon-close"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <div class="content">
+    <form name="testForm" layout="column" ng-if="vm.showUploader">
+       <lf-ng-md-file-input style="padding: 25px;" name="files"  lf-files="vm.files" lf-filesize="{{vm.config.size}}" drag preview 
+           lf-required lf-maxcount="{{vm.config.maxCount}}" lf-mimetype="{{vm.config.restrict}}"></lf-ng-md-file-input>
+         <div ng-messages="testForm.files.$error" style="color:red;padding-left: 5%;">
+            <div ng-message="filesize">File size too large.</div>
+            <div ng-message="mimetype">Only {{vm.config.type}} files can upload.</div>
+            <div ng-message="maxcount">Only {{vm.config.maxCount}} items can add.</div>
+        </div>  
+        <div class="footer" layout="row" layout-align="end end"  ng-if="vm.config.crop">
+          <div flex layout layout-align="start center" class="error" ng-show="vm.showError">
+            <span> {{vm.errorMsg}}</span>
+          </div>
+          <md-button class="md-primaryton button" ng-if="!vm.showUploaderBtn"  md-autofocus flex="10" ng-click="vm.uploadOriginal()" style="border: 2px solid;" ng-disabled="testForm.$invalid">
+            Upload
+          </md-button> 
+          <md-button class="md-primaryton button"  ng-if="vm.showUploaderBtn"  md-autofocus flex="10" ng-click="vm.uploadItem()" style="border: 2px solid;" ng-disabled="testForm.$invalid">
+            Next
+          </md-button> 
+        </div>
+        <div class="footer" layout="row" layout-align="end end" ng-if="!vm.config.crop">
+          <div flex layout layout-align="start center" class="error" ng-show="vm.showError">
+            <span> {{vm.errorMsg}}</span>
+          </div>
+          <md-button class="md-primaryton button"  md-autofocus flex="10" ng-click="vm.uploadOriginal()" style="border: 2px solid;" ng-disabled="testForm.$invalid || vm.showError">
+            Upload
+          </md-button>  
+        </div>
+    </form>
+    <form style="height: 400px;" name="testForm" layout="column" ng-if="!vm.showUploader">
+      <div style="padding: 25px;width: 100%;height: 84%;">
+        <ui-cropper image="vm.myImage" area-type="rectangle" result-image="vm.myCroppedImage" live-view="blockingObject"></ui-cropper> 
+        <!-- <img-crop style="width: 100%;height: 100%;" image="vm.myImage" result-image="vm.myCroppedImage"></img-crop>  --> 
+      </div>
+      <div class="footer" layout="row" layout-align="end end">
+          <div flex layout layout-align="start center" class="error" ng-show="vm.showError">
+            <span> {{vm.errorMsg}}</span>
+          </div>
+        <md-button class="md-primaryton button"  md-autofocus flex="10" ng-click="vm.cropItem()" style="border: 2px solid;" ng-disabled="testForm.$invalid">
+          Upload
+        </md-button> 
+      </div>
+    </form>
+  </div> 
+</div>
+

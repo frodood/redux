@@ -1,0 +1,46 @@
+<md-dialog id="customDialogBox" class="frmModal" aria-label="Mango (Fruit)">
+   <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>Date Range</h2>
+         <span flex></span>
+         <md-button class="md-icon-button" ng-click="vm.cancelDialog()">
+            <md-icon md-font-icon="icon-close"></md-icon>
+         </md-button>
+      </div>
+   </md-toolbar>
+   <!--  <div class="dialogContent pad_32"> -->
+   <md-content flex ms-scroll>
+      <form style="height: 150px;"> 
+         <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-right: 0px;padding-top: 50px;padding-left: 64px;" >
+         <div layout="row" style="width: 100%;" layout-align="center center">
+
+           <div layout="column" flex="50">
+              <div class="dateHolder" >
+                <span>From</span>
+                  <md-datepicker ms-fix-datepicker ng-model="vm.dFrom" md-placeholder="Date From" style="padding-right: 4px;" flex></md-datepicker>
+                  
+              </div>
+           </div>
+
+           <div layout="column" flex="50">
+              <div class="dateHolder">
+                <span>To</span>
+                  <md-datepicker ms-fix-datepicker ng-model="vm.dTo" md-placeholder="Date To" style="padding-right: 4px;" flex></md-datepicker>
+
+              </div>
+             
+           </div>
+
+         </div>      
+         </div>
+      </form>
+   </md-content>
+  <!--  <div class="footersection" layout="row" layout-align="end center">
+      <md-button class="md-primary md-hue-3" ng-click="vm.cancelDialog()" style="border:2px solid">cancel</md-button>
+      <md-button class="md-primary" ng-click="vm.submitLegerDates(0,10, dateFrom, dateTo)" style="border:2px solid">Confirm</md-button>
+   </div> -->
+   <div class="footersection">
+      <md-button class="md-primary" style="border:2px solid" ng-disabled="vm.submitProgress" ng-click="vm.submitLegerDates(0,10, vm.dFrom, vm.dTo)">Confirm</md-button>
+      <md-button class="md-primary md-hue-3" style="border:2px solid" ng-click="vm.cancelDialog()">cancel</md-button>
+   </div>
+</md-dialog>

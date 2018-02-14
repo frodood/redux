@@ -1,0 +1,80 @@
+  <form class="form" id="form" name="editForm">
+	<!-- <md-divider></md-divider> -->
+	<md-list class="md-list" style="padding:0px 0px 0px 0px; overflow: hidden;">
+    <!-- <div layout layout-align="start center" class="subHeader">
+        <div class="title" >
+            Project Preference
+        </div>
+    </div> -->
+	<md-list-item>
+	<p>Default Billing Method</p>
+	<md-input-container flex="40">
+	<md-select ng-model="vm.Settings12thdoor.preference.project.defaultBillingMethod" placeholder="Default Billing Method">
+	<md-option>Hourly Staff Rate</md-option>
+	<md-option>Hourly Task Rate</md-option>
+	<md-option>Hourly Project Rate</md-option>
+	<md-option>Hourly Project Amount</md-option>
+</md-select>
+</md-input-container>
+</md-list-item>
+
+<md-divider></md-divider>
+
+	<div layout layout-align="space-between center" class="subHeader" style="border-bottom: 1px solid #ededed;">
+	<div style="padding: 0px 14px 0px;"><p>Tasks</p></div>
+	<md-button class="md-secondary md-primary" ng-click="vm.addtaskProject($event)">
+        <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+        add
+	</md-button>
+	</div>
+	
+	<div class="as-sortable" as-sortable="sortableOptions" ng-model="asdc" flex="100">
+		<div class="ng-repeat" ng-repeat="item in vm.Settings12thdoor.preference.project.task" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+			<!-- <md-card class="add-mdcard" ng-class="item.activate ? '' : 'inactivate'" as-sortable-item-handle flex>
+			<md-card-content style="margin: -13px;"> -->
+			<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 15px 0px 16px;">
+				<div flex>
+					<span style="color:#808080;">{{item.task}}
+						<md-tooltip md-direction="right">Task</md-tooltip>
+					</span>
+				</div>
+				<div flex>
+					<span style="color:#808080;">{{item.rate}}
+						<md-tooltip md-direction="right">Hourly Rate</md-tooltip>
+					</span>
+				</div>
+				<div flex>
+					<md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100">
+					<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+					<md-icon md-font-icon="icon-dots-vertical"></md-icon>
+				</md-button>
+				<md-menu-content width="4">
+				<md-menu-item>
+				<md-button ng-click="vm.edittaskProjectrow(item , $event)">
+				<p>Edit</p>
+				<md-icon md-menu-align-target ></md-icon>
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+		<md-button ng-click="vm.deletetaskProject(item, $index)">
+		<p>Delete</p>
+		<md-icon md-menu-align-target ></md-icon>
+	</md-button>
+</md-menu-item>
+<md-menu-item>
+<md-button ng-click="vm.inactivateTaskProject(item, $index)">
+<p>{{vm.inactivateTaskProjectrow}}</p>
+<md-icon md-menu-align-target ></md-icon>
+</md-button>
+</md-menu-item>
+</md-menu-content>
+</md-menu>
+</div>
+</div>
+<!-- </md-card-content>
+</md-card> -->
+</div>
+</div>
+
+</md-list>
+</form>

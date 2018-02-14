@@ -1,0 +1,15 @@
+<div class="toolbar" layout="row" layout-align="start center">
+	<md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('settingsidenav')" hide-gt-md aria-label="Toggle left sidenav">
+		<md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+	</md-button>
+	<h1>Accounts Settings</h1>
+</div>
+<div id="setting" class="contentsection" style="font-size:15px;" layout="column" flex>
+
+	<md-content class="md-content" ms-scroll flex>
+
+			<div ng-include="'app/main/settings/views/accountview/accountForm.html'" ></div>
+
+	</md-content>
+
+</div>

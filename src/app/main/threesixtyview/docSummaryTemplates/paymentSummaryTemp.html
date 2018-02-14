@@ -1,0 +1,38 @@
+<table class="simple" ng-hide="vm.customerContextLatestDocuments | isEmptyObj">
+    <thead>
+        <tr>
+            <th>
+                Receipt ID
+            </th>
+            <th>
+                Payment Date
+            </th>
+            <th>
+                Payment Status
+            </th>
+            <th>
+                Paid Amount
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="row in vm.customerContextLatestDocuments">
+            <td>
+                <span class="360documentNavigator" ng-click="vm.threeSixtyNavigateToDocument('payment', row.receiptID)" style="cursor:pointer; text-decoration: underline;">{{row.receiptID}}</span>
+            </td>
+            <td>
+                <span>{{row.createDate | toDateObject | date:'mediumDate'}}</span>
+            </td>
+            <td>
+                <span>{{row.paymentStatus}}</span>
+            </td>
+            <td>
+                <span>{{row.recievedAmount}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div layout="row" layout-align="center center" class="recdentDocEmptyStatus" ng-show="vm.customerContextLatestDocuments | isEmptyObj">
+    <p>Records not available!</p>
+</div>

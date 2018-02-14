@@ -1,0 +1,49 @@
+<div id="ProductsCopy" class="page-layout carded boxed right-sidenav" layout="row">
+
+	<!-- CENTER -->
+	<div class="center" layout="column" layout-align="center center" flex>
+
+		<!-- CONTENT-CARD -->
+        <form class="content-card" layout="column" flex name="productForm" ng-submit="vm.copy()">
+
+             <ms-spinner-component name="pro-copy-spinner" size="32"  relative-position="false"></ms-spinner-component>
+
+			<!-- PRIMARY TOOLBAR -->
+			<div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-icon-button close-thread" aria-label="Back"
+                               ng-click="vm.toggleChildStates('app.products.pro.detail')">
+                        <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+                    </md-button>
+
+                    <div class="divider-vertical"></div>
+
+                    <h2>New Product</h2>
+                </div>
+                <div layout="row" layout-align="start center">
+                    
+                </div>
+            </div>
+                <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content  flex ms-scroll>
+
+                <!-- DEMO CONTENT -->
+                <div ng-include="'app/main/products/views/copy/proCopyChild.html'"></div>
+
+                <!-- / DEMO CONTENT -->
+
+            </md-content>
+            <div class="footersection" >  
+                <md-button class="md-primary" style="border:2px solid" ng-disabled="vm.submitProgress || productForm.$invalid" type="submit">save</md-button>
+                <md-button class="md-primary md-hue-3" style="border:2px solid" ng-click="vm.toggleChildStates('app.products.pro.detail')">cancel</md-button> 
+            </div>
+            <!-- / CONTENT -->
+		</form>
+		<!-- /CONTENT-CARD-->
+
+	</div>
+	<!-- /CENTER -->
+
+</div>

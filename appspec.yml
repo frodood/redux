@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/12thDoor-Redux
+hooks:
+  BeforeInstall:
+    - location: scripts/pre_install.sh
+  AfterInstall:
+    - location: scripts/post_install.sh

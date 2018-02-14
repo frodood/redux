@@ -1,0 +1,12 @@
+/* ---.idea--- */
+
+/*
+	> directive should be an attribute that will take in arguments such as current context,
+		e.g. <button id="copyInvoiceItem" ms-perm-elem contextref="invoice" contextfunc="copy"></button>
+	
+	1 > Create the permission element directive. (This will restrict users from accessing states from UI cues, such as button's links etc.)
+
+	2 > Create a provider for the directive, where the initial permision matrix is established.
+
+	3 > Create mechanism for developers to follow where permissions are resloved before the route is ececuted. (i.e :- invoice copy state resolves the permission to given user, before the route is executed.)
+*/

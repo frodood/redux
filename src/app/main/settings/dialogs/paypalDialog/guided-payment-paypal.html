@@ -1,0 +1,77 @@
+
+<md-dialog class="customDialogBox frmModal" style="height:400px;" aria-label="Mango (Fruit)">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{vm.toolbarHeader}}</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent" layout="row" flex>
+		<md-content ms-scroll flex style="background-color:#efefef;padding:10px;">
+				<div layout="column" layout-align="start start" flex  >
+					<div class="SearchCard">
+						<div style="padding-bottom: 6px;">
+							<img ng-src="/assets/payment/paypal_payment_logo.png" class="md-card-image" alt="Washed Out" style="width:100px; height:100px;">
+						</div>
+					</div>
+					
+					<div flex id="link"><b>Setup Instructions:</b></div>
+
+						<ul style="margin-left: -21px;">
+							<div style="margin-left: -19px;">12th Door:</div>
+							<li>Enter your “Paypal email”.</li>
+							<li>Press the save button.</li>
+						</ul>
+
+					<div>Please visit <a style="color:black; cursor:pointer;" onclick="window.open('https://www.paypal.com', '_blank')">www.paypal.com</a> for more information.</div>	
+				</div>
+			
+					
+		</md-content>
+		<md-content ms-scroll flex>
+			<div layout="row" layout-align="start start" flex>
+			<div  flex>
+				<form name="editForm" novalidate class="pad_32" >
+					<div layout layout-sm="column" layout-margin >
+						<md-input-container md-no-float flex>
+							<input type="text" name="email" required ng-model="vm.paypal.email" placeholder="Email" required ng-pattern="/^.+@.+\..+$/">
+							<div ng-messages="paypal.email.$error">
+								<div ng-message="required"></div>
+							</div>
+						</md-input-container>
+					</div>
+					
+					<div layout="column" layout-sm="column" layout-margin >
+						<md-input-container md-no-float flex>
+							<input type="text" name="email_confirm" required ng-model="vm.paypal.email_confirm" placeholder="Email Confirm" required ng-pattern="/^.+@.+\..+$/">
+							<div ng-messages="paypal.email_confirm.$error">
+								<div ng-message="required"></div>
+							</div>
+						</md-input-container>
+						
+					</div>
+					
+				</form>
+			</div>
+			</div>
+		</md-content>
+	</div>
+	<div class="dialogFooter">
+		<!-- <md-button class="md-primary" ng-click="vm.back()">
+			Back
+		</md-button> -->
+		<div ng-show="vm.EmailConfimationError">
+            <span style="color:red;">Email Confirm does not match Email</span>
+        </div>
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid || vm.disableSubmitButton == true">
+			{{vm.submitButton}}
+		</md-button>
+		<md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+			Cancel
+		</md-button>
+	</div>
+	
+</md-dialog>

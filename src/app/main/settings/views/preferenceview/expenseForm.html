@@ -1,0 +1,124 @@
+   <form class="form" id="form" name="editForm">
+	<!-- <md-divider></md-divider> -->
+    <md-list class="md-list" style="padding:0px 0px 0px 0px; overflow: hidden;">
+    <!-- <div layout layout-align="start center" class="subHeader">
+        <div class="title" >
+            Expenses Preference
+        </div>
+	</div> -->
+	
+	<div layout layout-align="space-between center" style="border-bottom: 1px solid #ededed;" class="subHeader">
+		<div style="padding: 0px 14px 0px;"><p>Expenses Categories</p></div>
+		<md-button class="md-secondary md-primary" ng-click="vm.addexpensecategory($event)">
+		<md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+		add
+		</md-button>
+	</div>
+
+
+		<div class="as-sortable" as-sortable="sortableOptions" ng-model="asdc" flex="100">
+			<div class="ng-repeat" ng-repeat="item in vm.Settings12thdoor.preference.expensePref.expenseCategories" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+				<!-- <md-card class="add-mdcard" ng-class="item.activate ? '' : 'inactivate'" as-sortable-item-handle flex>
+				<md-card-content style="margin: -13px;"> -->
+				<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 15px 0px 16px;">
+					<div flex>
+						<span style="color:#808080;">{{item.expenseCategory}}
+							<md-tooltip md-direction="right">Expense Category</md-tooltip>
+						</span>
+					</div>
+					<div flex>
+						<span style="color:#808080;">{{item.expenseType}}
+							<md-tooltip md-direction="right">Type</md-tooltip>
+						</span>
+					</div>
+					<div flex>
+						<md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100">
+						<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+						<md-icon md-font-icon="icon-dots-vertical"></md-icon>
+					</md-button>
+					<md-menu-content width="4">
+					<md-menu-item>
+					<md-button ng-click="vm.editexpensecategoryrow(item , $event)">
+					<p>Edit</p>
+					<md-icon md-menu-align-target ></md-icon>
+				</md-button>
+			</md-menu-item>
+			<md-menu-item>
+			<md-button ng-click="vm.deleteexpensecategory(item, $index)">
+			<p>Delete</p>
+			<md-icon md-menu-align-target ></md-icon>
+		</md-button>
+	</md-menu-item>
+	<md-menu-item>
+	<md-button ng-click="vm.inaactivateexpenseee(item)">
+	<p>{{vm.inactivateexpenseCat}}</p>
+	<md-icon md-menu-align-target ></md-icon>
+</md-button>
+</md-menu-item>
+</md-menu-content>
+</md-menu>
+</div>
+</div>
+<!-- </md-card-content>
+</md-card> -->
+</div>
+</div>
+
+	<div layout layout-align="space-between center" style="border-bottom: 1px solid #ededed;" class="subHeader">
+	<div style="padding: 0px 14px 0px;"><p>Custom Fields</p></div>
+	<md-button class="md-secondary md-primary" ng-click="vm.addcusfieldsExpense($event)">
+    <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+    add
+	</md-button>
+	</div>
+
+	<div class="as-sortable" as-sortable="sortableOptions" ng-model="asdc" flex="100">
+		<div class="ng-repeat" ng-repeat="item in vm.Settings12thdoor.preference.expensePref.cusFiel" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+			<!-- <md-card class="add-mdcard" as-sortable-item-handle flex>
+			<md-card-content style="margin: -13px;"> -->
+			<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 15px 0px 16px;">
+				<div flex>
+					<span style="color:#808080;">{{item.labelShown}}
+						<md-tooltip md-direction="right">Custom Fields name</md-tooltip>
+					</span>
+				</div>
+				<div flex>
+					<span style="color:#808080;">{{item.type}}
+						<md-tooltip md-direction="right">Fields Type</md-tooltip>
+					</span>
+				</div>
+				<div flex>
+					<md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100">
+					<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+					<md-icon md-font-icon="icon-dots-vertical"></md-icon>
+				</md-button>
+				<md-menu-content width="4">
+				<md-menu-item>
+				<md-button ng-click="vm.editcusFieldsexpenserow(item , $event)">
+				<p>Edit</p>
+				<md-icon md-menu-align-target ></md-icon>
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+		<md-button ng-click="vm.deletcusfieldsexpense(item, $index)">
+		<p>Delete</p>
+		<md-icon md-menu-align-target ></md-icon>
+	</md-button>
+</md-menu-item>
+</md-menu-content>
+</md-menu>
+</div>
+</div>
+<!-- </md-card-content>
+</md-card> -->
+</div>
+</div>
+
+<md-list-item>
+<p>Billing of expenses to include tax </p>
+<md-switch ng-model="vm.Settings12thdoor.preference.expensePref.billingExpensesIncludeTax" aria-label="Switch 2" class="md-primary">
+</md-switch>
+</md-list-item>
+
+</md-list>
+</form>

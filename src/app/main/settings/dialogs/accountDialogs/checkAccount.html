@@ -1,0 +1,45 @@
+
+<md-dialog class="customDialogBox frmModal" aria-label="Mango (Fruit)" style="width:400px !important; ">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Cancel Account</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+    </md-toolbar>
+    <div class="dialogContent" layout="column" layout-align="center center" style=" width: 100%;
+                                    height:100%;
+                                    position: absolute;
+                                    z-index: 9;
+                                    background-color: white;
+                                    opacity: .9;" ng-show="vm.progress">
+    <md-progress-circular class="md-primary" md-mode="indeterminate" md-diameter="32"></md-progress-circular>
+   </div>
+	<div class="dialogContent" layout="column" flex>
+		<md-content ms-scroll flex>
+			<form name="signinForm" novalidate class="pad_32" autocomplete="off">
+				<div layout style="padding: 0 0px 7px;">
+					<span>Please enter your password to proceed with cancellation</span>
+				</div>
+				<md-input-container md-no-float class="md-block">
+					<input required id="password" type="password" name="password" placeholder="Password" ng-model="vm.password">
+					<div ng-messages="signinForm.password.$error">
+						<div ng-message="required">please enter a valid password.</div>
+					</div>
+				</md-input-container>
+			</form>
+		</md-content>
+	</div>
+	<div class="dialogFooter">
+		<div layout="row" layout-align="space-between center">
+			 <div style="color:red;" flex>{{vm.errorWhenEnterwrongDetails}}</div> 
+			<div flex>
+				<md-button class="md-primary" ng-disabled="signinForm.$invalid" ng-click="vm.confirm()">
+				submit
+				</md-button>
+			</div>
+		</div>
+	</div>
+</md-dialog>

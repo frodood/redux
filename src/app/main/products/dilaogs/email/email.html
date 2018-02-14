@@ -1,0 +1,133 @@
+<style type="text/css">
+
+md-chip {
+    background: rgb(76, 181, 113);
+}
+
+</style>
+<md-dialog class="dialogProductEmail frmModal emailModal" aria-label="uploader" layout="column" layout-align="start start"  >
+
+<ms-spinner-component name="pro-email-spinner" size="32" relative-position="false" spinner-text="" on-loaded="vm.proEmailSpinnerLoaded(spinnerApi)"></ms-spinner-component>
+
+<ms-spinner-component name="pro-emailSend-spinner" size="32" relative-position="false"></ms-spinner-component>
+
+    <md-toolbar class="tool-bar" >
+        <div class="md-toolbar-tools">
+            <h2>SEND PRODUCT</h2>
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+        </div>
+    </md-toolbar>
+    <div class="dialogContent" layout="column" flex style="width:100%;">
+    <md-content ms-scroll flex >
+
+ <!--    <div class="loading-items" layout layout-align="center center" ng-if="vm.isLoading">
+        <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+        <div>Loading...</div>
+    </div> -->
+
+    <div class="content" ng-if="!vm.isLoading">
+    <form name="cusForm" novalidate> 
+
+       <!--  <div layout layout-sm="column" layout-margin class="inputHeight">
+            <md-input-container flex md-no-float> 
+                <input name="toMail" type="text" ng-model="vm.to" placeholder="To" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                <div ng-messages="cusForm.toMail.$error">
+                    <div ng-message="pattern">Please enter a valid email address!</div>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout layout-sm="column" layout-margin class="inputHeight">
+            <md-input-container flex md-no-float> 
+                <input name="bccMail" type="text" ng-model="vm.bcc" placeholder="Bcc" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"  />
+                <div ng-messages="cusForm.bccMail.$error">
+                    <div ng-message="pattern">Please enter a valid email address!</div>
+                </div>
+            </md-input-container>
+        </div> -->
+        <div layout layout-sm="column" layout-margin >
+            
+            <md-chips flex ng-model="vm.to"  md-on-remove="vm.deleteEmail($chip)" md-on-add="vm.validateEmail($chip)" class="md-primary" readonly="false" placeholder="To" delete-button- label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+To" id="chip">
+            </md-chips>
+           
+            <!--<md-input-container flex md-no-float> 
+                <input type="text" ng-model="vm.Sender" placeholder="To" />
+            </md-input-container>-->
+        </div>
+         <div layout flex style="margin-left: 10px;">
+            <span ng-show="vm.senderempty" style="font-size:12px;color:red;" >Enter email</span>
+          <!--   <span ng-show="vm.notValid" style="font-size:12px;color:red;" >enter valid email here</span> -->
+            
+        </div>
+        <div layout layout-sm="column" layout-margin >
+            <md-chips flex ng-model="vm.bcc" md-on-add="vm.validateEmailbcc($chip)" class="md-primary" readonly="false" placeholder="Bcc" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Bcc">
+            </md-chips>
+            <!--<md-input-container flex md-no-float> 
+                <input type="text" ng-model="vm.bcc" placeholder="Bcc" />
+            </md-input-container>-->
+        </div>
+            
+        <div layout layout-sm="column" layout-margin class="inputHeight">
+            <md-input-container flex md-no-float> 
+                <input type="text" ng-model="vm.subject" placeholder="Subject" />
+            </md-input-container>
+        </div>
+        <div layout flex style="margin-left: 10px;">
+                <span ng-show="vm.notValidbcc" style="font-size:12px;color:red;" >enter valid email here</span>
+        </div>
+       <!--  <div layout class="pre-tag" layout-sm="column" layout-margin layout-align="center center" >
+            <div ng-show="vm.detailProgress" class="detailProgress" layout="column" layout-align="center center" >
+                <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+                <div>Loading ...</div>
+            </div>
+            <div class="pre-text"  ng-bind-html="vm.emailBody"  ></div>
+        </div> -->
+        <div layout class="pre-tag" layout-sm="column" layout-margin layout-align="start start">
+            <p class="pre-text" ng-bind-html="vm.emailBody"></p>
+        </div>
+        <div layout layout-sm="column" layout-margin class="inputHeight" ng-show="vm.brochureExist">
+            <div  flex="30" class="attact-pdf">        
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="vm.attachPdfCk" class="md-primary" >
+                    Attach Product
+                </md-checkbox>
+            </div> 
+            <div class="attachement-pill" layout="row" ng-show="vm.attachPdfCk">
+                <div class="att-pill-icon">
+                    <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+                </div>
+                <div class="att-pill-cont" layout="row">
+                    <span ng-bind="vm.fileName"></span> 
+                    <span>.{{vm.fileExtension}}</span>
+                </div>
+            </div>
+
+
+           <!--  <div class="pdf-icon" ng-show="vm.attachPdfCk">   
+                <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+            </div>   
+            <div layout layout-align="center center" class="pdf-name" ng-show="vm.attachPdfCk">
+                {{vm.pdfName}}
+            </div> -->
+        </div>
+        <div layout layout-sm="column" layout-margin class="brochure-error" ng-hide="vm.brochureExist">
+            Brochures are not available. Please upload a brochure
+        </div>
+    </form>
+    </div>
+
+    </md-content>
+    </div>
+
+    <div class="footer" >
+        <div  ng-show="vm.notValidAllEmail" >
+            <span style="font-size:13px;color:red;">Please make sure that all addresses are properly formed</span>
+        </div>
+        <span flex></span>
+        <md-button flex="10" class="md-primary" style="border: 2px solid;"  ng-click="vm.sendMail()" ng-disabled="vm.sendDisabled">
+          send
+        </md-button> 
+    </div>
+    
+</md-dialog>

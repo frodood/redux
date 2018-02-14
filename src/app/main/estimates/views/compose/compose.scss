@@ -1,0 +1,30 @@
+ .brochureBtn{                                                    
+    width:100%; 
+
+    .pdf-icon{
+        width: 54px;
+        height: 40px;
+        margin-top: 6px;
+        padding: 8px;    
+        border-radius: 2px;
+        background-color: rgba(128, 128, 128, 0.16);
+    }
+    .pdf-name{    
+        width: 222px;
+        height: 40px;
+        margin-top: 6px;
+        border: 1px dashed;
+        border-color: rgba(0, 0, 0, 0.27);
+        color: #2d6296;margin-left: -8px;
+        border-left: none;
+        border-radius: 2px;
+
+        .pdt-text{
+            width: 180px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+}

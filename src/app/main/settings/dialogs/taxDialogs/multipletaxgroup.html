@@ -1,0 +1,79 @@
+<md-dialog class="customDialogBox frmModal cf-modal-height-fix"  aria-label="Mango (Fruit)">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Add Multiple Tax Groups</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent" layout="column" flex>
+		
+			<md-content ms-scroll flex>
+				<form name="editForm" novalidate class="pad_32">
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container md-no-float flex >
+						<input ng-model="vm.taxName" placeholder="Multiple Tax Groups Name" required>
+						<div ng-messages="editForm.taxName.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+						<span style="font-size:12px;color:#e11b0c;" ng-show="vm.sameTaxName">{{vm.erromessage}}</span>
+					</md-input-container>
+					
+					<md-input-container md-no-float style="margin-left: 20px !important;" flex >
+						<md-select ng-model="vm.taxname" placeholder="Select Individual Taxes" ng-change="vm.selcetedtax(vm.taxname)" required>
+							<md-option ng-repeat="indi in vm.loadAllIndividualTaxes" value="{{indi}}">{{indi.taxName}}</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+                <div>
+				<ul as-sortable="vm.sortableOptions" style="width:100%" ng-model="vm.individualTaxes">
+					<li ng-repeat="item in vm.individualTaxes" as-sortable-item style="display: inline;">
+						<!-- <div style="margin-left:-33px;" class="add-mdcard" as-sortable-item-handle>
+							<div layout="row" layout-align="start center" layout-sm="column" style="height:10px; margin-top: 10px; margin-bottom: 10px; padding: 5px;">
+								<md-list>
+									<md-list-item>
+										<div flex ng-drag="vm.changeindex($index)">
+											<span style="color:#808080; font-size:15px;" >{{item.taxName}}({{item.rate}}%)
+											</span>
+										</div>
+										<div flex="5">
+											<span><md-icon ng-click="vm.deleteselecttax(item, $index)" style="color:#A5A0A0" md-font-icon="icon-close"></md-icon></span>
+										</div>
+									</md-list-item>
+								</md-list>
+
+							</div>
+						</div> -->
+						<md-card class="add-mdcard" as-sortable-item-handle flex style="margin-left: -35px; height:27px;">
+							<md-card-content style="margin:-13px;">
+								<div layout="row" layout-align="start center" layout-sm="column" style="height:10px; margin-top: 5px; margin-bottom: 10px; padding: 5px;">
+								<div flex ng-drag="vm.changeindex($index)">
+									<span style="color:#808080;font-size:15px;">{{item.taxName}}({{item.rate}}%)
+									</span>
+								</div>
+								<md-button  ng-click="vm.deleteselecttax(item, $index)" class="md-icon-button" aria-label="More">
+							        <md-icon md-font-icon="icon-close"></md-icon>
+							    </md-button>
+							</div>
+							</md-card-content>
+						</md-card>
+					</li>
+				</ul>
+                </div>
+				<div><span style="font-size:12px; color:#e11b0c;">{{vm.text}}</span></div>
+				</form>
+			</md-content>
+		
+	</div>
+    <div class="dialogFooter">
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid" >
+			Add
+		</md-button>
+        <md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+			Cancel
+		</md-button>
+	</div>
+    
+</md-dialog>

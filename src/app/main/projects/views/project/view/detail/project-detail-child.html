@@ -1,0 +1,244 @@
+    <!-- Product -->
+    <div class="card" flex >
+        <div ng-show="vm.detailProgress" class="detailProgress" layout="column" layout-align="center center" >
+            <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+            <div>Loading ...</div>
+        </div>
+        <div class="project-header" layout="row"  layout-align="space-between center">
+            <div  layout="column" class="project-name">{{vm.project.name}} </div>  
+        </div> 
+        <!-- CONTENT -->
+        <md-content class="content" flex   ms-scroll >                
+            <div layout="row" flex layout-sm="column" class="mainContent">
+                <div layout="column" flex="20"  class="columnOne"  >
+                   <div flex class="divOne" layout layout-align="center center">
+                       <span class="title">BUDGETED
+                            <span class="val"> {{vm.balance.budget}} hrs </span> 
+                       </span> 
+                       
+                   </div>
+                   <div flex class="divTwo" layout layout-align="center center">
+                       <span class="title">LOGGED
+                            <span class="val"> {{vm.balance.log}} hrs </span> 
+                       </span> 
+                   </div>
+                </div>
+                <div layout="column" flex="20"  class="columnOne" >
+                   <div flex class="divOne" layout layout-align="center center">
+                       <span class="title">BILLED
+                            <span class="val"> {{vm.balance.billed}} hrs </span> 
+                       </span>  
+                   </div>
+                   <div flex class="divTwo" layout layout-align="center center">
+                       <span class="title">BILLABLE
+                            <span class="val"> {{vm.balance.bilable}} hrs </span> 
+                       </span>  
+                   </div>
+                </div>
+                <div flex="5"></div>
+                <div layout="column" flex class="columnTwo">
+                    <div flex layout="row" ng-if="vm.fullProduct.description != ''">                        
+                        {{vm.project.descriptions}}
+                    </div>
+
+                    <div layout="row" flex="10" flex-sm="10" ng-if="vm.fullProduct.description != ''"></div>
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+
+                    <div flex layout="row" class="header-section">    
+                        <div flex flex-sm layout="column" layout-align="start end" class="header-title">
+                            PROJECT NO
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.project.projectID}}
+                        </div> 
+                        <div flex-sm="35"></div>       
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            DATE CREATED
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">        
+                            {{ vm.formatDate(vm.project.createDate) | date:'MMM dd, yyyy'}}
+                        </div> 
+                        <div flex-sm="35"></div>             
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            CUSTOMER
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex project="column">                                        
+                            {{vm.project.customerNames}}
+                        </div>   
+                        <div flex-sm="35"></div>           
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            BILLING METHOD
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>    
+
+                        <div flex layout="column">   
+                             <div layout="row" flex>
+                                <div layout="column" flex > 
+                                    {{vm.project.billingMethod}}
+                                </div>
+                                <div layout="column" flex ng-if="vm.project.billingMethod === 'Flat Project Amount' ">
+                                   {{vm.project.fpAmount | currency:vm.baseCurrency + " "}} 
+                                </div> 
+                                <div layout="column" flex ng-if="vm.project.billingMethod === 'Hourly Project Rate' ">
+                                   {{vm.project.hpRate | currency:vm.baseCurrency + " "}}/H
+                                </div> 
+                             </div> 
+                        </div>  
+
+                        <div flex-sm="35"></div> 
+
+                    </div> 
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            USERS
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>   
+
+                        <div flex layout="column">   
+                             <div layout="row" flex ng-repeat="item in vm.user">
+                                <div layout="column" flex="35">
+                                    {{item.firstName}}
+                                </div>
+                                <div layout="column" flex>
+                                    {{item.shr | currency:vm.baseCurrency + " "}}/H
+                                </div> 
+                             </div> 
+                        </div>  
+
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            TASKS
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">   
+                             <div layout="row" flex ng-repeat="item in vm.task">
+                                <div layout="column" flex="35">
+                                    {{item.taskName}}
+                                </div>
+                                <div layout="column" flex>
+                                    {{item.thr | currency:vm.baseCurrency + " "}}/H
+                                </div> 
+                             </div> 
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex="10"  flex-sm="10"></div>                    
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+
+                    <div flex layout="row" class="header-section" style="padding-bottom: 5px !important;">    
+                        <div flex layout="column" layout-align="start center" class="brochure-btn" layout-align-sm="start start"> 
+                            <md-button class="md-primary btn" ng-disabled="vm.disableBrochure" ng-click="vm.viewBrochure()">
+                                <md-icon md-font-icon="icon-file-image"></md-icon>
+                                <span style="padding: 12px">View Attachment</span>
+                                
+                            </md-button>
+                        </div>  
+                        <div flex-sm="35"></div>               
+                    </div>
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+                </div>
+            </div>
+
+            <div class="optional" layout="row" layout-align="start start" ng-if="vm.user.length > 0">
+                  <div class="details">Logged Hours</div>
+            </div> 
+            <div class="detail-content" ng-if="vm.user.length > 0">
+                <table class="project-table" style="width:100%">
+                    <thead class="tableHeader">
+                        <th>#</th>
+                        <th class="text-left">USER</th>
+                        <th class="text-center">LOGGED</th>
+                        <th class="text-center">BILLABLE</th>
+                        <th class="text-center">BILLED</th>
+                        <th class="text-center">PENDING</th> 
+                    </thead>
+                    <tbody class="tableBody">
+                        <tr ng-repeat="items in vm.user">
+                            <td style="width:3%;">{{$index + 1}}</td>
+                            <td class="text-left" style="width:30%">
+                                <div> {{items.firstName}}</div> 
+                            </td>
+                            <td class="text-center" style="width:10%">
+                                {{items.log}}H
+                            </td>
+                            <td class="text-center" style="width:10%">
+                                {{items.bilable}}H
+                            </td>
+                            <td class="text-center" style="width:10%">
+                                {{items.billed}}H
+                            </td>
+                            <td class="text-center" style="width:10%">
+                                {{items.pending}}H
+                            </td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="optional" layout="row" layout-align="start start" ng-if="vm.expenseData.length > 0">
+                  <div class="details">Expenses</div>
+            </div> 
+            <div class="detail-content" ng-if="vm.expenseData.length > 0">
+                <table class="project-table" style="width:100%">
+                    <thead class="tableHeader">
+                        <th>#</th>
+                        <th class="text-left">DATE</th>
+                        <th class="text-center">EXPENSE NO</th>
+                        <th class="text-center">CATEGORY</th>
+                        <th class="text-center">AMOUNT</th>
+                        <th class="text-center">STATUS</th> 
+                    </thead>
+                    <tbody class="tableBody">
+                        <tr ng-repeat="items in vm.expenseData">{{items}}
+                            <td style="width:3%;">{{$index + 1}}</td>
+                            <td class="text-left" style="width:30%">
+                                <div> {{vm.formatDate(items.createDate) | date:'MMM dd, yyyy'}}</div> 
+                            </td>
+                            <td class="text-center" style="width:10%">
+                                {{items.expenseID}}
+                            </td>
+                            <td class="text-center" style="width:10%">
+                                {{items.category}}
+                            </td>
+                            <td class="text-center" style="width:10%">
+                                {{items.amount | currency :""}}
+                            </td>
+                            <td class="text-center" style="width:10%">
+                                {{items.billable}}
+                            </td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="detail-footer">
+                <div class="footerSegments" ng-if="vm.project.notes != '-' || vm.project.notes != '' ">
+                    <span class="segmentHeader" >Notes</span>
+                    <div class="segmentContent">
+                        <span ng-bind-html="vm.project.notes"></span>
+                    </div>
+                </div> 
+            </div>
+
+        </md-content>
+        <!-- / CONTENT -->
+
+        <div class="footer">
+            <div class="note" layout="column" layout-align="start start"> 
+            </div>
+            <div layout="row" layout-align="start start">
+                
+            </div>
+        </div>
+    </div>
+    <!-- / Product -->

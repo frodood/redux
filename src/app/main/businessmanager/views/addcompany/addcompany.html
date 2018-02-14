@@ -1,0 +1,56 @@
+<div id="addbusinessview" layout="column" layout-align="center center">
+	<div id="addBusinessFormContainer" class="md-whiteframe-1dp">
+		<section id="formContainer" layout="column" layout-align="center center">
+			<span class="processName">Business Information</span>
+	        <form name="addBusinessForm" id="addBusinessForm" ng-submit="vm.submitAddBusinessDetails(vm.createCompanyDetails)" autocomplete="off">
+				<div class="fieldEncapsulator" layout="column">  
+					<md-input-container md-no-float class="md-block" flex>
+						<input required id="businessName" type="text" name="businessName" placeholder="Business Name" ng-model="vm.createCompanyDetails.Name">
+						<div ng-messages="addBusinessForm.businessName.$error">
+							<div ng-message="required">a valid business name is required.</div>
+						</div>
+					</md-input-container>
+					<div layout="row">
+						<md-input-container md-no-float class="md-block" flex="70">
+							<input required id="companyDomain" type="text" name="companyDomain" placeholder="Account URL" ng-model="vm.createCompanyDetails.TenantID">
+							<div ng-messages="addBusinessForm.companyDomain.$error">
+								<div ng-message="required">a valid business domain name is required.</div>
+							</div>
+						</md-input-container>
+						<md-input-container md-no-float class="md-block" flex="30">
+							<input disabled id="domainPostfix" type="text" name="companyDomainPostFix" placeholder=".12thDoor.com" ng-model="vm.placeholderDomain">
+						</md-input-container>
+					</div>
+					<md-input-container md-no-float class="md-block" flex>
+						<md-select required name="companyLocation" placeholder="Country" ng-model="vm.createCompanyDetails.OtherData.CompanyLocation" ng-change="vm.bindCurrencyLocation()">
+							<md-option ng-repeat="location in vm.locations" ng-value="location.country_name">{{location.country_name}}</md-option>
+						</md-select>
+						<div class="errors" ng-messages="addBusinessForm.companyLocation.$error" md-auto-hide="true">
+							<div ng-message="required">Please select a company location.</div>
+						</div>
+					</md-input-container>
+					<md-input-container md-no-float class="md-block" flex>
+						<md-select required name="currency" placeholder="Currency" ng-model="vm.createCompanyDetails.OtherData.Currency">
+							<md-option ng-repeat="cur in vm.currencies track by $index" ng-value="cur">{{cur}}</md-option>
+						</md-select>
+						<div class="errors" ng-messages="addBusinessForm.currency.$error" md-auto-hide="true">
+							<div ng-message="required">Please select a currency.</div>
+						</div>
+					</md-input-container>
+					<md-input-container md-no-float class="md-block" flex>
+						<md-select name="businessType" placeholder="Category" ng-model="vm.createCompanyDetails.OtherData.CompanyType">
+							<md-option ng-value="bizType.businessName" ng-repeat="bizType in vm.businessType">{{bizType.businessName}}</md-option>
+						</md-select>
+						<div class="errors" ng-messages="businessType.$error" ng-if="addBusinessForm.$dirty">
+							<div ng-message="required">Please select a business category.</div>
+						</div>
+					</md-input-container>
+				</div>
+	            <div class="md-actions" layout="row" layout-align="end center">
+					<md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.bmProcessResetHandler()"><span>Cancel</span></md-button>
+	                <md-button class="md-primary" style="border:2px solid;" type="submit" ng-disabled="addBusinessForm.$invalid"><span>Add Business</span></md-button>
+	            </div>
+	        </form>
+	    </section>
+	</div>
+</div>

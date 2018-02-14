@@ -1,0 +1,87 @@
+<md-dialog style="width:960px;">
+   <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>Payment History</h2>
+         <span flex></span>
+         <md-button href class="md-icon-button" ng-click="close()">
+            <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+         </md-button>
+      </div>
+   </md-toolbar>
+   <md-dialog-content   >
+      <div layout layout-sm="column" layout-margin>
+         <div flex="5">
+            <img src="img/material alperbert/avatar_tile_h_28.png" style="margin-top:22px;border-radius:20px"/>
+         </div>
+         <div flex="20"  style="margin-top:35px;">
+            <label style="font-weight:700">Payment History</label>
+         </div>
+         <div style="padding-left:30px;" flex>
+            <md-whiteframe class="md-whiteframe" layout="row" layout-sm="column" style="background-color:#FFFFFF; margin-top:12px;height:40px; border-bottom:1px #f1f1f1 solid;">
+                  <div layout="row" layout-sm="column" style="height:40px; margin-top:10px;width:101%;font-size:12px;">
+                     <div flex style="margin-left:1%;" >
+                        <label><b>Date</b></label>
+                     </div>
+                     <div flex>
+                        <label><b>Doc Ref No</b></label>
+                     </div>
+                     <div flex >
+                        <label><b>Payment Method</b></label> 
+                     </div>
+                     <div flex>
+                        <label><b>Paid Amount</b></label> 
+                     </div>
+                  </div>
+            </md-whiteframe>
+         </div>     
+      </div> 
+      <div layout layout-sm="column" layout-margin style="margin-top:-20px;">
+         <!--KEEP BLANK SPACE - ask why-->
+         <div flex="5" class="blankspace">
+         </div>
+         <div flex="20" class="blankspace">
+         </div>
+         <!--KEEP BLANK SPACE - ask why-->
+         <div style="padding-left:40px;" flex>
+            <md-whiteframe flex class="md-whiteframe" layout="column" layout-sm="column" style="background-color:#ffffff; margin-top:12px;min-height:40px;">
+               <div flex layout="column" layout-sm="column" style="min-height: 30px; margin-top:10px;width:101%;font-size:12px;" ng-repeat="item in invoiceHistory">
+                     <div flex layout="row"  >
+                        <div flex style="margin-left:0%;" >
+                           <label>{{item.lastTranDate | date}}</label>
+                        </div>
+                        <div flex>
+                           <label><a href ng-click="moveToPayment(item)">{{item.receiptID}}</a></label>
+                        </div>                   
+                        <div flex>
+                           <label>{{item.paymentMethod}}</label> 
+                        </div>
+                        <div flex >
+                           <label>{{item.aAmount}}</label> 
+                        </div>                     
+                  
+                     </div>
+                     <div flex layout="row" style="margin-top: 15px;">
+                        <label><b>comment:</b></label>
+                        <span>{{item.paymentComment}}</span>
+                     </div>
+                                 
+               </div>
+            </md-whiteframe>
+         </div>
+      </div>
+      <div layout layout-sm="column" layout-margin style="margin-top:-20px;">
+         <!--KEEP BLANK SPACE - ask why-->
+         <div flex="5" class="blankspace">
+         </div>
+         <div flex="15" class="blankspace">
+         </div>
+         <!--KEEP BLANK SPACE - ask why-->
+         <div style="padding-left:40px;" flex>
+            <md-whiteframe class="md-whiteframe" layout="row" layout-sm="column"                                       style="background-color:#ffffff; margin-top:12px;height:40px;">
+               <div layout="row" layout-sm="column" style="height:20px; margin-top:10px;width:101%;font-size:12px;">
+               </div>
+            </md-whiteframe>
+         </div>
+      </div>
+   </md-dialog-content>
+</md-dialog>

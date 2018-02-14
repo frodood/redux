@@ -1,0 +1,79 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<!-- <div class="empty-items" ng-if="vm.inventoryGRN.length === 0">There are no inventories</div>
+<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.inventoryGRN && vm.loadingItems">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading Inventory...</div>
+</div> -->
+
+<ms-spinner-component name="receipt-list-spinner" size="32" relative-position="false" ng-if="!vm.inventoryGRN" on-loaded="vm.receptListSpinnerLoaded(spinnerApi)" spinner-Text="Loading receipt"></ms-spinner-component>
+
+<ms-empty-state-component ng-if="vm.inventoryGRN.length == 0" offset-height="176" state-context="'list'" 
+state-header="'Its empty here…'" state-message="'Add a new receipt to get started!'" component-size="'large'">
+</ms-empty-state-component>
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start -->
+<div class="item {{item.status}}" md-ink-ripple
+     ng-if="!vm.loadingItems"
+     ng-repeat="item in vm.inventoryGRN | filter: global.search"
+     ng-click="vm.openItem(item)"
+     ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}">
+
+    <div layout="row" layout-align="start center">
+        <!-- <md-checkbox class="no-label"
+                     ng-checked="vm.isSelected(item)"
+                     ng-click="vm.toggleSelectThread(item, $event)"
+                     aria-label="{{vm.isSelected(item) ? 'Deselect' : 'Select'}}">
+        </md-checkbox>
+
+        <div class="divider-vertical"></div> -->
+        
+        <div class="cygil">
+            <div class="avatar" ms-random-class="vm.contactColors" style="margin-left:8px;">
+                {{item.customerNames[0] | uppercase}}
+            </div>
+        </div>
+
+
+        <div class="info" flex layout="column">
+            <div class="primaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">{{item.GRNno}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">{{item.createdDate | toDateObject | date:'mediumDate'}}</span>
+            </div>
+
+            <div class="secondaryInfo" layout="row" layout-align="start center">
+                <!-- <span class="text-truncate">GRN No. : {{item.GRNno}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">Date : {{item.createdDate | toDateObject | date:'mediumDate'}}</span>
+                <div class="divider-vertical"></div> -->
+                <div ng-if="item.GRNType=='AutoGRN'">
+                <span class="text-truncate">{{item.customerNames}}</span>
+                </div>
+                <div ng-if="item.GRNType=='GRN'">
+                <span class="text-truncate">Supplier Name : {{item.customerNames}}</span>
+                </div>
+                <!-- <span class="text-truncate">Customer Name : {{item.customerNames}}</span> -->
+            </div>
+
+        </div>
+
+        <div class="status" layout="column" layout-align="center end" ng-if="item.cancelStatus">
+            <div class="invStatus" layout="row" layout-align="start center">
+                <div class="status-circle"></div>
+                <div class="status-label">Cancelled</div>
+            </div>
+        </div>
+
+        <div layout="column" layout-align="space-between end">
+            <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('starred', item, $event)"
+                       aria-label="Toggle starred">
+                <md-icon ng-if="item.inventoryFavourite" md-font-icon="icon-star"
+                         class="amber-fg"></md-icon>
+                <md-icon ng-if="!item.inventoryFavourite" md-font-icon="icon-star-outline"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>

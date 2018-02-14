@@ -1,0 +1,342 @@
+<div class="compose" layout="column" ng-form='myForm'>
+    <div class="mainsection" layout="column">
+        <div class="composeform" layout="column">
+            <div class="formSection">
+                <div class="row_encap pad_32" layout="row">
+                    <div class="customerinfo" flex>
+                        <div class="cusInfo_header" layout="row" layout-align="start start">
+                            <!-- <md-autocomplete class="no-float" flex ng-required="true" md-search-text="vm.searchText" ng-keydown="enter(vm.searchText)" md-selected-item="vm.selectedItem1" md-items="item in vm.querySearch(vm.searchText)" md-item-text="item.display" md-floating-label="Customer" md-autofocus="true" md-selected-item-change="vm.selectedItemChange(vm.selectedItem1)">
+                                <md-item-template>
+                                    <span class="item-title">
+                                        <span>{{item.display}}</span>
+                                    </span>
+                                    <span class="item-metadata">
+                                        <span class="item-metastat">
+                                            <strong>{{item.value.email}}
+                                            </strong>
+                                        </span>
+                                    <md-divider></md-divider>
+                                    </span>
+                                </md-item-template>
+                                <div ng-messages="vm.searchText.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-autocomplete> -->
+                            
+                            <ms-profile-lookup placeholder="'Customer'" required="false" editoptions="false" lookupclass="'Customer'" isautofocus="true"></ms-profile-lookup>
+
+                            <md-menu md-position-mode="target-right target">
+                                <md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+                                    <md-icon md-menu-origin md-font-icon="icon-dots-vertical"></md-icon>
+                                </md-button>
+                                <md-menu-content width="2">
+                                    <md-menu-item ms-perm-elem perm-context="'Contacts'" perm-action="'add'">
+                                        <md-button class="md-primary" ms-Contactpopup customertype="'new'">
+                                            <!-- ng-click="vm.addContact()" -->
+                                            <p>New Contact</p>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item ng-show="vm.showEditCustomer" ms-perm-elem perm-context="'Contacts'" perm-action="'edit'">
+                                        <md-button class="md-primary" ms-Contactpopup contactdetails="vm.customerEditdetails" customertype="'edit'">
+                                            <!-- ng-click="vm.editContact(vm.selectedItem1)" -->
+                                            <p>Edit Contact</p>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+                        <div class="cusAddress" layout="column" layout-align="start start" ng-show="vm.Billingaddress" style="height: 66%">
+                            <div class="cusAddress_header" layout="row" layout-align="start start">
+                                <span>Billing Address</span>
+                                <md-button class="md-icon-button" aria-label="Switch Address" ng-click="vm.changeAddress()">
+                                    <md-icon md-font-icon="icon-repeat"></md-icon>
+                                </md-button>
+                            </div>
+                            <div class="cusAddress_content" layout="column" layout-align="center center">
+                                <ms-address-component address-data="vm.ActiveAddressObj" ent-type="'client'" align="center" showentity-title="false"></ms-address-component>
+                            </div>
+                        </div>
+                        <div class="cusAddress" layout="column" layout-align="start start" ng-show="vm.Shippingaddress">
+                            <div class="cusAddress_header" layout="row" layout-align="start start">
+                                <span>Shipping Address</span>
+                                <md-button class="md-icon-button" aria-label="Switch Address" ng-click="vm.changeAddress()" >
+                                    <md-icon md-font-icon="icon-repeat"></md-icon>
+                                </md-button>
+                            </div>
+                            <!--  <div class="cusAddress_content" layout="column" layout-align="center center">
+                                 <span ng-if="vm.TDest.shippingAddress.s_street">{{vm.TDest.shippingAddress.s_street}}</span>
+                                 <span ng-if="vm.TDest.shippingAddress.s_city">{{vm.TDest.shippingAddress.s_city}}&nbsp;{{vm.TDest.shippingAddress.s_state}}</span><span ng-if="vm.TDest.shippingAddress.s_zip || vm.TDest.shippingAddress.s_country"> {{vm.TDest.shippingAddress.s_zip}}&nbsp;{{vm.TDest.shippingAddress.s_country}} </span>
+                                 <span>
+                                    <span ng-if="vm.TDest.contactNo">t. {{vm.TDest.contactNo}}</span><span ng-if="vm.TDest.fax"> f. {{vm.TDest.fax}}</span></span>
+                                    <span>{{vm.TDest.email}}</span>
+                                </div> -->
+                            <div class="cusAddress_content" layout="column" layout-align="center center">
+                                <ms-address-component address-data="vm.ActiveAddressObj" ent-type="'client'" align="center" showentity-title="false">
+                                </ms-address-component>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="invoiceinfo" flex>
+                        <div class="invInfo_header" layout="row" layout-align="end start">
+                            <span>Estimate No : {{vm.estimateRefNo}}</span>
+                        </div>
+                        <div class="invInfo_details" layout="column">
+                            <div class="invInfoDates" layout="row">
+                                <div class="dateHolder" layout="column" flex>
+                                    <div><span>Estimate Date</span></div>
+                                    <md-datepicker ms-fix-datepicker ng-model="vm.TDest.date" md-placeholder="Date"></md-datepicker>
+                                </div>
+                                                   
+                                <md-input-container md-no-float flex style="margin-top: 25px; margin-left: 20px;">
+                                    <md-select placeholder="Payment terms" ng-model="vm.TDest.paymentTerm" ng-required="true" md-no-asterisk="" name="terms">
+                                        <md-optgroup label="Terms type">
+                                            <md-option value="Due on Receipt">Due on Receipt</md-option>
+                                            <md-option value="Net 7 days">Net 7 days</md-option>
+                                            <md-option value="Net 14 days">Net 14 days</md-option>
+                                            <md-option value="Net 21 days">Net 21 days</md-option>
+                                            <md-option value="Net 30 days">Net 30 days</md-option>
+                                            <md-option value="Net 45 days">Net 45 days</md-option>
+                                            <md-option value="Net 60 days">Net 60 days</md-option>
+                                            <!-- <md-option value="Custom">Custom</md-option> -->
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+
+                            <div class="invInfoDates" layout="row" style="margin-top: -18px;">
+                                <div class="dateHolder" layout="column" flex>
+                                    <div><span>Validity</span></div>
+                                    <md-datepicker ms-fix-datepicker ng-model="vm.TDest.validity" md-placeholder="Validity"></md-datepicker>
+                                </div>
+                                <md-input-container md-no-float style="margin-top: 24px; margin-left: 20px;" flex>
+                                    <input type="text" placeholder="Customer reference" name="Customer reference" ng-model="vm.TDest.customerRef">
+                                </md-input-container>
+                            </div>
+                            <div class="invInfoComment" layout="row" style="margin-top: -35px;">
+                                <md-input-container md-no-float flex>
+                                    <textarea placeholder="Comments" ng-model="vm.TDest.comments" md-maxlength="150" max-rows="3"></textarea>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formSection">
+                <div class="lineitems" layout="column">
+                    <!-- LIST ITEM HEADER -->
+                    <div class="list-items-header" layout="row" layout-align="start center">
+                        <div class="list-item-header-control handle"></div>
+                        <div class="info" layout="row">
+                            <div class="list-item-header-title left" flex>Description</div>
+                            <div class="list-item-header-title center" flex="10">Quantity</div>
+                            <div class="list-item-header-title center" flex="10">UOM</div>
+                            <div class="list-item-header-title center" flex="10">Unit Price</div>
+                            <div class="list-item-header-title center" flex="10">Discount</div>
+                            <div class="list-item-header-title center" flex="10">TAX</div>
+                            <div class="list-item-header-title right" flex="15">Amount</div>
+                        </div>
+                        <div class="list-item-header-control handle"></div>
+                        <div class="list-item-header-control handle"></div>
+                    </div>
+
+                    <div class="line-items-container" ng-sortable="vm.sortableOptions" ng-model="vm.lineItems" ng-class="{'sortable': vm.itemOrder === ''}">
+                        <!-- LIST ITEM -->
+                        <div class="line-item" md-ink-ripple layout="row" layout-align="start center" ng-click="vm.listItemAction()" ng-repeat="prod in vm.lineItems">
+                            <div layout="row" layout-align="start center" flex>
+                                <div class="handle">
+                                    <md-button class="md-icon-button" ng-click="vm.preventDefault($event)" aria-label="Sort line item">
+                                        <md-icon md-font-icon="icon-drag-vertical"></md-icon>
+                                    </md-button>
+                                </div>
+
+                                <div class="info" layout="row" layout-align="start center">
+                                    <div class="item-value two-line left" layout="column" flex>
+                                        <span>{{prod.productName}}</span>
+                                        <span>{{prod.olp}}</span>
+                                    </div>
+
+                                    <div class="item-value center" flex="10">
+                                        {{prod.quantity | qtyRndUp}}
+                                    </div>
+
+                                    <div class="item-value center" flex="10">
+                                        {{prod.productUnit}}
+                                    </div>
+
+                                    <div class="item-value center" flex="10">
+                                        {{prod.price / vm.TDest.exchangeRate| unitPriceRndUp}}
+                                    </div>
+
+                                    <div class="item-value center" flex="10">
+                                        {{prod.discount}}
+                                    </div>
+
+                                    <div class="item-value center" flex="10">
+                                        {{prod.tax.taxName}} ({{prod.tax.rate}}%)
+                                    </div>
+
+                                    <div class="item-value right" flex="15">
+                                        {{prod.amount / vm.TDest.exchangeRate| valRndUp}}
+                                    </div>
+                                </div>
+
+
+                                <div class="buttons" layout="row" layout-align="start center">
+                                    <md-button class="md-icon-button" aria-label="Edit line item" ms-product-line-item msapp-Name ="'Estimates'" mslineitemtype="'edit line'" msselectedlineitem="editProductLineItem" mscurrencydetails="vm.getcurrencydetails" ng-click="editProductLineItem(prod,$index)">
+                                        <!-- ng-click="vm.editProduct(prod,$index)" -->
+                                        <md-icon md-font-icon="icon-table-edit"></md-icon>
+                                    </md-button>
+                                    <md-button class="md-icon-button" ng-click="vm.deleteProduct(prod, $index)" aria-label="Delete line item">
+                                        <md-icon md-font-icon="icon-close-circle"></md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- LIST ITEM -->
+                    </div>
+                    <!-- LIST ITEM HOLDER -->
+                </div>
+                <md-button class="add_lineitemBtn md-primary" ms-product-line-item msapp-Name="'Estimates'" mslineitemtype="'new line'" mscurrencydetails="vm.getcurrencydetails">
+                    <!-- ng-click="vm.addProduct()" -->
+                    <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                    New Line
+                </md-button>
+            </div>
+
+            <div class="formSection">
+                <div class="row_encap pad_32" layout="row">
+                    <div class="row_special" flex>
+                        <span>Totals</span>
+                    </div>
+                    <div class="totals_indicator" layout="column">
+                        <span class="subTotal">Sub Total</span>
+                        <label style="display:none; text-align: right">{{vm.calculatetotal()}}</label>
+                        <span ng-repeat="tax in vm.taxArray">{{tax.taxName}}({{tax.rate}}%)</span>
+                        <!--  <span>Total Discount</span> -->
+                        <span>Shipping</span>
+                    </div>
+                    <div class="totals_value" layout="column" layout-align="start end">
+                        <span class="subTotal">{{vm.total / vm.TDest.exchangeRate | valRndUp}}</span>
+                        <span ng-repeat="tax in vm.taxArray">{{tax.salesTax / vm.TDest.exchangeRate | valRndUp}}</span>
+                        <md-input-container md-no-float class="md-block shipping_val">
+                            <input name="shipping" ng-model="vm.ship" ng-change="vm.addShipping(vm.TDest.shipping)" ng-disabled="vm.shipping" ms-Value-Adjuster>
+                        </md-input-container>
+                        <div ng-show="myForm.shipping.$error['max-precision']" class='error'>Error: Maximum decimal places</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formSection">
+                 <!-- <div class="summary" layout="row" layout-align="end start">
+                    <div class="totalVal" layout="column" layout-align="center center">
+                        <div layout="column" layout-align="center start">
+                            <i>Total</i>
+                            <span>{{vm.TDest.changedCurrency}} {{vm.famount / vm.TDest.exchangeRate | valRndUp}}</span>
+                        </div>
+                    </div>
+                </div>  -->
+                 <div class="summary" layout="row" layout-align="end start">
+                    <div class="totalVal" layout="column" layout-align="center center">
+                        <div layout="column" layout-align="center start">
+                            <i>Total</i> 
+                            <span><span ms-currency-switcher currencydefaults="vm.currentCurrencyModel" class="currTriggerElem">{{vm.TDest.changedCurrency}}&nbsp;<md-tooltip>Change currency</md-tooltip></span>{{vm.famount / vm.TDest.exchangeRate | valRndUp}}</span>
+                        </div>
+                    </div>
+                </div> 
+
+
+            </div>
+
+            <div class="formSection">
+                <div class="row_encap pad_32" layout="row">
+                    <md-input-container md-no-float flex>
+                        <textarea placeholder="Notes" ng-model="vm.TDest.notes" md-maxlength="150" max-rows="3"></textarea>
+                    </md-input-container>
+                </div>
+            </div>
+
+            <!-- <div class="formSection">
+                <div class="row_encap sectionHeader" layout="row">
+                    Optional Details
+                </div>
+            </div> -->
+
+            <div class="formSection">
+                <div class="row_encap sectionHeader" layout="row" layout-align="space-between center">
+                    Optional Details
+                    <md-button class="md-primary" ng-click="vm.showMoreInfo = !vm.showMoreInfo;">
+                        <md-icon md-font-icon="icon-chevron-down" ng-hide="vm.showMoreInfo"></md-icon>
+                        <span ng-hide="vm.showMoreInfo">More</span>
+                        <md-icon md-font-icon="icon-chevron-up" ng-show="vm.showMoreInfo"></md-icon>
+                        <span ng-show="vm.showMoreInfo">less</span>
+                    </md-button>
+                </div>
+            </div>
+
+            <div class="formSection" ng-show="vm.showMoreInfo">
+                <div class="row_encap pad_32" layout="column">
+                    <div class="payMethod" layout="row" layout-align="start center">
+                        <div flex>
+                        <div class="chip-class">
+                            <md-chips ng-model="vm.TDest.tags" readonly="false" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Tags">
+                            </md-chips>
+                        </div>
+                        </div>
+
+                        <div layout="row" > <!--  class="brochureBtn" -->
+                           <!--  <md-button class="md-primary" ng-click="vm.uploadFileSample()" style="border:2px solid">
+                                <md-icon md-font-icon="icon-cloud-upload"></md-icon>
+                                <span style="margin-left: 8px;">File Upload</span>
+                            </md-button> -->
+
+                            <md-button class="md-primary" style="border:2px solid;" app-uploader="vm.brochureConfig" result="vm.uploadFileSample(res)">
+                                <md-icon md-font-icon="icon-cloud-upload"></md-icon>
+                                <span style="margin-left: 8px;">File Upload</span>
+                            </md-button>
+
+                           <!--  <div ng-show="vm.showUploadFile" class="pdf-icon">
+                                <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+                            </div> -->
+                            <!-- <div ng-show="vm.showUploadFile" layout layout-align="center center" class="pdf-name">
+                                <span class="pdt-text"> {{vm.fileName}}</span>
+                            </div> -->
+
+                            <!-- <md-button class="md-primary" ng-click="vm.changeCurrency()" style="border:2px solid">
+                                <md-icon md-font-icon="icon-currency-usd"></md-icon>
+                                <span>Change Currency</span>
+                            </md-button> -->
+                            <!-- <ms-currency-switcher currencydefaults="vm.currentCurrencyModel"> </ms-currency-switcher> -->
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+            <div class="formSection" ng-show="vm.showMoreInfo" ng-if="vm.showAdditonalDetails">
+                <div class="row_encap sectionHeader" layout="row">
+                    Additional Details
+                </div>
+            </div>
+
+            <div class="formSection" ng-show="vm.showMoreInfo" ng-if="vm.showAdditonalDetails">
+                <div class="row_encap pad_32" layout="column">
+                    <div class="additionalDetails" layout="column" ng-repeat="cus in vm.TDest.customFields">
+                        <md-input-container md-no-float flex ng-if="cus.type=='textBox'">
+                            <input placeholder="{{cus.labelShown}}" name="Email" ng-model="cus.value">
+                        </md-input-container>
+                        <md-input-container md-no-float flex ng-if="cus.type=='selectBox'">
+                            <md-select placeholder="{{cus.labelShown}}" ng-model="cus.value">
+                                <md-optgroup label="{{cus.labelShown}}">
+                                    <md-option value="{{topping}}" ng-repeat="topping in cus.fields">{{topping}}</md-option>
+                                </md-optgroup>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

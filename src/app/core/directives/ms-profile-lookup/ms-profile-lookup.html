@@ -1,0 +1,18 @@
+<div class="profileLookupContainer" layout="row">
+	<md-autocomplete class="no-float" flex ng-required="vm.required" md-search-text="vm.profileSearchText" md-selected-item="vm.selectedProfile" md-min-length="0" md-items="item in vm.searchProfile('search', vm.profileSearchText)" md-item-text="item.display" md-floating-label="{{vm.placeholder}}" md-autofocus="vm.isautofocus" md-selected-item-change="vm.selectedItemChange(vm.selectedProfile)" md-no-cache="false">
+		<md-item-template>
+			<span class="item-title">
+				<span>{{item.display}}</span>
+			</span>
+			<span class="item-metadata">
+				<span class="item-metastat">
+					<strong>{{item.value.email}}</strong>
+				</span>
+				<md-divider></md-divider>
+			</span>
+		</md-item-template>
+		<div ng-messages="vm.profileSearchText.$error">
+			<div ng-message="required">This is required.</div>
+		</div>
+	</md-autocomplete>
+</div>

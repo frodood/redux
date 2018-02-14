@@ -1,0 +1,19 @@
+ms-country-lookup{
+    
+	.countryLookupContainer{
+
+		md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+            margin-top: 0px;
+            > label {
+                -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                transform: translate3d(1px,28px,0) scale(1) !important;
+                color: #BDBDBD;
+            }
+            &.md-input-has-value > label {
+                display: none !important;
+            }
+        }
+
+        
+	}
+}

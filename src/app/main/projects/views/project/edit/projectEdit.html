@@ -1,0 +1,48 @@
+<div id="projectEdit" class="page-layout carded boxed right-sidenav" layout="row">
+
+	<!-- CENTER -->
+	<div class="center" layout="column" layout-align="center center" flex>
+
+		<!-- CONTENT-CARD -->
+		<form class="content-card" layout="column" flex name="projectForm" ng-submit="vm.submit()" >
+
+			<!-- PRIMARY TOOLBAR -->
+			<div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-icon-button close-thread" aria-label="Back"
+                               ng-click="vm.toggleChildStates('app.projects.pro')">
+                        <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+                    </md-button>
+
+                    <div class="divider-vertical"></div>
+
+                    <h2>Edit Project</h2>
+                </div>
+                <div layout="row" layout-align="start center">
+                    
+                </div>
+            </div>
+                <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content flex ms-scroll>
+
+                <!-- DEMO CONTENT -->  
+                <div ng-include="'app/main/projects/views/project/edit/projectEditNew.html'"></div>
+                <!-- / DEMO CONTENT -->
+
+            </md-content>
+            <!-- / CONTENT -->
+
+
+            <div class="footersection">
+                <md-button class="md-primary" style="border:2px solid" ng-disabled="vm.submitProgress || projectForm.$invalid" type="submit">Edit</md-button>
+                <md-button class="md-primary md-hue-3" style="border:2px solid" ng-disabled="vm.submitProgress" ng-click="vm.toggleChildStates('app.projects.pro')">cancel</md-button>
+            </div>
+		</form>
+		<!-- /CONTENT-CARD-->
+        <time-tracker   drag-me time-status="stopTime"  catch-name="vm.catchName"></time-tracker> 
+	</div>
+	<!-- /CENTER -->
+
+</div>

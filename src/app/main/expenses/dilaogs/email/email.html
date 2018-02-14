@@ -1,0 +1,56 @@
+<md-dialog id="dialogEstEmail" class="frmModal" aria-label="uploader" layout="column" layout-align="center start">
+    <md-toolbar class="tool-bar" >
+        <div class="md-toolbar-tools">
+            <h2>SEND EXPENSE</h2>
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+        </div>
+    </md-toolbar>
+    <form name="cusForm" ng-submit="vm.sendMail()" style="width: 100%;"> 
+        <div class="content" ms-scroll>
+            <div layout layout-sm="column" layout-margin style="margin-left:2px;">
+                <md-chips flex ng-model="vm.sender" class="md-primary" readonly="false" placeholder="To" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+To">
+                </md-chips>
+            </div>
+            <div layout flex style="margin-left: 10px;">
+                <span ng-show="vm.senderempty" style="font-size:12px;color:red;" >enter email here</span>
+            </div>
+            <div layout layout-sm="column" layout-margin style="margin-left:2px;">
+                <md-chips flex ng-model="vm.bcc" class="md-primary" readonly="false" placeholder="Bcc" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Bcc">
+                </md-chips>
+            </div>
+
+            <div layout layout-sm="column" layout-margin class="inputHeight" style="margin-left:0px;">
+                <md-input-container flex md-no-float> 
+                    <input type="text" ng-model="vm.subject" placeholder="Subject" />
+                </md-input-container>
+            </div>
+            <div layout class="pre-tag" layout-sm="column" layout-margin layout-align="center center">
+                <div class="pre-text" ng-bind-html="vm.emailBody" style="margin-left: 1px;" ></div>
+            </div>
+            <div layout layout-sm="column" layout-margin class="inputHeight">
+                <div  flex="40" class="attact-pdf">        
+                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="vm.PDFattached" class="md-primary" >
+                        Attach Expense PDF 
+                    </md-checkbox>
+                </div>
+                <div class="pdf-icon" ng-show="vm.PDFattached">   
+                    <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+                </div>   
+                <div layout layout-align="center center" class="pdf-name" ng-show="vm.PDFattached">
+                    {{vm.pdfName}}
+                </div>
+            </div>
+           <!--  <div layout layout-sm="column" layout-margin class="brochure-error" ng-hide="vm.brochureExist">
+                Brochures are not available. Please upload a brochure
+            </div> -->
+        </div>
+        <div class="footer"  > 
+            <md-button flex="10" class="md-primary" style="border: 2px solid;" type="submit">
+              send
+            </md-button> 
+        </div>
+    </form>
+</md-dialog>

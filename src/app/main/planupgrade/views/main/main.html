@@ -1,0 +1,99 @@
+<div id="mainview" layout="column" layout-align="center center">
+	<div ng-show="vm.planDefaultScreen" class="price-tables" flex layout="row" layout-align="start start" layout-wrap>
+		<div class="price-table style-3 md-whiteframe-1dp" layout="column">
+				
+			<div class="package-type" layout="row" layout-align="center start">
+				<div class="title">BUSINESS</div>
+			</div>
+			
+			<div class="price" layout="row" layout-align="center start">
+				<div class="currency">$</div>
+				<div layout="row" layout-align="center end">
+					<div class="value">12</div>
+					<div class="period">/mo</div>
+				</div>
+			</div>
+
+			<div class="terms" layout="column" layout-align="start center">
+				<div class="term special">Charging $120 per year or ($10/mo)</div>
+				<div class="term">Unlimited Customers</div>
+				<div class="term">Unlimited Invoices</div>
+				<div class="term">500 Recurring Profiles</div>
+				<div class="term">3 Users</div>
+				<div class="term">Attachements Unlimited</div>
+			</div>
+
+			<md-button ng-hide="isAccPaid" class="cta-button md-primary" style="border:2px solid;" ng-click="vm.selectPlanVariant($event)">Select Plan</md-button>
+			<md-button ng-show="isAccPaid" class="cta-button md-primary" style="border:2px solid;" ng-disabled="true" ng-click="vm.selectPlanVariant($event)">Current Plan</md-button>
+
+			<div class="note"></div>
+		</div>
+		
+	    <div class="price-table style-3 md-whiteframe-1dp" layout="column">
+	    	<div class="package-type" layout="row" layout-align="center start">
+	            <div class="title">FREE</div>
+	        </div>
+
+	        <div class="price" layout="row" layout-align="center start">
+	        	<div class="currency">$</div>
+	            <div layout="row" layout-align="center end">
+	                <div class="value">0</div>
+	                <div class="period"></div>
+	            </div>
+	        </div>
+
+	        <div class="terms" layout="column" layout-align="start center">
+	            <div class="term special">No credit card required !</div>
+				<div class="term">6 Customers</div>
+				<div class="term">Unlimited Invoices</div>
+				<div class="term">3 Recurring Profiles</div>
+				<div class="term">1 User</div>
+				<div class="term">Attachments 100 MB</div>
+	        </div>
+
+	        <md-button ng-show="isAccPaid" class="cta-button md-primary" style="border:2px solid;" ng-click="vm.comparePlanUsage('12d-free-plan')">Select Plan</md-button>
+	        <md-button ng-hide="isAccPaid" class="cta-button md-primary" ng-disabled="true" style="border:2px solid;">Current Plan</md-button>
+
+	        <div class="note"></div>
+	    </div>
+	</div>
+	<div ng-hide="vm.planDefaultScreen" class="changeplan-view" flex layout="column" layout-align="start start" layout-wrap>
+		
+		<!-- Approved view will appear when the service validates usage and determines that its an ok to go ahead with plan change -->
+		<div ng-show="vm.planChangeApproved" id="changPlanApprovedScreen" class="md-whiteframe-1dp">
+			<section id="approvedPlanContainer" layout="column" layout-align="center center">
+				<span class="processName" style="text-align:center;">Downgrade plan? THIS PROCESS IN NOT REVERSIBLE.</span>
+				<div class="approvedPlanContentContainer" layout="row" layout-align="center center">
+					<div class="specialNote" layout="column" layout-align="center center">
+						<span>A downgrade may impact features including number of customer and users
+							etc.. We recommend you export your data prior to going ahead.<span>
+					</div>
+				</div>
+				<div class="md-actions" layout="row" layout-align="end center">
+					<md-button class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.cancelChangePlanProcess()"><span>Cancel</span></md-button>
+					<md-button class="md-primary" style="border:2px solid;" ng-click="vm.initiateDowngradePlan()"><span>Proceed</span></md-button>
+				</div>
+			</section>
+		</div>
+
+		<!-- Disapproved view will appear when the service validates usage and determines its not ok to change plan -->
+		<div ng-hide="vm.planChangeApproved" id="changPlanDisapprovedScreen" class="md-whiteframe-1dp">
+			<section id="disapprovedPlanContainer" layout="column" layout-align="center center">
+				<span class="processName">Unable to downgrade plan</span>
+				<div class="disapprovedPlanContentContainer" layout="row" layout-align="center center">
+					<div class="specialNote" layout="column" layout-align="center center">
+						<span>We are unable to downgrade your plan as you are exceeding limits on the
+							selected plan. Please visit our helpdesk or contact support for more
+							information. You may alternatively export your data and cancel account by
+							visiting settings.<span>
+					</div>
+				</div>
+				<div class="md-actions" layout="row" layout-align="end center">
+					<md-button class="md-primary" style="border:2px solid;" ng-click="vm.cancelChangePlanProcess()"><span>Ok</span></md-button>
+					<!-- <md-button class="md-warn" style="border:2px solid;" ng-click="vm.transfertoCancelAccount()"><span>Cancel Account</span></md-button> -->
+				</div>
+			</section>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,59 @@
+	<div class="compose" layout="column" >
+		<div class="mainsection" layout="column" layout-align="start start"  >
+			<div class="subMain" >
+				<div class="info" layout="column">  
+					<div class="maininfosection" layout="row" layout-align="start start">						 
+						<div class="projectinfo" flex > 
+		                    <div layout="row" layout-gt-sm="row" class ="inputHeight" > 
+				                <md-datepicker ms-fix-datepicker  style="position: relative;right: 15px;" flex ng-model="vm.timeSheet.date" md-placeholder="Date"></md-datepicker> 
+					            <div style="width:5%;"></div>  
+	                            <md-input-container  flex md-no-float> 
+				                  	<input type="text" ng-model="vm.hours" required  placeholder="00H 00M format"/>  
+		                        </md-input-container>
+		                    </div> 
+		                    <div layout="column" layout-gt-xs="row" class="inputHeight"> 
+		                        <md-input-container flex="50" md-no-float>  
+		                        <!-- ng-change="vm.projectSelect(vm.selectProject)" -->
+				                  	<md-select placeholder="Project" ng-model="vm.selectProject" 
+				                  		 flex ng-change="vm.projectSelect(vm.selectProject)"  ng-model-options="{trackBy: $value.proId}">
+				                     	<md-optgroup label="Project"> 
+				                     	<md-option value="{{item}}" ng-repeat="item in vm.projectArr">{{item.proName}}</md-option>
+				                  	</md-select>
+								</md-input-container>
+					            <div style="width:5%;"></div>  
+		                        <md-input-container flex="50" md-no-float>  
+				                  	<md-select placeholder="Task" ng-model="vm.task" flex>
+				                     	<md-optgroup label="Task"> 
+				                     	<md-option ng-repeat = "item in vm.addtasks" value="{{item}}">{{item.taskName}}</md-option> 
+				                  	</md-select>
+								</md-input-container>
+		                    </div> 
+		                    <div layout="column" layout-gt-xs="row" class="inputHeight">		                         
+		                        <md-input-container flex="50" md-no-float>  
+				                  	<md-select placeholder="Status" ng-model="vm.status" flex>
+					                    <md-optgroup label="Status">
+					                    <md-option value="Billable" selected>Bilable</md-option>
+					                    <md-option value="Non-Billable">Non-Billable</md-option>
+					                    <md-option value="Billed">Billed</md-option>
+				                  	</md-select>
+								</md-input-container>
+					            <div style="width:5%;"></div>  
+		                        <md-input-container flex="50" md-no-float> 
+				                  	<md-select placeholder="User" ng-model="vm.timeSheet.user" ng-change="vm.projectByUser(vm.timeSheet.user)" flex ng-disabled="vm.disableUser"  ng-model-options="{trackBy: $value.email}">
+				                     	<md-optgroup label="User"> 
+				                     	<md-option ng-repeat="item in vm.userData" ng-value="item">{{item.firstName}} {{item.lastName}}
+				                     	</md-option>
+				                  	</md-select>
+								</md-input-container>
+		                    </div> 
+		                    <div layout="row" layout-gt-sm="row" class ="inputHeight" >
+	                            <md-input-container  flex md-no-float> 
+				                  	<input placeholder="Note" type="text" ng-model="vm.timeSheet.notes"/>  
+		                        </md-input-container>
+		                    </div>  
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,27 @@
+#dialog {
+	background: white; 
+	width: 480px;
+
+	.tool-bar{
+		height : 48px;
+	}
+	.content{
+		width: 100%;
+		padding: 25px;
+	}
+
+	.footer{
+        width:100%;
+        padding:12px 24px;
+        border-top:1px solid rgba(0, 0, 0, 0.12);
+
+        button{
+            float:right;
+            margin:0px;
+        }
+
+        button:nth-child(2){
+            margin-right:12px;
+        }
+	}
+}

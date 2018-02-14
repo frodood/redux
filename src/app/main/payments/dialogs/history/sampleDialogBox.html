@@ -1,0 +1,82 @@
+<md-dialog id="customDialogBox" aria-label="Mango (Fruit)" >
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Payment History</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.close()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<!--<div class="dialogContent pad_32">-->
+	<form class="form-class">
+		<md-content flex ms-scroll class="content-class">
+			<div class="formSection">
+                <div class="lineitems" layout="column">
+                    <!-- LIST ITEM HEADER -->
+                    <div class="list-items-header" layout="row" layout-align="start center">
+                        
+                        <div class="list-item-header-title center" flex>Date</div>
+                        <div class="list-item-header-title center" flex>Doc Ref No</div>
+                        <div class="list-item-header-title center" flex>Payment Method</div>
+                        <div class="list-item-header-title center" flex>Paid Amount</div>
+                        
+                    </div>
+
+                    <div class="line-items-container">
+                        <!-- LIST ITEM -->
+                        <div class="line-item" layout="row" layout-align="start center" ng-repeat="item in vm.invoiceHistory">
+                            <div layout="row" layout-align="start center" flex>
+                                
+
+                                <div class="info" layout="row" layout-align="start center">
+
+                                    <div class="item-value center" flex>
+                                        {{item.lastTranDate|datetime}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{item.receiptID}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{item.paymentMethod}}
+                                    </div>
+
+                                    <div class="item-value center" flex>
+                                        {{item.aAmount | valRndUp}}
+                                    </div>
+                                </div> 
+                                <!-- <div class="commentrow">
+			                        <label style="color:#2D6296;padding: 8px"><b>comment:</b></label>
+			                        <span>{{item.paymentComment}}</span>
+			                     </div> -->
+
+                                
+                               
+                                
+                            </div>
+                        </div>
+                        <!-- LIST ITEM -->
+                    </div>
+
+                    <div class="empty-line-items-container" ng-if="!vm.fullArr.length" layout="row" layout-align="center center">
+                        <span>{{vm.InvoicesDataStatus}}</span>
+                    </div>
+                    <!-- LIST ITEM HOLDER -->
+                </div>
+            </div>
+
+		</md-content>
+	</form>
+	<!--</div>-->
+	<div class="dialogFooter pad_16" layout="row">
+		<span flex></span>
+		<!--<md-button class="md-primary md-hue-3" ng-click="vm.cancel()" style="margin-right:20px;" >
+			Cancel
+		</md-button>
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="">
+			Save
+		</md-button>-->
+	</div>
+</md-dialog>

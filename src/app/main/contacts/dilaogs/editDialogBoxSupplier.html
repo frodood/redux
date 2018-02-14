@@ -1,0 +1,241 @@
+<md-dialog id="customDialogBox" aria-label="Edit Supplier" class="frmModal modal-height-fix">
+ <ms-spinner-component name="conSupplier-edit-spinner" size="32"  relative-position="false"></ms-spinner-component>
+ 
+   <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>Edit Supplier</h2>
+         <span flex></span>
+         <md-button class="md-icon-button" ng-click="vm.cancelDialog()">
+            <md-icon md-font-icon="icon-close"></md-icon>
+         </md-button>
+      </div>
+   </md-toolbar> 
+         <md-content flex ms-scroll class="content">
+
+            <form name="supplierCompose" class="email-form">
+            <div layout="column" layout-gt-xs="row" style="background-color:#F6F6F6;height: 50px;">
+               <div class="toolbarCompose" layout="row" layout-align="space-between center">
+                  <div style="padding-left: 12px;">Supplier Name</div>
+               </div>
+            </div>
+            <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                 
+                  <input placeholder="Company or Individual name" ng-model="vm.contact.profileName" tabindex="1" required>
+               </md-input-container>
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Email" name="email" ng-model="vm.contact.email" ng-pattern="/^.+@.+\..+$/" tabindex="2" required>
+                  <div ng-messages="supplierCompose.email.$error" role="alert">
+                    <div ng-message-exp="['required','pattern']">
+                       Your email must look like an e-mail address.
+                    </div>
+                  </div>
+               </md-input-container>
+            </div>
+            <div layout="column" layout-gt-xs="row" style="background-color:#F6F6F6;height: 50px;">
+               <div class="toolbarCompose" layout="row" layout-align="space-between center">
+                  <div style="padding-left: 12px;">Contact Person</div>
+               </div>
+            </div>
+            <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                 
+                  <input placeholder="First Name" ng-model="vm.contact.firstName" tabindex="3">
+               </md-input-container>
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                 
+                  <input placeholder="Last Name" ng-model="vm.contact.lastName" tabindex="4">
+               </md-input-container>
+            </div>
+            <div ng-show="vm.showBilling">
+               <div layout="column" layout-gt-xs="row" style="background-color:#F6F6F6;height: 50px;">
+                  <div class="toolbarCompose" layout="row" layout-align="space-between center">
+                     <div style="padding-left: 12px;">Billing Address</div>
+                  </div>
+                  <div flex>
+                    <!--  <md-icon md-font-icon="icon-arrow-down-bold-circle-outline" ng-click="vm.addressChange()" style="padding-top:9px;"> -->
+                     <md-icon style="margin-left: 12px;padding-top:13px;" md-font-icon="icon-repeat" ng-click="vm.addressChange()"></md-icon>
+                  </div>
+               </div>
+               <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                    
+                     <input placeholder="Street" ng-model="vm.contact.billingAddress.street" tabindex="5">
+                  </md-input-container>
+               </div>
+               <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                    
+                     <input placeholder="City" ng-model="vm.contact.billingAddress.city" tabindex="6">
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                     
+                     <input placeholder="State" ng-model="vm.contact.billingAddress.state" tabindex="7">
+                  </md-input-container>
+               </div>
+               <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+                  <md-input-container class="md-block" flex-gt-sm>
+                     
+                     <input placeholder="Zip Code" ng-model="vm.contact.billingAddress.zip" tabindex="8">
+                  </md-input-container>
+                  <md-autocomplete class="no-float"
+                     flex="" 
+                     tabindex="9"
+                     md-selected-item="vm.selectedItem" 
+                     md-search-text="vm.searchText"
+                     md-items="item in vm.querySearch(vm.searchText)" 
+                     md-item-text="item.country" 
+                     md-floating-label="Country"
+                     md-selected-item-change="selectedItemChange(vm.selectedItem)">
+                     <md-item-template>
+                        <span>{{item.country}}</span>
+                     </md-item-template>
+                  </md-autocomplete>
+               </div>
+               <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+                  <md-switch ng-model="cb" ng-change="vm.onChange(cb)" aria-label="Switch 1" tabindex="10" class="md-primary">
+                     Use billing address as shipping address
+                  </md-switch>
+               </div>
+            </div>
+            <div ng-show="vm.showShipping">
+               <div layout="column" layout-gt-xs="row" style="background-color:#F6F6F6;height: 50px;">
+                  <div class="toolbarCompose" layout="row" layout-align="space-between center">
+                     <div style="padding-left: 12px;">Shipping Address</div>
+                  </div>
+                  <div flex>
+                    <!--  <md-icon md-font-icon="icon-arrow-down-bold-circle-outline" ng-click="vm.addressChange()" style="padding-top:9px;"> -->
+                     <md-icon style="margin-left: 12px;padding-top:13px;" md-font-icon="icon-repeat" ng-click="vm.addressChange()"></md-icon>
+                  </div>
+               </div>
+               <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                     
+                     <input placeholder="Street" ng-model="vm.contact.shippingAddress.s_street" tabindex="5">
+                  </md-input-container>
+               </div>
+               <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                     
+                     <input placeholder="City" ng-model="vm.contact.shippingAddress.s_city" tabindex="6">
+                  </md-input-container>
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                    
+                     <input placeholder="State" ng-model="vm.contact.shippingAddress.s_state" tabindex="7">
+                  </md-input-container>
+               </div>
+               <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                    
+                     <input placeholder="Zip Code" ng-model="vm.contact.shippingAddress.s_zip" tabindex="8">
+                  </md-input-container>
+                  <md-autocomplete class="no-float"
+                     flex="" 
+                     tabindex="9"
+                     md-selected-item="vm.selectedItemShipping" 
+                     md-search-text="vm.searchText1"
+                     md-items="item in vm.querySearchShipping(vm.searchText1)" 
+                     md-item-text="item.country" 
+                     md-floating-label="Country"
+                     md-selected-item-change="selectedItemChange(vm.selectedItemShipping)">
+                     <md-item-template>
+                        <span>{{item.country}}</span>
+                     </md-item-template>
+                  </md-autocomplete>
+               </div>
+    
+            </div>
+            <div class="toolbarCompose" layout="column" layout-gt-xs="row" style="background-color:#F6F6F6;height: 50px;">
+               <div layout="row" layout-align="space-between center">
+                  <div style="padding-left: 12px;">Contact Information</div>
+               </div>
+            </div>
+            <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Phone" name="phone" type="text"  ng-model="vm.contact.phone" ng-pattern="/^[0-9 ()+-]+$/" tabindex="11" >
+                  <div ng-messages="supplierCompose.phone.$error" role="alert">
+                  <div ng-message-exp="['pattern']">
+                      Your phone number should only include numeric values.
+                  </div>
+                  </div>
+               </md-input-container>
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Mobile" name="mobile" type="text"  ng-model="vm.contact.mobile" ng-pattern="/^[0-9 ()+-]+$/" tabindex="12">
+                  <div ng-messages="supplierCompose.mobile.$error" role="alert">
+                  <div ng-message-exp="['pattern']">
+                      Your mobile number should only include numeric values.
+                  </div>
+                  </div>
+               </md-input-container>
+            </div>
+            <div class="dialogContent pad_32" layout-gt-sm="row" style="padding-top: 0px;padding-bottom: 0px;">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Fax" name="fax" type="text" ng-model="vm.contact.fax" ng-pattern="/^[0-9 ()+-]+$/" tabindex="13">
+                  <div ng-messages="supplierCompose.fax.$error" role="alert">
+                  <div ng-message-exp="['pattern']">
+                      Your fax number should only include numeric values.
+                  </div>
+                  </div>
+               </md-input-container>
+
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="www.your-domain.com" name="website" ng-model="vm.contact.website" ng-pattern="/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/" tabindex="14">
+                  <div ng-messages="supplierCompose.website.$error" role="alert">
+                  <div ng-message-exp="['pattern']">
+                    Enter valid website address.
+                  </div>
+                </div>
+               </md-input-container>
+            </div>
+            <!-- <div class="toolbarCompose" layout="column" layout-gt-xs="row" style="background-color:#F6F6F6;height: 50px;">
+               <div layout="row" layout-align="space-between center">
+                  <div style="padding-left: 12px;">Optional Details</div>
+               </div>
+            </div> -->
+            <div class="toolbarCompose">
+          <div class="optional" layout="row" layout-align="space-between center">
+              Optional Details
+              <md-button class="md-primary" ng-click="vm.showMoreInfo = !vm.showMoreInfo;">
+                <md-icon md-font-icon="icon-chevron-down" ng-hide="vm.showMoreInfo"></md-icon>
+                <span ng-hide="vm.showMoreInfo">More</span>
+                <md-icon md-font-icon="icon-chevron-up" ng-show="vm.showMoreInfo"></md-icon>
+                <span ng-show="vm.showMoreInfo">less</span>
+              </md-button>
+          </div>
+         </div>  
+            <div class="dialogContent pad_32" layout-gt-sm="row" ng-show="vm.showMoreInfo">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                
+                  <input placeholder="Notes" ng-model="vm.contact.notes" tabindex="15">
+               </md-input-container>
+            </div>
+            <div class="toolbarCompose" layout="column" layout-gt-xs="row"  ng-show="vm.showMoreInfo" ng-if="vm.contact.customFields.length" style="background-color:#F6F6F6;height: 50px;">
+               <div layout="row" layout-align="space-between center">
+                  <div style="padding-left: 12px;">Additional Details</div>
+               </div>
+            </div>
+  
+   <div class="dialogContent pad_32" layout="column" ng-show="vm.showMoreInfo" ng-repeat="txt in vm.contact.customFields" flex>
+     <div layout="row" flex>
+        <md-input-container md-no-float  flex ng-if=" txt.type== 'textBox'" style="margin-top:20px;">
+             <input aria-label="ttt" placeholder="{{txt.labelShown}}" ng-model="txt.value" type="txt.inputType" tabindex="16">
+           </md-input-container>
+     </div>
+     <div layout="row" flex>
+       <md-input-container flex ng-if=" txt.type== 'selectBox'">
+             <label>{{txt.labelShown}}</label>
+             <md-select placeholder="{{txt.labelshown}}" ng-model="txt.value" tabindex="17">
+               <md-option ng-repeat="nn in txt.fields" value="{{nn}}">{{nn}}</md-option>
+             </md-select>
+           </md-input-container>
+     </div>
+    
+  </div>
+
+          </form>
+         </md-content> 
+        <div class="footersection">
+            <md-button class="md-primary" style="border:2px solid" ng-disabled="supplierCompose.$invalid" ng-click="vm.editCustomer(vm.contact)">edit</md-button>
+            <md-button class="md-primary md-hue-3" style="border:2px solid" ng-click="vm.cancelDialog()">cancel</md-button>
+         </div>
+</md-dialog>

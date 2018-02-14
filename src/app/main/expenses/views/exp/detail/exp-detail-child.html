@@ -1,0 +1,181 @@
+    <!-- Product -->
+    <div class="card" flex id="pdfView">
+       <!--  <div ng-show="vm.detailProgress" class="detailProgress" layout="column" layout-align="center center" >
+            <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+            <div>Loading ...</div>
+        </div> -->
+        <div class="pro-header" layout="row"  layout-align="space-between center">
+            <div  layout="column" class="product-name">{{vm.baseCurrency}} {{vm.expenseForUniquekey.totalValue | valRndUp}}</div> 
+        </div>
+
+        <!-- CONTENT -->
+        <md-content class="content" flex>                
+            <div layout="row" flex layout-sm="column" class="mainContent">
+                <div layout="column" flex  class="columnOne">
+                    <img ng-if="vm.expenseForUniquekey.uploadImage.length > 0" id="pro-image"  class="img-content" 
+                    ng-src="{{vm.imageCode}}"  ng-click="vm.viewImageInTab()">
+                  <!--   <img  src="app/main/products/img/default.jpg" id="pro-image"  class="img-content" 
+                       ng-if="vm.expenseForUniquekey.uploadImage.length == 0" 
+                        > -->
+                    <div class="img-content-empty"  ng-if="vm.expenseForUniquekey.uploadImage.length === 0" layout layout-align="center center"> 
+                        <span style="color: rgba(138, 128, 128, 0.88);font-size: 20px;"> Expense image not available</span>
+                    </div>
+                </div>
+                <div flex="5"></div>
+                <div layout="column" flex class="columnTwo">
+                    <div flex layout="row" ng-if="vm.expenseForUniquekey.description != '' ">                        
+                        {{vm.expenseForUniquekey.description}}
+                    </div>
+
+                    <div layout="row" flex="10" flex-sm="10" ng-if="vm.expenseForUniquekey.description != ''"></div>
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+
+                    <div flex layout="row" class="header-section">    
+                        <div flex flex-sm layout="column" layout-align="start end" class="header-title">
+                            Expense No
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.expenseForUniquekey.expenseID}}
+                        </div> 
+                        <div flex-sm="35"></div>       
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                         
+                            Date
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">        
+                            {{vm.expenseForUniquekey.createDate | toDateObject}}
+                        </div> 
+                        <div flex-sm="35"></div>             
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            Category
+                        </div>  
+                        <div flex="10" flex-sm="5"></div>       
+                        <div flex layout="column">                                        
+                            {{vm.expenseForUniquekey.category}}
+                        </div>   
+                        <div flex-sm="35"></div>           
+                    </div>
+                  
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            Amount
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.expenseForUniquekey.amount | valRndUp}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section" ng-if="vm.expenseForUniquekey.tax.taxName">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            Tax
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                             
+                            {{vm.expenseForUniquekey.tax.taxName}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section" ng-if="vm.expenseForUniquekey.vendor">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            Supplier
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.expenseForUniquekey.vendor}}
+                        </div>  
+                        <div flex-sm="35"></div>            
+                    </div>
+                    <div flex layout="row" class="header-section" ng-if="vm.expenseForUniquekey.reference">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                       
+                            Reference
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.expenseForUniquekey.reference}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">
+                            Status
+                        </div>  
+                        <div flex="10" flex-sm="5"></div>       
+                        <div flex layout="column">                                        
+                            {{vm.expenseForUniquekey.status}}
+                        </div>  
+                        <div flex-sm="35"></div>            
+                    </div>
+
+
+                    <div flex layout="row" class="header-section" ng-if="vm.expenseForUniquekey.dueDate">    
+                        <div flex flex-sm layout="column" layout-align="start end" class="header-title">
+                            Due Date
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.expenseForUniquekey.dueDate | toDateObject}}
+                        </div> 
+                        <div flex-sm="35"></div>       
+                    </div>
+                    <div flex layout="row" class="header-section" ng-if="vm.expenseForUniquekey.assignCustomer">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            Assign To
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">        
+                            {{vm.expenseForUniquekey.assignCustomer}}
+                        </div> 
+                        <div flex-sm="35"></div>             
+                    </div>
+
+
+                    <div flex layout="row" class="header-section">    
+                        <div flex flex-sm layout="column" layout-align="start end" class="header-title">
+                            Billable
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.expenseForUniquekey.billable}}
+                        </div> 
+                        <div flex-sm="35"></div>       
+                    </div>
+                    <!-- <div flex="10"  flex-sm="10"></div>     -->                
+                </div>
+            </div>
+            <div layout="row" class="tag-content" style="padding-top: 15px;" ng-if="vm.expenseForUniquekey.tags.length">
+                <div layout="column" class="main">                    
+                    <div layout="row" class="tag-header">
+                        TAGS
+                    </div>
+                    <div layout="row" class="tag-items">
+                        <span ng-repeat="item in vm.expenseForUniquekey.tags" >
+                            {{item}} &nbsp;
+                        </span>                      
+                    </div>
+                </div>
+            </div>
+
+            <div layout="row" class="tag-content" style="padding-top: 15px;" ng-if="vm.expenseForUniquekey.customFields.length">
+                <div layout="column" class="main">                    
+                    <div layout="row" class="tag-header">
+                        ADDITIONAL INFORMATION
+                    </div>
+                    <div layout="column" class="tag-items">
+                        <div ng-repeat="cus in vm.expenseForUniquekey.customFields">
+                            <span ng-show="cus.value" flex>{{cus.labelShown}} : {{cus.value}}</span>
+                        </div>                 
+                    </div>
+                </div>
+            </div>
+
+ 
+        </md-content>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / Product -->

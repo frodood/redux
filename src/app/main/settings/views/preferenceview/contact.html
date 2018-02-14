@@ -1,0 +1,23 @@
+
+<div class="toolbar" layout="row" layout-align="start center">
+	<md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('settingsidenav')" hide-gt-md aria-label="Toggle left sidenav">
+		<md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+	</md-button>
+	<h1>Contact Preference</h1>
+</div>
+<div id="setting" class="contentsection" layout="column" flex>
+
+<ms-spinner-component name="setting-loadConatctPref-spinner" size="32" relative-position="false" on-loaded="vm.settingConatctPrefSpinnerLoaded(spinnerApi)"></ms-spinner-component>	
+
+<ms-spinner-component name="setting-contactPref-spinner" size="32"  relative-position="false"></ms-spinner-component>	
+
+<md-content class="md-content" ms-scroll flex>
+
+	<div ng-include="'app/main/settings/views/preferenceview/contactForm.html'" ></div>
+
+</md-content>
+
+<div class="footersection" layout="row" layout-align="end center">
+	<md-button class="md-primary" style="border:2px solid;" ng-click="vm.save()">Save</md-button>
+</div>
+</div>

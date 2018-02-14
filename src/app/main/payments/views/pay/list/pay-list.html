@@ -1,0 +1,64 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<!-- <div class="empty-items" ng-if="vm.paymentSummary.length === 0">There are no Payments</div>
+<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.paymentSummary">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading Payments...</div>
+</div> -->
+<ms-spinner-component name="pay-list-spinner" size="32" relative-position="false" spinner-Text="Loading payments" ng-if="!vm.paymentSummary" on-loaded="vm.payListSpinnerLoaded(spinnerApi)"></ms-spinner-component>
+
+<ms-empty-state-component ng-if="vm.paymentSummary.length == 0" offset-height="176" state-context="'list'"
+state-header="'Its empty here…'" state-message="'Add a new payment to get started!'" component-size="'large'">
+</ms-empty-state-component>
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start -->
+<div class="pay-item {{item.status}}" md-ink-ripple
+     ng-repeat="item in vm.paymentSummary | filter: global.search"
+     ng-click="vm.openItem(item)"
+     ng-if="item.paymentStatus !== 'Delete'"
+     ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}"> 
+    <div class="primarycontainer" layout="row" layout-align="start center">
+        
+        <div class="cygil">
+            <div class="avatar" ms-random-class="vm.contactColors" style="margin-left:8px;">
+                {{item.profileName[0] | uppercase}}
+            </div>
+        </div>
+
+        <div class="info" flex layout="column">
+            <div class="primaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">{{item.receiptID}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">{{item.createDate | toDateObject }}</span>
+            </div>
+
+            <div class="secondaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">Customer : {{item.profileName}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">Transaction Date : {{item.lastTranDate | toDateObject }}</span>
+                <div class="divider-vertical" ng-if="item.paidTypes"></div>
+                <span class="text-truncate" ng-if="item.paidTypes">Payment Method : {{item.paidTypes}}</span> 
+            </div>
+
+        </div>
+
+        <div class="status" layout="column" layout-align="center end">
+            <span class="text-truncate">{{vm.baseCurrency}} {{item.recievedAmount | valRndUp}}</span>
+            <div ng-if="item.statusTxt === 'Cancelled'" class="payStatus {{item.statusTxt}}" layout="row" layout-align="start center">
+                <div class="status-circle"></div>
+                <div class="status-label">{{item.statusTxt}}</div>
+            </div>
+        </div>
+
+        <div layout="column" layout-align="space-between end">
+            <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('starred', item, $event)"
+                       aria-label="Toggle starred">
+                <md-icon ng-if="item.favoriteStar" md-font-icon="icon-star"
+                         class="amber-fg"></md-icon>
+                <md-icon ng-if="!item.favoriteStar" md-font-icon="icon-star-outline"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>

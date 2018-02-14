@@ -1,0 +1,26 @@
+<div ng-show="esDefiner" class="scaleSectionContainer" layout="column">
+    <div class="scaleSection" layout="column">
+        <div class="sectionLabel">
+            <span>Current</span><span> : {{current | currency:""}}</span>
+        </div>
+        <div class="sectionCoverage">
+        </div>
+    </div>
+    <div class="scaleSection" layout="column">
+        <div class="sectionCoverage">
+        </div>
+        <div class="sectionLabel">
+            <span>Overdue</span><span> : {{overdue | currency:""}}</span>
+        </div>
+        <md-tooltip md-direction="top" class="customOvdBDtooltip">
+            <div class="breakdownSection" ng-repeat="bkCell in ageLitData | orderBy:'periodColocIndex'">
+                <span>{{bkCell.periodValue | currency:""}}</span>
+                <span>{{bkCell.periodIndicator}} days</span>
+            </div>
+        </md-tooltip>
+    </div>
+</div>
+<div ng-hide="esDefiner" class="empty-state pad_16" layout="column" layout-align="center center">
+    <span class="esheader">No Outstanding</span>
+    <!-- <span class="escontent">There were no outstanding's for the time frame you selected, please select a different time frame.</span> -->
+</div>

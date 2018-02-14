@@ -1,0 +1,10 @@
+<div class="countryLookupContainer" layout="row" flex>
+	<md-autocomplete class="no-float" flex ng-required="{{vm.required}}" md-search-text="vm.countrySearchText" md-selected-item="vm.selectedCountry" md-min-length="0" md-items="item in vm.countryList | filter:vm.countrySearchText" md-item-text="item.country" md-floating-label="{{vm.placeholder}}" md-autofocus="false" md-selected-item-change="vm.selectedCountryChange(vm.selectedCountry)" md-no-cache="false">
+		<md-item-template ms-scroll>
+			<span md-highlight-text="vm.countrySearchText" md-highlight-flags="^i">{{item.country}}</span>
+		</md-item-template>
+		<div ng-messages="vm.countrySearchText.$error">
+			<div ng-message="required">This is required.</div>
+		</div>
+    </md-autocomplete>
+</div>

@@ -1,0 +1,56 @@
+
+<div id="contacts" class="page-layout carded boxed right-sidenav" layout="row">
+
+  <!-- CENTER -->
+  <div class="center" layout="column" layout-align="center center" flex>
+
+    <!-- CONTENT-CARD -->
+    <div class="content-card" layout="column" flex>
+
+      <!-- PRIMARY TOOLBAR -->
+      <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-icon-button close-thread" aria-label="Back"
+                               ng-click="vm.toggleChildStates('app.contacts.customer')">
+                        <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+                    </md-button>
+
+                    <div class="divider-vertical"></div>
+
+                    <h2>New Customer</h2>
+                </div>
+                <div layout="row" layout-align="start center">
+                    
+                </div>
+            </div>
+                <!-- / CONTENT TOOLBAR -->
+
+            <ms-spinner-component name="conCustomer-compose-spinner" size="32"  relative-position="false"></ms-spinner-component>    
+
+            <!-- CONTENT -->
+            <md-content flex ms-scroll>
+
+                <!-- DEMO CONTENT -->  
+                
+          <div ng-include="'app/main/contacts/views/customer/compose/customerComposeChild.html'"></div>
+        
+                <!-- / DEMO CONTENT -->
+
+            </md-content>
+            <!-- / CONTENT -->
+
+            
+        <div class="footersection">
+         <div layout-align="end center">            
+            <md-button class="md-primary" ng-click="vm.submit(contactCompose)" ng-disabled="contactCompose.$invalid" style="border:2px solid">Save</md-button>
+            <md-button class="md-primary md-hue-3" ng-click="vm.cancel()" style="border:2px solid">Cancel
+            </md-button>
+          </div>
+        </div>
+    </div>
+    <!-- /CONTENT-CARD-->
+
+  </div>
+  <!-- /CENTER -->
+
+</div>

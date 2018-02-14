@@ -1,0 +1,38 @@
+<div id="Settings" class="page-layout carded left-sidenav" layout="row">
+
+    <!-- SIDENAV -->
+    <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="settingsidenav" ms-scroll ms-sidenav-helper style="background:#F5F5F5;">
+
+        <!-- SIDENAV CONTENT -->
+        <md-content class="content" flex ms-scroll style="padding:16px !important;">
+
+            <!-- NG-INCLUDE SIDE NAV CONTENT -->
+            <div ng-include="'app/main/settings/views/primaryview/primary-sidenav.html'"></div>
+            <!-- / NG-INCLUDE SIDE NAV CONTENT -->
+
+        </md-content>
+        <!-- / SIDENAV CONTENT -->
+
+    </md-sidenav>
+    <!-- / SIDENAV -->
+ 
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT CARD -->
+        <!-- <div > -->
+
+        <!-- CONTENT -->
+
+        <!-- <div ui-view="settingsView" class="content-card" layout="column" style="overflow:auto; min-height:100%;"></div> -->
+        <div ui-view="settingsView" class="content-card" layout="column" style="min-height:100%;"></div>
+
+        <!-- / CONTENT -->
+
+        <!--  </div> -->
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

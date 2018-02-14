@@ -1,0 +1,39 @@
+<md-dialog class="customDialogBox frmModal" aria-label="Mango (Fruit)">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2></h2>
+			<span flex>Edit Expense Category</span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent pad_32">
+		<form name="editForm" novalidate>
+			<md-content flex>
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container flex md-no-float>
+						<input type="text" ng-model="vm.expenseCategory" placeholder="Expense Category">
+						<span style="font-size:12px;color:red;" ng-show="vm.sameLabelName">{{vm.erromessage}}</span>
+					</md-input-container>
+					<md-input-container md-no-float flex>
+						<md-select ng-model="vm.expenseType" placeholder="Type">
+							<md-option value="COGS">Cost of Good Sold (COGS)</md-option>
+							<md-option value="OPEX">Operating Expenses (OPEX)</md-option>
+							<md-option value="CAPEX">Capital Expenditure (CAPEX)</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+			</md-content>
+		</form>
+	</div>
+	<div class="dialogFooter">
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid" >
+			Edit
+		</md-button>
+		<md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+			Cancel
+		</md-button>
+	</div>	
+
+</md-dialog>

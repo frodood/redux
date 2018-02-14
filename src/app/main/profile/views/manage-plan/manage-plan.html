@@ -1,0 +1,32 @@
+<div id="manage-plan-tab" layout="column">
+    <div class="subheader" layout="row">
+        Plan Details
+    </div>
+	<div class="currentPlanContainer pad_32">
+		<div class="paidPlanBannerContainer" layout="row" ng-show="vm.planDetailsLoaded">
+			<div class="summarySection" flex layout="column" layout-align="center center">
+                <div class="currentPlanDetail" layout="column" layout-align="center center">
+                    <span>You're currently on the</span>
+                    <span>{{vm.currentPlanDesc}}</span>
+                </div>
+                <md-button ng-hide="isAccPaid" class="md-raised md-primary upgrade" ng-click="vm.navigateplanupgrade()">
+                    <md-icon md-font-icon="icon-flag"></md-icon>
+                    <span>Upgrade</span>
+                </md-button>
+                <md-button ng-show="isAccPaid" class="md-primary md-hue-3" style="border:2px solid;" ng-click="vm.initiatePlanChange()">
+                    <span>Change Plan</span>
+                </md-button>  
+            </div>
+            <div ng-show="isAccPaid" class="summarySection" flex layout="column" layout-align="center center">
+                <div class="currentPlanDetail" layout="column" layout-align="center center">
+                    <span>Your plan currently allows you to have</span>
+                    <span>{{vm.userSlotCount}} Users</span>
+                </div>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md-hue-3" style="border:2px solid;" ng-click="vm.removeAlacart($event)"><span>Remove Users</span></md-button>
+                    <md-button class="md-primary" style="border:2px solid;" ng-click="vm.addAlacart($event)"><span>Add Users</span></md-button>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

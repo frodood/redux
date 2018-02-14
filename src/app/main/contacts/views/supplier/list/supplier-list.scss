@@ -1,0 +1,221 @@
+#contacts {
+
+    .center {
+
+        .content-card {
+
+            .content-wrapper {
+                background: #FAFAFA;
+
+                .item-list {
+                    position: relative;
+                    padding: 0;
+
+                    .empty-items {
+                        background: #FAFAFA;
+                        width: 100%;
+                        text-align: center;
+                        padding: 32px;
+                        font-size: 20px;
+                    }
+
+                    .loading-items {
+                        background: #FAFAFA;
+                        width: 100%;
+                        text-align: center;
+                        padding: 32px;
+                        font-size: 20px;
+                    }
+
+                    .panel-body {
+                        overflow: scroll;
+                        height: 100px;
+                    }
+
+                    
+
+                    .item {
+                        background: #FAFAFA;
+                        position: relative;
+                        padding: 16px 24px;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                        cursor: pointer;
+
+                        &.untouched {
+                            background: #FFFFFF;
+
+                            .info {
+
+                                .name,
+                                .subject {
+                                    font-weight: 700;
+                                }
+
+                                .message {
+
+                                    .labels {
+                                        background: #FFFFFF;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.selected {
+                            background: #dce7f2;
+
+                            .info {
+
+                                .message {
+
+                                    .labels {
+                                        background: #dce7f2;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.current-item {
+                            background: #E3F2FD;
+
+                            .info {
+
+                                .message {
+
+                                    .labels {
+                                        background: #E3F2FD;
+                                    }
+                                }
+                            }
+                        }
+
+                        .info {
+                            overflow: hidden;
+                            width: 0;
+                            margin: 0 16px;
+
+                            .primaryInfo {
+                                font-size: 15px;
+                                font-weight: 500;
+                                padding-bottom: 8px;
+
+                                .avatar {
+                                    min-width: 32px;
+                                    width: 32px;
+                                    height: 32px;
+                                    line-height: 32px;
+                                }
+
+                                .has-attachment {
+                                    margin-left: 8px;
+                                    transform: rotate(90deg);
+                                }
+                            }
+
+                            .secondaryInfo {
+                                span{
+                                    opacity:0.8;
+                                    font-size:14px;
+                                    font-weight:500;
+                                }
+                            }
+
+                            .expandedDetails {
+                                position: relative;
+                                color: rgba(0, 0, 0, 0.54);
+
+                                .labels {
+                                    position: absolute;
+                                    background: #FAFAFA;
+                                    top: 0;
+                                    right: 0;
+                                    padding-left: 6px;
+
+                                    .label {
+                                        display: inline-block;
+                                        font-size: 11px;
+                                        padding: 0 5px;
+                                        margin-right: 6px;
+
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .status {
+                            font-weight:500;
+
+                            span:nth-child(1){
+                                font-size:16px; 
+                            }
+                            .contactStatus{
+                                font-size: 12px;
+                                border-radius: 2px;
+                                margin: 8px 0 0 0;
+                                padding: 3px 8px;
+                                color:#fafafa;
+                                background-color: rgba(0, 0, 0, 0.08);
+
+                                .status-circle{
+                                    width: 8px;
+                                    height: 8px;
+                                    margin-right: 8px;
+                                    border-radius: 50%;
+                                    background-color:#fafafa;
+                                }
+
+                                &.Active{
+                                    background-color:#8BC34A;
+                                    border:1px solid #689F38;
+                                }
+
+                                &.Inactive{
+                                    background-color:#7f8c8d;
+                                    border:1px solid #697272;
+                                }
+
+                                &.Partial{
+                                    background-color:#FF9800;
+                                     border:1px solid #F57C00;
+                                }
+
+                                &.Cancelled{
+                                    background-color:#9E9E9E;
+                                     border:1px solid #757575;
+                                }
+
+                                &.Overdue{
+                                    background-color:#9C27B0;
+                                     border:1px solid #7B1FA2;
+                                }
+
+                                &.Draft{
+                                    background-color:#607D8B;
+                                     border:1px solid #455A64;
+                                }
+
+                            }
+                        }
+
+                        .time {
+                            margin: 0 8px 6px 8px;
+                        }
+
+                        .actions {
+
+                            .md-icon-button {
+                                margin: 0;
+                                padding: 0;
+                                width: 32px;
+                                height: 32px;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}

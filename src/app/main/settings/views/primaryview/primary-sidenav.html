@@ -1,0 +1,33 @@
+<style type="text/css">
+     .selectedIndex{
+                background-color: #d8d7d7;
+            }
+</style>
+<div class="demo-sidenav">
+    <md-list class="md-list">
+        <div class="ng-repeat" ng-repeat="settingsNavItem in vm.settingsNavList">
+            <md-list-item class="nanItem" ng-click="vm.navigateSettingsStates(settingsNavItem.navState,$index)" ng-class="{selectedIndex: vm.selectedIndex===$index}">
+                <div layout layout-align="start center">
+                 <md-icon  style="margin-right: 10px; margin-left: 8px;" md-font-icon="icon-{{settingsNavItem.imagePath}}"></md-icon>
+                </div>
+                <p>{{settingsNavItem.navTitle}}</p>
+                <div ng-if="settingsNavItem.navTitle=='Preferences'" layout layout-align="start center" ng-hide="vm.showDropDownIcon">
+                 <md-icon  style="margin-right: 10px;" md-font-icon="icon-chevron-left"></md-icon>
+                </div>
+                <div ng-if="settingsNavItem.navTitle=='Preferences'" layout layout-align="start center" ng-show="vm.showDropDownIcon">
+                 <md-icon  style="margin-right: 10px;" md-font-icon="icon-chevron-down"></md-icon>
+                </div>
+            </md-list-item>
+            <div ng-show="vm.pref">
+            <div ng-if="settingsNavItem.navTitle=='Preferences'" ng-repeat="pref in vm.preference">
+                 <md-list-item ng-click="vm.preferenceChange(pref.appUrl,$index)" ng-class="{selectedIndex: vm.selectedPrefIndex===$index}">
+                    <p style="margin-left:34px;">{{pref.appName}}</p>
+                </md-list-item>
+            </div>
+           
+            </div>
+            
+            <md-divider></md-divider>
+        </div>
+    </md-list>
+</div>

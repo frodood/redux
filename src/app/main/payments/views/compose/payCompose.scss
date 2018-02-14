@@ -1,0 +1,342 @@
+#paymentCompose {
+    .center {
+
+        .content-card {
+            overflow-x:hidden; 
+
+            .mainsection{
+
+                .composeform{
+                    font-size:15px;
+                    width:100%;
+
+                    .formSection{
+                        width:100%;
+                        // background:red;
+
+                        .row_encap{
+                            width:100%;
+
+                            .customerinfo{
+
+                                .cusInfo_header{
+
+                                    md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                                        margin-top: 0px;
+                                        font-size:18px;
+                                        > label {
+                                            -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                                            transform: translate3d(1px,28px,0) scale(1) !important;
+                                            color: #BDBDBD;
+                                        }
+                                        &.md-input-has-value > label {
+                                            display: none !important;
+                                        }
+                                    }
+                                }
+
+                                .commonPayInfo{
+
+                                    .md-datepicker-input-container{
+                                        width:84%;
+                                    }
+
+                                    md-input-container{
+                                        width:96% !important;
+                                    }
+
+                                    md-input-container:nth-child(1){
+                                        margin-top:27px !important;  
+                                    }
+                                }
+
+                            }
+
+                            .paymentinfo{
+
+                                .payInfo_header{
+                                    width:100%;
+                                    height:74px;
+                                    font-size:18px; 
+                                }
+
+                                .commonPayInfo{
+
+                                    .marginEx{
+                                        margin:0px !important;
+                                    }
+
+                                    .marginEx:nth-child(1){
+                                        margin-top:3px !important;
+                                    }
+                                }
+                            }
+
+                            .payMethod{
+                                width:100%;
+                            }
+
+                            &.pad_32{
+                                padding:32px;
+                            }
+
+                            &.pad_16{
+                                padding:16px;
+                            }
+
+                            &.sectionHeader{
+                                // background:#f6f6f6;
+                                background:#f6f6f6;
+                                font-size:18px;
+                                height:48px;
+                                line-height:48px;
+                                padding:0px 32px;
+                            }
+
+                            &.sectionFooter{
+                                border-top:1px solid rgba(0,0,0,0.08);
+                            }
+                        }
+
+                        .paymentSummary{
+                            width:100%;
+
+                            .summaryblocks{
+                                height:128px;
+                                margin-bottom:16px;
+
+                                span:nth-child(1){
+                                    font-size:16px;
+                                    font-weight:500;
+                                    color:rgba(0,0,0,0.6); 
+                                }
+
+                                span:nth-child(2){
+                                    font-size:26px;
+                                    font-weight:300;
+                                    color:rgba(0,0,0,0.8); 
+                                }
+
+                                &.unappliedAdvances{
+                                    background:#F6F6F6;
+                                }
+
+                                &.availableAdvances{
+                                    background:#F0F0F0;
+                                    border-left:5px solid #FFFFFF;
+                                    border-right:5px solid #FFFFFF;
+                                }
+
+                                &.appliedAdvances{
+                                    background:#2D6297;
+
+                                    span:nth-child(1){
+                                        color:#ffffff;
+                                    }
+
+                                    span:nth-child(2){
+                                        color:#ffffff;    
+                                    }
+                                }
+                            } 
+                        }
+                        .summary{
+                            width:100%;
+
+                            .totalVal{
+                                width: 100%;
+                                height:128px;
+                                margin-bottom:16px;
+
+                                i{
+                                    font-weight:500;
+                                    font-size:16px;
+                                    color:rgba(255,255,255,0.5);
+                                }
+                                span:nth-child(1){
+                                    font-size:16px;
+                                    font-weight:500;
+                                    color:rgba(0,0,0,0.6); 
+                                }
+
+                                span:nth-child(2){
+                                    font-size:26px;
+                                    font-weight:300;
+                                    color:rgba(0,0,0,0.8); 
+                                }
+
+                                &.unappliedAdvances{
+                                    background:#F6F6F6;
+                                }
+
+                                &.availableAdvances{
+                                    background:#F0F0F0;
+                                    border-left:5px solid #FFFFFF;
+                                    border-right:5px solid #FFFFFF;
+                                }
+
+                                &.appliedAdvances{
+                                    background:#2D6297;
+
+                                    span:nth-child(1){
+                                        color:#ffffff;
+                                    }
+
+                                    span:nth-child(2){
+                                        color:#ffffff;    
+                                    }
+                                }
+                            }
+                        }
+                        .lineitems{
+                            width:100%;
+
+                            .list-items-header{
+                                width:100%;
+                                height:48px;
+                                font-weight:500;
+                                color:#2D6296;
+                                border-top:1px solid rgba(0, 0, 0, 0.08);
+                                border-bottom:1px solid rgba(0, 0, 0, 0.08);
+
+                                .list-item-header-control{
+                                    width:48px; 
+                                    height:100%;
+                                }
+
+                                .list-item-header-title{
+
+                                    &.left{
+                                        text-align:left;
+                                    }
+
+                                    &.center{
+                                        text-align:center;
+                                    }
+
+                                    &.right{
+                                        text-align:right;
+                                    }
+                                }
+                            }
+
+                            .line-items-container {
+
+                                .line-items{
+
+                                    .line-item {
+                                        padding: 16px 16px 16px 48px;
+
+                                        .handle {
+                                            display: block;
+                                        }
+                                    }
+                                }
+
+                                .line-items {
+                                    overflow-x: hidden;
+
+                                }
+                            }
+
+                            .line-item {
+                                position: relative;
+                                background:#F6F6F6;
+                                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                                text-transform: none;
+                                cursor: pointer;
+
+                                &.line-item-placeholder {
+                                    background: rgba(0, 0, 0, 0.12);
+                                    * {
+                                        opacity: 0;
+                                    }
+                                }
+
+                                .handle {
+                                    height: 100%;
+                                    width: 48px;
+                                    cursor: move;
+                                    text-align: center;
+
+                                    md-checkbox, .md-button{
+                                        margin:0px !important
+                                    }
+                                }
+
+                                &.selected {
+                                    background: #FFF8E1;
+                                }
+
+                                .info {
+                                    padding:8px 0px;
+                                    width:100%;
+
+                                    .item-value{
+
+                                        &.left{
+                                            text-align:left;
+                                        }
+
+                                        &.center{
+                                            text-align:center;
+                                        }
+
+                                        &.right{
+                                            text-align:right;
+                                        }
+
+                                        md-input-container{
+                                            margin:0px !important;
+
+                                            .md-errors-spacer{
+                                                display:none; 
+                                            }
+
+                                            input{
+                                                text-align:right;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .buttons {
+                                    height: 100%;
+                                    width: 96px;
+                                    top: 0;
+                                    left: 0;
+                                    cursor: move;
+                                    text-align: center;
+                                }
+                            }
+
+
+                            .empty-line-items-container{
+                                padding:32px;
+                                font-weight:500;
+                                color:rgba(0,0,0,0.84); 
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+            .footersection{
+                width:100%;
+                padding:12px 24px;
+                border-top:1px solid rgba(0, 0, 0, 0.12);
+
+                button{
+                    float:right;
+                    margin:0px;
+                }
+
+                button:nth-child(2){
+                    margin-right:12px;
+                }
+            }
+        }
+    }
+}

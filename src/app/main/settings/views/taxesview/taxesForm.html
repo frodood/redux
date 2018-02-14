@@ -1,0 +1,129 @@
+<md-list class="md-list" style="padding:0px 0px 0px 0px;" ms-scroll-height-fix-component scrolloffset-height="112">
+    <div class="subHeader" layout="row" layout-align="space-between center" style="border-bottom: 1px solid #ededed;">
+        <div class="title" >
+            Individual Taxes
+        </div>
+        <md-button class="md-secondary md-primary" ng-click="vm.individualtaxesAdd($event)" >
+            <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+            Add
+        </md-button>
+    </div>
+    <div class="layout" layout-gt-sm="column">
+    <div class="as-sortable" as-sortable="sortable-container.sortableOptions" ng-model="vm.Settings12thdoor.taxes.individualTaxes">
+        <div class="ng-repeat" ng-repeat="item in vm.Settings12thdoor.taxes.individualTaxes" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+            <!-- <md-card class="add-mdcard" ng-class="item.activate ? '' : 'inactivate'" as-sortable-item-handle flex>
+                <md-card-content style="margin: -13px;"> -->
+            <div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 15px 0px 16px;">
+                <div flex>
+                    <span style="color:#808080;">
+                        {{item.taxName}}
+                        <md-tooltip md-direction="right">Tax Name</md-tooltip>
+                    </span>
+                </div>
+                <div flex>
+                    <span style="color:#808080;">
+                        {{item.rate}}%
+                        <md-tooltip md-direction="right">Rate %</md-tooltip>
+                    </span>
+                </div>
+                <div flex="10" ng-if="!item.compound">
+                </div>
+                <div>
+                </div>
+                <div flex="10" ng-if="item.compound">
+                    <md-icon md-font-icon="icon-playlist-plus" style="color:#7BD97B;"></md-icon>
+                    <md-tooltip md-direction="right">Compound</md-tooltip>
+                </div>
+                <div flex>
+                    <md-menu ng-if="item.taxName != 'No Tax'" md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100" >
+                        <md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+                            <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-click="vm.individualtaxesEdit(item , $event)">
+                                    <p>Edit</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="vm.individualtaxesDelete(item, $index)">
+                                    <p>Delete</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="vm.individualtaxesInactivate(item,$index)">
+                                    <p>{{item.labelIndividualTaxStatus}}</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </div>
+            <!-- </md-card-content>
+                </md-card> -->
+        </div>
+    </div>
+    <div class="subHeader" layout="row" layout-align="space-between center" style="border-bottom: 1px solid #ededed;">
+        <div class="title" >
+            Multiple Tax Groups
+        </div>
+        <md-button class="md-secondary md-primary" ng-click="vm.multipletaxgroupAdd($event)">
+            <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+            Add
+        </md-button>
+    </div>
+    <div class="as-sortable" as-sortable="sortableOptions" ng-model="ads">
+        <div class="ng-repeat" ng-repeat="item in vm.Settings12thdoor.taxes.multipleTaxGroup" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+            <!-- <md-card class="add-mdcard" ng-class="item.activate ? '' : 'inactivate'" style="padding:5px;" as-sortable-item-handle flex>
+                <md-card-content style="margin: -13px;"> -->
+            <div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 15px 0px 16px;">
+                <div flex>
+                    <span style="color:#808080;">
+                        {{item.taxName}}
+                        <md-tooltip md-direction="right">Multiple Tax Groups Name</md-tooltip>
+                    </span>
+                </div>
+                <div flex>
+                    <span ng-repeat="t in item.individualTaxes" style="color:#808080;">
+                        {{t.taxName}}({{t.rate}}%)
+                        <md-tooltip md-direction="right">Individual Taxes</md-tooltip>
+                    </span>
+                </div>
+                <div flex="10">
+                </div>
+                <div flex>
+                    <md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100">
+                        <md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+                            <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-click="vm.multipletaxgroupEdit(item , $event)">
+                                    <p>Edit</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="vm.multipletaxgroupDelete(item , $index)">
+                                    <p>Delete</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="vm.multipletaxInactivate(item,$index)">
+                                    <p>{{item.labelMultipleTaxStatus}}</p>
+                                    <md-icon md-menu-align-target ></md-icon>
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </div>
+            <!-- </md-card-content>
+                </md-card> -->
+        </div>
+    </div>
+</md-list>

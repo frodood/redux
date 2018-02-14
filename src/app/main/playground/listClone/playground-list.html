@@ -1,0 +1,76 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<!-- <div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.ListSummary">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading Invoices...</div>
+</div> -->
+
+<ms-empty-state-component ng-if="vm.ListSummary.length === 0" offset-height="176" state-context="'list'" state-header="'It seems empty in here !'" state-message="'Why dont you go ahead and add a new invoice, to get started.'" component-size="'large'"></ms-empty-state-component>
+
+<!-- <ms-empty-state-component ng-if="vm.ListSummary.length === 0" ng-style="resize-with-offset(176)" state-context="'list'" state-header="'It seems empty in here !'" state-message="'Why dont you go ahead and add a new invoice, to get started.'"></ms-empty-state-component> -->
+
+<!-- <ms-empty-state-component ng-if="vm.ListSummary.length === 0" full-height="176" state-context="'card'" state-header="'It seems empty in here !'" state-message="'Why dont you go ahead and add a new invoice, to get started.'"></ms-empty-state-component> -->
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start --> 
+<!-- <div class="inv-item {{item.status}}" md-ink-ripple 
+     ng-repeat="item in vm.invoiceSummary | filter: global.search"
+     ng-click="vm.openItem(item)"
+     ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}">
+
+    <div class="primarycontainer" layout="row" layout-align="start center">
+
+        <div class="cygil">
+            <div class="avatar" ms-random-class="vm.contactColors" style="margin-left:8px;">
+                {{item.profileName[0] | uppercase}}
+            </div>
+        </div>
+
+        <div class="info" flex layout="column">
+            <div class="primaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">{{item.invoiceNo}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate"> {{item.startDate | toDateObject}}</span>
+
+                <div class="divider-vertical" ng-if="item.refType != '' || item.refID != ''"></div>
+
+                <span class="text-truncate" ng-if="item.refType"> {{item.refType}}:&nbsp;</span>
+                <span class="text-truncate" ng-if="item.refID != ''"> {{item.refID}}</span>
+
+                <div class="divider-vertical" ng-if="item.sendMail == true || item.viewed == true"></div>
+
+                <md-icon ng-if="item.sendMail" md-font-icon="icon-email" class="clientActionViewer"></md-icon>
+
+                <md-icon ng-if="item.viewed" md-font-icon="icon-eye" class="clientActionViewer"></md-icon>
+                
+            </div>
+
+            <div class="secondaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">Customer : {{item.profileName}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">Due Date : {{item.dueDate | toDateObject}} </span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">Balance Due : {{item.balance | currency:item.baseCurrency+" "}}</span>
+            </div>
+
+        </div>
+
+        <div class="status" layout="column" layout-align="center end">
+            <span class="text-truncate">{{item.netAmount | currency:item.baseCurrency+" "}}</span>
+            <div class="invStatus {{item.invoiceStatus | removeSpaces}}" layout="row" layout-align="start center">
+                <div class="status-circle"></div>
+                <div class="status-label">{{item.invoiceStatus}}</div>
+            </div>
+        </div>
+
+        <div layout="column" layout-align="space-between end">
+            <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('favouriteStar', item, $event)"
+                       aria-label="Toggle starred">
+                <md-icon ng-if="item.favouriteStar" md-font-icon="icon-star"
+                         class="amber-fg"></md-icon>
+                <md-icon ng-if="!item.favouriteStar" md-font-icon="icon-star-outline"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div> -->

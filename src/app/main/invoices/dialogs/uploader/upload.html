@@ -1,0 +1,24 @@
+<div id="invuploader_dialog" class="customFileUploader" aria-label="uploader" layout="column" layout-align="center start"  >
+  <md-toolbar class="tool-bar">
+    <div class="md-toolbar-tools" >
+         <h2>UPLOAD FILES</h2>
+         <span flex></span>
+         <md-button class="md-icon-button" ng-click="vm.closeDialog()">
+            <md-icon md-font-icon="icon-close"></md-icon>
+         </md-button>
+      </div>
+  </md-toolbar>
+
+  <div class="content">
+    <div>
+       <lf-ng-md-file-input lf-files="vm.files" drag preview></lf-ng-md-file-input>
+    </div>
+  </div>
+
+  <div class="footer" class="demo-dialog-button">
+    <md-button md-autofocus ng-click="vm.uploadItem()" style="border: 2px solid;" class="md-primary">
+      Upload
+    </md-button> 
+  </div>
+</div>
+ 

@@ -1,0 +1,42 @@
+<div id="dialog" aria-label="uploader" layout="column" layout-align="center start"  >
+  <md-toolbar class="tool-bar">
+    <div class="md-toolbar-tools" >
+         <h2>TIME SHEET</h2>
+         <span flex></span>
+         <md-button class="md-icon-button" ng-click="vm.closeDialog()">
+            <md-icon md-font-icon="icon-close"></md-icon>
+         </md-button>
+      </div>
+  </md-toolbar>
+
+  <form name="editForm" layout="column" ng-submit='vm.addNewEvent()' style="width: 100%;">
+    <div class="content">
+      <div layout-gt-sm="row"> 
+         <md-input-container class="md-block" flex-gt-sm  md-no-float > 
+            <input ng-model="vm.time" required placeholder="00H 00M format">
+         </md-input-container>
+      </div>
+      <div layout-gt-sm="row"> 
+
+         <md-checkbox ng-model="vm.status" class="md-primary" aria-label="Checkbox 1">
+            Bilable
+         </md-checkbox>
+      </div>
+    </div> 
+    <div class="footer" > 
+      <div flex="80" layout="column">
+          <span style="color:#ad0000;" ng-show="vm.showMsg" >{{vm.errorMsg}}</span>
+      </div>
+      <md-button flex="10" class="md-primary" style="border: 2px solid;" type="submit" ng-show="vm.addButtonStatus">
+        Add
+      </md-button> 
+      <md-button flex="10" class="md-primary" style="border: 2px solid;" ng-click="vm.updateNewEvent()"  ng-hide="vm.addButtonStatus">
+        Edit
+      </md-button> 
+    </div>
+  </form>
+</div>
+
+
+
+

@@ -1,0 +1,142 @@
+#customDialogBox {
+	width:800px;
+	overflow: hidden;
+
+    md-toolbar {
+        min-height: 48px;
+        .md-toolbar-tools {
+            height: 48px;
+            max-height: 48px;
+        }
+    }
+    .form-class{
+    	 font-size: 14px;
+    	.content-class{
+    		.formSection{
+			    .lineitems {
+			        width: 100%;
+			        .list-items-header {
+			            width: 100%;
+			            height: 48px;
+			            font-weight: 500; 
+			            color: #2D6296;
+			            border-top: 1px solid rgba(0,0,0,0.08);
+			            border-bottom: 1px solid rgba(0,0,0,0.08);
+			            .list-item-header-control {
+			                width: 48px;
+			                height: 100%;
+			            }
+			            .list-item-header-title {
+			                &.left {
+			                    text-align: left;
+			                }
+			                &.center {
+			                    text-align: center;
+			                }
+			                &.right {
+			                    text-align: right;
+			                }
+			            }
+			        }
+			        .line-items-container {
+			            .line-items {
+			                .line-item {
+			                    padding: 16px 16px 16px 48px;
+			                    .handle {
+			                        display: block;
+			                    }
+			                }
+			            }
+			            .line-items {
+			                overflow-x: hidden;
+			            }
+			        }
+			        .line-item {
+			            position: relative;
+			            background: #F6F6F6;
+			            border-bottom: 1px solid rgba(0,0,0,0.08);
+			            text-transform: none;
+			            cursor: pointer;
+			            &.line-item-placeholder {
+			                background: rgba(0,0,0,0.12);
+			                * {
+			                    opacity: 0;
+			                }
+			            }
+			            .handle {
+			                height: 100%;
+			                width: 48px;
+			                cursor: move;
+			                text-align: center;
+			                md-checkbox, .md-button {
+			                    margin: 0px !important;
+			                }
+			            }
+			            &.selected {
+			                background: #FFF8E1;
+			            }
+			            .commentrow {
+			                margin-top: 11px;
+			                margin-left: 60px;
+			                float: left;
+			                position: absolute;
+			                padding:8px;
+			            }
+			            .info {
+			                padding: 8px 0px;
+			                width: 100%;
+			                .item-value {
+			                    height: 35px;
+			                    &.left {
+			                        text-align: left;
+			                    }
+			                    &.center {
+			                        text-align: center;
+			                    }
+			                    &.right {
+			                        text-align: right;
+			                    }
+			                    md-input-container {
+			                        margin: 0px !important;
+			                        .md-errors-spacer {
+			                            display: none;
+			                        }
+			                        input {
+			                            text-align: right;
+			                        }
+			                    }
+			                }
+			            }
+			            .buttons {
+			                height: 100%;
+			                width: 96px;
+			                top: 0;
+			                left: 0;
+			                cursor: move;
+			                text-align: center;
+			            }
+			        }
+			        .empty-line-items-container {
+			            padding: 32px;
+			            font-weight: 500;
+			            color: rgba(0,0,0,0.84);
+			        }
+			    }
+    		}
+    	}
+    }
+    .dialogContent {
+        &.pad_32 {
+            padding: 32px;
+        }
+    }
+    .dialogFooter {
+        border-top: 1px solid rgba(0,0,0,0.08);
+        &.pad_16 {
+            padding: 16px;
+            .md-primary {
+                border: 2px solid;
+            }
+        }
+    }
+}

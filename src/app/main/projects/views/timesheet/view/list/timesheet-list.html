@@ -1,0 +1,64 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<!-- <div class="empty-items" ng-if="vm.timesheetSummary.length === 0">There are no timesheets </div>
+<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.timesheetSummary">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading timesheets...</div>
+</div> -->
+<ms-spinner-component name="timesheet-list-spinner" size="32" relative-position="false" ng-if="!vm.timesheetSummary" on-loaded="vm.timesheetListSpinnerLoaded(spinnerApi)" spinner-Text="Loading timesheets"></ms-spinner-component>
+
+<ms-empty-state-component ng-if="vm.timesheetSummary.length == 0" offset-height="176" state-context="'list'" 
+state-header="'Its empty here…'" state-message="'Add a new timesheet to get started!'"  component-size="'large'">
+</ms-empty-state-component>
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start -->
+<div class="pro-item {{item.status}}" md-ink-ripple 
+     ng-repeat="item in vm.timesheetSummary | filter: global.search"
+     ng-click="vm.goToEdit(item)"
+     ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}"
+     ng-if="!item.deleteStatus"> 
+
+    <div  class="primarycontainer" layout="row" layout-align="start center">
+ 
+        <div class="cygil">
+            <div class="avatar" ms-random-class="vm.contactColors" style="margin-left:8px;">
+                {{item.project[0] | uppercase}}
+            </div>
+        </div>
+
+        <div class="info" flex layout="column">
+           
+            <div class="primaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">{{ vm.formatDate(item.date) | date: 'MMM dd, yyyy'}}</span> 
+                <div class="divider-vertical"></div> 
+                <span class="text-truncate">{{item.project}}</span>  
+                <div class="divider-vertical"></div> 
+                <span class="text-truncate">{{item.totalHour}}</span>  
+            </div>
+            <div  class="secondaryInfo" layout="row" layout-align="start center"> 
+                <span class="text-truncate">Task {{item.task}}</span >
+                <div  class="divider-vertical"></div>
+                <span class="pro-desc">User {{item.firstName}}</span>
+            </div>
+
+        </div>
+
+        <div class="status" layout="column" layout-align="center end"> 
+            <div class="proStatus {{item.billableStatus}}" layout="row" layout-align="start center">
+                <div class="status-circle"></div>
+                <div class="status-label">{{item.billableStatus}}</div>
+            </div>
+        </div>
+
+        <div layout="column" layout-align="space-between end">
+            <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('starred', item, $event)"
+                       aria-label="Toggle starred">
+                <md-icon ng-if="item.favouriteStar" md-font-icon="icon-star"
+                         class="amber-fg"></md-icon>
+                <md-icon ng-if="!item.favouriteStar" md-font-icon="icon-star-outline"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>

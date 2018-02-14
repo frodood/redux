@@ -1,0 +1,200 @@
+<style type="text/css">
+.md-datepicker-input{
+    min-width: 410px !important;
+    max-width: 50% !important;
+}
+
+</style>
+<div class="compose" layout="column">
+    <div class="mainsection" layout="column" layout-align="start start">
+        <div class="subMain">
+            <div class="info" layout="column">
+
+                <div class="maininfosection" layout="row" layout-align="start start">
+
+                    <div class="customerinfo" flex>
+                        <div class="uploader" layout="row" layout-align="center center" ng-if="vm.uploadImage.length > 0" >
+                                <div layout="row" class="show-div" app-uploader="vm.imageConfig" result="vm.uploadFileSample(res)" >
+                                    <img   class="image-conf" ng-src="{{vm.uploadFile}}">
+                                </div> 
+                        </div> 
+                        <div class="uploader" layout="row" layout-align="center center" ng-if="vm.uploadImage.length == 0">   
+                            <div layout="column" class="up-div" layout-align="center center" app-uploader="vm.imageConfig" result="vm.uploadFileSample(res)" >
+                                <div layout="row">
+                                    <label class="up-label" >Upload an Image</label>
+                                </div> 
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="productinfo" flex style="margin-top: -9px;">
+                        <div layout="column" layout-gt-xs="row" class="inputHeight" style="margin-bottom: -18px;">
+                            <md-datepicker ms-fix-datepicker style="margin-left: -15px;width:237px;" ng-model="vm.currentDate" md-placeholder="Date"></md-datepicker>
+                            <div style="width:10%;"></div>
+                            <md-autocomplete layout="column" flex="50" class="no-float" md-no-cache="noCache" md-selected-item="vm.selectedItemSup" md-search-text="vm.searchTextSupplier" md-items="item in vm.querySearchSupplier(vm.searchTextSupplier)" md-item-text="item.display" md-floating-label="Supplier (Optional)" style="margin-top: -14.5px;">
+                                <md-item-template>
+                                    <span md-highlight-text="vm.searchTextSupplier">{{item.display}}</span>
+                                </md-item-template>
+                            </md-autocomplete> 
+                        </div>
+                      
+                        <div layout="row" layout-gt-sm="row" class="inputHeight">
+                            <md-input-container flex md-no-float>
+                                <input placeholder="Description" name="description" type="text" ng-model="vm.expense.description"/>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row" class="inputHeight">
+                            <md-input-container flex md-no-float>
+                                <md-select ng-model="vm.category" placeholder="Category" ng-model-options="{trackBy: '$value.expenseCategory'}">
+                                    <md-optgroup label="Category">
+                                    <md-option ng-repeat="cat in vm.CategoryArray" ng-value="{{cat}}">
+                                        {{cat.expenseCategory}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-gt-sm="row" class="inputHeight">
+                            <md-input-container flex md-no-float>
+                                <input placeholder="Reference No" name="refNo" type="text" ng-model="vm.expense.reference" />
+                            </md-input-container>
+                        </div>
+                        <div layout="column" layout-gt-xs="row" class="inputHeight">
+                            <md-input-container flex="50" md-no-float>
+                                <input placeholder="Amount" name="" ng-model="vm.expense.amount" 
+                                ng-keyup="vm.finalAmount(vm.expense)" ms-Value-Adjuster>
+                            </md-input-container>
+                            <div style="width:5%;"></div>
+                            <md-input-container flex="50" md-no-float>
+                                <md-select placeholder="Tax" ng-model="vm.expense.tax" ng-change="vm.finalAmount(vm.expense)">
+                                    <md-optgroup label="Tax">
+                                    <md-option ng-value="cat" value="{{cat}}" ng-repeat="cat in vm.taxesArr">{{cat.taxName}} {{cat.rate}}%</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="summary" layout="row" layout-align="end start">
+                            <div class="tax" layout="column" layout-align="center center">
+                                <div layout="column" layout-align="center start">
+                                    <i>Tax</i>
+                                    <span>{{vm.currency}} {{vm.amountWithTax | valRndUp}}</span>
+                                </div>
+                            </div>
+                            <div class="total" layout="column" layout-align="center center">
+                                <div layout="column" layout-align="center start">
+                                    <i>Total</i>
+                                    <span>{{vm.currency}} {{vm.totalUSD | valRndUp}}</span>
+                                </div>
+                            </div>
+                        </div>
+                     
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="optional" layout="row" layout-align="start start">
+                <div class="details">Optional Details </div>
+            </div> -->
+            <div class="optional">
+                <div class="detail" layout="row" layout-align="space-between center" style="padding: 0px 32px; font-size: 18px;">
+                    Optional Details
+                    <md-button class="md-primary" ng-click="vm.showMoreInfo = !vm.showMoreInfo;">
+                    <md-icon md-font-icon="icon-chevron-down" ng-hide="vm.showMoreInfo"></md-icon>
+                    <span ng-hide="vm.showMoreInfo">More</span>
+                    <md-icon md-font-icon="icon-chevron-up" ng-show="vm.showMoreInfo"></md-icon>
+                    <span ng-show="vm.showMoreInfo">less</span>
+                    </md-button>
+                </div>
+            </div>
+
+            <div layout="column" class="proDetails"  ng-show="vm.showMoreInfo">
+                <div layout="row">
+                    <div class="detailColOne" flex>
+                        <div layout="column" layout-gt-xs="row" class="inputHeight">
+                            <md-input-container flex md-no-float>
+                                <md-select ng-model="vm.expense.status" style=" width:90%;" placeholder="Status" ng-change="vm.changeStatus(vm.expense)">
+                                    <md-optgroup label="Status">
+                                        <md-option value="Paid" selected>Paid</md-option>
+                                        <md-option value="Unpaid">Unpaid</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-gt-xs="row" class="inputHeight" style="width:90%;">
+                            <md-autocomplete class="no-float" flex md-no-cache="noCache" md-selected-item="vm.selectedItem" md-search-text="searchText" md-items="item in vm.querySearch(searchText)" md-item-text="item.display" md-floating-label="Assign to Customer or Project">
+                                <md-item-template>
+                                    <span class="item-title">
+                                      <md-icon md-svg-icon="{{item.image}}"></md-icon>
+                                      <span style="margin-left: 15px;"> {{item.display}} </span>
+                                    </span>
+                                    <span class="item-metadata" ng-if="item.type == 'contact'">
+                                        <span class="item-metastat">
+                                            <strong>{{item.email}}</strong>
+                                        </span>
+                                        <md-divider></md-divider>
+                                    </span>
+
+                                </md-item-template>
+
+                            </md-autocomplete>
+                        </div>
+                    </div>
+                    <div class="detailColTwo" flex>
+                        <div layout="column" layout-gt-xs="row" class="inputHeight" ng-show="vm.expense.status=='Paid'">
+                            <md-datepicker style="margin-top: 13px;margin-left: -14px;" ng-model="vm.dueDate" md-placeholder="Due Date" class="date" disabled></md-datepicker>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row" class="inputHeight" ng-show="vm.expense.status=='Unpaid'">
+                            <md-datepicker ms-fix-datepicker style="margin-top: 13px;margin-left: -14px;" ng-model="vm.dueDate" md-placeholder="Due Date" class="date" flex></md-datepicker>
+                        </div>
+
+                        <div layout="column" layout-gt-xs="row" class="inputHeight">
+                            <md-input-container flex md-no-float>
+                                <md-select ng-model="vm.expense.billable" placeholder="Billable">
+                                    <md-optgroup label="Billable">
+                                        <md-option value="Billable">Billable</md-option>
+                                        <md-option value="Non-Billable" selected>Non-Billable</md-option>
+                                        <md-option value="Billed">Billed</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" class="chipsdemoBasicUsage">
+                    <md-content class="md-padding " layout="column" flex>
+                        <md-chips ng-model="vm.expense.tags" readonly=false md-removable="removable" style="margin-left: -15px;margin-right: -15px;" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Tags">
+                            <md-chip-template>
+                                <strong>{{$chip}}</strong>
+                            </md-chip-template>
+                        </md-chips>
+                    </md-content>
+                </div>
+            </div>
+
+            <div class="optional" layout="row" layout-align="start start" ng-show="vm.showMoreInfo" ng-if="vm.customFields.length > 0" style="font-size: 18px;">
+                <div class="details">Additional Details </div>
+            </div>
+            <div layout="column" class="proDetails"  ng-show="vm.showMoreInfo">
+                <div layout="column">
+                    <div  ng-repeat="cus in vm.customFields">
+                        <div layout="column" class="inputHeight" >
+                            <md-input-container md-no-float flex ng-if="cus.type=='textBox'">
+                                <input placeholder="{{cus.labelShown}}" ng-model="cus.value">
+                            </md-input-container>
+                        </div>
+                       <div  layout="column" class="inputHeight">
+                            <md-input-container md-no-float flex ng-if="cus.type=='selectBox'">
+                            <md-select placeholder="{{cus.labelShown}}" ng-model="cus.value">
+                                <md-optgroup label="{{cus.labelShown}}">
+                                    <md-option value="{{topping}}" ng-repeat="topping in cus.fields">{{topping}}</md-option>
+                                </md-optgroup>
+                            </md-select>
+                        </md-input-container>
+                       </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        
+    </div>
+</div>

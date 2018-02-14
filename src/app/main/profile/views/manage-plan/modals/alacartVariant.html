@@ -1,0 +1,45 @@
+<md-dialog>
+	<div class="alacartComponent">
+		<md-content>
+			<div class="variantDetails" ng-show="showMonthlyVariant">
+				<div class="tabHeader" layout="row" layout-align="center center">
+					<span>Pay <b>$3.00/mo</b> for each additional user.</span>
+				</div>
+				<div class="centerBody" layout="row" layout-align="start start">
+					<div class="dateContainer" flex layout="column" layout-align="center center">
+						<span>Total Users : </span>
+						<div ms-numeric-stepper min="minSlots" max="maxSlots" ng-model="alacartPayload.slots"></div>
+					</div>
+					<div class="payableContainer" flex layout="column" layout-align="center center">
+						<span>Total Payable : </span>
+						<span>$ {{alacartPayload.slots * slotPrices.monthly}}</span>
+					</div>
+				</div>
+				<div class="tabNotificationFooter" layout="row" layout-align="center center">
+					<span>The default credit card on file with your 12th Door account will be used.</span>
+				</div>
+			</div>
+			<div class="variantDetails" ng-hide="showMonthlyVariant">
+				<div class="tabHeader" layout="row" layout-align="center center">
+					<span>Pay <b>$36.00/yr</b> for each additional user.</span>
+				</div>
+				<div class="centerBody" layout="row" layout-align="start start">
+					<div class="dateContainer" flex layout="column" layout-align="center center">
+						<span>Total Users : </span>
+						<div ms-numeric-stepper min="minSlots" max="maxSlots" ng-model="alacartPayload.slots"></div>
+					</div>
+					<div class="payableContainer" flex layout="column" layout-align="center center">
+						<span>Total Payable : </span>
+						<span>$ {{alacartPayload.slots * slotPrices.yearly}}</span>
+					</div>
+				</div>
+				<div class="tabNotificationFooter" layout="row" layout-align="center center">
+					<span>The default credit card on file with your 12th Door account will be used.</span>
+				</div>
+			</div>
+            <div class="tabFooter" layout="column" layout-align="center center">
+                <md-button class="md-primary" style="border:2px solid;" ng-disabled="purchaseState" ng-click="buyAlacartOption($event)">Purchase</md-button>
+            </div>
+        </md-content>
+	</div>
+</md-dialog>

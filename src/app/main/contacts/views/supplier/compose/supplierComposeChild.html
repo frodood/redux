@@ -1,0 +1,250 @@
+<form name="supplierCompose" novalidate>
+   <div >
+      <div class="optional" layout="row" layout-align="start start">
+         <div class="detail">Supplier Name</div>
+      </div>
+      <div layout="column" class="contact-Details">
+         <div  layout="row">
+            <div class="detailColOne" flex>
+               <div layout="column" layout-gt-xs="row" class="inputHeight">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                     <input placeholder="Company or Individual name" ng-model="vm.supplier.profileName" tabindex="1" required> 
+                  </md-input-container>
+               </div>
+            </div>
+            <div style="width: 5%"></div>
+            <div class="detailColTwo" flex>
+               <div layout="column" layout-gt-xs="row" class="inputHeight">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                     <input placeholder="Email" ng-model="vm.supplier.email" name="email" ng-pattern="/^.+@.+\..+$/" tabindex="2" required>
+                     <div ng-messages="supplierCompose.email.$error" role="alert">
+                        <div ng-message-exp="['required','pattern']">
+                           Your email must look like an e-mail address.
+                        </div>
+                     </div>
+                  </md-input-container>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="optional" layout="row" layout-align="start start">
+         <div class="detail">Contact Person</div>
+      </div>
+      <div layout="column" class="contact-Details">
+         <div  layout="row">
+            <div class="detailColOne" flex>
+               <div layout="column" layout-gt-xs="row" class="inputHeight">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                     <input placeholder="First Name" ng-model="vm.supplier.firstName" tabindex="3">
+                  </md-input-container>
+               </div>
+            </div>
+            <div style="width: 5%"></div>
+            <div class="detailColTwo" flex>
+               <div layout="column" layout-gt-xs="row" class="inputHeight">
+                  <md-input-container md-no-float class="md-block" flex-gt-sm>
+                     <input placeholder="Last Name" ng-model="vm.supplier.lastName" tabindex="4">
+                  </md-input-container>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div ng-show="vm.showBilling">
+         <div class="optional" layout="row" layout-align="start start">
+            <div class="detail">Billing Address</div>
+            <md-icon style="margin-left: 30px;cursor: pointer;" md-font-icon="icon-repeat" ng-click="vm.addressChange()"></md-icon>
+         </div>
+         <div layout="column" class="contact-Details">
+            <div layout-gt-sm="row" style="height:64px;">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Street" ng-model="vm.supplier.billingAddress.street" tabindex="5">
+               </md-input-container>
+            </div>
+            <div  layout="row">
+               <div class="detailColOne" flex>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-input-container md-no-float class="md-block" flex-gt-sm>
+                        <input placeholder="City" ng-model="vm.supplier.billingAddress.city" tabindex="6">
+                     </md-input-container>
+                  </div>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-input-container md-no-float class="md-block" flex-gt-sm>
+                        <input placeholder="Zip Code" ng-model="vm.supplier.billingAddress.zip" tabindex="8">
+                     </md-input-container>
+                  </div>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-switch class="md-primary" ng-model="cb" ng-change="vm.onChange(cb)" aria-label="Switch 1" tabindex="10">
+                        Use billing address as shipping address
+                     </md-switch>
+                  </div>
+               </div>
+               <div style="width: 5%"></div>
+               <div class="detailColTwo" flex>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-input-container md-no-float class="md-block" flex-gt-sm>
+                        <input placeholder="State" ng-model="vm.supplier.billingAddress.state" tabindex="7">
+                     </md-input-container>
+                  </div>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-autocomplete class="no-float"
+                        flex="" 
+                        tabindex="9"
+                        md-selected-item="vm.selectedItem" 
+                        md-search-text="vm.searchText"
+                        md-items="item in vm.querySearch(vm.searchText)" 
+                        md-item-text="item.country" 
+                        md-floating-label="Country"
+                        md-selected-item-change="vm.selectedItemChange(vm.selectedItem)">
+                        <md-item-template>
+                           <span>{{item.country}}</span>
+                        </md-item-template>
+                     </md-autocomplete>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div ng-show="vm.showShipping">
+         <div class="optional" layout="row" layout-align="start start">
+            <div class="detail">Shipping Address</div>
+            <md-icon style="margin-left: 30px;cursor: pointer;" md-font-icon="icon-repeat" ng-click="vm.addressChange()"></md-icon>
+         </div>
+         <div layout="column" class="contact-Details">
+            <div layout-gt-sm="row" style="height:64px;">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Street" ng-model="vm.supplier.shippingAddress.s_street" tabindex="5">
+               </md-input-container>
+            </div>
+            <div  layout="row">
+               <div class="detailColOne" flex>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-input-container md-no-float class="md-block" flex-gt-sm>
+                        <input placeholder="City" ng-model="vm.supplier.shippingAddress.s_city" tabindex="6">
+                     </md-input-container>
+                  </div>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-input-container md-no-float class="md-block" flex-gt-sm>
+                        <input placeholder="Zip Code" ng-model="vm.supplier.shippingAddress.s_zip" tabindex="8">
+                     </md-input-container>
+                  </div>
+               </div>
+               <div style="width: 5%"></div>
+               <div class="detailColTwo" flex>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-input-container md-no-float class="md-block" flex-gt-sm>
+                        <input placeholder="State" ng-model="vm.supplier.shippingAddress.s_state" tabindex="7">
+                     </md-input-container>
+                  </div>
+                  <div layout="column" layout-gt-xs="row" class="inputHeight">
+                     <md-autocomplete class="no-float"
+                        flex="" 
+                        tabindex="9"
+                        md-selected-item="vm.selectedItem1" 
+                        md-search-text="vm.searchText1"
+                        md-items="item in vm.querySearch1(vm.searchText1)" 
+                        md-item-text="item.country" 
+                        md-floating-label="Country"
+                        md-selected-item-change="selectedItemChange(vm.selectedItem1)">
+                        <md-item-template>
+                           <span>{{item.country}}</span>
+                        </md-item-template>
+                     </md-autocomplete>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="optional" layout="row" layout-align="start start">
+         <div class="detail">Contact Information</div>
+      </div>
+      <div  layout="row">
+         <div class="detailColOne" flex style="padding-left: 32px;">
+            <div layout="column" layout-gt-xs="row" class="inputHeight">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Phone" type="text" name="phone" ng-model="vm.supplier.phone" ng-pattern="/^[0-9 ()+-]+$/" tabindex="11">
+                  <div ng-messages="supplierCompose.phone.$error" role="alert">
+                     <div ng-message-exp="['pattern']">
+                        Your phone number should only include numeric values.
+                     </div>
+                  </div>
+               </md-input-container>
+            </div>
+            <div layout="column" layout-gt-xs="row" class="inputHeight">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Fax" type="text" name="fax" ng-model="vm.supplier.fax" ng-pattern="/^[0-9 ()+-]+$/" tabindex="13">
+                  <div ng-messages="supplierCompose.fax.$error" role="alert">
+                     <div ng-message-exp="['pattern']">
+                        Your fax number should only include numeric values.
+                     </div>
+                  </div>
+               </md-input-container>
+            </div>
+         </div>
+         <div style="width: 5%"></div>
+         <div class="detailColTwo" flex>
+            <div layout="column" layout-gt-xs="row" class="inputHeight">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="Mobile" type="text" name="mobile" ng-model="vm.supplier.mobile" ng-pattern="/^[0-9 ()+-]+$/" tabindex="12">
+                  <div ng-messages="supplierCompose.mobile.$error" role="alert">
+                     <div ng-message-exp="['pattern']">
+                        Your mobile number should only include numeric values.
+                     </div>
+                  </div>
+               </md-input-container>
+            </div>
+            <div layout="column" layout-gt-xs="row" class="inputHeight">
+               <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <input placeholder="www.your-domain.com" name="website" ng-model="vm.supplier.website" ng-pattern="/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/" tabindex="14">
+                  <div ng-messages="supplierCompose.website.$error" role="alert">
+                     <div ng-message-exp="['pattern']">
+                        Enter valid website address.
+                     </div>
+                  </div>
+               </md-input-container>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- <div class="optional" layout="row" layout-align="start start">
+      <div class="detail">Optional Details</div>
+      </div> -->
+   <div class="optional">
+      <div class="detail" layout="row" layout-align="space-between center">
+         Optional Details
+         <md-button class="md-primary" ng-click="vm.showMoreInfo = !vm.showMoreInfo;">
+            <md-icon md-font-icon="icon-chevron-down" ng-hide="vm.showMoreInfo"></md-icon>
+            <span ng-hide="vm.showMoreInfo">More</span>
+            <md-icon md-font-icon="icon-chevron-up" ng-show="vm.showMoreInfo"></md-icon>
+            <span ng-show="vm.showMoreInfo">less</span>
+         </md-button>
+      </div>
+   </div>
+   <div layout="column" class="contact-Details" ng-show="vm.showMoreInfo">
+      <div layout-gt-sm="row" style="height:64px;">
+         <md-input-container md-no-float class="md-block" flex-gt-sm>
+            <input placeholder="Notes" ng-model="vm.supplier.notes" tabindex="15">
+         </md-input-container>
+      </div>
+   </div>
+   <div class="optional" layout="row" layout-align="start start" ng-show="vm.showMoreInfo" ng-if="vm.supplier.customFields.length">
+      <div class="detail">Additional Details</div>
+   </div>
+   <div layout="column" class="contact-Details" ng-show="vm.showMoreInfo" ng-if="vm.supplier.customFields.length">
+      <div layout="column" ng-repeat="txt in vm.supplier.customFields" flex>
+         <div layout="row" flex>
+            <md-input-container md-no-float  flex ng-if=" txt.type== 'textBox'" style="margin-top:20px;">
+               <input aria-label="ttt" placeholder="{{txt.labelShown}}" ng-model="txt.value" type="txt.inputType" tabindex="16">
+            </md-input-container>
+         </div>
+         <div layout="row" flex>
+            <md-input-container flex ng-if=" txt.type== 'selectBox'">
+               <label>{{txt.labelShown}}</label>
+               <md-select placeholder="{{txt.labelshown}}" ng-model="txt.value" tabindex="17">
+                  <md-option ng-repeat="nn in txt.fields" value="{{nn}}">{{nn}}</md-option>
+               </md-select>
+            </md-input-container>
+         </div>
+      </div>
+   </div>
+   </div>
+</form>

@@ -1,0 +1,106 @@
+<md-dialog id="dialogInvoiceEmail" class="frmModal emailModal" aria-label="uploader" layout="column" layout-align="center start"  >
+
+<ms-spinner-component name="inv-email-spinner" size="32" relative-position="false" spinner-text="" on-loaded="vm.invEmailSpinnerLoaded(spinnerApi)"></ms-spinner-component>
+
+    <md-toolbar class="tool-bar" >
+        <div class="md-toolbar-tools">
+            <h2>{{vm.DoalogHeader}}</h2>
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+        </div>
+    </md-toolbar>
+
+
+    <!--<div class="loading-items" layout="column" layout-align="center center" ng-if="vm.isLoading">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading...</div>
+
+    </div>-->
+    <ms-spinner-component name="email-compose-spinner" size="32"  relative-position="false"></ms-spinner-component>
+
+    <div class="dialogContent" layout="column" flex>
+
+    <md-content ms-scroll flex>
+
+    <div class="content" ms-scroll ng-show="!vm.isLoading">
+        <form name="cusForm" ng-submit="vm.submit()">
+
+            <div layout layout-sm="column" layout-margin >
+            
+            <md-chips flex ng-model="vm.Sender" class="md-primary" readonly="false" placeholder="To" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+To">
+                </md-chips>
+                <!--<md-input-container flex md-no-float> 
+                    <input type="text" ng-model="vm.Sender" placeholder="To" />
+                </md-input-container>-->
+            </div>
+            <div layout layout-sm="column" layout-margin >
+                <md-chips flex ng-model="vm.bcc" class="md-primary" readonly="false" placeholder="Bcc" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Bcc">
+                </md-chips>
+                <!--<md-input-container flex md-no-float> 
+                    <input type="text" ng-model="vm.bcc" placeholder="Bcc" />
+                </md-input-container>-->
+            </div>
+            <div layout layout-sm="column" layout-margin class="inputHeight">
+                <md-input-container flex md-no-float> 
+                    <input type="text" ng-model="vm.subject" placeholder="Subject" />
+                </md-input-container>
+            </div>
+            <div layout class="pre-tag" layout-sm="column" layout-margin layout-align="start start" >
+               
+            <p  ng-bind-html="vm.emailBody" style="white-space: pre;"></p>
+               <!--  <pre class="pre-text">
+        Dear customer
+        
+        thank you for your product
+
+        asdsadsakljd;lask kshisahfiuhsaiofh saiofhiosa hfias hiof hsaoif hoias hfoisa
+        asfoisahfoisa hfusa fhiosafh iosfh io fhiosa hfoisa hfoi h
+        
+                </pre> -->
+            </div>
+            <div layout layout-sm="column" layout-margin class="inputHeight">
+                <div  flex="35" class="attact-pdf">     
+                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="vm.PDFattached" class="md-primary" ng-change="vm.emailWithPdf()" >
+                        Attach Invoice
+                    </md-checkbox>
+                </div>
+                <div class="attachement-pill" layout="row" ng-if="vm.PDFattached">
+                    <div class="att-pill-icon">
+                        <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+                    </div>
+                    <div class="att-pill-cont" layout="row">
+                        <span>{{vm.pdfName}}</span>
+                        <span>.pdf</span>
+                    </div>
+                </div>
+            </div>
+
+            <div layout layout-sm="column" layout-margin class="inputHeight">
+                <div  flex="35" class="attact-acount-pdf">     
+                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="vm.includeAccountStatementWithInvoice" class="md-primary" ng-change="vm.emailWithAccountStatement()" >
+                        Attach Statement
+                    </md-checkbox>
+                </div>
+                <div class="attachement-pill" layout="row" ng-if="vm.includeAccountStatementWithInvoice && vm.accountPDFName.length">
+                    <div class="att-pill-icon">
+                        <md-icon md-font-icon="icon-file-pdf" style="color:rgb(45, 98, 150)"></md-icon>
+                    </div>
+                    <div class="att-pill-cont" layout="row">
+                        <span ng-bind="vm.accountPDFName">{{vm.accountPDFName}}</span>
+                        <span ng-if="vm.accountPDFName.length > 0">.pdf</span>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</md-content>
+</div>
+    <div class="footer"  > 
+            <md-button ng-disabled="vm.sendDisabled" flex="10" class="md-primary" style="border: 2px solid;" ng-click="vm.sendmail()">
+              send
+            </md-button> 
+        </div>
+</md-dialog>

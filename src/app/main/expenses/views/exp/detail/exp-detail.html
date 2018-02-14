@@ -1,0 +1,14 @@
+<div ng-init="vm.getExpenseById()"></div>
+
+<div class="compact" layout="row">
+    <div class="product-container" ms-scroll >
+
+    	<ms-spinner-component name="exp-details-spinner" size="32" relative-position="false" on-loaded="vm.expDetailSpinnerLoaded(spinnerApi)" opaque="true" ></ms-spinner-component>
+
+        <div ng-include="'app/main/expenses/views/exp/detail/exp-detail-child.html'"></div>
+        <!-- Use the following element to add breaks to your pages -->
+        <!-- This will make sure that the section after this element will be printed on a new page -->
+        <!-- <div class="page-break"></div> -->
+
+    </div>
+</div>

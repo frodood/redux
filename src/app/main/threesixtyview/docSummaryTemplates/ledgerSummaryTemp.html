@@ -1,0 +1,56 @@
+<table class="simple" ng-hide="vm.customerContextLatestDocuments | isEmptyObj">
+    <thead>
+        <tr>
+            <th>
+                Ledger Type
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th>
+                Transation Type
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Existing Balance
+            </th>
+            <th>
+                Transaction Value
+            </th>
+            <th>
+                Balance
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="row in vm.customerContextLatestDocuments">
+            <td>
+                <span>{{row.legerType}}</span>
+            </td>
+            <td>
+                <span>{{row.createDate | toDateObject | date:'mediumDate'}}</span>
+            </td>
+            <td>
+                <span>{{row.tranType}}</span>
+            </td>
+            <td>
+                <span>{{row.description}}</span>
+            </td>
+            <td>
+                <span>{{row.extbalance}}</span>
+            </td>
+            <td>
+                <span>{{row.amount}}</span>
+            </td>
+            <td>
+                <span>{{row.balance}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div layout="row" layout-align="center center" class="recdentDocEmptyStatus" ng-show="vm.customerContextLatestDocuments | isEmptyObj">
+    <p>Records not available!</p>
+</div>

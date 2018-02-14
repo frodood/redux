@@ -1,0 +1,98 @@
+.customDialogBox {
+    .frmModal{
+        width: 640px;
+    }
+    md-toolbar {
+        min-height: 48px;
+        .md-toolbar-tools {
+            height: 48px;
+            max-height: 48px;
+        }
+    }
+    .dialogContent {
+        .pad_32 {
+            padding: 32px;
+            margin: 0px !important;
+            &.auto{
+                
+                md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                    margin-top: 0px;
+
+                    > label {
+                        -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                        transform: translate3d(1px,28px,0) scale(1) !important;
+                        color: #BDBDBD;  // input placeholder gray
+                    }
+                    &.md-input-has-value > label {
+                        display: none !important;
+                    }
+                }
+            }
+
+        }
+
+        .spacemaker{
+            md-input-container:nth-child(1){
+                        padding-right:20px;
+                    }
+                md-input-container:nth-child(2){
+                        padding-left:20px;
+                    }
+                }
+
+        md-input-container{
+            margin: 0px !important;
+        }
+        md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                                        margin-top: 0px;
+                                        font-size:16px;
+                                        font-weight:300;
+                                        color
+                                        > label {
+                                            -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                                            transform: translate3d(1px,28px,0) scale(1) !important;
+                                            color: #BDBDBD;
+                                        }
+                                        &.md-input-has-value > label {
+                                            display: none !important;
+                                        }
+                                    }
+
+        .optional{
+            width:100%; 
+            height:50px;
+            background:#F6F6F6;
+
+            .details{
+                padding: 32px;
+                padding-top: 13px;
+                font-size: 18px;
+            }
+
+            .totalVal{
+                background:#2D6296;
+                height:100%;
+                width:40%; 
+                .span{
+                    font-weight:300;
+                    font-size:28px;
+                    color:rgb(255,255,255);
+                }
+            }
+        }
+    }
+    .dialogFooter{
+        width:100%;
+                    padding:12px 24px;
+                    border-top:1px solid rgba(0, 0, 0, 0.12);
+
+                    button{
+                        float:right;
+                        margin:0px;
+                    }
+
+                    button:nth-child(2){
+                        margin-right:12px;
+                    }
+    }
+}

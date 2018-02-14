@@ -1,0 +1,70 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<ms-spinner-component name="fm-list-spinner" size="32" relative-position="false" spinner-Text="Loading files" ng-if="!vm.FileManagerData" on-loaded="vm.fmListSpinnerLoaded(spinnerApi)"></ms-spinner-component>
+
+<ms-empty-state-component ng-if="vm.FileManagerData.length == 0" offset-height="176" state-context="'list'" state-header="'Its empty here…'" state-message="'Uploaded files will appear here! '" component-size="'large'">
+</ms-empty-state-component>
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start -->
+<div class="item {{item.status}}" md-ink-ripple ng-repeat="item in vm.FileManagerData | filter: global.search" ng-click="vm.openItem(item)" ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}">
+    <div layout="row" layout-align="start center">
+        <div class="cygil">
+            <div class="avatar" ng-click="vm.imagePannel(item.uploadImages[0].uniqueCode)" ng-mouseleave="vm.closeImgPanel()" style="margin-left:8px;">
+
+                <img ng-if="item.type !='image' && item.type !='brochure'" id="thumbnail" err-src="app/main/filemanager/img/default.jpg" ng-src="{{item.firstImage}}" style="height: 40px;border-radius: 69px;">
+                <img ng-if="item.type =='image'" id="thumbnail" err-src="app/main/filemanager/img/default.jpg" ng-src="{{vm.hostUrl}}/apis/media/tenant/75/{{item.appName}}/{{item.uniqueCode}}" style="height: 40px;border-radius: 69px;">
+                <img ng-if="item.type =='brochure'" id="thumbnail" err-src="app/main/filemanager/img/default.jpg" ng-src="app/main/filemanager/img/pdf.png" style="height: 40px;border-radius: 69px;">
+            </div>
+        </div>
+
+        <div class="info" flex layout="column">
+            <div class="primaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">{{item.date | toDateObject | date : 'mediumDate'}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">{{item.name}}</span>
+
+            </div>
+
+            <div class="secondaryInfo" layout="row" layout-align="start center">
+
+                <!--   <span class="text-truncate">Created Date : {{item.date | toDateObject | date : 'mediumDate'}}</span> -->
+                <span class="text-truncate">{{item.size}} kb uploaded by {{item.createUser}} via {{item.appName}}</span>
+
+            </div>
+
+        </div>
+        <md-menu md-position-mode='target-right target' aria-label="Sort">
+            <md-button class="md-icon-button" aria-label="Sort" ng-click='$mdOpenMenu($event)' type='button'>
+                <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+            </md-button>
+            <md-menu-content width='4'>
+                <md-divider ng-show='item.divider'></md-divider>
+                <md-menu-item ng-show="item.type=='image'">
+                    <a href="{{vm.imageUrl}}{{item.appName}}/{{item.uniqueCode}}" download="{{item.uniqueCode}}" style="color: inherit;font-size: 15px;background-color: #eaeaea;">
+                        <div layout='row'>
+                            <p flex>Download</p>
+                        </div>
+                    </a>
+                </md-menu-item>
+                <md-menu-item ng-show="item.type=='brochure'">
+                    <a href="{{vm.brochur}}{{item.appName}}/{{item.uniqueCode}}" download="{{item.uniqueCode}}" style="color: inherit;font-size: 15px;background-color: #eaeaea;">
+                        <div layout='row'>
+                            <p flex>Download</p>
+                        </div>
+                    </a>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="vm.viewImageInTab(item)">
+                        <div layout='row'>
+                            <p flex>View</p>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <div layout="column" layout-align="space-between end">
+        </div>
+    </div>
+</div>

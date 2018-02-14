@@ -1,0 +1,219 @@
+<div class="invoice-container" >
+    <div class="detail-wrapper">
+    
+        <div class="detail-header" layout="row" layout-align="space-between start">
+            <div class="ids" layout="column">
+                <div layout="row" class="seller" layout-align="start center">
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="{{vm.companylogo}}" width="156" height="156">
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail">
+                        <div class="title">{{vm.profData.companyName}}</div>
+                        <div class="address">{{vm.profData.street}} {{vm.profData.city}} {{vm.profData.state}}</div>
+                        <div class="address">{{vm.profData.country}},{{vm.profData.zip}}</div>
+                        <div  class="phone" style="width: 200px"><span ng-if="vm.profData.phoneNo">t.
+                            {{vm.profData.phoneNo}} </span><span ng-if="vm.profData.fax">f.
+                            {{vm.profData.fax}}</span>
+                        </div>
+                        <div class="email">{{vm.profData.companyEmail}}</div>
+                        <div class="website">{{vm.profData.website}}</div>
+                    </div>
+                </div>
+
+                <div layout="row" class="client" layout-align="start center">
+                    <div class="logo" layout="row" layout-align="center center">
+                        <div>{{vm.inv.profileName[0] | uppercase}}</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail">
+                        <div class="title">{{vm.inv.profileName}}</div>
+                        <div ng-if="vm.inv.billingAddress" class="address">{{vm.inv.billingAddress.street}}{{vm.inv.billingAddress.city}}{{vm.inv.billingAddress.city}}{{vm.inv.billingAddress.country}}</div>
+                        <div  class="phone" style="width: 200px"><span ng-if="vm.inv.contactNo">t.
+                            {{vm.inv.contactNo}} </span><span ng-if="vm.inv.fax">f.
+                            {{vm.inv.fax}}</span>
+                        </div>
+                        <div ng-if="vm.inv.email" class="email">
+                            {{vm.inv.email}}
+                        </div>
+                        <div ng-if="vm.inv.client.website" class="website"><span>Web</span>:
+                            {{vm.inv.client.website}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="summary" style="margin-top: -9px;">
+                <tr class="code">
+                    <td class="label">INVOICE</td>
+                    <td class="value">{{vm.inv.invoiceNo}}</td>
+                </tr>
+                <tr class="tableSpacer"></tr>
+                <tr>
+                    <td class="label cellSpacer">DATE</td>
+                    <td  class="value cellSpacer">{{vm.inv.startDate|date}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">DUE DATE</td>
+                    <td ng-if="vm.inv.peymentTerm != 'multipleDueDates'" class="value cellSpacer">{{vm.inv.dueDate|date}}</td>
+                     <td ng-if="vm.inv.peymentTerm == 'multipleDueDates'" class="value cellSpacer">Multiple Due Dates</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">P.O</td>
+                    <td class="value cellSpacer">{{vm.inv.poNumber}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">Currency</td>
+                    <td class="value cellSpacer">{{vm.inv.changedCurrency}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">BALANCE DUE</td>
+                    <td class="value cellSpacer">  {{vm.calBalance | currency:vm.inv.changedCurrency+' '}}</td><!-- vm.inv.subTotal -->
+                </tr>
+            </table>
+        </div>
+
+        <div class="detail-content">
+            <table class="simple invoice-table">
+                <thead class="tableHeader">
+                    <th>#</th>
+                    <th>DESCRIPTION</th>
+                    <th class="text-right">QUANTITY</th>
+                    <th class="text-right">UOM</th>
+                    <th class="text-right">UNIT PRICE</th>
+                    <th class="text-right">DISCOUNT</th>
+                    <th class="text-right">AMOUNT</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="items in vm.inv.invoiceLines">
+                        <td>{{$index + 1}}</td>
+                        <td>
+                            <div> {{items.productName}}</div>
+                            <div class="detail"> {{items.detail}}</div>
+                        </td>
+                        <td class="text-right">
+                            {{items.quantity}}
+                        </td>
+                        <td class="text-right">
+                            {{items.productUnit}}
+                        </td>
+                        <td class="text-right">
+                            {{items.price * vm.inv.exchangeRate | currency:vm.inv.changedCurrency+' '}}
+                        </td>
+                        <td class="text-right">
+                            {{items.discount}} %
+                        </td>
+                        <td class="text-right">
+                            {{items.amount * vm.inv.exchangeRate | currency:vm.inv.changedCurrency+' '}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="simple invoice-table-footer">
+                <tbody>
+                    <tr class="subtotal">
+                        <td>SUBTOTAL</td>
+                        <td></td>
+                        <td>{{vm.inv.subTotal * vm.inv.exchangeRate| currency:vm.inv.changedCurrency+' '}}</td>
+                    </tr>
+                    <tr class="shipping">
+                        <td>SHIPPING</td>
+                        <td></td>
+                        <td>{{vm.inv.shipping * vm.inv.exchangeRate | currency:vm.inv.changedCurrency+' '}}</td>
+                    </tr> 
+                    <tr class="tax" ng-repeat="item in vm.inv.taxAmounts">
+                        <td>{{item.taxName | uppercase }}</td>
+                        <td></td>
+                        <td>{{item.salesTax / vm.inv.exchangeRate| currency:vm.inv.changedCurrency+' '}}</td>
+                    </tr>
+                    <tr class="total">
+                        <td>TOTAL</td>
+                        <td></td>
+                        <td>{{vm.inv.netAmount * vm.inv.exchangeRate| currency:vm.inv.changedCurrency+' '}}</td>
+                    </tr>
+                    <tr class="paid">
+                        <td>PAID</td>
+                        <td></td>
+                        <td>{{vm.paid * vm.inv.exchangeRate| currency:vm.inv.changedCurrency+' '}}</td>
+                    </tr>
+                    <tr class="balancedue">
+                        <td>BALANCE DUE</td>
+                        <td></td>
+                        <td><span>{{vm.paymentMethod}}  </span>{{vm.calBalance * vm.inv.exchangeRate| currency:vm.inv.changedCurrency+' '}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <span ng-if="vm.inv.peymentTerm == 'multipleDueDates'" class="smallHeader">Payment Shedule</span>
+
+            <table class="simple payment-table" ng-if="vm.inv.peymentTerm == 'multipleDueDates'">
+                <thead class="tableHeader">
+                    <th>#</th>
+                    <th>DATE</th>
+                    <th class="text-right">PERCENTAGE (%)</th>
+                    <th class="text-right">AMOUNT</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tt in vm.inv.multiDueDates">
+                    
+                        <td>{{$index + 1}}</td>
+                        <td>
+                            {{tt.dueDate}}
+                        </td>
+                        <td class="text-right">
+                            {{tt.percentage}}%
+                        </td>
+                        <td class="text-right">
+                           {{tt.dueDatePrice * vm.inv.exchangeRate}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="detail-footer">
+            <div class="footerSegments" layout="column">
+                <span class="segmentHeader">Payment Information</span>
+                <div class="segmentContent">
+                    <span>{{vm.offlinePayments}}</span>
+                </div>
+            </div>
+            <div class="footerSegments" ng-if="vm.defaultNOte != '-'">
+                <span class="segmentHeader">Notes</span>
+                <div class="segmentContent">
+                    <span>{{vm.defaultNOte}}</span>
+                </div>
+            </div>
+            <div class="footerSegments">
+                <span class="segmentHeader">Additional Information</span>
+                <div class="segmentContent" layout="row">
+                    <span class="contactSegment">CONTACT NUMBER   {{vm.inv.contactNo}}</span>
+                    <span class="contactSegment">EMAIL ADDRESS    {{vm.inv.email}}</span>
+                </div>
+            </div>
+            <div class="footerSegments" ng-show="vm.showShipping">
+                <span class="segmentHeader" ng-if="!vm.inv.billingAddress.street == ''">Shipping Information</span>
+                <div class="segmentContent" >
+                <!--{{vm.inv.billingAddress.street}},{{vm.inv.billingAddress.city}},{{vm.inv.billingAddress.state}},{{vm.inv.billingAddress.zip}},{{vm.inv.billingAddress.country}}-->
+                <span ng-show="vm.inv.billingAddress.street">{{vm.inv.billingAddress.street}},</span>
+                <span ng-show="vm.inv.billingAddress.city">{{vm.inv.billingAddress.city}},</span>
+                <span ng-show="vm.inv.billingAddress.state">{{vm.inv.billingAddress.state}},</span>
+                <span ng-show="vm.inv.billingAddress.zip">{{vm.inv.billingAddress.zip}},</span>
+                <span ng-show="vm.inv.billingAddress.country">{{vm.inv.billingAddress.country}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+</div>

@@ -1,0 +1,11 @@
+<div id="threesixty-biteinfo-collection" class="side-margin-left" layout="column">
+    <div ng-repeat="infoBite in vm.infoBites" class="threesixty-component-styling threesixty-biteinfo-widget-component side-margin-bottom" layout="row">
+        <div class="valueSection" flex layout="column" layout-align="center start">
+            <span>{{infoBite.widgetTitle}}</span>
+            <span>{{infoBite.widgetValue}}</span>
+        </div>
+        <div class="iconSection" layout="column" layout-align="center center">
+            <img ng-src="/assets/icons/componenticons/{{infoBite.widgetName}}.svg" width="50%" height="50%">
+        </div>      
+    </div>
+</div>

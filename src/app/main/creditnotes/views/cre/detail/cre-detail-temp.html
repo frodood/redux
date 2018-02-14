@@ -1,0 +1,219 @@
+<div class="invoice-container" >
+    <div class="detail-wrapper">
+    
+        <div class="detail-header" layout="row">
+            <div class="ids" layout="column" flex>
+
+                <div layout="row" class="seller" layout-align="start center" flex>
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="{{vm.companylogo}}" width="156" height="156">
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail">
+                        <div class="address">
+                          <ms-address-component address-data="vm.ObjCompanyAddress" ent-type="'company'" align="left" showentity-title="true"></ms-address-component>
+                        </div>
+                    </div>
+                </div>
+
+                <div layout="row" class="client" layout-align="start center" flex>
+                    <div class="logo" layout="row" layout-align="center center">
+                        <div>{{vm.creditNote.profileName[0] | uppercase}}</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail"> 
+                        <div class="address">
+                            <ms-address-component address-data="vm.ObjCusAddress"  ent-type="'client'" align="left" showentity-title="true"></ms-address-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary" layout="column" flex>
+                <div class="code" layout="row" layout-align="end start">
+                    <div layout="column" flex>
+                        <div class="label">CREDIT NOTE</div>
+                    </div>
+                    <div layout="column">
+                         <div class="value">{{vm.creditNote.creditNoteNo}}</div>
+                    </div>
+                </div>
+                <!-- <div class="space" layout flex>
+                </div> -->
+                <div class="space" layout flex ng-if="vm.profData.cusFiel.length == 0">
+                </div>
+
+                <div class="spacecustomFieldOne" layout flex ng-if="vm.profData.cusFiel.length == 1">
+                </div>
+
+                <div class="spacecustomFieldAll" layout flex ng-if="vm.profData.cusFiel.length == 2 || vm.profData.cusFiel.length == 3">
+                </div>
+
+                <div layout="column" layout-align="start end" flex class="customField" ng-if="vm.profData.cusFiel.length != 0" >
+                   
+                        <div layout="row" flex ng-repeat="cus in vm.profData.cusFiel" class="customerFieldHeight">
+                            <div class="label cellSpacer">{{cus.labelShown}}</div>
+                            <div class="value cellSpacer">{{cus.inputType}}</div>
+                            <!-- <div class="label cellSpacer">{{}}</div> -->
+                        </div>
+                </div>
+
+                <div layout="row" layout-align="end end" flex>
+
+                    <div layout="column" flex>
+                       <div class="label cellSpacer">DATE</div>
+                       <div class="label cellSpacer">CURRENCY</div>
+                    </div>
+
+                    <div layout="column">
+                       <div class="value cellSpacer">{{vm.formatDate(vm.creditNote.createDate) | toDateObject }}</div>
+                        <div class="value cellSpacer">{{vm.creditNote.baseCurrency }}</div>
+                    </div>
+                </div>
+            </div>
+
+           <!--  <table class="summary" style="margin-top: -9px;">
+                <tr class="code">
+                    <td class="label">CREDIT NOTE</td>
+                    <td class="value">{{vm.creditNote.creditNoteNo}}</td>
+                </tr>
+                <tr class="tableSpacer"></tr>
+                <tr>
+                    <td class="label cellSpacer">DATE</td>
+                    <td  class="value cellSpacer">{{vm.formatDate(vm.creditNote.createDate) | date:'MMM dd, yyyy'}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">CURRENCY</td>
+                    <td class="value cellSpacer">{{vm.creditNote.baseCurrency }}</td> 
+                </tr>
+ 
+            </table> -->
+        </div>
+
+        <span class="invoiceComment" style="margin-left: 0;">{{vm.creditNote.comments}}</span>
+
+        <div class="detail-content">
+            <table class="invoice-table" style="width:100%">
+                <thead class="tableHeader">
+                    <th>#</th>
+                    <th class="text-left">DESCRIPTION</th>
+                    <th class="text-center">QUANTITY</th>
+                    <th class="text-center">UOM</th>
+                    <th class="text-center">UNIT PRICE</th>
+                    <th class="text-center">DISCOUNT</th>
+                    <th class="text-right">AMOUNT</th>
+                </thead>
+                <tbody class="tableBody">
+                    <tr ng-repeat="items in vm.creditNote.creditNoteProducts">
+                        <td style="width:3%;">{{$index + 1}}</td>
+                        <td class="text-left" style="width:35%">
+                            <div> {{items.productName}}</div>
+                            <div class="detail"> {{items.olp}}</div>
+                        </td>
+                        <td class="text-center" style="width:5%">
+                            {{items.quantity | qtyRndUp}}
+                        </td>
+                        <td class="text-center" style="width:5%">
+                            {{items.productUnit}}
+                        </td>
+                        <td class="text-center" style="width:15%">
+                            {{items.price / vm.creditNote.exchangeRate| unitPriceRndUp}}
+                        </td>
+                        <td class="text-center" style="width:8%">
+                            {{items.discount}}%
+                        </td>
+                        <td class="text-right" style="width:15%">
+                            {{items.amount / vm.creditNote.exchangeRate| valRndUp}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="simple invoice-table-footer">
+                <tbody>
+                    <tr class="subtotal">
+                        <td>SUBTOTAL</td>
+                        <td></td>
+                        <td>{{vm.creditNote.changedCurrency}} {{vm.creditNote.subTotal / vm.creditNote.exchangeRate| valRndUp}}</td>
+                    </tr> 
+                    <tr class="tax" ng-repeat="item in vm.creditNote.taxAmounts">
+                        <td>{{item.taxName | uppercase }}</td>
+                        <td></td>
+                        <td>{{vm.creditNote.changedCurrency}} {{item.salesTax / vm.creditNote.exchangeRate| valRndUp}}</td>
+                    </tr>
+                    <tr class="shipping">
+                        <td>SHIPPING</td>
+                        <td></td>
+                        <td>{{vm.creditNote.changedCurrency}} {{vm.creditNote.shipping / vm.creditNote.exchangeRate | valRndUp}}</td>
+                    </tr>
+                    <tr class="total">
+                        <td>APPLIED</td>
+                        <td></td>
+                        <td>{{vm.creditNote.changedCurrency}} {{vm.creditNote.appliedTotal / vm.creditNote.exchangeRate| valRndUp}}</td>
+                    </tr> 
+                    <tr class="balancedue">
+                        <td>REMAINING</td> 
+                        <td></td>
+                        <td>{{vm.creditNote.changedCurrency}} {{vm.creditNote.balance / vm.creditNote.exchangeRate| valRndUp}}</td> 
+                    </tr>
+                </tbody>
+            </table> 
+            <div flex  ng-if="vm.creditNote.paidInvoice && vm.creditNote.paidInvoice.length > 0">
+                <span class="invoiceComment" style="margin-left: 0;color: rgba(0, 0, 0, 0.54);">INVOICE(S) APPLIED</span>
+            </div>
+            <table class="payment-table" ng-if="vm.creditNote.paidInvoice && vm.creditNote.paidInvoice.length > 0">
+                <thead class="tableHeader">
+                    <th style="width:3%">#</th>
+                    <th style="width:62%" class="text-left">DATE</th>
+                    <th style="width:15%" class="text-center">INVOICE NO</th>
+                    <th style="width:20%" class="text-right">APPLIED</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tt in vm.creditNote.paidInvoice">
+                    
+                        <td style="width:3%">{{$index + 1}}</td>
+                        <td style="width:62%" class="text-left">
+                            {{tt.sdate | toDateObject}}
+                        </td>
+                        <td style="width:15%" class="text-center">
+                            {{tt.invono}}
+                        </td>
+                        <td style="width:20%" class="text-right">
+                        
+                           {{tt.paidAmountFromCurrentCN * vm.creditNote.exchangeRate | valRndUp}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="detail-footer">
+            <div class="footerSegments" ng-if="vm.creditNote.notes != '-' && vm.creditNote.notes != '' ">
+                <span class="segmentHeader" >Notes</span>
+                <div class="segmentContent">
+                    <span style="white-space: pre;" ng-bind-html="vm.creditNote.notes"></span>
+                </div>
+            </div> 
+        </div>
+        <div class="detail-footer" ng-if="vm.creditNote.customFields.length > 0" >
+            <div class="footerSegments" ng-if="vm.creditNote.notes != '-' || vm.creditNote.notes != '' ">
+                <span class="segmentHeader" >ADDITIONAL INFORMATION</span>
+                <div class="segmentContent">
+                   <div flex layout="column" ng-repeat="item in vm.creditNote.customFields" >
+                        <span >
+                            {{item.labelShown}} - {{item.value}}
+                        </span>   
+                    </div>        
+                </div>
+            </div> 
+        </div> 
+    </div>
+
+    <div class="page-break"></div>
+
+</div>

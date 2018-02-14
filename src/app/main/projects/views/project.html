@@ -1,0 +1,223 @@
+<div id="projects" class="page-layout carded boxed right-sidenav" layout="row">
+   <div class="center" layout="column" layout-align="center center" flex >
+      <div class="content-card" layout="column">
+         <div class="toolbar" layout="row" layout-align="space-between center" ng-show="vm.primaryToolbarContext">
+            <div layout="row" layout-align="start center">
+                 <md-button class="md-primary"  ng-click="vm.changeTab('project')" ng-class="{'md-hue-3' : !vm.addHueClass}" >
+                     Project
+                 </md-button>
+                 <div class="divider-vertical"></div>
+                 <md-button class="md-primary"  ng-click="vm.changeTab('timesheet')" ng-class="{'md-hue-3' : vm.addHueClass}">
+                     Time Sheet
+                 </md-button>
+            </div>
+            <div layout="row" layout-align="start center">
+               <md-button ng-if="vm.tabIndex == 0" class="md-primary border" style="border:2px solid;" 
+                  ng-click="vm.toggleChildStates('app.projects.proCompose')"  ms-perm-elem perm-context="'Projects'" perm-action="'add'">
+                  <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                  Add New
+               </md-button>
+               <md-button ng-if="vm.tabIndex == 1" class="md-primary border" style="border:2px solid;" 
+                  ng-click="vm.toggleChildStates('app.projects.timeCompose')"  ms-perm-elem perm-context="'Projects'" perm-action="'add'">
+                  <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                  Add New
+               </md-button>
+            </div>
+         </div>
+         <div class="toolbar" layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+               <md-button class="md-icon-button close-thread" aria-label="Back"
+                  ng-click="vm.closeThread()" ng-if="vm.currentThread">
+                  <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+               </md-button>
+               <div class="filter-buttons" layout="row" layout-align="start center" ng-hide="vm.selectedThreads.length > 0 || vm.currentThread" hide show-gt-xs>
+                  <md-menu md-position-mode='target-left bottom' aria-label="Sort">
+                     <md-button class="md-icon-button" aria-label="Sort" ng-click='$mdOpenMenu()' type='button'>
+                        <md-icon md-font-icon="icon-sort-variant"></md-icon>
+                        <md-tooltip><span>Sort</span></md-tooltip>
+                     </md-button>
+                     <md-menu-content width='4'>
+                        <div ng-repeat='item in vm.sortArr track by $index'>
+                           <md-menu-item>
+                              <md-button ng-click='vm.starfunc(item,$index)'>
+                                 <div layout='row'>
+                                    <p flex>{{item.name}}</p>
+                                    <div>
+                                       <md-icon md-font-icon="icon-chevron-up" style='margin-top:4px; position: absolute; left: 150px;' ng-show='item.upstatus'></md-icon>
+                                    </div>
+                                    <div>
+                                       <md-icon md-font-icon="icon-chevron-down" style='margin-top:9px;position: absolute; left: 150px;' ng-show='item.downstatus'></md-icon>
+                                    </div>
+                                 </div>
+                              </md-button>
+                              <div ng-click="vm.defaultCancel(item)" style="width: 18px;z-index: 10;margin-left: -45px; margin-top: 15px;position: relative;" ng-show='item.close'>
+                                 <md-icon md-font-icon="icon-close-circle" style='width: 18px;
+                                    margin-top:-4px;'></md-icon>
+                              </div>
+                           </md-menu-item>
+                           <md-divider ng-show='item.divider'></md-divider>
+                        </div>
+                     </md-menu-content>
+                  </md-menu>
+                  <div class="divider-vertical"></div>
+                  <md-button class="md-icon-button" aria-label="All" ng-click="vm.sortAll()" ng-if="vm.tabIndex == 0">
+                     <md-icon md-font-icon="icon-multiplication"></md-icon>
+                     <md-tooltip><span>All</span></md-tooltip>
+                  </md-button>
+                  <md-button class="md-icon-button" aria-label="All" ng-click="vm.sortAllTime()" ng-if="vm.tabIndex == 1 ">
+                     <md-icon md-font-icon="icon-multiplication"></md-icon>
+                     <md-tooltip><span>All</span></md-tooltip>
+                  </md-button>
+                  <md-button class="md-icon-button" aria-label="Active" ng-click="vm.singleActiveSort()" ng-if="vm.tabIndex == 0">
+                     <md-icon md-font-icon="icon-check-circle"></md-icon>
+                     <md-tooltip><span>Active</span></md-tooltip>
+                  </md-button>
+                  <md-button class="md-icon-button" aria-label="Favourite" ng-click="vm.singleStarSortPro()" ng-if="vm.tabIndex == 0">
+                     <md-icon md-font-icon="icon-star"></md-icon>
+                     <md-tooltip><span>Favourite</span></md-tooltip>
+                  </md-button>
+                  <md-button class="md-icon-button" aria-label="Favourite" ng-click="vm.singleStarSortTime()" ng-if="vm.tabIndex == 1">
+                     <md-icon md-font-icon="icon-star"></md-icon>
+                     <md-tooltip><span>Favourite</span></md-tooltip>
+                  </md-button>
+                  <md-button class="md-icon-button" aria-label="Favourite" ng-click="vm.toggleChildStates('app.projects.calendar')"  ng-if="vm.tabIndex == 1">
+                     <md-icon md-font-icon="icon-calendar-blank"></md-icon>
+                     <md-tooltip><span>Calender</span></md-tooltip>
+                  </md-button>
+
+
+               </div>
+               <div class="action-buttons" layout="row" layout-align="start center" ng-show="vm.selectedThreads.length > 0 || vm.currentThread" hide show-gt-xs> 
+               </div>
+               <!-- / ACTION BUTTONS -->
+               <!-- ACTIONS MENU -->
+               <md-menu class="actions-menu"
+                  ng-show="vm.selectedThreads.length > 0 || vm.currentThread"
+                  hide-gt-xs>
+                  <md-button class="md-icon-button"
+                     ng-click="$mdOpenMenu($event)"
+                     aria-label="Mail Actions"
+                     translate translate-attr-aria-label="MAIL.ACTIONS">
+                     <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                  </md-button>
+                  <md-menu-content width="3">
+                     <md-menu-item>
+                        <md-button aria-label="Delete" ng-click="vm.deleteProduct()">
+                           <md-icon md-font-icon="icon-delete"></md-icon>
+                           <span>Delete</span>
+                        </md-button>
+                     </md-menu-item>
+                  </md-menu-content>
+               </md-menu>
+               <!-- / ACTIONS MENU -->
+            </div>
+            <ms-paging ng-if="vm.tabIndex == 0" ng-show="vm.primaryToolbarContext"  page-obj='vm.pageObj' result="vm.projectSummary" page-gap="vm.pageGap"></ms-paging>
+
+            <ms-paging ng-if="vm.tabIndex == 1" ng-show="vm.primaryToolbarContext" page-obj='vm.pageObj' result="vm.timesheetSummary" page-gap="vm.pageGap"></ms-paging>
+
+            <div layout="row" layout-align="start center" ng-hide="vm.primaryToolbarContext" ng-if="vm.tabIndex == 0">
+                 <!--    <md-button class="md-icon-button" aria-label="Print" ng-click="vm.printPdf()">
+                        <md-icon md-font-icon="icon-printer"></md-icon>
+                        <md-tooltip><span>Print</span></md-tooltip>
+                    </md-button>
+
+                    <md-button class="md-icon-button" aria-label="Download" ng-click="vm.DownloadPDF()">
+                        <md-icon md-font-icon="icon-download"></md-icon>
+                        <md-tooltip><span>Download</span></md-tooltip>
+                    </md-button>
+               <md-button class="md-icon-button" aria-label="Email" ng-click="vm.sendMail()">
+                  <md-icon md-font-icon="icon-email"></md-icon>
+                  <md-tooltip><span>Email</span></md-tooltip>
+               </md-button> -->
+               <ms-sidebar-history-comments-remote ng-if="!vm.primaryToolbarContext && vm.tabIndex == 0" ng-hide="$mdMedia(&#39;gt-md&#39)"></ms-sidebar-history-comments-remote>
+               <div layout="row" layout-align="start center" >
+                  <md-menu class="actions-menu"  aria-label="actions " href>
+                     <md-button class="md-icon-button"
+                        ng-click="$mdOpenMenu($event)"
+                        aria-label="products Actions">
+                        <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                     </md-button>
+                     <md-menu-content width="2">
+                        <md-menu-item>
+                           <md-button  class="md-primary" ng-click="vm.billcustomer()">
+                              <p>Bill customer</p>
+                              <md-icon href md-menu-align-target ></md-icon>
+                           </md-button>
+                        </md-menu-item>
+                        <md-menu-item >
+                           <md-button  class="md-primary" ng-click="vm.changeStatus()" ms-perm-elem perm-context="'Projects'" perm-action="'cancel'">
+                              <p>{{vm.status}}</p>
+                              <md-icon md-menu-align-target ></md-icon>
+                           </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="vm.balance.billed == 0" ms-perm-elem perm-context="'Projects'" perm-action="'delete'">
+                           <md-button  class="md-primary" ng-click="vm.deleteProject()"  >
+                              <p>Delete</p>
+                              <md-icon md-menu-align-target ></md-icon>
+                           </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="vm.balance.billed == 0" ms-perm-elem perm-context="'Projects'" perm-action="'edit'">
+                           <md-button  class="md-primary" ng-click="vm.projectEdit()" >
+                              <p>Edit</p>
+                              <md-icon md-menu-align-target ></md-icon>
+                           </md-button>
+                        </md-menu-item>
+                     </md-menu-content>
+                  </md-menu>
+               </div>
+            </div>
+            <div layout="row" layout-align="start center" ng-hide="vm.primaryToolbarContext" ng-if=" vm.tabIndex == 1">
+             
+               <ms-sidebar-history-comments-remote ng-if="!vm.primaryToolbarContext" ng-hide="$mdMedia(&#39;gt-md&#39)"></ms-sidebar-history-comments-remote>
+               <div layout="row" layout-align="start center" >
+                  <md-menu class="actions-menu"  aria-label="actions " href ng-if="vm.timesheet.billableStatus != 'Billed' ">
+                     <md-button class="md-icon-button"
+                        ng-click="$mdOpenMenu($event)"
+                        aria-label="products Actions">
+                        <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                     </md-button>
+                     <md-menu-content width="2">
+                        <md-menu-item>
+                           <md-button  class="md-primary" ng-click="vm.editTimesheet()">
+                              <p>Edit</p>
+                              <md-icon href md-menu-align-target ></md-icon>
+                           </md-button>
+                        </md-menu-item> 
+                     </md-menu-content>
+                  </md-menu>
+               </div>
+            </div>
+         </div>
+         <!-- / SECONDARY TOOLBAR -->
+         <!-- CONTENT WRAPPER -->
+         <div id="container" class="content-wrapper" layout="column" flex > 
+
+            <div class="content thread-detail"
+               style="padding: 0;" 
+               ng-if="vm.currentThread && vm.tabIndex == 0"
+               ng-include="'app/main/projects/views/project/view/detail/project-detail.html'" ms-scroll flex>
+            </div>
+            <div class="content thread-detail"
+               ng-if="vm.currentThread && vm.tabIndex == 1"
+               ng-include="'app/main/projects/views/timesheet/view/detail/timesheet-detail.html'" ms-scroll flex>
+            </div>
+            <!-- / ITEM DETAIL -->
+            <!-- ITEM LIST -->
+            <div class="content item-list"
+               ng-if="!vm.currentThread && vm.tabIndex == 0"
+               ng-include="'app/main/projects/views/project/view/list/project-list.html'" ms-scroll flex>
+            </div>
+            <div class="content item-list"
+               ng-if="!vm.currentThread && vm.tabIndex == 1"
+               ng-include="'app/main/projects/views/timesheet/view/list/timesheet-list.html'" ms-scroll flex>
+            </div>
+            <!-- / ITEM LIST -->
+
+         </div>
+         <!-- / CONTENT WRAPPER-->
+      </div>
+   </div>
+    <time-tracker   drag-me time-status="stopTime"  catch-name="vm.catchName"></time-tracker> 
+   <!-- / CENTER -->
+   <ms-sidebar-history-comments ng-if="!vm.primaryToolbarContext && vm.tabIndex == 0" application="'project'"></ms-sidebar-history-comments>
+</div>

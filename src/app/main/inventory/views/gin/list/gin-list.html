@@ -1,0 +1,82 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<!-- <div class="empty-items" ng-if="vm.inventoryGIN.length === 0">There are no inventories</div>
+<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.inventoryGIN && vm.loadingItems">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading Inventory...</div>
+</div> -->
+<ms-spinner-component name="issue-list-spinner" size="32" relative-position="false" ng-if="!vm.inventoryGIN" on-loaded="vm.issueListSpinnerLoaded(spinnerApi)" spinner-Text="Loading issues"></ms-spinner-component>
+<ms-empty-state-component ng-if="vm.inventoryGIN.length == 0" offset-height="176" state-context="'list'" 
+state-header="'Its empty here…'" state-message="'Add a new issue to get started!'" component-size="'large'">
+</ms-empty-state-component>
+
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start -->
+<div class="item {{item.status}}" md-ink-ripple
+     ng-if="!vm.loadingItems"
+     ng-repeat="item in vm.inventoryGIN | filter: global.search"
+     ng-click="vm.openItem(item)"
+     ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}">
+
+    <div layout="row" layout-align="start center">
+        <!-- <md-checkbox class="no-label"
+                     ng-checked="vm.isSelected(item)"
+                     ng-click="vm.toggleSelectThread(item, $event)"
+                     aria-label="{{vm.isSelected(item) ? 'Deselect' : 'Select'}}">
+        </md-checkbox>
+
+        <div class="divider-vertical"></div> -->
+
+        <div class="cygil">
+            <div class="avatar" ms-random-class="vm.contactColors" style="margin-left:8px;">
+                {{item.customerNames[0] | uppercase}}
+            </div>
+        </div>
+
+        <div class="info" flex layout="column">
+            <div class="primaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">{{item.GINno}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">{{item.createdDate | toDateObject | date:'mediumDate'}}</span>
+            </div>
+
+            <div class="secondaryInfo" layout="row" layout-align="start center">
+                <!-- <span class="text-truncate">GIN No. : {{item.GINno}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">Date : {{item.createdDate | toDateObject | date:'mediumDate'}}</span>
+                <div class="divider-vertical"></div> -->
+                <div ng-if="item.GINType=='AutoGIN'">
+                <span class="text-truncate">{{item.customerNames}}</span>
+                </div>
+                <div ng-if="item.GINType=='GIN'">
+                <span class="text-truncate">Customer Name : {{item.customerNames}}</span>
+                </div>
+                <!-- <span class="text-truncate">Customer Name : {{item.customerNames}}</span> -->
+            </div>
+
+        </div>
+
+        <!-- <div class="status2" layout="column" layout-align="center end" ng-if="item.cancelStatus">
+            <span class="text-truncate">USD 1245.00</span>
+            <span class="text-truncate" style="font-weight:500; color:red;">CANCELLED</span>
+        </div> -->
+
+        <div class="status" layout="column" layout-align="center end" ng-if="item.cancelStatus">
+            <div class="invStatus" layout="row" layout-align="start center">
+                <div class="status-circle"></div>
+                <div class="status-label">Cancelled</div>
+            </div>
+        </div>
+
+        <div layout="column" layout-align="space-between end">
+            <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('starred', item, $event)"
+                       aria-label="Toggle starred">
+                <md-icon ng-if="item.inventoryFavourite" md-font-icon="icon-star"
+                         class="amber-fg"></md-icon>
+                <md-icon ng-if="!item.inventoryFavourite" md-font-icon="icon-star-outline"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>

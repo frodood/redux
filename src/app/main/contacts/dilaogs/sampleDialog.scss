@@ -1,0 +1,59 @@
+#customDialogBox {
+    overflow:hidden;
+    md-toolbar {
+        min-height: 48px;
+        .md-toolbar-tools {
+            height: 48px;
+            max-height: 48px;
+        }
+    }
+
+    .content{
+        .email-form{
+
+            .toolbarCompose{
+                background-color:#F6F6F6;
+                height: 50px;
+
+                .optional{
+                    padding:0px 12px;
+                }
+            }
+
+            .dialogContent {
+                &.pad_32 {
+                    padding-left: 32px;
+                    padding-right: 32px;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                }
+
+                md-autocomplete.no-float > md-autocomplete-wrap > md-input-container {
+                    font-size:15px;
+                    > label {
+                        -webkit-transform: translate3d(1px,28px,0) scale(1) !important;
+                        transform: translate3d(1px,28px,0) scale(1) !important;
+                        color: #BDBDBD;
+                    }
+                    &.md-input-has-value > label {
+                        display: none !important;
+                    }
+                }
+            }   
+        }
+    }  
+
+            .footersection{
+                width:100%;
+                padding:12px 24px;
+                border-top:1px solid rgba(0, 0, 0, 0.12);
+
+                button{
+                    float:right;
+                    margin:0px;
+                }
+                button:nth-child(2){
+                    margin-right:12px;
+                }
+            }
+}

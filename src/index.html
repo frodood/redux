@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <base href="/">
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="version" content="V.6.4.2.62">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+        <title>12th Door</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/png">
+        <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css({.tmp/serve,src}) styles/app.css -->
+        <!-- inject:css -->
+        <!-- endinject -->
+        <!-- endbuild -->
+
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic'
+              rel='stylesheet' type='text/css'>
+        <script> window['_fs_debug'] = false; window['_fs_host'] = 'fullstory.com'; window['_fs_org'] = '9KQSS'; window['_fs_namespace'] = 'FS'; (function(m,n,e,t,l,o,g,y){ if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;} g=m[e]=function(a,b){g.q?g.q.push([a,b]):g._api(a,b);};g.q=[]; o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js'; y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y); g.identify=function(i,v){g(l,{uid:i});if(v)g(l,v)};g.setUserVars=function(v){g(l,v)}; g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)}; g.clearUserCookie=function(c,d,i){if(!c || document.cookie.match('fs_uid=[`;`]*`[`;`]*`[`;`]*`')){ d=n.domain;while(1){n.cookie='fs_uid=;domain='+d+ ';path=/;expires='+new Date(0).toUTCString();i=d.indexOf('.');if(i<0)break;d=d.slice(i+1)}}}; })(window,document,window['_fs_namespace'],'script','user'); </script>
+    </head>
+
+    <!--[if lt IE 10]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
+          class="{{state.current.bodyClass || ''}}">
+
+        <!-- SPLASH SCREEN -->
+        <ms-splash-screen id="splash-screen">
+            <div class="center">
+                <!-- Material Design Spinner -->
+                <div class="logo">
+                    <img src="/assets/images/branding/12thDoorCygilBlend.png" width="74" height="82"/>
+                    <!--<img src="/assets/images/branding/12thdoorlogosplash.png" width="531" height="168"/>-->
+                </div>
+                <!--<div class="moto">
+                    <span>Invoicing made simple</span>
+                </div>-->
+                <div class="spinner-wrapper">
+                    <div class="spinner">
+                        <div class="inner">
+                            <div class="gap"></div>
+                            <div class="left">
+                                <div class="half-circle"></div>
+                            </div>
+                            <div class="right">
+                                <div class="half-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Material Design Spinner -->
+            </div>
+        </ms-splash-screen>
+        <!-- / SPLASH SCREEN -->
+
+        <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
+
+        <!-- build:js(src) scripts/vendor.js -->
+        <!-- bower:js -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- <script src="segway.js"></script> -->
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+         <!--feebackify script addition - start -->
+        <script type="text/javascript">
+            var fby = fby || [];
+            fby.push(['showTab', {id: '13093', position: 'right', color: '#658EB6'}]);
+            (function () {
+                var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+                f.src = 'https://cdn.feedbackify.com/f.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+            })();
+        </script> 
+        <!-- feebackify script addition - end -->
+        
+        <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+        <!-- inject:js -->
+        <!-- endinject -->
+
+        <!-- inject:partials -->
+        <!-- endinject -->
+        <!-- endbuild -->
+
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+<!-- <div class="empty-items" ng-if="vm.estimateSummary.length === 0">There are no estimates.</div>
+
+<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.estimateSummary">
+   <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+   <div>Loading Estimates...</div>
+</div> -->
+
+<ms-spinner-component name="est-list-spinner" size="32" relative-position="false" ng-if="!vm.estimateSummary" on-loaded="vm.estListSpinnerLoaded(spinnerApi)" spinner-Text="Loading estimates"></ms-spinner-component>
+
+<ms-empty-state-component ng-if="vm.estimateSummary.length == 0" offset-height="176" state-context="'list'" state-header="'Its empty here…'"
+state-message="'Add a new estimate to get started!'" component-size="'large'">
+</ms-empty-state-component>
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+<!-- empty states ui handler - start -->
+<div class="inv-item {{item.status}}" md-ink-ripple 
+   ng-repeat="item in vm.estimateSummary | filter: global.search"
+   ng-click="vm.openItem(item)"
+   ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}">
+   <div class="primarycontainer" layout="row" layout-align="start center">
+      <div class="cygil">
+         <div class="avatar" ms-random-class="vm.contactColors" style="margin-left:8px;">
+            {{item.profileName[0] | uppercase}}
+         </div>
+      </div>
+      <div class="info" flex layout="column">
+         <div class="primaryInfo" layout="row" layout-align="start center">
+            <span class="text-truncate">{{item.estimateNo}}</span>
+            <div class="divider-vertical"></div>
+            <span class="text-truncate"> {{item.date | toDateObject}}</span>
+            <div class="divider-vertical" ng-if="item.sendMail == true || item.viewed == true"></div>
+            <md-icon ng-if="item.sendMail" md-font-icon="icon-email" class="clientActionViewer"></md-icon>
+            <md-icon ng-if="item.viewed" md-font-icon="icon-eye" class="clientActionViewer"></md-icon>
+         </div>
+         <div class="secondaryInfo" layout="row" layout-align="start center">
+            <span class="text-truncate">Customer : {{item.profileName}}</span>
+            <div class="divider-vertical"></div>
+            <span class="text-truncate">Validity  : {{item.validity | toDateObject }} </span>
+         </div>
+      </div>
+      <div class="status" layout="column" layout-align="center end">
+         <span class="text-truncate">{{item.baseCurrency}} {{item.netAmount | valRndUp}}</span>
+         <div class="estStatus {{item.status}}" layout="row" layout-align="start center">
+            <div class="status-circle"></div>
+            <div class="status-label">{{item.status}}</div>
+         </div>
+      </div>
+      <div layout="column" layout-align="space-between end">
+         <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('favouriteStar', item, $event)"
+            aria-label="Toggle starred">
+            <md-icon ng-if="item.favouriteStar" md-font-icon="icon-star"
+               class="amber-fg"></md-icon>
+            <md-icon ng-if="!item.favouriteStar" md-font-icon="icon-star-outline"></md-icon>
+         </md-button>
+      </div>
+   </div>
+</div>

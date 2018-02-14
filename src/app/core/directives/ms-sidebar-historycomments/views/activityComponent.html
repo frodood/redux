@@ -1,0 +1,77 @@
+ <ms-spinner-component name="sidebar-activity-spinner" size="32" relative-position="false" is-flushed="true" on-loaded="vm.handleSBActivitySpinner(spinnerApi)" spinner-text="Loading activities and comments, please wait !"></ms-spinner-component> 
+<div class="acitivityContainer">
+    <div class="activitySection docHistory">
+        <div class="activitySubheader">
+            <span>Activity</span>
+        </div>
+        <div class="acitivityWrapper">
+            <div class="activity" ng-repeat="activity in vm.historyItems">
+                <div class="activityBody">
+                    <div class="text">
+                        <p>{{activity.description}} by <a href="#non" class="md-primary">{{activity.createUser}}</a></p>
+                    </div>
+                    <div class="attribution">
+                        {{activity.createDate | toDateObject}}
+                        <i>@ {{activity.createDate | toTimeObject}}</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="activitySection docOther" ng-if="vm.otherGenericItems.data.length > 0">
+        <div class="activitySubheader">
+            <span>{{vm.otherGenericItems.type}}</span>
+        </div>
+        <div class="acitivityWrapper">
+            <div class="activity" ng-repeat="activity in vm.otherGenericItems.data | orderBy: 'detailID':true">
+                <div class="activityBody">
+                    <div class="text">
+                        <p>{{activity.paymentMethod}} payment of {{activity.paidAmount | currency:activity.changedCurrency+" "}} was received.</p>
+                    </div>
+                    <div class="attribution">
+                        {{activity.lastTranDate | toDateObject}} 
+                        <i>@ {{activity.lastTranDate | toTimeObject}}</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="activitySection docOther" ng-if="vm.otherGenericItems.data2.length > 0">
+        <div class="activitySubheader">
+            <span>{{vm.otherGenericItems.type2}}</span>
+        </div>
+        <div class="acitivityWrapper">
+            <div class="activity" ng-repeat="activity in vm.otherGenericItems.data2 | orderBy: 'detailID':true">
+                <div class="activityBody">
+                    <div class="text">
+                        <p>Credit note worth {{activity.amount | currency:activity.changedCurrency+" "}} was applied on this invoice.</p>
+                    </div>
+                    <div class="attribution">
+                        {{activity.lastTranDate | toDateObject}} 
+                        <i>@ {{activity.lastTranDate | toTimeObject}}</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="activitySection docComments">
+        <div class="activitySubheader">
+            <span>Comments</span>
+        </div>
+        <div class="commentsWrapper">
+
+             <ms-empty-state-component ng-if="vm.showHistoryComments" state-context="'comment'" state-header="'Why so quiet ?'" component-size="'small'"></ms-empty-state-component> 
+
+            <div class="comment" layout="row" layout-align="start start"  ng-repeat="comment in vm.commentsItems">
+                <div class="commentCygil">
+                    {{comment.createUser[0] | uppercase}}
+                </div>
+                <div class="commentBody" layout="column">
+                    <span>{{comment.createUser}}</span>
+                    <p>{{comment.description}}</p>
+                    <span>{{comment.createDate | toDateObject}}<i> @ {{comment.createDate | toTimeObject}}</i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

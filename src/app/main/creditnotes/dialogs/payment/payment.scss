@@ -1,0 +1,162 @@
+#dialogApply {
+	background: white;  
+    max-height : 400px;
+    width: 800px !important;
+	overflow: hidden;
+    // .frmModal{
+    //     width: 800px;
+    // }
+
+	.tool-bar{
+		height : 54px;
+		z-index: 50;
+	}
+	.content{
+		width: 100%;
+		padding: 25px;  
+
+		.lineitems{
+                    width:100%;
+                    
+                    .list-items-header{
+                        width:100%;
+                        height:48px;
+                        font-weight:500;
+                        color:#2D6296;
+                        border-top:1px solid rgba(0, 0, 0, 0.08);
+                        border-bottom:1px solid rgba(0, 0, 0, 0.08);
+
+                        .list-item-header-control{
+                            width:48px; 
+                            height:100%;
+                        }
+
+                        .list-item-header-title{
+
+                            &.left{
+                                text-align:left;
+                            }
+
+                            &.center{
+                                text-align:center;
+                            }
+
+                            &.right{
+                                text-align:right;
+                            }
+                        }
+                    }
+
+                    .line-items-container {
+
+                        .line-items{
+
+                            .line-item {
+                                padding: 16px 16px 16px 48px;
+
+                                .handle {
+                                    display: block;
+                                }
+                            }
+                        }
+
+                        .line-items {
+                            overflow-x: hidden;
+
+                        }
+                    }
+
+                    .line-item {
+                        position: relative;
+                        background:#F6F6F6;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                        text-transform: none;
+                        cursor: pointer;
+
+                        &.line-item-placeholder {
+                            background: rgba(0, 0, 0, 0.12);
+                            * {
+                                opacity: 0;
+                            }
+                        }
+
+                        .handle {
+                            height: 100%;
+                            width: 48px;
+                            cursor: move;
+                            text-align: center;
+
+                            md-checkbox, .md-button{
+                                margin:0px !important
+                            }
+                        }
+
+                        &.selected {
+                            background: #FFF8E1;
+                        }
+
+                        .info {
+                            padding:8px 0px;
+                            width:100%;
+
+                            .item-value{
+
+                                &.left{
+                                    text-align:left;
+                                }
+
+                                &.center{
+                                    text-align:center;
+                                }
+
+                                &.right{
+                                    text-align:right;
+                                }
+
+                                md-input-container{
+                                    margin:0px !important;
+
+                                    .md-errors-spacer{
+                                        display:none; 
+                                    }
+
+                                    input{
+                                        text-align:right;
+                                    }
+                                }
+                            }
+                        }
+
+                        .buttons {
+                            height: 100%;
+                            width: 96px;
+                            top: 0;
+                            left: 0;
+                            cursor: move;
+                            text-align: center;
+                        }
+                    }
+
+
+                    .empty-line-items-container{
+                        padding:32px;
+                        font-weight:500;
+                        color:rgba(0,0,0,0.84); 
+                    }
+        }
+	}
+
+	.footer{
+		width:100%; 
+		height:64px;
+        overflow: hidden;
+		border-top: 1px solid;
+		border-color: #e4e0e0;
+
+        .balance{
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d6296;
+        }
+	}
+}

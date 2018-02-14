@@ -1,0 +1,29 @@
+// Safari vertical column layout fixes
+.center{
+    .content-card{
+        flex:1 0 auto !important;
+        height:100%;
+        
+        .ms-scroll{
+        }
+    }
+}
+
+.vert-layout-inner-fix{
+    height:100%;
+    border:1px solid blue;
+}
+
+.modal-browser-fix{
+    //this should be applied to md-dialog components
+    overflow:hidden;
+    min-height:80%;
+}
+
+.modal-height-fix{
+    height:80%;
+}
+
+.cf-modal-height-fix{
+    min-height:280px;
+}

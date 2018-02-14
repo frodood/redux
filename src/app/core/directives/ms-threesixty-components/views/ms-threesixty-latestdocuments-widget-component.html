@@ -1,0 +1,29 @@
+<div id="threesixty-latestdocuments-widget-component" class="threesixty-component-styling" flex>
+	<div class="widget-component-header">
+        Recent Documents
+    </div>
+    <div class="widget-component-content">
+        <div class="simple-table-container" ms-responsive-table>
+            <table class="simple">
+                <thead>
+                    <tr>
+                        <th ng-repeat="column in vm.widget10.table.columns">
+                            {{column.title}}
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="row in vm.widget10.table.rows">
+                        <td ng-repeat="cell in row">
+                            <span class="{{cell.classes}}">
+                                {{cell.value}}
+                            </span>
+                            <i ng-if="cell.icon" class="icon {{cell.icon}}"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

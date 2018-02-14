@@ -1,0 +1,110 @@
+<div layout="row" layout-align="start center">
+    <div layout="row" layout-align="start center" flex>
+
+        <div class="logo" layout="row" layout-align="start center" ng-click="vm.navigateDashboard()">
+            <img src="assets/images/branding/12thDoorToolbar_white_beta.png" width="114" height="34"/>
+        </div>
+
+        <div class="upgradeSection" ng-show="isContextSpA">
+            <md-button class="md-raised md-accent" ng-hide="isAccPaid" ng-click="vm.navigateUpgradePlan()">
+                <md-icon md-font-icon="icon-flag"></md-icon>
+                <span>Upgrade</span>
+                <md-tooltip>Upgrade to paid plan</md-tooltip>
+            </md-button>
+        </div>
+
+    </div>
+
+    <div layout="row" layout-align="start center">
+        <md-progress-circular style="margin-right:16px;" id="toolbar-progress" ng-if="$root.loadingProgress" class="md-accent md-hue-3" md-mode="indeterminate" md-diameter="24">
+        </md-progress-circular>
+
+        <!--<ms-search-bar on-search="vm.search(query)" on-result-click="vm.searchResultClick(item)" debounce="300"></ms-search-bar>-->
+
+        <!-- <div class="toolbar-separator"></div>
+
+        <md-button class="md-icon-button" aria-label="Tenant Switcher">
+            <md-icon class="s24" md-font-icon="icon-bell"></md-icon>
+            <md-tooltip>Notification</md-tooltip>
+        </md-button> -->
+
+         <div class="toolbar-separator"></div>
+
+        <md-button class="md-icon-button" aria-label="Help" ng-click="vm.redirectHelp()">
+            <md-icon class="s24" md-font-icon="icon-help"></md-icon>
+            <md-tooltip>Help</md-tooltip>
+        </md-button> 
+
+        <div class="toolbar-separator" ng-show="isContextSpA"></div>
+
+        <md-button class="md-icon-button" ng-show="isContextSpA" aria-label="Settings" ng-click="vm.navigateSettings()">
+            <md-icon class="s24" md-font-icon="icon-cog"></md-icon>
+            <md-tooltip>Settings</md-tooltip>
+        </md-button>
+
+        <div class="toolbar-separator"></div>
+
+        <md-menu-bar id="user-menu">
+            <md-menu id="user_menu_context" md-offset="0 2" md-position-mode="left bottom">
+                <md-button class="user-button" ng-click="$mdOpenMenu()" aria-label="User control">
+                    <div layout="row" layout-align="space-between center">
+                        <div class="avatar-wrapper">
+                            <img md-menu-align-target class="avatar" ng-src="{{instanceProfileDetails.ProfilePicture}}" err-src="assets/images/avatars/profile.jpg">
+                        </div>
+                        <span class="username" hide-sm>{{instanceProfileDetails.Name}}</span>
+                        <md-icon md-font-icon="icon-chevron-down" class="icon s16" hide-sm></md-icon>
+                    </div>
+                </md-button>
+
+                <md-menu-content id="userContextWidget" width="5">
+                        
+                    <div ng-show="vm.userWidgetContextToggle" class="profile_context_view">
+                        <div class="profile_details_container">
+                            <div class="profile_summary_section">
+                                <div class="profile_img_container" layout="column" layout-align="center center">
+                                    <img ng-src="{{instanceProfileDetails.ProfilePicture}}" err-src="assets/images/avatars/profile.jpg" width="120" height="120" style="border-radius:50%;">
+                                </div>
+                                <div class="profile_name_container" layout="column" layout-align="center center">
+                                    <span>{{instanceProfileDetails.Name}}</span>
+                                    <span>{{instanceProfileDetails.Email}}</span>
+                                </div>
+                            </div>
+                            <div class="tennant_summary_section" layout="row" layout-align="center center">
+                                <md-button md-prevent-menu-close="md-prevent-menu-close" style="border:2px solid" class="md-primary" ng-click="vm.switchUserWidgetContext();" style="line-height:0px;">
+                                    <md-icon class="s24" md-font-icon="icon-tumblr-reblog"></md-icon>
+                                    <span>{{cc_sessionInfo.Domain}}</span>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="user_controls_container" layout="row" layout-align="space-around center">
+                            <md-button class="md-primary" ng-click="vm.navigateProfile();">
+                                <md-icon class="s24" md-font-icon="icon-account-box" alt="User Profile"></md-icon>Profile
+                            </md-button>
+                            <md-button class="md-primary" ng-click="vm.navigateBusinessManager();" ms-perm-elem perm-context="'BusinessManager'" perm-action="'view'">
+                                <md-icon class="s24" md-font-icon="icon-domain" alt="Settings"></md-icon>Business
+                            </md-button>
+                            <md-button class="md-primary" ng-click="vm.appLogout($event);">
+                                <md-icon class="s24" md-font-icon="icon-logout" alt="Quit Application"></md-icon>Log Out
+                            </md-button>
+                        </div>
+                    </div>
+
+                    <div ng-hide="vm.userWidgetContextToggle" class="tenant_context_view">
+                        <div class="tennant_tool_container" layout="row" layout-align="center center">
+                            <md-button class="md-icon-button" aria-label="switch user widget context" md-prevent-menu-close="md-prevent-menu-close" ng-click="vm.switchUserWidgetContext();">
+                                <md-icon class="s24" md-font-icon="icon-chevron-left"></md-icon>
+                            </md-button>
+                            <md-input-container md-no-float class="md-block" style="width:85%; margin:0px !important; height:40px;">
+                                <input ng-model="tennantSwitchSearch" placeholder="Search Company">
+                            </md-input-container>
+                        </div>
+                        <div ms-scroll class="tenant_list_container" style="height:calc(394px - 48px) !important;">
+                            <ms-tenant-switcher ng-repeat="tennant in companyColection | filter:tennantSwitchSearch" tennantdata="tennant" style="width:100%;"></ms-tenant-switcher>
+                        </div>
+                    </div>
+
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
+    </div>
+</div>

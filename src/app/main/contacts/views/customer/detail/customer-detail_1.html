@@ -1,0 +1,186 @@
+
+<div class="invoice-container">
+
+    <div class="detail-wrapper">
+
+        <div class="detail-header" layout="row">
+            <div class="ids" layout="column" flex>
+                <div layout="row" class="seller" layout-align="start center" flex>
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="{{vm.companylogo}}" width="156" height="156">
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail">
+                        <div class="address"><ms-address-component address-data="vm.ObjCompanyAddress" ent-type="'company'" align="left" showentity-title="true"></ms-address-component></div>
+                    
+                    </div>
+                </div>
+
+                <div layout="row" class="client" layout-align="start center" flex>
+                    <div class="logo" layout="row" layout-align="center center">
+                        <div>{{vm.contact.profileName[0] | uppercase}}</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail">
+                        <div class="address"><ms-address-component address-data="vm.ObjCusAddress" ent-type="'client'" align="left" showentity-title="true"></ms-address-component></div>                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <div class="code" layout="row" layout-align="end start">
+                    <div layout="column" flex>
+                        <div class="label">ACCOUNT</div>
+                    </div>
+                    <div layout="column">
+                         <div class="label2">STATEMENT</div>
+                    </div>
+                </div>
+
+                <div layout="row" layout-align="end end" flex>
+                    <div layout="column" flex>
+                       <div class="label cellSpacer">PERIOD</div>
+                       <div class="label cellSpacer">BALANCE DUE</div>
+                    </div>
+
+                    <div layout="column">
+                       <div class="value cellSpacer">{{vm.dateFrom | toDateObject}}&nbsp;-&nbsp;{{vm.dateTo | toDateObject}}</div>
+                       <div class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.balanceDue | valRndUp}}</div>
+                    </div>
+                </div>
+
+                <div class="space" layout flex>
+                </div>
+
+                <div layout="row" layout-align="end end" flex>
+                    <div layout="column" flex>
+                       <div class="label cellSpacer">BALANCE B/F</div>
+                       <div class="label cellSpacer">INVOICES</div>
+                       <div class="label cellSpacer">CREDITS</div>
+                       <div class="label cellSpacer">PAYMENTS</div>
+                    </div>
+
+                    <div layout="column">
+                       <div class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.balanceBF | valRndUp}}</div>
+                       <div class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.invoices | valRndUp}}</div>
+                       <div class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.credits | valRndUp}}</div>
+                       <div class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.payments | valRndUp}}</div>
+                    </div>
+                </div>
+            </div>
+               
+     <!--        <div layout="column">
+                <div layout="row">
+                <table class="summary">
+           
+                <tr class="code">
+                    <td class="label">ACCOUNT</td>
+                    <td class="label">STATEMENT</td>
+                </tr>
+              
+                <tr>
+                    <td class="label cellSpacer">PERIOD</td>
+                    <td  class="value cellSpacer">{{vm.dateFrom | toDateObject | date: 'mediumDate'}}&nbsp;-&nbsp;{{vm.dateTo | toDateObject | date: 'mediumDate'}}</td>
+                </tr>
+
+
+                <tr>
+                    <td class="label cellSpacer">BALANCE DUE</td>
+                    <td class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.balanceDue | currency:""}}</td>
+                </tr>             
+            </table>                    
+                </div>
+
+
+            <div layout="row" layout-align="space-between center" style="padding-left: 65px;padding-top: 16%;">
+                 <table class="summary">
+                        <tr>
+                            <td class="label cellSpacer">BALANCE B/F</td>
+                            <td class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.balanceBF | currency:""}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="label cellSpacer">INVOICES</td>
+                            <td class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.invoices | currency:""}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label cellSpacer">CREDITS</td>
+                            <td class="value cellSpacer">{{vm.baseCurrency}}&nbsp;{{vm.credits | currency:""}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label cellSpacer">PAYMENTS</td>
+                            <td class="valvalue cellSpacerue">{{vm.baseCurrency}}&nbsp;{{vm.payments | currency:""}}</td>
+                        </tr>             
+                </table>
+        
+            </div>
+
+            </div> -->
+
+            
+     
+        </div>
+
+        <span class="invoiceComment" style="margin-left: 0;" >Statement Date :&nbsp;{{vm.dateTo | toDateObject}}</span>
+
+        <ms-spinner-component name="con-customerLedgerDetailsForSelectdateRange-spinner" size="64"  relative-position="false"></ms-spinner-component>
+
+        <div class="detail-content">
+            <table class="invoice-table" style="width:100%" ng-if="vm.legerDetail.length">
+                <thead class="tableHeader">
+                   <!--  <th>#</th> -->
+                     <th class="text-left">DATE</th>
+                    <th class="text-left">DESCRIPTION</th>
+                    <th class="text-right">AMOUNT</th>
+                     <th class="text-right">BALANCE</th>
+                </thead>
+                <tbody class="tableBody">
+                    <tr ng-repeat="items in vm.legerDetail">
+                       <!--  <td style="width:3%;">{{$index + 1}}</td> -->
+
+                       
+                         <td class="text-left" style="width:15%">
+                            {{items.createDate | toDateObject}}
+                        </td>
+                         
+                        <td class="text-left" style="width:15%">
+                         <a href="" ng-click="vm.invoicePaymentLink(items)" style="color: inherit;">
+                            {{items.description}}
+                        </td>
+                        <td class="text-right" style="width:15%" >
+                            {{items.amount | valRndUp}}
+                        </td>
+                        <td class="text-right" style="width:15%" >
+                            {{items.balance | valRndUp}}
+                        </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+            <div ng-if="vm.legerDetail.length !== 0">
+            <div layout="row" class="seller" layout-align="end end" style="margin-top: -5px;">
+               
+            <ms-paging page-obj='vm.pageObjLedger' result="vm.legerDetail" page-gap="vm.pageGapLeger"></ms-paging>
+            </div>
+            </div>
+
+            <table class="simple invoice-table-footer">
+                <tbody>
+                    <tr class="balancedue">
+                        <td>BALANCE DUE</td>
+                        <td></td>
+                        <td>{{vm.baseCurrency}}&nbsp;{{vm.balanceDue | valRndUp}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+</div>
+

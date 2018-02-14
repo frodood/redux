@@ -1,0 +1,19 @@
+<md-sidenav class="docActivity sidenav md-sidenav-right" md-is-locked-open="$mdMedia('gt-md')" md-component-id="sidenav" ms-scroll ms-sidenav-helper>
+
+    <!-- ACTIVITY COMPONENT CONTENT -->
+    <md-content class="content" ms-scroll flex>
+
+        <div ng-include="'app/core/directives/ms-activity-bar/templates/activity-container.html'"></div>
+
+    </md-content>
+    <!-- / ACTIVITY COMPONENT CONTENT -->
+
+    <!-- ACTIVITY COMPONENT COMMENT -->
+    <div class="commentSection" layout="row" layout-align="center center">
+        <form>
+            <input type="text" placeholder="Write something here !">
+        </form>
+    </div>
+    <!-- ACTIVITY COMPONENT COMMENT -->
+
+</md-sidenav>

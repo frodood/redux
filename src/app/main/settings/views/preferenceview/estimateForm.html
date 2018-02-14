@@ -1,0 +1,197 @@
+<form class="form" name="editForm" novalidate>
+			<!-- <md-divider></md-divider> -->
+			<md-list class="md-list" style="padding:0px 0px 0px 0px;overflow: hidden;">
+				<!-- <div layout layout-align="start center" class="subHeader">
+					<div class="title" >
+						Estimate Preference
+					</div>
+				</div> -->
+				<md-list-item class="secondary-button-padding">
+					<p>Estimate Prefix</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" name="estimatePrefix" ng-model="vm.Settings12thdoor.preference.estimatePref.estimatePrefix"  placeholder="Estimate Prefix" maxlength="3" ng-disabled="true">
+						<div ng-messages="editForm1.estimatePrefix.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+					</md-input-container>
+				</md-list-item>
+
+				<md-list-item class="secondary-button-padding">
+					<p>Estimate Sequence</p>
+					<md-input-container md-no-float class="md-block" flex="40">
+						<input type="text" name="estimateSequence" ng-model="vm.estimateSequence" placeholder="Estimate Sequence" minlength="0" ng-pattern="/^[0-9]+$/" ng-disabled="true">
+					
+						<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.estimateSequence">
+							<md-progress-circular class="md-primary" md-mode="indeterminate" md-diameter="24"></md-progress-circular>
+						</div>
+						<md-icon style="color:#9e9e9e;" ng-click="vm.editEstimateSequence(vm.Settings12thdoor.preference.estimatePref.estimatePrefix,vm.estimateSequence,ev)" md-font-icon="icon-pencil"> <md-tooltip
+							md-direction="left">
+							Change Estimate Sequence
+						</md-tooltip>
+					</md-icon>
+				</md-input-container>
+			</md-list-item>
+
+			<md-list-item class="secondary-button-padding">
+				<p>Default Validity</p>
+				<md-input-container md-no-float class="md-block" flex="40">
+					<label></label>
+					<md-select ng-model="vm.Settings12thdoor.preference.estimatePref.defaultValidity" placeholder="Default Validity" required>
+						<md-option>7 Days</md-option>
+						<md-option>14 Days</md-option>
+						<md-option>30 Days</md-option>
+					</md-select>
+				</md-input-container>
+			</md-list-item>
+
+			<md-list-item class="secondary-button-padding">
+				<p>Display ship to address on Estimate</p>
+				<md-switch class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.displayShipToAddressEstimate" aria-label="Switch 1">
+				</md-switch>
+			</md-list-item>
+<!-- 
+			<md-divider></md-divider> -->
+
+			<!-- <md-list-item class="secondary-button-padding">
+				<p>Enable Discounts</p>
+				<md-switch class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.enableDisscounts" aria-label="Switch 1">
+				</md-switch>
+			</md-list-item>
+
+			<md-list-item class="secondary-button-padding">
+				<p>Enable Shipping</p>
+				<md-switch class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.enableShipping" aria-label="Switch 1">
+				</md-switch>
+			</md-list-item> -->
+
+			<md-divider></md-divider>
+
+			<md-list-item class="secondary-button-padding">
+				<div layout-gt-sm="column" flex>
+					<p>Send PDF Estimate as attachment</p>
+					<p style="margin-top: -15px; color: rgba(0,0,0,0.54); font-size:13px;">If not selected, customer can view online via email link</p>
+				</div>
+				<md-switch class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.sendPdfEstimateAsAttachment" aria-label="Switch 1">
+				</md-switch>
+			</md-list-item>
+
+			<md-list-item class="secondary-button-padding">
+				<p>Notify admin when viewed or accepted</p>
+				<md-switch class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.nofifyAdminWhenViewedOrAccepted" aria-label="Switch 1">
+				</md-switch>
+			</md-list-item>
+
+			<md-list-item class="secondary-button-padding">
+				<p>Copy Admin for all estimates</p>
+				<md-switch class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.copyAdminForAllEstimate" aria-label="Switch 1">
+				</md-switch>
+			</md-list-item>
+			<md-divider></md-divider>
+
+			<md-list-item>
+				<div layout="column" flex>
+					<p>Default comment (top of Estimate)</p>
+					<div style="margin-top: -14px; margin-left:0px;">
+						<md-checkbox class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.copyFromInvoiceDefaultComment" aria-label="Checkbox 1" style="color: rgba(0,0,0,0.54);" ng-change="vm.copyFromInvoiceDefaultComment(vm.Settings12thdoor.preference.estimatePref.copyFromInvoiceDefaultComment)">Copy from invoice</md-checkbox>
+					</div>
+				</div>
+			</md-list-item>
+			<md-list-item>
+				<md-input-container md-no-float class="md-block" flex>
+					<input type="text" ng-model="vm.Settings12thdoor.preference.estimatePref.defaultComment" placeholder="Default Comment">
+				</md-input-container>
+			</md-list-item>
+
+			<md-list-item>
+				<div layout="column" flex>
+					<p>Default note (bottom of estimate)</p>
+					<div style="margin-top: -14px; margin-left:0px;">
+						<md-checkbox class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.copyFromInvoiceDefaultNote" aria-label="Checkbox 1" style="color: rgba(0,0,0,0.54);"  ng-change="vm.copyFromInvoiceDefaultNote(vm.Settings12thdoor.preference.estimatePref.copyFromInvoiceDefaultNote)" >Copy from invoice</md-checkbox>
+					</div>
+				</div> 
+			</md-list-item>
+			<md-list-item>
+				<md-input-container flex>
+					<textarea ng-model="vm.Settings12thdoor.preference.estimatePref.defaultNote" columns="1" md-maxlength="150"></textarea>
+				</md-input-container>
+			</md-list-item>
+
+			<md-divider></md-divider>
+				
+			<md-list-item>
+				<p>Email customer upon saving estimate</p>
+				<md-switch class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.emailCustomerUpOnSavingEstimate" ng-init="vm.Settings12thdoor.preference.estimatePref.emailCustomerUpOnSavingEstimate=true" aria-label="Switch 1">
+				</md-switch>
+			</md-list-item>
+
+			<md-list-item ng-show="vm.Settings12thdoor.preference.estimatePref.emailCustomerUpOnSavingEstimate">
+				<md-input-container flex="40">
+					<md-select ng-model="vm.Settings12thdoor.preference.estimatePref.emailCustomerOption">
+						<md-option selected>Display pop up and prompt</md-option>
+						<md-option>Send email in background</md-option>
+					</md-select>
+				</md-input-container>
+			</md-list-item>
+			<md-divider></md-divider>
+
+			<md-list-item>
+				<p>Include product brochures in customer email</p>
+				<md-switch class="md-primary" ng-model="vm.Settings12thdoor.preference.estimatePref.includeProductBrochuresCustomerEmail" aria-label="Switch 1">
+				</md-switch>
+			</md-list-item>
+
+			<md-divider></md-divider>
+			
+				<div layout layout-align="space-between center" class="subHeader" style="border-bottom: 1px solid #ededed;">
+				<div style="padding: 0px 14px 0px;"><p>Custom Fields</p></div>
+				<md-button class="md-secondary md-primary" ng-click="vm.addcusfieldsEstimate($event)($event)">
+					<md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+					add
+				</md-button>
+				</div>
+
+				<div as-sortable="sortableOptions" ng-model="asdc" flex="100">
+					<div ng-repeat="item in vm.Settings12thdoor.preference.estimatePref.cusFiel" as-sortable-item flex style="border-bottom: 1px solid #ededed;">
+						<!-- <md-card class="add-mdcard" as-sortable-item-handle flex>
+							<md-card-content style="margin: -13px;"> -->
+								<div layout="row" layout-align="center center" style="min-height: 40px; padding: 0px 15px 0px 16px;">
+									<div flex>
+										<span style="color:#808080;">{{item.labelShown}}
+											<md-tooltip md-direction="right">Custom Fields name</md-tooltip>
+										</span>
+									</div>
+									<div flex>
+										<span style="color:#808080;">{{item.type}}
+											<md-tooltip md-direction="right">Fields Type</md-tooltip>
+										</span>
+									</div>
+									<div flex>
+										<md-menu md-position-mode="target-right target" layout="row" layout-align="end end" flex-sm="100">
+											<md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+												<md-icon  md-font-icon="icon-dots-vertical" ></md-icon>
+											</md-button>
+											<md-menu-content width="4">
+												<md-menu-item>
+													<md-button ng-click="vm.editestimatecusFieldsrow(item , $event)">
+														<p>Edit</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+												<md-menu-item>
+													<md-button ng-click="vm.deleteestimatecusfieldsrow(item, $index)">
+														<p>Delete</p>
+														<md-icon md-menu-align-target ></md-icon>
+													</md-button>
+												</md-menu-item>
+											</md-menu-content>
+										</md-menu>
+									</div>
+								</div>
+							<!-- </md-card-content>
+						</md-card> -->
+					</div>
+				</div>
+
+
+		</md-list>
+		</form>

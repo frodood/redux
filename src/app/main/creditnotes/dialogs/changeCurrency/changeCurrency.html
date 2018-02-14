@@ -1,0 +1,41 @@
+<md-dialog class="customDialogBox" aria-label="cusTool" style="width:800px;">
+
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>CHANGE CURRENCY</h2>
+         <span flex></span>
+         <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+      </div>
+   </md-toolbar>
+   <div class="dialogContent pad_32" style="overflow: auto;">
+   <form ng-submit="$event.preventDefault()" name="changeCurrency">
+       <div layout layout-sm="column" layout-margin>
+          <md-input-container  flex>
+              <label>Select A Currency</label>
+              <md-select ng-model="vm.currency" md-no-asterisk="" flex name="terms">
+                  <md-optgroup >
+                      <md-option ng-repeat="pay in vm.currencyArr track by $index"  value="{{pay}}" >{{pay}}</md-option>
+                  </md-optgroup>
+              </md-select>
+          </md-input-container>
+
+          <md-input-container flex >
+              <label>Exchange Rate</label>
+              <input ng-model="vm.exchangeRate">
+          </md-input-container>
+       </div>
+      
+          <div  layout="row" layout-align="start start">
+              <label style="margin-top: -40px; font-size: 12px; margin-left: 240px; color: #b8b894">Base Currency {{vm.baseCurrency}}</label>
+          </div>
+    </form> 
+    </div>
+       <div class="dialogFooter pad_16" layout="row">
+        <span flex></span>
+          <md-button href ng-click="vm.ChangeCurrency(vm.currency)" style="border:2px solid" 
+          class="md-primary">save</md-button>
+        </div>
+   
+</md-dialog>

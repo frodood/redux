@@ -1,0 +1,23 @@
+    <!-- Product -->
+    <div class="card" flex >
+        <div ng-show="vm.detailProgress" class="detailProgress" layout="column" layout-align="center center" >
+            <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+            <div>Loading ...</div>
+        </div>
+        <div class="project-header" layout="row"  layout-align="space-between center">
+            <div  layout="column" class="project-name">{{vm.project.name}} </div>  
+        </div> 
+        <!-- CONTENT -->
+        <md-content class="content" flex   ms-scroll >    
+        </md-content>
+        <!-- / CONTENT -->
+
+        <div class="footer">
+            <div class="note" layout="column" layout-align="start start"> 
+            </div>
+            <div layout="row" layout-align="start start">
+                
+            </div>
+        </div>
+    </div>
+    <!-- / Product -->

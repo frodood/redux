@@ -1,0 +1,48 @@
+<md-dialog class="cancelDialogBox frmModal" aria-label="cusTool">
+
+<md-toolbar>
+    <div class="md-toolbar-tools">
+     <h2>Cancel Recurring Profle</h2>
+     <span flex></span>
+     <md-button href class="md-icon-button" ng-click="vm.close()">
+      <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
+<div class="dialogContent pad_32" layout="column" flex>
+  <md-content ms-scroll flex>
+   <form ng-submit="$event.preventDefault()" name="addProd">
+
+        <h2 style="font-weight: 500; margin-top:-4px;">Do you wish to cancel Recurring Profle {{vm.cancelD.recurringInvoiceID}}? </h2>
+        <p>This process is not reversible</p>
+
+  
+        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="vm.prorate" class="md-primary">
+            Do wish to prorate invoice from last billing date to today prior to cancel?
+        </md-checkbox>
+
+        <div>Generate invoice from {{vm.cancelD.startDate | toDateObject}} to {{vm.todayDate | toDateObject}} ? 
+        </div>
+
+          <div layout="row">
+            <md-input-container flex="30">
+                <input ng-model="vm.occurenc" >
+            </md-input-container>
+            <div layout layout-align="center center">&nbsp;&nbsp;Days</div>
+          </div>
+          
+         
+       <!--  <div layout layout-sm="column" layout-margin>
+        <span flex></span>
+          <md-button href  ng-click="vm.cancelRec()" ng-disabled="vm.disablePayment" style="border:2px solid" 
+          class="md-primary">OK</md-button>
+        </div> -->
+   </form>
+ </md-content>
+   </div>
+   <div class="dialogFooter">
+       <md-button  ng-click="vm.cancelRec()" ng-disabled="vm.disablePayment" 
+      class="md-primary" style="border:2px solid;">OK</md-button>
+  </div>
+</md-dialog>

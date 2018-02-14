@@ -1,0 +1,110 @@
+<md-dialog class="customDialogBox frmModal" aria-label="cusTool">
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+     <h2>Edit Line Item</h2>
+     <span flex></span>
+     <md-button href class="md-icon-button" ng-click="vm.cancel()">
+      <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
+<div class="dialogContent">
+  <md-content ms-scroll flex>
+ <form ng-submit="$event.preventDefault()" name="addProd" class="pad_32">
+   
+  <!-- <div layout layout-sm="column" layout-margin>
+    <md-input-container  style="margin-top:40px;" md-no-float flex>
+      <input placeholder="Product or Service" type="text" ng-model="vm.test.productName" required ng-disabled="true" /> 
+    </md-input-container>
+  </div> -->
+  <div>
+  <ms-product-lookup placeholder="'Product'" required="false" editoptions="false" class="fxProg" lookupclass="" style="width: 560px; margin-left: 8px;"></ms-product-lookup>
+  </div>
+  
+  
+  <div layout layout-sm="column" layout-margin ng-repeat="pim in vm.promoItems">
+  <md-input-container flex md-no-float style="margin-top:0px;">
+    <input placeholder="Quantity" ng-model="pim.qty" min="1" required="true" ng-change="vm.checkStock(vm.qty)"  name="quantity" ms-Quantity-Adjuster/>
+  </md-input-container>
+
+  <md-input-container style="margin-top: -2px;" md-no-float flex>
+    <md-select  placeholder="Unit" ng-model="pim.productUnit" ng-change="vm.setUOM(pim)" flex ng-required="true"  name="uom" md-no-asterisk="" name="terms">
+      <md-optgroup label="Terms type">
+        <md-option  ng-repeat="tax in  vm.UnitOfMeasure" value="{{tax.unitsOfMeasurement}}" >{{tax.unitsOfMeasurement}}</md-option>
+      </md-optgroup>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container  style=" margin-top:-1px;" md-no-float flex>
+    <input placeholder="Price" ng-model="pim.price" ng-required="true" name="price" ng-change="vm.calculateAMount(pim.price)" ms-Unitprice-Adjuster/>
+    <div ng-messages="addProd.price.$error">
+      <div ng-message="required">This is required.</div>
+    </div>
+  </md-input-container>
+</div>  
+
+  <!-- <div layout layout-sm="column" layout-margin>
+    <md-input-container md-no-flot flex style="margin-top:0px;">
+      <input placeholder="Quantity" ng-model="vm.test.quantity" ng-change="vm.checkStock(vm.test.quantity)" ms-Quantity-Adjuster/>
+    </md-input-container>
+
+    <md-input-container style="margin-top: -2px;" md-no-float flex>
+      <md-select  placeholder="Unit" ng-model="vm.test.productUnit" ng- change="vm.setUOM(vm.test.productUnit)" flex  name="unit" md-no-asterisk="" name="terms">
+        <md-optgroup label="Terms type">
+          <md-option  ng-repeat="tax in  vm.UnitOfMeasure" value="{{tax.unitsOfMeasurement}}" >{{tax.unitsOfMeasurement}}</md-option>
+        </md-optgroup>
+      </md-select>
+      <div ng-messages="addProd.unit.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    
+    <md-input-container  style=" margin-top:-1px;" md-no-float flex>
+      <input placeholder="Price" ng-model="vm.test.price" ng-required="true" name="price" ng-change="vm.calculateAMount(vm.test)" ms-Unitprice-Adjuster/>
+      <div ng-messages="addProd.price.$error">
+        <div ng-message="required">This is required.</div>
+      </div> 
+    </md-input-container>
+  </div> -->
+
+  <div layout layout-sm="column" layout-margin ng-repeat="pim in vm.promoItems">
+    <md-input-container  flex md-no-float>
+      <input placeholder="Discount" type="text" ng-model="vm.test.discount" ng-disabled="vm.displayDiscountLine" ng-change="vm.changeDiscount(vm.test.discount)"/>
+    </md-input-container>
+
+    <md-input-container style="margin-top: 8px;" flex md-no-float>
+      <md-select  placeholder="Tax" ng-model="pim.tax.taxName" ng-change="vm.setTax(pim.tax.taxName)" flex >
+        <md-optgroup label="Taxes">
+         <md-option ng-repeat="tax in vm.taxes" value="{{tax.taxName}}">
+          {{tax.taxName}} ({{tax.rate}}%)
+        </md-option>
+      </md-optgroup>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container style="margin-top:10px;" md-no-float flex>
+    <input placeholder="Amount" ng-model="vm.test.amount | valRndUp" format="vm.changeCurrency" ng-disabled="true">
+  </md-input-container>
+</div>
+
+<div layout layout-sm="column" layout-margin>
+ <md-input-container md-no-float flex>
+  <input placeholder="Optional line comment" type="text" ng-model="vm.test.olp"/>
+</md-input-container>
+</div>
+</form>
+</md-content>
+</div>
+<div class="dialogFooter">
+ <div  ng-show="vm.showProduct" >
+   <span style="color:red" flex>Please fill out required fields </span>
+ </div>
+ <!-- <div ng-show="vm.stocks">
+   <span style="color:red;">Required quatity is not available in  the stock.</span>
+ </div> -->
+ <md-button  ng-click="vm.edit(vm.test,vm.promoItems[0],vm.index)" class="md-primary">SAVE</md-button>
+</div>
+
+</md-dialog>

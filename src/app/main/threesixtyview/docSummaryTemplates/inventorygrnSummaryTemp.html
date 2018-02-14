@@ -1,0 +1,35 @@
+<table class="simple">
+    <thead>
+        <tr>
+            <th>
+                GRN No
+            </th>
+            <th>
+                GRN Type
+            </th>
+            <th>
+                Recived Date
+            </th>
+            <th>
+                Supplier Name
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="row in vm.customerContextLatestDocuments">
+            <td>
+                <span>{{row.GRNno}}</span>
+            </td>
+            <td>
+                <span>{{row.GRNType}}</span>
+            </td>
+            <td>
+                <span>{{row.createdDate | toDateObject | date:'mediumDate'}}</span>
+            </td>
+            <td>
+                <span>{{row.customerNames}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

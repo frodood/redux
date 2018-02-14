@@ -1,0 +1,196 @@
+ <div class="payment-container">
+    <div class="detail-wrapper">
+    <!-- <div ng-show="vm.detailProgress" class="detailProgress" layout="column" layout-align="center center" >
+            <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+            <div>Loading ...</div>
+        </div> -->
+
+        <div class="detail-header" layout="row">
+            <div class="ids" layout="column" flex>
+                <div layout="row" class="seller" layout-align="start center" flex>
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="{{vm.companyLogo}}" width="156" height="156">
+                    </div>
+
+                    <div class="divider"></div>  
+                    <div class="detail">
+                        <!--<div class="title">{{vm.setPrf.companyName}}</div>
+                        <div class="address">{{vm.setPrf.street}} {{vm.setPrf.city}} {{vm.setPrf.state}}</div>
+                        <div class="address">{{vm.setPrf.country}},{{vm.setPrf.zip}}</div>
+                        <div class="phone">{{vm.setPrf.phoneNo}}</div>
+                        <div class="email">{{vm.setPrf.companyEmail}}</div>
+                        <div class="website">{{vm.setPrf.website}}</div>-->
+                        <div class="address"><ms-address-component address-data="vm.ObjCompanyAddress" ent-type="'company'" align="left" showentity-title="true"></ms-address-component></div>
+                    </div>
+                </div>
+
+                <div layout="row" class="client" layout-align="start center" flex>
+                    <div class="logo" layout="row" layout-align="center center">
+                        <div>{{vm.fullPayment.profileName[0] | uppercase}}</div>
+                    </div>
+
+                    <div class="divider"></div> 
+                    <div class="detail">
+                        <!--<div class="title">{{vm.fullPayment.profileName}}</div>
+                        <div ng-if="vm.fullPayment.profileAddress" class="address">{{vm.fullPayment.profileAddress.street}},{{vm.fullPayment.profileAddress.city}},{{vm.fullPayment.profileAddress.country}}</div>
+                        <div  class="phone" style="width: 200%;;">
+                            <span ng-if="vm.profileDada.mobile">t.{{vm.profileDada.mobile}}
+                            </span><span>  &nbsp </span>
+                            <span ng-if="vm.profileDada.fax">f.{{vm.profileDada.fax}}
+                            </span>
+                        </div>
+                        <div ng-if="vm.profileDada.email" class="email">
+                            {{vm.profileDada.email}}
+                        </div>
+                        <div ng-if="vm.profileDada.website" class="website"> 
+                            {{vm.profileDada.website}}
+                        </div>-->
+                        <div class="address"><ms-address-component address-data="vm.ObjCusAddress" ent-type="'client'" align="left" showentity-title="true"></ms-address-component></div>
+                    </div>
+                </div>
+            </div>
+
+           <!--  <div class="summary" layout="column" flex>
+
+                <table>
+                    <tr class="code">
+                        <td class="label">PAYMENT</td>
+                        <td class="label">RECEIPT</td>
+                    </tr>
+                    <tr class="tableSpacer"></tr>
+                    <tr>
+                        <td class="label">PAYMENT NO</td>
+                        <td class="value">{{vm.fullPayment.receiptID}}</td>
+                    </tr>
+                    <tr>
+                        <td class="label cellSpacer">PAYMENT DATE</td>
+                        <td class="value">{{vm.formatDate(vm.fullPayment.lastTranDate) | date:'MMM dd, yyyy'}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label cellSpacer">PAYMENT METHOD</td>
+                        <td class="value">{{vm.fullPayment.paymentMethod}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label cellSpacer">AMOUNT RECEIVED</td>
+                        <td class="value">{{vm.fullPayment.recievedAmount | currency : vm.baseCurrency+" " }}</td>
+                    </tr> 
+                </table> 
+            </div> -->
+             <div class="summary" layout="column" flex>
+                <div class="code" layout="row" layout-align="end start">
+                    <div layout="column" flex>
+                        <div class="label">PAYMENT</div>
+                    </div>
+                    <div layout="column">
+                        <div class="label2">RECEIPT</div>
+                    </div>
+                </div>
+                
+                <div class="space" layout flex ng-if="vm.setPrf.cusFiel.length == 0">
+                </div>
+
+                <div class="spacecustomFieldOne" layout flex ng-if="vm.setPrf.cusFiel.length == 1">
+                </div>
+
+                <div class="spacecustomFieldAll" layout flex ng-if="vm.setPrf.cusFiel.length == 2 || vm.setPrf.cusFiel.length == 3">
+                </div>
+
+                <div layout="column" layout-align="end end" flex class="customField" ng-if="vm.setPrf.cusFiel.length != 0" >
+                   
+                        <div layout="row" flex ng-repeat="cus in vm.setPrf.cusFiel">
+                            <div class="label cellSpacer">{{cus.labelShown}}</div>
+                            <div class="value cellSpacer">{{cus.inputType}}</div>
+                            <!-- <div class="label cellSpacer">{{}}</div> -->
+                        </div>
+                </div>
+                
+                <div layout="row" layout-align="end end" flex>
+
+                    <div layout="column" flex>
+                       <div class="label cellSpacer">PAYMENT NO</div>
+                       <div class="label cellSpacer">PAYMENT DATE</div>
+                       <div class="label cellSpacer">PAYMENT METHOD</div>
+                       <div class="label cellSpacer">AMOUNT RECEIVED</div>
+                    </div>
+
+                    <div layout="column">
+                       <div class="value cellSpacer">{{vm.fullPayment.receiptID}}</div>
+                       <div class="value cellSpacer">{{vm.formatDate(vm.fullPayment.lastTranDate) | toDateObject }}</div>
+                       <div class="value cellSpacer">{{vm.fullPayment.paymentMethod}}</div>
+                       <div class="value cellSpacer">{{vm.baseCurrency}} {{vm.fullPayment.recievedAmount | valRndUp}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- 
+        <div class="pay-comment">
+            <span>
+                {{vm.fullPayment.paymentComment}}
+            </span>
+        </div> -->
+
+        <span class="pay-comment" style="margin-left: 0;">{{vm.fullPayment.paymentComment}}</span>
+
+        <div class="detail-content" ng-if="vm.fullPayment.paidInvoice.length > 0">
+            <table class="simple payment-table">
+                <thead class="tableHeader" style="border: hidden;"> 
+                    <th class="text-right head-pay" style="width: 14%;">DATE</th>
+                    <th class="text-right head-pay" >INVOICE NO</th>
+                    <th class="text-right head-pay" >AMOUNT</th>
+                    <th class="text-right head-pay" >BALANCE</th>
+                    <th class="text-right head-pay" style="width: 14%;">PAID</th>
+                </thead>
+                <tbody class="tableBody">
+                    <tr ng-repeat="items in vm.fullPayment.paidInvoice track by $index"> 
+                        <td class="text-right" style="text-align: center !important">
+                            {{vm.formatDate(items.duedate) | toDateObject}}
+                        </td>
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.invono}}
+                        </td>
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.famount | valRndUp}}
+                        </td>
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.recAmount | valRndUp}} 
+                        </td>
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.paidAmount | valRndUp}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="detail-footer">
+            <div class="note" layout="row" layout-align="space-between start">
+                <div>TOTAL PAYMENT APPLIED </div>
+                <div> <b style="color: black">{{vm.baseCurrency}} {{vm.fullPayment.aAmount | valRndUp}}</b></div>
+             
+              </div> 
+            <div class="note" layout="row" layout-align="space-between start">
+                <div>EXCESS PAYMENT </div>
+                <div> <b style="color: black">{{vm.baseCurrency}} {{vm.fullPayment.currentUamount | valRndUp}}</b></div>
+             
+              </div>
+
+              <div ng-show="vm.fullPayment.customField.length != 0" class="footerSegments">
+                <span class="segmentHeader">ADDITIONAL INFORMATION</span>
+                <div class="segmentContent" layout="row" ng-repeat="detail in vm.fullPayment.customField">
+                    <!-- <span ng-if="detail.value" class="contactSegment" flex="20">{{detail.labelShown}}</span>
+                    <span flex="20"> {{detail.value}}</span> -->
+                    <span ng-show="detail.labelShown" class="contactSegment" flex>{{detail.labelShown}} : {{detail.value}}</span>
+                </div>
+            </div>
+        </div>
+
+
+
+        
+
+
+
+    </div> 
+</div>    

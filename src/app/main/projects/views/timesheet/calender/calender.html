@@ -1,0 +1,51 @@
+<div id="calender" class="page-layout carded boxed right-sidenav" layout="row">
+<div class="center" layout="column" layout-align="center center" flex>
+
+   <form name="editForm" ng-submit="vm.submit()" class="content-card" layout="column" flex >
+
+      <!-- <div class="toolbar" layout="row" layout-align="space-between center" style="padding: 0px 16px;border-bottom: 1px solid #d8d8d8;">
+          <div layout="row" layout-align="start center">
+              <md-button class="md-icon-button close-thread" aria-label="Back"
+                         ng-click="vm.toggleChildStates('app.projects.timesheet')">
+                  <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+              </md-button>
+
+              <div class="divider-vertical"></div>
+              <h2>Calendar</h2>
+          </div>
+          <div layout="row" layout-align="start center"></div>
+      </div> -->
+
+      <div class="toolbar" layout="row" layout-align="space-between center">
+          <div layout="row" layout-align="start center">
+              <md-button class="md-icon-button close-thread" aria-label="Back"
+                         ng-click="vm.toggleChildStates('app.projects.timesheet')">
+                  <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+              </md-button>
+
+              <div class="divider-vertical"></div>
+
+              <h2>Calendar</h2>
+          </div>
+          <div layout="row" layout-align="start center">
+              
+          </div>
+      </div>
+
+      <md-content flex ms-scroll>
+
+                <!-- DEMO CONTENT -->  
+          <div ng-include="'app/main/projects/views/timesheet/calender/calender-child.html'"></div>
+                <!-- / DEMO CONTENT -->
+
+      </md-content>
+
+      <div class="footersection">
+         <md-button class="md-primary"  ng-disabled="vm.submitProgress" style="border:2px solid" type="submit">save</md-button>
+         <md-button class="md-primary md-hue-3" style="border:2px solid"  ng-disabled="vm.submitProgress" ng-click="vm.toggleChildStates('app.projects.timesheet')">cancel</md-button>
+      </div>
+   </form>
+
+ </div>
+</div>
+<!--CARD CONTAINER END-->

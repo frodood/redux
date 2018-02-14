@@ -1,0 +1,14 @@
+<!-- <style>
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+ }
+</style> -->
+
+<div ng-init="vm.loadRecData()" ></div>
+<ms-spinner-component name="recinvo-details-spinner" size="32" relative-position="false" on-loaded="vm.recinvoDetailSpinnerLoaded(spinnerApi)" opaque="true"></ms-spinner-component>
+
+<div class="recTemplate-1" 
+
+    ng-include="'app/main/invoices/views/rec/detail/rec-detail-temp.html'">   
+
+</div>

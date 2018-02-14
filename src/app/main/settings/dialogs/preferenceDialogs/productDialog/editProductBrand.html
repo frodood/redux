@@ -1,0 +1,31 @@
+<md-dialog class="customDialogBox"  aria-label="Mango (Fruit)">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Edit Product Brand</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent pad_32">
+		<form name="editForm" novalidate>
+			<md-content flex>
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container flex md-no-float>
+						<input type="text" ng-model="vm.productBrand" placeholder="Product Brand" required>
+						<span style="font-size:12px;color:red;" ng-show="vm.sameLabelName">{{vm.erromessage}}</span>
+					</md-input-container>
+				</div>
+			</md-content>
+		</form>
+	</div>
+	<div class="dialogFooter">
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid" >
+			Edit
+		</md-button>
+        <md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+			Cancel
+		</md-button>
+	</div>
+</md-dialog>

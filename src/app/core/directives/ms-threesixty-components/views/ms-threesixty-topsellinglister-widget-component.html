@@ -1,0 +1,21 @@
+<div id="threesixty-topsellinglister-widget-component" class="threesixty-component-styling side-margin-right" layout="column" flex>
+    <div class="widget-component-header">
+        Top Selling Products
+
+    </div>
+    <div class="widget-component-content pad_32" layout="column">
+        <div ng-repeat="product in vm.topRatedProducts" class="contentrow" flex layout="row">
+            <div class="prodimgcell">
+                <img ng-src="{{product.productImgUrl}}" err-src="/assets/images/etc/errorImage.jpg" width="48" height="48"/>
+            </div>
+            <div class="proddesccell" layout="column" layout-align="center start" flex>
+                {{product.productName}}
+            </div>
+            <div class="prodcountcell" layout="column" layout-align="center end">
+                <span>
+                    {{product.productCount}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

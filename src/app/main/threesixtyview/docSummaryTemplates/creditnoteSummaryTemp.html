@@ -1,0 +1,44 @@
+<table class="simple" ng-hide="vm.customerContextLatestDocuments | isEmptyObj">
+    <thead>
+        <tr>
+            <th>
+                Credit Note No
+            </th>
+            <th>
+                Issue Date
+            </th>
+            <th>
+                Invoice Reference
+            </th>
+            <th>
+                Net Amount
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="row in vm.customerContextLatestDocuments">
+            <td>
+                <span class="360documentNavigator" ng-click="vm.threeSixtyNavigateToDocument('creditnote', row.creditNoteNo)" style="cursor:pointer; text-decoration: underline;">{{row.creditNoteNo}}</span>
+            </td>
+            <td>
+                <span>{{row.date | toDateObject | date:'mediumDate'}}</span>
+            </td>
+            <td>
+                <span>{{row.invoiceRefNo}}</span>
+            </td>
+            <td>
+                <span>{{row.netAmount}}</span>
+            </td>
+            <td>
+                <span>{{row.status}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div layout="row" layout-align="center center" class="recdentDocEmptyStatus" ng-show="vm.customerContextLatestDocuments | isEmptyObj">
+    <p>Records not available!</p>
+</div>

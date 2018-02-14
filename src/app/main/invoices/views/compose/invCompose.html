@@ -1,0 +1,62 @@
+<style>
+ /* .md-datepicker-input-container
+  {
+      width: 60%
+  }*/
+  /*.datepickerdemoBasicUsage {
+   /*Demo styles for mdCalendar.*/
+   /* }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 11px;
+    color: darkred;
+    margin: 10px 0 0 25px; }
+    .md-toast.md-success-toast-theme {
+    background-color: green;*/
+}
+</style>
+
+<div id="invoicesCompose" class="page-layout carded boxed right-sidenav" layout="row">
+
+    <!-- CENTER -->
+    <div class="center" layout="column" layout-align="center center" flex>
+
+        <!-- CONTENT-CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- PRIMARY TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-icon-button close-thread" aria-label="Back" ng-click="vm.toggleChildStates(vm.backState)">
+                        <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+                    </md-button>
+
+                    <div class="divider-vertical"></div>
+
+                    <h2>New Invoice</h2>
+                </div>
+            </div>
+            <!-- /PRIMARY TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content flex ms-scroll>
+
+                <!-- DEMO CONTENT -->  
+                <div ng-include="'app/main/invoices/views/compose/invComposeForm.html'"></div>
+                <ms-spinner-component name="inv-compose-spinner" size="32"  relative-position="false"></ms-spinner-component>
+                <!-- / DEMO CONTENT -->
+
+            </md-content>
+            <!-- /CONTENT -->
+            <div class="footersection">
+                <md-button tabindex="2" class="md-primary" ng-disabled="vm.watingforServiceResponse" ng-click="vm.submit()" style="border:2px solid">save</md-button>
+                <md-button tabindex="1" class="md-primary md-hue-3" ng-disabled="vm.watingforServiceResponse" ng-click="vm.cancel()" style="border:2px solid">cancel</md-button>
+            </div>
+        </div>
+        <!-- /CONTENT-CARD-->
+
+    </div>
+    <!-- /CENTER -->
+
+</div>

@@ -1,0 +1,264 @@
+<div class="invoice-container">
+    <div class="detail-wrapper">
+        <div class="detail-header" layout="row">
+            <div class="ids" layout="column" flex>
+                <div layout="row" class="seller" layout-align="start center" flex>
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="{{vm.companylogo}}" width="156" height="156">
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail">
+                        <div class="address"><ms-address-component address-data="vm.ObjCompanyAddress" ent-type="'company'" align="left" showentity-title="true"></ms-address-component></div>
+                    </div>
+                </div>
+
+                <div layout="row" class="client" layout-align="start center" flex>
+                    <div class="logo" layout="row" layout-align="center center">
+                        <div >{{vm.inv.profileName[0] | uppercase}}</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="detail">
+                        <div class="address"><ms-address-component address-data="vm.ObjCusAddress" ent-type="'client'" align="left" showentity-title="true"></ms-address-component></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <table class="summary" style="margin-top: -9px;">
+                <tr class="code">
+                    <td class="label">PROFILE</td>
+                    <td class="value">{{vm.inv.recurringInvoiceID}}</td>
+                </tr>
+                <tr class="tableSpacer"></tr>
+                <tr>
+                    <td class="label cellSpacer">DATE</td>
+                    <td class="value cellSpacer">{{vm.inv.startDate| toDateObject | date:'mediumDate'}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">FREQUENCY</td>
+                    <td class="value cellSpacer">{{vm.inv.billingFrequance}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">OCCURENCES</td>
+                    <td class="value cellSpacer">{{vm.inv.occurences}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">Currency</td>
+                    <td class="value cellSpacer">{{vm.inv.changedCurrency}}</td>
+                </tr>
+
+            </table> -->
+
+            <div class="summary" layout="column" flex>
+                <div class="code" layout="row" layout-align="end start">
+                    <div layout="column" flex>
+                        <div class="label">PROFILE</div>
+                    </div>
+                    <div layout="column">
+                         <div class="value">{{vm.inv.recurringInvoiceID}}</div>
+                    </div>
+                </div>
+                <!--<div class="space" layout flex>
+                </div>-->
+
+                <div class="space" layout flex ng-if="vm.profData.cusFiel.length == 0">
+                </div>
+
+                <div class="spacecustomFieldOne" layout flex ng-if="vm.profData.cusFiel.length == 1">
+                </div>
+
+                <div class="spacecustomFieldAll" layout flex ng-if="vm.profData.cusFiel.length == 2 || vm.profData.cusFiel.length == 3">
+                </div>
+
+                <div layout="column" layout-align="end end" flex class="customField" ng-if="vm.profData.cusFiel.length != 0" >
+                   
+                        <div layout="row" flex ng-repeat="cus in vm.profData.cusFiel">
+                            <div class="label cellSpacer">{{cus.labelShown}}</div>
+                            <div class="value cellSpacer">{{cus.inputType}}</div>
+                            <!-- <div class="label cellSpacer">{{}}</div> -->
+                        </div>
+                </div>
+                
+                <div layout="row" layout-align="end end" flex>
+
+                    <div layout="column" flex>
+                       <div class="label cellSpacer">DATE</div>
+                       <div class="label cellSpacer">FREQUENCY</div>
+                       <div class="label cellSpacer">OCCURENCES</div>
+                       <div class="label cellSpacer">Currency</div>
+                    </div>
+
+                    <div layout="column">
+                       <div class="value cellSpacer">{{vm.inv.startDate| toDateObject}}</div>
+                       <div class="value cellSpacer">{{vm.inv.billingFrequance}}</div>
+                       <div class="value cellSpacer">{{vm.inv.occurences}}</div>
+                        <div class="value cellSpacer">{{vm.inv.changedCurrency}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-content">
+            <table class="invoice-table">
+                <thead class="tableHeader">
+                    <th>#</th>
+                    <th>DESCRIPTION</th>
+                    <th class="text-right">QUANTITY</th>
+                    <th class="text-right">UOM</th>
+                    <th class="text-right">UNIT PRICE</th>
+                    <th class="text-right">DISCOUNT</th>
+                    <th class="text-right">AMOUNT</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="items in vm.inv.invoiceLines">
+                        <td>{{$index + 1}}</td>
+                        <td>
+                            <div class="text-left"> {{items.productName}}</div>
+                            <div class="detail"> {{items.detail}}</div>
+                        </td>
+                        <td class="text-right">
+                            {{items.quantity | qtyRndUp}}
+                        </td>
+                        <td class="text-right">
+                            {{items.productUnit}}
+                        </td>
+                        <td class="text-right">
+                            {{items.price / vm.inv.exchangeRate | unitPriceRndUp}}
+                        </td>
+                        <td class="text-right">
+                            {{items.discount}} %
+                        </td>
+                        <td class="text-right">
+                            {{items.amount / vm.inv.exchangeRate | valRndUp}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="simple invoice-table-footer">
+                <tbody>
+                    <tr class="subtotal">
+                        <td>SUBTOTAL</td>
+                        <td>{{vm.inv.changedCurrency}} {{vm.inv.subTotal / vm.inv.exchangeRate | valRndUp}}
+                        </td>
+                    </tr>
+
+                     <tr class="tax" ng-repeat="item in vm.inv.taxAmounts">
+                        <td>{{item.taxName | uppercase }}</td>
+                        <td>{{vm.inv.changedCurrency}} {{item.salesTax / vm.inv.exchangeRate | valRndUp}}
+                        </td>
+                    </tr>
+
+                    <tr class="shipping">
+                        <td>SHIPPING</td>
+                        <td>{{vm.inv.changedCurrency}} {{vm.inv.shipping / vm.inv.exchangeRate | valRndUp}}</td>
+                    </tr>
+
+                    <tr class="total">
+                        <td>TOTAL</td>
+                        <td>{{vm.inv.changedCurrency}} {{vm.inv.netAmount / vm.inv.exchangeRate | valRndUp}}</td>
+                    </tr>
+                    <tr class="paid">
+                        <td>PAID</td>
+                        <td>{{vm.inv.changedCurrency}} {{vm.paid / vm.inv.exchangeRate | valRndUp}}</td>
+                    </tr>
+                    <tr class="balancedue">
+                        <td>BALANCE DUE</td>
+                        <td>{{vm.inv.changedCurrency}} {{vm.calBalance / vm.inv.exchangeRate | valRndUp}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <span class="smallHeader">INVOICE HISTORY</span>
+
+            <table class="invoice-table">
+                <thead class="tableHeader">
+                    <th>#</th>
+                    <th>DATE</th>
+                    <th class="text-right">INVOICE NO</th>
+                    <th class="text-right">AMOUNT</th>
+                     <th class="text-right">STATUS</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cc in vm.invHistory">
+                    
+                        <td>{{$index + 1}}</td>
+                        <td>
+                            {{cc.startDate| toDateObject}}
+                        </td>
+                        <td class="text-right">
+                           {{cc.invoiceNo}}
+                        </td>
+                        <td class="text-right">
+                           {{vm.inv.changedCurrency}} {{cc.netAmount / vm.inv.exchangeRate | valRndUp}}
+                        </td>
+                        <td class="text-right">
+                           {{cc.invoiceStatus}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="detail-footer">
+            
+            <div class="footerSegments" ng-if="vm.defaultNOte != '-' || vm.defaultNOte != '' ">
+                <span class="segmentHeader">Notes</span>
+                <div class="segmentContent">
+                    <span ng-bind-html="vm.defaultNOte"></span>
+                </div>
+            </div>
+            <div ng-show="vm.inv.customFields.length != 0" class="footerSegments">
+                <span class="segmentHeader">Additional Information</span>
+                <div class="segmentContent" layout="row" ng-repeat="detail in vm.inv.customFields">
+                    <!-- <span ng-if="detail.value" class="contactSegment" flex="20">{{detail.labelShown}}</span>
+                    <span flex="20"> {{detail.value}}</span> -->
+                    <span ng-show="detail.value" class="contactSegment" flex>{{detail.labelShown}} : {{detail.value}}</span>
+                    <!--<span class="contactSegment" flex>{{detail.labelShown}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{detail.value}}</span>-->
+                </div>
+            </div>
+            <div class="footerSegments" ng-if="vm.inv.isCurrencyChanged == true">
+                <span class="segmentHeader" >Currency Exchange Rate</span>
+                <div class="segmentContent">
+                    <span>{{vm.inv.changedCurrency+" "+vm.inv.exchangeRate }}</span>
+                </div>
+            </div>
+            <div class="footerSegments" ng-show="vm.showShipping">
+                <span class="segmentHeader" >Shipping Information</span>
+                <div class="segmentContent" >
+                <span ng-show="vm.inv.shippingAddress.s_street">{{vm.inv.shippingAddress.s_street}},</span>
+                <span ng-show="vm.inv.shippingAddress.s_city">{{vm.inv.shippingAddress.s_city}},</span>
+                <span ng-show="vm.inv.shippingAddress.s_state">{{vm.inv.shippingAddress.s_state}},</span>
+                <span ng-show="vm.inv.shippingAddress.s_zip">{{vm.inv.shippingAddress.s_zip}},</span>
+                <span ng-show="vm.inv.shippingAddress.s_country">{{vm.inv.shippingAddress.s_country}}</span>
+                </div>
+            </div>
+            
+            <div ng-show="true" class="footerSegments">
+                <span class="segmentHeader">profile settings</span>
+                <div ng-if="vm.inv.paymentMethod" class="segmentContent" layout="row" >
+                    
+                    <span ng-show="true" class="contactSegment" flex>PAYMENT METHOD : {{vm.inv.paymentMethod}}</span>
+                </div>
+                <div ng-if="vm.inv.saveOption" class="segmentContent" layout="row" >
+                    
+                    <span  class="contactSegment" flex>INVOICE SETTINGS : {{vm.inv.saveOption}}</span>
+                </div>
+                <div ng-if="vm.inv.internalNote" class="segmentContent" layout="row" >
+                    
+                    <span  class="contactSegment" flex>INTERNAL NOTES : {{vm.inv.internalNote}}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+</div>

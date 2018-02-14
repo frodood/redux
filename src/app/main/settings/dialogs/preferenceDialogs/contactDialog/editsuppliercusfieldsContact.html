@@ -1,0 +1,73 @@
+<md-dialog class="customDialogBox frmModal cf-modal-height-fix"  aria-label="Mango (Fruit)">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Edit Supplier Custom Fields for Contact</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent" layout="column" flex>
+		
+			<md-content ms-scroll flex>
+			<form name="editForm" novalidate class="pad_32">
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container md-no-float flex>
+						<md-select name="type" ng-model="vm.type" placeholder="Select Field Type">
+							<md-option value="textBox">Text box</md-option>
+							<md-option value="selectBox">Select box</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+
+				<div layout layout-sm="column" layout-margin ng-show="vm.type=='selectBox'" >
+					<div layout="column" flex layout-margin style="margin-left:0px;">
+						<md-input-container md-no-float flex>
+							<input name="labelShown" ng-model="vm.labelShown" placeholder="Label to be shown" type="text">
+							<span style="font-size:12px;color:red;" ng-show="vm.sameLabelName">{{vm.erromessage}}</span>
+						</md-input-container>
+						<div flex style="margin-left:0px;">
+							<md-chips ng-model="vm.fields" readonly="false" placeholder="Enter more" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Fields">
+							</md-chips>
+							<input type="hidden" ng-model="company.input[i].id" ng-init="company.input[i].id=i">
+							<span style="font-size:12px;color:red;" ng-show="vm.enterTag">Enter tag here</span>
+						</div>
+					</div>
+					<!-- <div flex="30" layout="row" layout-align="center center" style="font-size:13px;margin-top:112px;">
+						<md-checkbox class="md-primary" ng-model="vm.showOnPdf" aria-label="Checkbox 1">Show on PDF</md-checkbox>
+					</div> -->
+				</div>
+
+				<div layout layout-sm="column" layout-margin ng-show="vm.type=='textBox'">
+					<md-input-container md-no-float flex>
+						<input name="labelShown" ng-model="vm.labelShown" placeholder="Label to be shown" type="text">
+						<span style="font-size:12px;color:red;" ng-show="vm.sameLabelName">{{vm.erromessage}}</span>
+						
+					</md-input-container>
+					
+					<md-input-container md-no-float style="margin-left: 20px !important;" flex>
+						<md-select ng-model="vm.inputType" placeholder="Type">
+							<md-option value="number">Numbers</md-option>
+							<md-option value="text">Text</md-option>
+							<md-option value="email">Email</md-option>
+						</md-select>
+					</md-input-container>
+					<!-- <input type="hidden" ng-model="company.input[i].id" ng-init="company.input[i].id=i"> -->
+					<!-- <div flex="20" flex-sm="30" layout="row" layout-align="start center" style="font-size:12px;">
+						<md-checkbox class="md-primary" ng-model="vm.showOnPdf" aria-label="Checkbox 1">Show on PDF</md-checkbox>
+					</div> -->
+				</div>
+	</form>
+			</md-content>
+	
+	</div>
+	<div class="dialogFooter">
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid" >
+			Edit
+		</md-button>
+		<md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+			Cancel
+		</md-button>
+	</div>
+</md-dialog>

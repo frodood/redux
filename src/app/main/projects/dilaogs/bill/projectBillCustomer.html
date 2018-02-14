@@ -1,0 +1,66 @@
+<md-dialog  class="projectBill frmModal" aria-label="bill customer" >
+  <form ng-cloak name="editForm" ng-submit="vm.submit($event)">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Bill Customer</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()">
+            <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content class="dialogContent"> 
+
+        <div layout="row" layout-align="space-around center">  
+            <md-input-container  flex > 
+              <md-select ng-model="vm.billingMethod" flex ng-disabled="true"  md-no-float placeholder="Billing Method">
+                 <md-optgroup label="Billing Method">
+                    <md-option value="Hourly Staff Rate">Hourly Staff Rate</md-option>
+                    <md-option value="Hourly Task Rate">Hourly Task Rate</md-option>
+                    <md-option value="Hourly Project Rate">Hourly Project Rate</md-option>
+                    <md-option value="Flat Project Amount">Flat Project Amount</md-option>
+              </md-select>
+            </md-input-container> 
+            <div style="width : 5%"></div>
+            <div layout="column" flex>
+              <md-checkbox class="md-block md-primary" ng-model="vm.cb1"  ng-disabled="vm.cb1Status" aria-label="Checkbox 1">
+                Merge all as one single line item
+              </md-checkbox>
+            </div>
+        </div>
+        <div layout="row" layout-align="space-around center"> 
+          <md-input-container flex  md-no-float> 
+            <md-select ng-model="vm.expenseMethod" ng-change="vm.changeExpense()" placeholder="Invoice all unbilled expences">
+                  <md-optgroup label="Expense Method"> 
+                  <md-option value="ibep" selected>Invoice bill expenses for project</md-option>
+                  <md-option value="iuep">Invoice unbill expenses for project</md-option>
+            </md-select>
+          </md-input-container> 
+          <div style="width : 5%"></div>
+          <div layout="column" flex>
+            <md-checkbox class="md-block  md-primary" ng-model="vm.cb2" ng-disabled="vm.cb2Status " >
+              Merge all as one single line item
+            </md-checkbox>
+          </div>
+        </div>
+        <div layout="row" layout-align="space-around center">  
+          
+          <md-datepicker style="margin-left: -12px;" ms-fix-datepicker class="leftcolumn" ng-model="vm.dateFrom" md-max-date="vm.maxDateTo" md-placeholder="From"  required flex ng-change="vm.changeDate()"> 
+          </md-datepicker>
+
+          <div style="width : 5%"></div> 
+
+          <md-datepicker style="margin-left: -15px;" ms-fix-datepicker class="leftcolumn" ng-model="vm.dateTo" md-min-date="vm.minDateFrom" md-placeholder="To" required flex ng-change="vm.changeDate()"> 
+          </md-datepicker>
+        </div> 
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">  
+      <md-button type="submit" class="md-primary" ng-disabled="editForm.$invalid">
+        submit
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

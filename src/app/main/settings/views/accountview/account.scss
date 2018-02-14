@@ -1,0 +1,97 @@
+#setting{
+    .md-content{
+        font-size: 15px;
+        .subHeader{
+            background-color:#f6f6f6; 
+            height:48px;
+            line-height: 48px;
+            width:100%;
+            .title{
+                margin-left: 15px;
+                font-size: 18px;
+            }
+        }
+
+      
+
+    }
+
+    .fileContainer {
+    overflow: hidden;
+    position: relative;
+    }
+    .pdf-icon{
+                                padding: 5px;    
+                                border-radius: 2px;
+                                background-color: rgba(128, 128, 128, 0.16);
+                        }
+                        .pdf-name{
+                                margin-bottom:-100px;
+                                border: 1px dashed;
+                                border-color: rgba(0, 0, 0, 0.27);
+                                color: #2d6296;
+                                margin-left: 10px;
+                                display: -webkit-inline-box;
+                                border-radius: 2px;
+                                padding: 12px;
+                        }
+
+    .fileContainer [type=file] {
+        cursor: inherit;
+        display: block;
+        font-size: 999px;
+        filter: alpha(opacity=0);
+        min-height: 100%;
+        min-width: 100%;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+    }
+
+    /* Example stylistic flourishes */
+
+    .fileContainer {
+        float: left;
+        padding: .5em;
+        color:rgb(45,98,150);
+        border: 2px solid;
+        border-radius: 3px;
+        box-sizing: border-box;
+
+        line-height: 36px;
+        min-height: 36px;
+        align-items: center;
+        padding: 0 6px;
+        margin: 6px 8px;
+        background: transparent;
+        white-space: nowrap;
+        min-width: 88px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 14px;
+        font-style: inherit;
+        font-variant: inherit;
+        font-family: inherit;
+        text-decoration: none;
+        cursor: pointer;
+        overflow: hidden;
+
+        &.fileContainer:hover{
+            background:rgba(158,158,158,0.2);
+        }
+    }
+
+    .fileContainer [type=file] {
+        cursor: pointer;
+    }
+
+    .footersection{
+    width:100%;
+    height: 64px;
+    padding: 31.5px 24px !important;
+    border-top:1px solid rgba(0, 0, 0, 0.12);
+    }
+}

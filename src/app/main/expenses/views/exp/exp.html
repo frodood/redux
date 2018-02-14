@@ -1,0 +1,332 @@
+<div id="expense" class="page-layout carded boxed right-sidenav" layout="row">
+
+    <!-- CENTER -->
+    <div class="center" layout="column" layout-align="center center" flex >
+
+        <div class="content-card" layout="column" flex>
+            <!-- PRIMARY TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center" ng-show="vm.primaryToolbarContext">
+                <div layout="row" layout-align="start center">
+                </div>
+                <div layout="row" layout-align="start center">
+                   <md-button class="md-primary border" style="border:2px solid;" ng-click="vm.toggleChildStates('app.expenses.compose')" ms-perm-elem perm-context="'Expenses'" perm-action="'add'">
+                      <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                      Add New
+                   </md-button>
+                </div>
+            </div>
+            <!-- / PRIMARY TOOLBAR -->
+
+            <!-- SECONDARY TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center">
+
+                    <!-- THREAD LIST SPECIFIC ACTIONS -->
+                   <!--  <md-checkbox class="no-label" aria-label="{{vm.selectedThreads.length > 0 ? 'Deselect All' : 'Select All'}}"
+                     ng-checked="vm.selectedThreads.length > 0" ng-click="vm.toggleSelectThreads()"
+                     ng-if="!vm.currentThread"></md-checkbox> -->
+                     <!-- / THREAD LIST SPECIFIC ACTIONS -->
+
+                     <!-- SINGLE THREAD SPECIFIC ACTIONS -->
+                     <md-button class="md-icon-button close-thread" aria-label="Back"
+                     ng-click="vm.closeThread()" ng-if="vm.currentThread">
+                     <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+                 </md-button>
+                 <!-- / SINGLE THREAD SPECIFIC ACTIONS -->
+
+                 <!-- ACTION BUTTONS -->
+
+                 <div class="filter-buttons" layout="row" layout-align="start center" ng-hide="vm.selectedThreads.length > 0 || vm.currentThread" hide show-gt-xs>
+
+                   <!--  <div class="divider-vertical"></div> -->
+                    <md-menu md-position-mode="target-left bottom" style="background:rgb(250,250,250);width:50px;height:40px">
+                        <md-button class="md-icon-button" aria-label="Sort" ng-click="$mdOpenMenu()">
+                            <md-icon md-font-icon="icon-sort-variant"></md-icon>
+                            <md-tooltip><span>Sort</span></md-tooltip>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item ng-repeat="item in vm.testarr track by $index">
+                                <md-button ng-click="vm.starfunc(item,$index)">
+                                    <div layout="row">
+                                        <p flex>{{item.name}}</p>
+                                        <div>
+                                            <md-icon md-font-icon="icon-chevron-up" style="margin-top:4px;
+                                            margin-left: 85px; position: absolute;" ng-show="item.upstatus"></md-icon>
+                                        </div>
+                                        <div>
+                                            <md-icon md-font-icon="icon-chevron-down" style="margin-top:9px;
+                                            margin-left: 85px;position: absolute;" ng-show='item.downstatus'></md-icon>
+                                        </div>
+
+                                    </div>
+                                </md-button>
+                                <div ng-click="vm.DefaultCancel(item)" style="width: 18px;z-index: 10;margin-left: -45px; margin-top: 15px;position: relative;" ng-show='item.close'>
+                                 <md-icon md-font-icon="icon-close-circle" style='width: 18px;
+                                 margin-top:-4px;'></md-icon>
+                             </div>
+                         </md-menu-item>
+                         <md-divider ng-show='item.divider'></md-divider>
+                     </md-menu-content>
+                 </md-menu>
+             </md-button>
+
+             <div class="divider-vertical"></div>
+
+             <md-button class="md-icon-button" aria-label="All" ng-click="vm.all()">
+                <md-icon md-font-icon="icon-multiplication"></md-icon>
+                <md-tooltip><span>All</span></md-tooltip>
+            </md-button>
+
+            <!-- <md-button class="md-icon-button" aria-label="Viewed">
+                <md-icon md-font-icon="icon-eye"></md-icon>
+                <md-tooltip><span>Viewed</span></md-tooltip>
+            </md-button> -->
+
+            <md-button class="md-icon-button" aria-label="Paid" ng-click="vm.paidExpense()">
+                <md-icon md-font-icon="icon-cash-100"></md-icon>
+                <md-tooltip><span>Paid</span></md-tooltip>
+            </md-button>
+
+            <md-button class="md-icon-button" aria-label="Favourite" ng-click="vm.favouriteExpenses()">
+                <md-icon md-font-icon="icon-star"></md-icon>
+                <md-tooltip><span>Favourite</span></md-tooltip>
+            </md-button>
+
+        </div>
+
+    <!--     <div class="action-buttons" layout="row" layout-align="start center" ng-show="vm.selectedThreads.length > 0 || vm.currentThread" hide show-gt-xs>
+
+            <div class="divider-vertical"></div>
+
+            <md-button class="md-icon-button" aria-label="Archive">
+                <md-icon md-font-icon="icon-archive"></md-icon>
+                <md-tooltip><span>Archive</span></md-tooltip>
+            </md-button>
+
+            <md-button class="md-icon-button" aria-label="Delete">
+                <md-icon md-font-icon="icon-delete"></md-icon>
+                <md-tooltip><span>Delete</span></md-tooltip>
+            </md-button>
+
+            <div class="divider-vertical"></div>
+
+            <md-button class="md-icon-button" aria-label="Move to">
+                <md-icon md-font-icon="icon-folder"></md-icon>
+                <md-tooltip><span>Transfer to Folder</span></md-tooltip>
+            </md-button>
+
+            <md-menu>
+                <md-button class="md-icon-button" aria-label="Labels"
+                ng-click="$mdOpenMenu($event)">
+                <md-icon md-font-icon="icon-label"></md-icon>
+                <md-tooltip><span>Add Tag</span></md-tooltip>
+            </md-button>
+            <md-menu-content class="thread-labels-toggle-list" width="3">
+                <md-list>
+                    <md-subheader class="md-no-sticky">
+                        <span>Tag</span>
+                    </md-subheader>
+                    <md-list-item ng-repeat="label in vm.labels" ng-click="vm.toggleLabel(label)">
+                        <div layout="row" layout-align="start center">
+                            <div class="w-10 h-10 mr-16" ng-class="label.color"></div>
+                            <div>{{label.title}}</div>
+                        </div>
+                        <md-icon md-font-icon="icon-checkbox-blank-outline" class="md-secondary"
+                        ng-if="vm.currentThread && !vm.isLabelExist(label)"></md-icon>
+                        <md-icon md-font-icon="icon-checkbox-marked" class="md-accent md-secondary"
+                        ng-if="vm.currentThread && vm.isLabelExist(label)"></md-icon>
+                    </md-list-item>
+                </md-list>
+            </md-menu-content>
+        </md-menu>
+    </div> -->
+    <!-- / ACTION BUTTONS -->
+
+    <!-- ACTIONS MENU -->
+    <md-menu class="actions-menu"
+    ng-show="vm.selectedThreads.length > 0 || vm.currentThread"
+    hide-gt-xs>
+    <md-button class="md-icon-button"
+    ng-click="$mdOpenMenu($event)"
+    aria-label="Mail Actions"
+    translate translate-attr-aria-label="MAIL.ACTIONS">
+    <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+</md-button>
+<md-menu-content width="3">
+    <md-menu-item>
+        <md-button aria-label="Archive">
+            <md-icon md-font-icon="icon-archive"></md-icon>
+            <span>Archive</span>
+        </md-button>
+    </md-menu-item>
+    <md-menu-item>
+        <md-button aria-label="Spam">
+            <md-icon md-font-icon="icon-alert-octagon"></md-icon>
+            <span>Spam</span>
+        </md-button>
+    </md-menu-item>
+    <md-menu-item>
+        <md-button aria-label="Delete">
+            <md-icon md-font-icon="icon-delete"></md-icon>
+            <span>Delete</span>
+        </md-button>
+    </md-menu-item>
+    <md-menu-item>
+        <md-button aria-label="Move To">
+            <md-icon md-font-icon="icon-folder-move"></md-icon>
+            <span>Move To</span>
+        </md-button>
+    </md-menu-item>
+    <md-menu-item>
+        <md-button aria-label="Labels">
+            <md-icon md-font-icon="icon-label"></md-icon>
+            <span>Labels</span>
+        </md-button>
+    </md-menu-item>
+</md-menu-content>
+</md-menu>
+<!-- / ACTIONS MENU -->
+</div>
+
+<!-- <div layout="row" layout-align="start center" ng-show="vm.primaryToolbarContext">
+    <span class="page-info" hide-sm>1 - 100 of 980</span>
+
+    <md-button class="md-icon-button arrow" aria-label="Previous">
+        <md-icon md-font-icon="icon-chevron-left"></md-icon>
+        <md-tooltip><span>Previous</span></md-tooltip>
+    </md-button>
+
+    <md-button class="md-icon-button arrow" aria-label="Next">
+        <md-icon md-font-icon="icon-chevron-right"></md-icon>
+        <md-tooltip><span>Next</span></md-tooltip>
+    </md-button>
+</div> -->
+<ms-paging ng-show="vm.primaryToolbarContext" page-obj='vm.pageObj' result="vm.expenseSummary" page-gap="vm.pageGap"></ms-paging>
+
+<div class="primaryToolbarContext" layout="row" layout-align="start center" ng-hide="vm.primaryToolbarContext">
+
+    <!-- <md-menu class="actions-menu">
+    <md-button class="md-icon-button"
+        ng-click="$mdOpenMenu($event)"
+        aria-label="Expense Actions">
+        <md-icon md-font-icon="icon-printer"></md-icon>
+        <md-tooltip><span>Print</span></md-tooltip>
+    </md-button>
+    <md-menu-content width="3">
+        <md-menu-item ng-if="vm.expenseForUniquekey.uploadImage.length">
+            <md-button aria-label="Archive" ng-click="vm.printAsAttachmentOnly()">
+                <span>Print as Attachment only</span>
+            </md-button>
+        </md-menu-item>
+        <md-menu-item>
+            <md-button aria-label="Archive" ng-click="vm.printAsAttachmentWithSummary()">
+                <span>Print as Attachment with summary</span>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+    </md-menu> -->
+
+    <!-- <md-menu class="actions-menu">
+    <md-button class="md-icon-button"
+        ng-click="$mdOpenMenu($event)" 
+        aria-label="Expense Actions">
+        <md-icon md-font-icon="icon-download"></md-icon>
+        <md-tooltip><span>Download</span></md-tooltip>
+    </md-button>
+    <md-menu-content width="3">
+        <md-menu-item ng-if="vm.expenseForUniquekey.uploadImage.length">
+            <md-button aria-label="Archive" ng-click="vm.downloadAsAttachmentOnly()">
+                <span>Download as Attachment only</span>
+            </md-button>
+        </md-menu-item>
+        <md-menu-item>
+            <md-button aria-label="Archive" ng-click="vm.downloadAsAttachmentWithSummary()">
+                <span>Download as Attachment with summary</span>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+    </md-menu> -->
+
+    <!-- <md-button class="md-icon-button" aria-label="Email" ng-click="vm.sendMail()">
+        <md-icon md-font-icon="icon-email"></md-icon>
+        <md-tooltip><span>Email</span></md-tooltip>
+    </md-button> -->
+
+    <div class="estStatus {{vm.expenseForUniquekey.status}}" style="display:flex;">
+          <div class="status-circle" style="margin-top: 4px;"></div>
+          <div class="status-label">{{vm.expenseForUniquekey.status}}</div>
+    </div>
+
+    <ms-sidebar-history-comments-remote ng-if="!vm.primaryToolbarContext" ng-hide="$mdMedia('gt-md')"></ms-sidebar-history-comments-remote>
+    <div ng-init="getExpenseById()"></div>
+    <md-menu class="actions-menu">
+        <md-button class="md-icon-button"
+        ng-click="$mdOpenMenu($event)"
+        aria-label="Expense Actions">
+        <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+        <md-tooltip><span>Actions</span></md-tooltip>
+    </md-button>
+    <md-menu-content width="3">
+        <md-menu-item ms-perm-elem perm-context="'Expenses'" perm-action="'edit'" ng-if="vm.expenseForUniquekey.status != 'Cancelled'">
+            <md-button aria-label="Archive" ng-click="vm.changeStatus(vm.expenseForUniquekey, $event)">
+                <md-icon md-font-icon="icon-archive"></md-icon>
+                <span>{{vm.markAs}}</span>
+            </md-button>
+        </md-menu-item>
+        <md-menu-item ng-if="vm.expenseForUniquekey.billable == 'Billable'">
+            <md-button aria-label="Spam" ng-click="vm.billCustomer(vm.expenseForUniquekey)">
+                <md-icon md-font-icon="icon-alert-octagon"></md-icon>
+                <span>Bill Customer</span>
+            </md-button>
+        </md-menu-item>
+        <md-menu-item ng-if="vm.expenseForUniquekey.status != 'Cancelled'" ms-perm-elem perm-context="'Expenses'" perm-action="'edit'">
+            <md-button aria-label="Labels" ng-click="vm.editExpense()">
+                <md-icon md-font-icon="icon-label"></md-icon>
+                <span>Edit</span>
+            </md-button>
+        </md-menu-item>
+        <md-menu-item ng-if="vm.expenseForUniquekey.status != 'Cancelled'" ms-perm-elem perm-context="'Expenses'" perm-action="'cancel'">
+            <md-button aria-label="Move To" ng-click="vm.cancelStatus(vm.expenseForUniquekey)">
+                <md-icon md-font-icon="icon-folder-move"></md-icon>
+                <span>Cancel</span>
+            </md-button>
+        </md-menu-item>
+        <md-menu-item ms-perm-elem perm-context="'Expenses'" perm-action="'delete'">
+            <md-button aria-label="Delete" ng-click="vm.expensesDelete(vm.expenseForUniquekey)">
+                <md-icon md-font-icon="icon-delete"></md-icon>
+                <span>Delete</span>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
+</div>
+</div>
+<!-- / SECONDARY TOOLBAR -->
+
+<!-- CONTENT WRAPPER -->
+<div class="content-wrapper">
+
+    <!-- ITEM DETAIL -->
+    <div class="content thread-detail"
+    ms-scroll-height-fix-component scrolloffset-height="112" ng-if="vm.currentThread"
+    ng-include="'app/main/expenses/views/exp/detail/exp-detail.html'" ms-scroll flex></div>
+    <!-- / ITEM DETAIL -->
+
+    <!-- ITEM LIST -->
+    <div class="content item-list" ms-scroll-height-fix-component scrolloffset-height="176" ng-if="!vm.currentThread" ng-include="'app/main/expenses/views/exp/list/exp-list.html'" ms-scroll flex>
+    </div>
+    <!-- / ITEM LIST -->
+
+</div>
+<!-- / CONTENT WRAPPER-->
+</div>
+
+</div>
+<!-- / CENTER -->
+
+<!-- ACTIVITY COMPONENT -->
+    <ms-sidebar-history-comments ng-if="!vm.primaryToolbarContext" application="'expense'">
+    </ms-sidebar-history-comments>
+    <!-- / ACTIVITY COMPONENT -->
+
+</div>

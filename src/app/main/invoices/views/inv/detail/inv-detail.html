@@ -1,0 +1,12 @@
+<div ng-init="vm.loadDetailView()"></div>
+<ms-spinner-component name="invo-details-spinner" size="32" relative-position="false" on-loaded="vm.invoDetailSpinnerLoaded(spinnerApi)" opaque="true"></ms-spinner-component>
+
+<div class="invTemplate-1" 
+     ng-include="'app/main/invoices/views/inv/detail/inv-detail-temp1.html'"
+     ng-if="vm.templateID == '1' ">   
+</div>
+
+<div class="invTemplate-1" 
+     ng-include="'app/main/invoices/views/inv/detail/inv-detail-temp2.html'"
+     ng-if="vm.templateID == '2' ">   
+</div>

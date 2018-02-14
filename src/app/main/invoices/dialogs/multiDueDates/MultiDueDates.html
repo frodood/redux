@@ -1,0 +1,127 @@
+<md-dialog class="customDialogBox frmModal" aria-label="cusTool" >
+
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>MULTIPLE DUE DATES</h2>
+         <span flex></span>
+         <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+      </div>
+   </md-toolbar>
+   <md-dialog-content style="padding: 0px">
+   <div class="dialogContent pad_32" style="overflow: auto;">
+   <form ng-submit="$event.preventDefault()" name="addProd">
+      
+       <div class="formWrapper" style="background-color: #efefef; color: black; width: 200px; margin-left:350px; padding: 16px">
+              
+              <div class="maininfosection" layout="row" layout-align="start center" >
+                  <label style="font-weight: 500; font-size: 13px; color:#898a8c">Invoice Total</label>
+              </div>
+              <div class="maininfosection" layout="row" layout-align="start center" >
+                  <label>{{vm.baseCurrency}} {{vm.famount / vm.invoice.exchangeRate | valRndUp}}</label>
+              </div>
+      </div>
+     
+      <md-content flex ms-scroll class="content-class">
+      <div class="formSection">
+                <div class="lineitems" layout="column">
+                    
+
+                    <div class="line-items-container">
+                    
+                        <!-- LIST ITEM -->
+                        <div class="line-item" layout="row" layout-align="start center" ng-repeat="cn in vm.testarr">
+                            <div layout="row" layout-align="start center" flex>
+                                
+
+                                <div class="info" layout="row" layout-align="start center">
+
+                                    <div class="item-value center" style="margin-top: -9px;margin-left:-30px" flex="38">
+                                        <md-datepicker ms-fix-datepicker class="leftcolumn" ng-model="cn.dueDate" md-min-date="minDate" md-placeholder="Date" ng-required="true" flex style="  vertical-align: top;" ng-change="vm.changeDate(cn)">
+                                            <div ng-messages="multiDuedates.dueDate.$error">
+                                             <div ng-message="required">This is required.</div>
+                                           </div>
+                                         </md-datepicker>
+                                    </div>
+
+                                    <div class="item-value center" flex="32">
+                                        
+                                        <md-input-container class="midlecolumn" md-no-float style="margin-left: 20px;" flex>
+                                            <input placeholder="Percentage    %" ng-model="cn.percentage" maxlength="3" type="number" id="{{cn.uniqueKey}}" ng-change="vm.DueAmount(cn,$index)" >
+                                        </md-input-container>
+                                    </div>
+
+                                    <div class="item-value center" flex="32">
+                                      <md-input-container class="midlecolumn" md-no-float style="margin-left: 20px;" flex>
+                                        <input placeholder="Amount" ng-model="cn.changePrice">
+                                        </md-input-container>
+                                    </div>
+
+                                    <div class="item-value center rightcolumn" flex="1">
+                                        <md-button  class="md-icon-button"ng-click="vm.removeItem(cn,$index)" aria-label="Delete">
+                                        <md-icon md-font-icon="icon-close-circle"></md-icon>
+                                      </md-button>
+                                    </div>
+                                </div>   
+                            </div>
+                        </div>
+                        <!-- LIST ITEM -->
+                    </div>
+
+                    <div layout layout-sm="column" layout-margin>
+                     <md-button  class="md-primary" href cclass="md-icon-button" ng-click="vm.addItem()">
+                        <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>New Line</md-button>
+                    </div>
+
+                    <div class="empty-line-items-container" ng-if="!vm.fullArr.length" layout="row" layout-align="center center">
+                        <span>{{vm.InvoicesDataStatus}}</span>
+                    </div>
+                    <!-- LIST ITEM HOLDER -->
+                </div>
+            </div>
+
+    </md-content>
+
+   </form>
+   </div>
+    </md-dialog-content>
+     <md-dialog-actions layout="row" class="dialogFooter">
+  <!-- <div  layout="row"> -->
+
+  <div style="width: 100%">
+    <div style="float:  left; width:calc(100% - 96px); height:inherit;">
+      
+      <div style="line-height: 20px;border-radius: 5px; padding-left: 5px; padding-right: 5px;
+    display: inline-block;
+    background-color: rgb(45,98,150);
+    color: white;">
+        <span>Remaining Percentage  = {{vm.showcal}}%</span> 
+        <span>Balance Due Amount  = {{vm.showTotal  | valRndUp}}</span>
+      </div>
+      <div  ng-show="vm.wrongDate" >
+         <span style="color:red" flex>Please select a due date greater than or equal to invoice date</span>
+      </div>
+      <div  ng-show="askDate" >
+         <span style="color:red" flex>Please add a DueDate </span>
+      </div>
+      <div ng-show="vm.percentageError">
+        <span style="color : red;">dates cannot be updated</span>
+      </div>
+      <div ng-show="vm.showPercentage">
+        <span style="color : red;">percentage exceeded </span>
+      </div>
+      <div ng-show="vm.showmsg">
+        <span style="color : red;">please check the percentage and add</span>
+      </div>
+      
+
+    </div>
+    <div  style="float: right;">
+      <md-button href  ng-click="vm.AddDueDates()" ng-if="vm.dateArray.val.length == 0" style="border:2px solid;float: right;margin-right: 0px" class="md-primary">Save</md-button>
+       <md-button href ng-if="vm.dateArray.val.length != 0" ng-click="vm.UpdateDueDates()" style="border:2px solid;float: right;" class="md-primary">Update</md-button>
+    </div>
+  </div>
+      <!-- </div> -->
+   </md-dialog-actions>
+</md-dialog>

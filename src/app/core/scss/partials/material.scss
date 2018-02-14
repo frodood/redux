@@ -1,0 +1,373 @@
+/*-----------------------------------------------------------------------*/
+/* Contains custom elements, components and general styles that
+/* follows Google(TM) Material Design(TM) specs
+/*
+/* https://www.google.com/design/spec/material-design/introduction.html
+/*-----------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------*/
+/*  Avatars
+/*----------------------------------------------------------------*/
+.avatar {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 8px 0 0;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    color: #FFFFFF;
+
+    &.square {
+        border-radius: 0;
+    }
+
+    &.small {
+        width: 20px;
+        min-width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    &.big {
+        width: 72px;
+        min-width: 72px;
+        height: 72px;
+        line-height: 72px;
+    }
+
+    &.huge {
+        width: 96px;
+        min-width: 96px;
+        height: 96px;
+        line-height: 96px;
+    }
+}
+
+/*----------------------------------------------------------------*/
+/*  Button
+/*----------------------------------------------------------------*/
+
+md-button{
+    .border{
+        border:3px solid red !important;
+    }
+}
+
+/*----------------------------------------------------------------*/
+/*  Forms
+/*----------------------------------------------------------------*/
+.form-wrapper {
+    background: #FFFFFF;
+    padding: 16px;
+
+    .form-title {
+        font-size: 21px;
+        padding: 8px 0;
+    }
+}
+
+/*----------------------------------------------------------------*/
+/*  Navigation - Simple
+/*----------------------------------------------------------------*/
+.navigation-simple {
+
+    .item {
+        position: relative;
+        cursor: pointer;
+        text-align: left;
+        margin: 0;
+        padding: 0 24px;
+        text-transform: none;
+        line-height: 48px;
+        max-height: 48px;
+        height: 48px;
+
+        md-icon {
+            margin: 0 16px 0 0;
+        }
+
+        .title {
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        &.selected {
+            background-color: rgba(0, 0, 0, 0.06);
+        }
+    }
+
+    .subheader {
+        font-size: 13px;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        font-weight: 500;
+        margin-top: 8px;
+
+        &.light {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+    }
+
+    md-divider {
+        margin: 8px 0;
+    }
+}
+
+/*----------------------------------------------------------------*/
+/*  Pagination
+/*----------------------------------------------------------------*/
+.simple-pagination {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    box-shadow: $whiteframe-shadow-1dp;
+    background-color: #FFFFFF;
+    padding: 0 8px;
+
+    .pagination-item {
+        min-width: 48px;
+        min-height: 56px;
+        line-height: 56px;
+        border-radius: 0;
+        margin: 0;
+        font-weight: normal;
+        color: rgba(0, 0, 0, 0.54);
+
+        &:hover {
+            color: rgba(0, 0, 0, 0.87);
+        }
+
+        &.active {
+            cursor: default;
+            color: rgba(0, 0, 0, 0.87);
+        }
+
+        &.disabled {
+            cursor: default;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    }
+}
+
+/*----------------------------------------------------------------*/
+/*  Price Tables
+/*----------------------------------------------------------------*/
+.price-tables {
+
+    .price-table {
+        position: relative;
+        background-color: #FFFFFF;
+        width: 320px;
+        border-radius: 2px;
+        margin: 0 24px 0 0;
+        overflow: hidden;
+
+        &.style-3 {
+
+            .price {
+                padding: 16px 16px;
+                text-align: center;
+                color:#335E8B;
+                border-bottom:1px solid rgba(0,0,0,0.084);
+
+                .currency {
+                    padding-right: 4px;
+                    font-size: 24px;
+                    font-weight: 500;
+                }
+
+                .value {
+                    font-size: 96px;
+                    font-weight: 300;
+                    line-height: 1;
+                }
+
+                .period {
+                    padding-left: 4px;
+                    font-size: 15px;
+                    text-align: center;
+                }
+            }
+
+            .package-type {
+                padding: 16px 32px;
+                border-bottom:1px solid rgba(0,0,0,0.084);
+
+                .title {
+                    font-size: 24px;
+                    font-weight: 300;
+                    color:#757575;
+                }
+
+                .subtitle {
+                    font-size: 17px;
+                    color: rgba(255,255,255,1);
+                    font-weight: 300;
+                }
+
+            }
+
+            .terms {
+                margin: 16px;
+                font-size: 15px;
+                color: rgba(0, 0, 0, 0.54);
+                height:200px;
+
+                .term {
+                    padding-bottom: 16px;
+
+                    &:last-child {
+                        padding-bottom: 0;
+                    }
+
+                    &.special{
+                        color:#335E8B;
+                        font-weight:500; 
+                    }
+                }
+            }
+
+            .cta-button {
+                margin: 8px 32px;
+            }
+
+            .note {
+                padding: 8px 32px 16px 32px;
+                text-align: center;
+                color: rgba(0, 0, 0, 0.54);
+            }
+        }
+    }
+}
+
+/*----------------------------------------------------------------*/
+/*  Table - Simple
+/*----------------------------------------------------------------*/
+.simple-table-container {
+    background: #FFFFFF;
+
+    .table-title {
+        font-size: 20px;
+        padding: 24px;
+    }
+}
+
+table {
+
+    &.simple {
+        width: 100%;
+        border: none;
+        border-spacing: 0;
+        text-align: left;
+
+        thead {
+
+            tr {
+
+                th {
+                    padding: 16px 8px;
+                    font-weight: 500;
+                    color: rgba(0, 0, 0, 0.54);
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                    white-space: nowrap;
+                    min-width: 120px;
+
+                    &:first-child {
+                        padding-left: 24px;
+                    }
+
+                    &:last-child {
+                        padding-right: 24px;
+                    }
+                }
+            }
+        }
+
+        tbody {
+
+            tr {
+
+                td {
+                    padding: 16px 8px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+                    &:first-child {
+                        padding-left: 24px;
+                    }
+
+                    &:last-child {
+                        padding-right: 24px;
+                    }
+                }
+
+                &:last-child {
+
+                    td {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+
+        &.clickable {
+
+            tbody {
+
+                tr {
+                    cursor: pointer;
+
+                    &:hover {
+                        background: rgba(0, 0, 0, 0.03);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.attachement-pill{
+    border: 2px solid rgb(31,67,103);
+    color: rgb(31,67,103);
+    border-radius: 3px;
+    height: 28px;
+    overflow: hidden;
+
+    .att-pill-icon{
+            md-icon[md-font-icon], i{
+                    margin-top: 1px;
+                    margin-right: 2px;
+                    color: rgb(31,67,103);
+                    font-size: 20px;
+                    width: 20px;
+                    height: 20px;
+                    min-width: 20px;
+                    min-height: 20px;
+                    line-height: 20px;
+            }
+    }
+
+    .att-pill-cont{
+            span{
+                    line-height:24px; 
+            }
+
+            span:nth-child(1){
+                    max-width: 100px;
+                    min-width: 60px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;   
+            }
+
+            span:nth-child(2){
+                    line-height: 24px;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    background: rgb(31,67,103);
+                    margin-left: 5px;
+                    color: white;
+            }
+    }
+}

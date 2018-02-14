@@ -1,0 +1,80 @@
+
+<md-dialog class="customDialogBox frmModal" style="height: 400px;" aria-label="Mango (Fruit)">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{vm.toolbarHeader}}</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent" layout="row" flex>
+		<md-content ms-scroll flex style="background-color:#efefef;padding:10px;">
+				<div layout="column" layout-align="start start" flex >
+					<div class="SearchCard">
+						<div style="padding-bottom: 6px;">
+							<img ng-src="/assets/payment/webxpay_payment_logo.png" class="md-card-image" alt="Washed Out" style="width:100px; height:100px;">
+						</div>
+					</div>
+
+					<div flex><b>Setup Instructions:</b></div>
+					  
+						<ul style="margin-left: -21px;">
+							<div style="margin-left: -19px;">12th Door:</div>
+							<li>Enter your “WebXPay Secret Key”.</li>
+							<li>Enter your “WebXPay Public Key”.</li>
+							<li>Press the save button.</li>
+						</ul>
+
+						<ul style="margin-left: -21px;">
+							<div style="margin-left: -19px;">WebXPay:</div>
+							<li>Goto  Settings > Integrations</li>
+							<li>In the “Response URLS” section enter the </br>
+								below URL under each listed payment option </br>e.g AMEX, HNB etc:
+								<span  class="webxpayId" style="font-size:12px; display: block; width: 280px; overflow-wrap:break-word; cursor:pointer;" ng-click="vm.copyToClipboard('https://app.12thdoor.com/services/IPN/webexresponse_handler.php')">https://app.12thdoor.com/services/IPN/webexresponse_handler.php</span>
+							</li>
+							<li>Save settings.</li>
+						</ul>
+				
+					<div>Please visit <a style="cursor:pointer;color:black;" onclick="window.open('https://www.webxpay.com', '_blank')" >www.webxpay.com</a> for more information.</div>
+					
+				</div>
+				
+		
+		</md-content>
+		<md-content ms-scroll flex>
+			<div layout="row" layout-align="start start" flex>
+				<div  flex>
+					<form name="editForm" novalidate class="pad_32" >
+						<div layout layout-sm="column" layout-margin >
+							<md-input-container md-no-float flex>
+								<input type="text" name="skey" required ng-model="vm.webxpay.skey" placeholder="Secret Key" required>
+								<div ng-messages="webxpayForm.skey.$error">
+									<div ng-message="required"></div>
+								</div>
+							</md-input-container>
+						</div>
+						
+						<div layout="column" layout-sm="column" layout-margin >
+							<md-input-container md-no-float flex>
+								<input type="text" name="pkey" required ng-model="vm.webxpay.pkey" placeholder="Public Key" required>
+								<div ng-messages="webxpayForm.pkey.$error">
+									<div ng-message="required"></div>
+								</div>
+							</md-input-container>
+						</div>
+					</form>
+				</div>
+			</div>
+		</md-content>
+	</div>
+	<div class="dialogFooter">
+		<md-button class="md-primary" ng-click="vm.submit()"  ng-disabled="editForm.$invalid">
+			{{vm.submitButton}}
+		</md-button>
+        <md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+			Cancel
+		</md-button>
+	</div>
+</md-dialog>

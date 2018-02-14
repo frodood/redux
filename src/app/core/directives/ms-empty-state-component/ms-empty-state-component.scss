@@ -1,0 +1,70 @@
+ms-empty-state-component{
+    .emptyStateVisContainer{
+
+        h1{
+            margin:8px 0px !important;
+            font-weight:400;
+            color:rgba(0,0,0,0.4); 
+        }
+
+        span{
+            font-weight:500; 
+            max-width:60%; 
+            text-align:center;
+        }
+
+        &.large{
+
+            img{
+                width:300px;
+                height:300px;
+            }
+
+            h1{
+            font-size:24px;
+            font-weight:400; 
+            }
+
+            span{
+                font-size:15px;
+                
+            }
+        }
+
+        &.medium{
+
+            img{
+                width:200px;
+                height:200px;
+            }
+
+            h1{
+                font-size:20px;
+                font-weight:400; 
+            }
+
+            span{
+                font-size:15px;
+                
+            }
+        }
+
+        &.small{
+
+            img{
+                width:150px;
+                height:150px;
+            }
+
+            h1{
+                font-size:16px;
+                font-weight:400;
+            }
+
+            span{
+                font-size:14px;
+                
+            }
+        }
+    }
+}

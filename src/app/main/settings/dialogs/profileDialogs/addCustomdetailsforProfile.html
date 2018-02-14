@@ -1,0 +1,41 @@
+<md-dialog class="customDialogBox frmModal cf-modal-height-fix" aria-label="Mango (Fruit)">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Add Custom Fields for Profile</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent" layout="column" flex>
+		
+		<md-content ms-scroll flex>
+			<form name="editForm" novalidate class="pad_32">
+			<div layout layout-sm="column" layout-margin ><!--ng-show="vm.type=='textBox'"-->
+				<md-input-container md-no-float flex>
+					<input name="labelShown" ng-model="vm.labelShown" placeholder="label to be shown" type="text" required>
+					<span style="font-size:12px;color:red;" ng-show="vm.sameLabelName">{{vm.erromessage}}</span>
+				</md-input-container>
+				
+				<md-input-container md-no-float style="margin-left: 20px !important;" flex>
+					<input name="inputType" ng-model="vm.inputType" placeholder="text" type="text" required>
+				</md-input-container>
+				<!-- <input type="hidden" ng-model="company.input[i].id" ng-init="company.input[i].id=i"> -->
+				<div flex="20" flex-sm="30" layout="row" layout-align="start center" style="font-size:12px;">
+					<md-checkbox class="md-primary" ng-model="vm.showOnPdf" aria-label="Checkbox 1">Show on PDF</md-checkbox>
+				</div>
+			</div>
+			</form>
+		</md-content>
+	
+</div>
+<div class="dialogFooter">
+	<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid" >
+		Add
+	</md-button>
+	<md-button class="md-primary md-hue-3 " ng-click="vm.cancel()">
+		Cancel
+	</md-button>
+</div>
+</md-dialog>
