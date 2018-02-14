@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - echo Installing npm...
-      - npm install
+      - npm install -g
       - npm install --global gulp-cli
   pre_build:
     commands:
@@ -22,4 +22,6 @@ phases:
       - ls
 artifacts:
   files:
-    - index.html
+    - dist/*
+    - appspec.yml
+    - scripts/*
